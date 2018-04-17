@@ -1,1 +1,1 @@
-new .vimrc
+ stable .vimrc
