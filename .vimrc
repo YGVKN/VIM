@@ -10,7 +10,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fireplace'
 
 "template|preproc etc"
-Plug 'mattn/emmet-vim',{'for':['html','css','php','ruby','eruby','jruby','python','clojure']}
+Plug 'mattn/emmet-vim',{'for':['html','css','php','ruby','eruby','jruby','python','clojure','tpl']}
 
 "elm"
 Plug 'ElmCast/elm-vim',{'for': 'elm'}
@@ -81,11 +81,11 @@ set t_Co=256
 set pastetoggle= 
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
-set textwidth=77
-set colorcolumn=77
+set textwidth=111
+set colorcolumn=111
 set belloff=all
-hi Cursor ctermfg=Red ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
-hi CursorColumn ctermfg=Red ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold 
+hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
+"hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -109,9 +109,31 @@ au BufWinLeave * call clearmatches()
 "hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "lineLength"
-:match ErrorMsg '\%77v.\+'
+:match ErrorMsg '\%111v.\+'
 
-"tab complete"
+function! Smart_TabComplete()
+  let line = getline('.')
+
+  let substr = strpart(line, -1, col('.')+1)
+
+  let substr = matchstr(substr, "[^ \t]*$")
+  if (strlen(substr)==0)
+    return "\<tab>"
+  endif
+  let has_period = match(substr, '\.') != -1
+  let has_slash = match(substr, '\/') != -1
+  if (!has_period && !has_slash)
+    return "\<C-X>\<C-P>"
+  elseif ( has_slash )
+    return "\<C-X>\<C-F>"
+  else
+    return "\<C-X>\<C-O>"
+  endif
+endfunction
+
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
+
+
 function! InsertTabWrapper(direction)
 	let col = col('.')-1
 	if !col || getline('.')[col - 1] !~ '\k'
@@ -129,6 +151,24 @@ inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
 autocmd FileType htmlset omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset omnifunc=phpcomplete#CompletePHP
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType java set omnifunc=javacomplete#Complete
+
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+
+autocmd BufWrite *.html :call DeleteTrailingWS()
+autocmd BufWrite *.css  :call DeleteTrailingWS()
+autocmd BufWrite *.js   :call DeleteTrailingWS()
+autocmd BufWrite *.py   :call DeleteTrailingWS()
+autocmd BufWrite *.rb   :call DeleteTrailingWS()
+"TODO"
 
 "autoload"
 autocmd vimenter * NERDTree
