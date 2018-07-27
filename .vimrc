@@ -8,9 +8,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "CLOJURE"
 Plug 'tpope/vim-fireplace'
-
+"ELIXIR"
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+"JULIA"
+Plug 'JuliaEditorSupport/julia-vim'
 "template|preproc etc"
-Plug 'mattn/emmet-vim',{'for':['html','css','php','ruby','eruby','jruby','python','clojure','tpl']}
+Plug 'mattn/emmet-vim',{'for':['*','html','javascript','php','ruby','erlang','python','clojure','elixir']}
 
 "elm"
 Plug 'ElmCast/elm-vim',{'for': 'elm'}
@@ -38,12 +42,14 @@ Plug 'klen/python-mode',{'for': 'python'}
 
 "Ruby"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
-
+"CRYSTAL"
+Plug 'rhysd/vim-crystal'
 "JS"
 Plug 'pangloss/vim-javascript'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'isruslan/vim-es6'
-
+"RUST"
+Plug 'rust-lang/rust.vim'
 "colorSchemes"
 Plug 'TroyFletcher/vim-colors-synthwave'
 
@@ -116,6 +122,7 @@ function! Smart_TabComplete()
 
   let substr = strpart(line, -1, col('.')+1)
 
+
   let substr = matchstr(substr, "[^ \t]*$")
   if (strlen(substr)==0)
     return "\<tab>"
@@ -148,21 +155,22 @@ inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
 
 "completing..."
-autocmd FileType htmlset omnifunc=htmlcomplete#CompleteTags
-autocmd FileType cssset omnifunc=csscomplete#CompleteCSS
-autocmd FileType PHPset omnifunc=phpcomplete#CompletePHP
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType java set omnifunc=javacomplete#Complete
 
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
+autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
+autocmd FileType python     set omnifunc=pythoncomplete#Complete
+autocmd FileType java       set omnifunc=javacomplete#Complete
+autocmd FileType c          set omnifunc=ccomplete#Complete
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
 
+autocmd BufWrite *.php  :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
 autocmd BufWrite *.css  :call DeleteTrailingWS()
 autocmd BufWrite *.js   :call DeleteTrailingWS()
