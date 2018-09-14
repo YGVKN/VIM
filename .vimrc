@@ -6,6 +6,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+"PROLOG"
+Plug 'mxw/vim-prolog'
+Plug 'adimit/prolog.vim'
 "CLOJURE"
 Plug 'tpope/vim-fireplace'
 "ELIXIR"
@@ -52,7 +55,7 @@ Plug 'isruslan/vim-es6'
 Plug 'rust-lang/rust.vim'
 "colorSchemes"
 Plug 'TroyFletcher/vim-colors-synthwave'
-
+"OTHER"
 call plug#end()
 syntax on
 filetype on
@@ -90,8 +93,14 @@ set fillchars+=vert:\
 set textwidth=111
 set colorcolumn=111
 set belloff=all
-hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
+"set relativenumber
+"set foldcolumn=13
+"hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
 "hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
+hi CursorLine   guibg=#ff0000
+hi LineNr       guifg=#ff0000
+
+
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
