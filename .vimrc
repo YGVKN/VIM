@@ -36,10 +36,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'othree/html5.vim',{'for': 'html'}
 Plug 'alvan/vim-closetag',{'for': 'html'}
 Plug 'gregsexton/MatchTag',{'for': 'html'}
-"CSS|*"
+"CSS|other"
 Plug 'lepture/vim-css',{'for': 'css'}
 Plug 'jiangmiao/auto-pairs'
-
+Plug 'tpope/vim-haml' ,{'for': ['haml','sass','scss']}
+Plug 'cakebaker/scss-syntax.vim' ,{'for': 'scss'}
 "Python"
 Plug 'klen/python-mode',{'for': 'python'}
 
