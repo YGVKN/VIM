@@ -163,7 +163,15 @@ function! InsertTabWrapper(direction)
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
+"other setting"
 
+"highlight syntax picolisp as classic lisp"
+
+"au BufNewFile,BufRead,BufReadPost *.somEextensin set syntax=yourExtension"
+augroup l
+	au!
+	autocmd BufNewFile,BufRead *.l set syntax=lisp
+augroup END
 "completing..."
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
