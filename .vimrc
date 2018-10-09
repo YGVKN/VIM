@@ -1,6 +1,9 @@
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
+"LISP"
+Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
+
 "nav|search&NERD"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
@@ -17,7 +20,7 @@ Plug 'slashmili/alchemist.vim'
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim'
 "template|preproc etc"
-Plug 'mattn/emmet-vim',{'for':['*','html','javascript','php','ruby','erlang','python','clojure','elixir']}
+Plug 'mattn/emmet-vim',{'for': ['*','html','javascript','php','ruby','erlang','python','clojure','elixir']}
 
 "elm"
 Plug 'ElmCast/elm-vim',{'for': 'elm'}
