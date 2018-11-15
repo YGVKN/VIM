@@ -1,6 +1,9 @@
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
+"otherML"
+Plug 'avakhov/vim-yaml'
+Plug 'elzr/vim-json'
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 
@@ -8,7 +11,7 @@ Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+
 "PROLOG"
 Plug 'mxw/vim-prolog'
 Plug 'adimit/prolog.vim'
@@ -29,24 +32,25 @@ Plug 'lambdatoast/elm.vim',{'for': 'elm'}
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
 
-"scope lang"
+"scope langs"
 Plug 'sheerun/vim-polyglot'
 
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 "HTML"
-
 Plug 'othree/html5.vim',{'for': 'html'}
 Plug 'alvan/vim-closetag',{'for': 'html'}
 Plug 'gregsexton/MatchTag',{'for': 'html'}
 "CSS"
+Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
 Plug 'lepture/vim-css'
 Plug 'jiangmiao/auto-pairs'
 "Python"
 Plug 'klen/python-mode',{'for': 'python'}
 
-"Ruby"
+"RUBY"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
 "CRYSTAL"
 Plug 'rhysd/vim-crystal'
@@ -62,6 +66,7 @@ Plug 'TroyFletcher/vim-colors-synthwave'
 
 
 "OTHER"
+
 call plug#end()
 syntax on
 filetype on
