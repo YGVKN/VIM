@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 
-"nav|search&NERD"
+"nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -35,15 +35,14 @@ Plug 'sheerun/vim-polyglot'
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"HTML|*"
+"HTML"
+
 Plug 'othree/html5.vim',{'for': 'html'}
 Plug 'alvan/vim-closetag',{'for': 'html'}
 Plug 'gregsexton/MatchTag',{'for': 'html'}
-"CSS|other"
-Plug 'lepture/vim-css',{'for': 'css'}
+"CSS"
+Plug 'lepture/vim-css'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-haml' ,{'for': ['haml','sass','scss']}
-Plug 'cakebaker/scss-syntax.vim' ,{'for': 'scss'}
 "Python"
 Plug 'klen/python-mode',{'for': 'python'}
 
@@ -57,13 +56,17 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'isruslan/vim-es6'
 "RUST"
 Plug 'rust-lang/rust.vim'
+
 "colorSchemes"
 Plug 'TroyFletcher/vim-colors-synthwave'
+
+
 "OTHER"
 call plug#end()
 syntax on
 filetype on
 filetype plugin indent on
+
 colorscheme synthwave
 set encoding=utf8
 set title
@@ -99,10 +102,6 @@ set colorcolumn=111
 set belloff=all
 "set relativenumber
 "set foldcolumn=13
-"hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
-"hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
-hi CursorLine   guibg=#ff0000
-hi LineNr       guifg=#ff0000
 
 
 "nerd settings"
@@ -110,7 +109,8 @@ let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
-
+hi NERDTreeClosable ctermfg=5
+hi NERDTreeOpenable ctermfg=lightmagenta
 "lang scope settings"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -127,6 +127,13 @@ au BufWinLeave * call clearmatches()
 "cursorline settings"
 "hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+"hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
+"hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
+hi CursorLine   guibg=#ff0000
+hi LineNr       guifg=#ff0000
+"Background Color"
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
 :match ErrorMsg '\%111v.\+'
 
@@ -183,8 +190,6 @@ autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
-autocmd FileType java       set omnifunc=javacomplete#Complete
-autocmd FileType c          set omnifunc=ccomplete#Complete
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
