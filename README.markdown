@@ -1,2 +1,2 @@
 # .VIMRC
-![.vimrc config](https://media.giphy.com/media/l4Kig8t6rseA2mbCM/giphy.gif)
+![.vimrc config](https://gfycat.com/CaringSandyBobolink)

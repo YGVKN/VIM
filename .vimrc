@@ -1,7 +1,7 @@
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
-"otherML"
+"otherDSL"
 Plug 'avakhov/vim-yaml'
 Plug 'elzr/vim-json'
 "LISP"
@@ -73,6 +73,7 @@ filetype on
 filetype plugin indent on
 
 colorscheme synthwave
+set background=dark
 set encoding=utf8
 set title
 set number
@@ -99,12 +100,14 @@ set smartcase
 set ignorecase
 set confirm
 set t_Co=256
-set pastetoggle= 
+"set paste
+set pastetoggle=<F12> 
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
 set textwidth=111
 set colorcolumn=111
 set belloff=all
+"set termguicolors
 "set relativenumber
 "set foldcolumn=13
 
