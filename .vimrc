@@ -1,12 +1,8 @@
 set nocompatible
 call plug#begin('~/.vim/plugged')
 
-"otherDSL"
-Plug 'avakhov/vim-yaml'
-Plug 'elzr/vim-json'
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
-
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
@@ -66,6 +62,7 @@ Plug 'TroyFletcher/vim-colors-synthwave'
 
 
 "OTHER"
+Plug 'oblitum/rainbow'
 
 call plug#end()
 syntax on
@@ -101,7 +98,7 @@ set ignorecase
 set confirm
 set t_Co=256
 "set paste
-set pastetoggle=<F12> 
+set pastetoggle=<F12>
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
 set textwidth=111
@@ -111,7 +108,21 @@ set belloff=all
 "set relativenumber
 "set foldcolumn=13
 
+"rainbow pairs brackets"
+let g:rainbow_active=1
+let g:rainbow_load_separately = [
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.tex'  , [['(', ')'], ['\[', '\]']] ],
+    \ [ '*.clj'  , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.cljs' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.lisp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.css'  , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.scss' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+    \ ]
 
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'magenta', 'yellow', 'red', 'magenta']
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
