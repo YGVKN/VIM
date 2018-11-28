@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
+Plug 'junegunn/rainbow_parentheses.vim'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
@@ -110,8 +111,15 @@ set belloff=all
 "set relativenumber
 "set foldcolumn=13
 
-"rainbow pairs brackets"
+"rainbow brackets"
 
+let g:rainbow#max_level = 16
+let g:rainbow#pairs     = [['(',')'],['[',']'],['{','}'],['<','>']]
+let g:rainbow#blacklist = [233, 234]
+augroup rainbow_lisp
+	autocmd!
+	autocmd FileType lisp,clojure,racket,scheme RainbowParentheses
+augroup END
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -214,3 +222,6 @@ autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
 "autoload"
 autocmd vimenter * NERDTree
+autocmd vimEnter * RainbowParentheses
+
+"^$"
