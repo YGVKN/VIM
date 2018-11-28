@@ -3,67 +3,69 @@ call plug#begin('~/.vim/plugged')
 
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
+Plug 'kovisoft/paredit'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
-
+"HASKEL"
+"PURESCRIPT"
+"OCAML"
+"REASON"
 "PROLOG"
-Plug 'mxw/vim-prolog'
-Plug 'adimit/prolog.vim'
-"CLOJURE"
+Plug 'mxw/vim-prolog',   {'for': 'prolog'}
+Plug 'adimit/prolog.vim',{'for': 'prolog'}
+"^CLOJURE"
 Plug 'tpope/vim-fireplace'
+"CLOJURESCRIPT"
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 "JULIA"
-Plug 'JuliaEditorSupport/julia-vim'
-"template|preproc etc"
-Plug 'mattn/emmet-vim',{'for': ['*','html','javascript','php','ruby','erlang','python','clojure','elixir']}
-
-"elm"
-Plug 'ElmCast/elm-vim',{'for': 'elm'}
+Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
+"generate markup"
+Plug 'mattn/emmet-vim',{'for': '*'}
+"ELM"
+Plug 'ElmCast/elm-vim',    {'for': 'elm'}
 Plug 'lambdatoast/elm.vim',{'for': 'elm'}
 
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
-
-"scope langs"
-Plug 'sheerun/vim-polyglot'
 
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "HTML"
-Plug 'othree/html5.vim',{'for': 'html'}
-Plug 'alvan/vim-closetag',{'for': 'html'}
+Plug 'othree/html5.vim',   {'for': 'html'}
+Plug 'alvan/vim-closetag', {'for': 'html'}
 Plug 'gregsexton/MatchTag',{'for': 'html'}
 "CSS"
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
-Plug 'lepture/vim-css'
+Plug 'lepture/vim-css',{'for':'css'}
 Plug 'jiangmiao/auto-pairs'
-"Python"
+"PYTHON"
 Plug 'klen/python-mode',{'for': 'python'}
 
 "RUBY"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
 "CRYSTAL"
-Plug 'rhysd/vim-crystal'
+Plug 'rhysd/vim-crystal',{'for':'crystal'}
 "JS"
-Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'isruslan/vim-es6'
+Plug 'pangloss/vim-javascript',     {'for': 'javascript'}
+Plug 'jelera/vim-javascript-syntax',{'for': 'javascript'}
+Plug 'isruslan/vim-es6',            {'for': 'javascript'}
 "RUST"
-Plug 'rust-lang/rust.vim'
-
+Plug 'rust-lang/rust.vim',{'for': 'rust'}
+"SCALA"
+Plug 'derekwyatt/vim-scala'
 "colorSchemes"
 Plug 'TroyFletcher/vim-colors-synthwave'
 
 
 "OTHER"
-Plug 'oblitum/rainbow'
-
+Plug 'tpope/vim-surround'
 call plug#end()
 syntax on
 filetype on
@@ -109,34 +111,21 @@ set belloff=all
 "set foldcolumn=13
 
 "rainbow pairs brackets"
-let g:rainbow_active=1
-let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.tex'  , [['(', ')'], ['\[', '\]']] ],
-    \ [ '*.clj'  , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.cljs' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.lisp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.css'  , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.scss' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
-    \ ]
 
-let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'magenta', 'yellow', 'red', 'magenta']
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
 hi NERDTreeClosable ctermfg=5
-hi NERDTreeOpenable ctermfg=lightmagenta
+hi NERDTreeOpenable ctermfg=magenta
 "lang scope settings"
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:elm_syntastic_show_warnings = 1
 
 "highlight whitespace etc"
-highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+highlight ExtraWhitespace ctermbg=magenta guibg=darkred
 match ExtraWhitespace /\s\+$/
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
@@ -204,7 +193,7 @@ augroup END
 "completing..."
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
