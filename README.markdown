@@ -1,3 +1,3 @@
 # .VIMRC
-## СЛОЖНО СЛОЖНО!! НИХУЯ НЕ ПОНЯТНО !
-![.vimrc config](slozhnaSlozhnaNihuyaNeponyatno.gif)
+## dev version
+![.vimrc config](https://media.giphy.com/media/sfAiX8ElhPKXC/giphy.gif)
