@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
-Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
@@ -113,13 +113,30 @@ set belloff=all
 
 "rainbow brackets"
 
-let g:rainbow#max_level = 16
-let g:rainbow#pairs     = [['(',')'],['[',']'],['{','}'],['<','>']]
-let g:rainbow#blacklist = [233, 234]
-augroup rainbow_lisp
-	autocmd!
-	autocmd FileType lisp,clojure,racket,scheme RainbowParentheses
-augroup END
+let g:rainbow_active = 1
+	let g:rainbow_conf = {
+	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+	\	'ctermfgs': ['lightblue', 'magenta', 'lightcyan', 'lightmagenta'],
+	\	'operators': '_,_',
+	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+	\	'separately': {
+	\		'*': {},
+	\		'tex': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+	\		},
+	\		'lisp': {
+	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+	\		},
+	\		'vim': {
+	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+	\		},
+	\		'html': {
+	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+	\		},
+	\		'css': 0,
+	\	}
+	\}
+
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -133,7 +150,7 @@ let g:syntastic_auto_loc_list = 1
 let g:elm_syntastic_show_warnings = 1
 
 "highlight whitespace etc"
-highlight ExtraWhitespace ctermbg=magenta guibg=darkred
+highlight ExtraWhitespace ctermbg=red guibg=darkred
 match ExtraWhitespace /\s\+$/
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
@@ -222,6 +239,5 @@ autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
 "autoload"
 autocmd vimenter * NERDTree
-autocmd vimEnter * RainbowParentheses
 
 "^$"
