@@ -1,10 +1,11 @@
 set nocompatible
 call plug#begin('~/.vim/plugged')
-
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
-Plug 'kovisoft/paredit'
-Plug 'luochen1990/rainbow'
+Plug 'kovisoft/paredit',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
+
+"RACKET"
+Plug 'wlangstroth/vim-racket'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
@@ -14,12 +15,18 @@ Plug 'scrooloose/nerdcommenter'
 "PURESCRIPT"
 "OCAML"
 "REASON"
+
 "PROLOG"
 Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
-"^CLOJURE"
+
+"^%CLOJURE%$"
 Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-classpath'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
+
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
@@ -62,17 +69,18 @@ Plug 'rust-lang/rust.vim',{'for': 'rust'}
 "SCALA"
 Plug 'derekwyatt/vim-scala'
 "colorSchemes"
-Plug 'TroyFletcher/vim-colors-synthwave'
 
-
+"Plug 'TroyFletcher/vim-colors-synthwave'
 "OTHER"
 Plug 'tpope/vim-surround'
+Plug 'roman/golden-ratio'
 call plug#end()
 syntax on
+
 filetype on
 filetype plugin indent on
 
-colorscheme synthwave
+colorscheme solarized
 set background=dark
 set encoding=utf8
 set title
@@ -112,31 +120,30 @@ set belloff=all
 "set foldcolumn=13
 
 "rainbow brackets"
-
-let g:rainbow_active = 1
-	let g:rainbow_conf = {
-	\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-	\	'ctermfgs': ['lightblue', 'magenta', 'lightcyan', 'lightmagenta'],
-	\	'operators': '_,_',
-	\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-	\	'separately': {
-	\		'*': {},
-	\		'tex': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-	\		},
-	\		'lisp': {
-	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-	\		},
-	\		'vim': {
-	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-	\		},
-	\		'html': {
-	\			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-	\		},
-	\		'css': 0,
-	\	}
-	\}
-
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max=16
+let g:rbpt_loadcmd_toggle=0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -160,9 +167,10 @@ au BufWinLeave * call clearmatches()
 "cursorline settings"
 "hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+
 "hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
 "hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
-hi CursorLine   guibg=#ff0000
+hi CursorLine   guibg=#ff1493
 hi LineNr       guifg=#ff0000
 "Background Color"
 hi! Normal ctermbg=NONE guibg=NONE
@@ -239,5 +247,4 @@ autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
 "autoload"
 autocmd vimenter * NERDTree
-
 "^$"
