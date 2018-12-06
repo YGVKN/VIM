@@ -21,10 +21,10 @@ Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
 
 "^%CLOJURE%$"
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-salve'
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-classpath', {'for': 'clojure'}
+Plug 'tpope/vim-salve',     {'for': 'clojure'}
 "CLOJURESCRIPT"
 
 "ELIXIR"
