@@ -2,7 +2,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
-Plug 'kovisoft/paredit',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
+Plug 'kovisoft/paredit'
 
 "RACKET"
 Plug 'wlangstroth/vim-racket'
@@ -21,10 +21,10 @@ Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
 
 "^%CLOJURE%$"
+Plug 'tpope/vim-fireplace'
+"Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-fireplace', {'for': 'clojure'}
-Plug 'tpope/vim-classpath', {'for': 'clojure'}
-Plug 'tpope/vim-salve',     {'for': 'clojure'}
+"Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
 
 "ELIXIR"
@@ -40,6 +40,7 @@ Plug 'lambdatoast/elm.vim',{'for': 'elm'}
 
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
+
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -83,29 +84,35 @@ filetype plugin indent on
 colorscheme solarized
 set background=dark
 set encoding=utf8
+set ttyfast
 set title
 set number
 set cursorline
 set cursorcolumn
-set wildmenu
-set list
-set listchars=tab:..
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set smarttab
+set et
+set ai
+set lz
+set wildmenu
+set list
+set listchars=tab:..
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 set laststatus=2
 set ruler
 set smartindent
 set wrap
 set linebreak
-set showcmd
-set hlsearch
-set incsearch
 set nowrapscan
+set showmode
+set showcmd
 set mps+=<:>
-set showmatch
-set smartcase
-set ignorecase
 set confirm
 set t_Co=256
 "set paste
@@ -114,11 +121,13 @@ set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\he
 set fillchars+=vert:\ 
 set textwidth=111
 set colorcolumn=111
-set belloff=all
+set iskeyword+=-
+set mouse=
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
-
+map <silent> <F8>   :Explore<CR>
+map <silent> <S-F8> :sp +Explore<CR>
 "rainbow brackets"
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -141,9 +150,9 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max=16
 let g:rbpt_loadcmd_toggle=0
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+au Syntax   * RainbowParenthesesLoadRound
+au Syntax   * RainbowParenthesesLoadSquare
+au Syntax   * RainbowParenthesesLoadBraces
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -216,8 +225,19 @@ inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
 "other setting"
 
-"highlight syntax picolisp as classic lisp"
+""
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
 
+set guioptions-=T
+set guioptions-=m
+
+""
+
+"highlight syntax picolisp as classic lisp"
 "au BufNewFile,BufRead,BufReadPost *.somEextensin set syntax=yourExtension"
 augroup l
 	au!
