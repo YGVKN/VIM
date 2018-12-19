@@ -3,60 +3,52 @@ call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
-
 "RACKET"
 Plug 'wlangstroth/vim-racket'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 "HASKEL"
 "PURESCRIPT"
 "OCAML"
 "REASON"
-
 "PROLOG"
 Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
-
 "^%CLOJURE%$"
 Plug 'tpope/vim-fireplace'
 "Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
-"generate markup"
+"markup"
 Plug 'mattn/emmet-vim',{'for': '*'}
 "ELM"
 Plug 'ElmCast/elm-vim',    {'for': 'elm'}
 Plug 'lambdatoast/elm.vim',{'for': 'elm'}
-
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
-
-
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "HTML"
 Plug 'othree/html5.vim',   {'for': 'html'}
-Plug 'alvan/vim-closetag', {'for': 'html'}
-Plug 'gregsexton/MatchTag',{'for': 'html'}
+Plug 'alvan/vim-closetag'
+Plug 'gregsexton/MatchTag'
 "CSS"
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
-Plug 'lepture/vim-css',{'for':'css'}
+Plug 'lepture/vim-css',           {'for': 'css'}
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'jiangmiao/auto-pairs'
 "PYTHON"
 Plug 'klen/python-mode',{'for': 'python'}
-
 "RUBY"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
 "CRYSTAL"
@@ -70,15 +62,12 @@ Plug 'rust-lang/rust.vim',{'for': 'rust'}
 "SCALA"
 Plug 'derekwyatt/vim-scala'
 "colorSchemes"
-
-"Plug 'TroyFletcher/vim-colors-synthwave'
 "OTHER"
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 call plug#end()
-syntax on
 
-filetype on
+syntax on
 filetype plugin indent on
 
 colorscheme solarized
@@ -122,10 +111,13 @@ set fillchars+=vert:\
 set textwidth=111
 set colorcolumn=111
 set iskeyword+=-
-set mouse=
+set mouse= 
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
+set omnifunc=syntaxcomplete#Complete
+set completeopt=noinsert,menuone
+inoremap jj <Esc>
 map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
 "rainbow brackets"
@@ -158,12 +150,8 @@ let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
-hi NERDTreeClosable ctermfg=5
-hi NERDTreeOpenable ctermfg=magenta
-"lang scope settings"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
+hi NERDTreeClosable ctermfg=DarkMagenta
+hi NERDTreeOpenable ctermfg=Magenta
 
 "highlight whitespace etc"
 highlight ExtraWhitespace ctermbg=red guibg=darkred
@@ -180,12 +168,24 @@ au BufWinLeave * call clearmatches()
 "hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
 "hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
 hi CursorLine   guibg=#ff1493
-hi LineNr       guifg=#ff0000
+"hi LineNr       guifg=#ff0000"
+hi LineNr ctermfg=5
+hi Comment guifg=#d70087
+hi Identifier ctermfg=207
+hi Type ctermfg=133
+hi Error ctermfg=93
+hi Special ctermfg=162
 "Background Color"
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
 :match ErrorMsg '\%111v.\+'
+
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
 
 function! Smart_TabComplete()
   let line = getline('.')
@@ -223,27 +223,15 @@ function! InsertTabWrapper(direction)
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
-"other setting"
-
-""
-for prefix in ['i', 'n', 'v']
-  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-    exe prefix . "noremap " . key . " <Nop>"
-  endfor
-endfor
-
-set guioptions-=T
-set guioptions-=m
-
-""
+"other ..."
 
 "highlight syntax picolisp as classic lisp"
-"au BufNewFile,BufRead,BufReadPost *.somEextensin set syntax=yourExtension"
+"au BufNewFile,BufRead,BufReadPost *.somEextension set syntax=yourExtension"
 augroup l
 	au!
 	autocmd BufNewFile,BufRead *.l set syntax=lisp
 augroup END
-"completing..."
+
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType ruby       set omnifunc=rubycomplete#Complete
@@ -251,11 +239,6 @@ autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
 
 autocmd BufWrite *.php  :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
@@ -263,8 +246,6 @@ autocmd BufWrite *.css  :call DeleteTrailingWS()
 autocmd BufWrite *.js   :call DeleteTrailingWS()
 autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
-"TODO"
 
-"autoload"
 autocmd vimenter * NERDTree
 "^$"
