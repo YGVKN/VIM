@@ -17,6 +17,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
 "^%CLOJURE%$"
+Plug 'guns/vim-clojure-highlight'
 Plug 'tpope/vim-fireplace'
 "Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
@@ -43,8 +44,8 @@ Plug 'othree/html5.vim',   {'for': 'html'}
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 "CSS"
+Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
-Plug 'lepture/vim-css',           {'for': 'css'}
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'jiangmiao/auto-pairs'
 "PYTHON"
@@ -65,6 +66,8 @@ Plug 'derekwyatt/vim-scala'
 "OTHER"
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 syntax on
@@ -73,6 +76,7 @@ filetype plugin indent on
 colorscheme solarized
 set background=dark
 set encoding=utf8
+set shell=bash
 set ttyfast
 set title
 set number
@@ -152,7 +156,17 @@ let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
 hi NERDTreeClosable ctermfg=DarkMagenta
 hi NERDTreeOpenable ctermfg=Magenta
+"NETRW"
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+"airline"
+let g:airline_theme = 'atomic'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 "highlight whitespace etc"
 highlight ExtraWhitespace ctermbg=red guibg=darkred
 match ExtraWhitespace /\s\+$/
@@ -160,6 +174,7 @@ au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
+
 
 "cursorline settings"
 "hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
@@ -231,8 +246,15 @@ augroup l
 	au!
 	autocmd BufNewFile,BufRead *.l set syntax=lisp
 augroup END
+"VIMCSS settings"
+augroup VimCSS3Syntax
+  autocmd!
 
-
+  autocmd FileType css set iskeyword+=-
+augroup END
+hi VendorPrefix guifg=#00ffff gui=bold
+match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
+"""""""""""
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
@@ -247,5 +269,16 @@ autocmd BufWrite *.js   :call DeleteTrailingWS()
 autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
+"Disable Arrow
+map <up>     <nop>
+map <down>   <nop>
+map <left>   <nop>
+map <right>  <nop>
+imap <up>    <nop>
+imap <down>  <nop>
+imap <left>  <nop>
+imap <right> <nop>
+
 autocmd vimenter * NERDTree
+
 "^$"
