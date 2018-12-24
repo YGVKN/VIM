@@ -86,7 +86,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set smarttab
-set listchars=tab:..
+set listchars=tab:..,trail:.,nbsp:_
 set et
 set ai
 set lz
@@ -112,8 +112,8 @@ set t_Co=256
 set pastetoggle=<F12>
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
-set textwidth=88
-set colorcolumn=+1,+11
+set textwidth=99
+set colorcolumn=+1,+12
 set iskeyword+=-
 set mouse= 
 set autoread
@@ -164,6 +164,18 @@ let NERDTreeMinimalUI=1
 hi NERDTreeClosable ctermfg=DarkMagenta
 hi NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "?",
+    \ "Staged"    : "🍒",
+    \ "Untracked" : "¿",
+    \ "Renamed"   : "👠",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "🎗",
+    \ "Dirty"     : "💋",
+    \ "Clean"     : "*",
+    \ 'Ignored'   : "💎",
+    \ "Unknown"   : "λ"
+    \ }
 "NETRW"
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
@@ -194,7 +206,7 @@ hi Special ctermfg=162
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
-:match ErrorMsg '\%88v.\+'
+:match ErrorMsg '\%99v.\+'
 :autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
 func! DeleteTrailingWS()
   exe "normal mz"
@@ -269,14 +281,14 @@ autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
 "Disable Arrow
-map <up>     <nop>
-map <down>   <nop>
-map <left>   <nop>
-map <right>  <nop>
-imap <up>    <nop>
-imap <down>  <nop>
-imap <left>  <nop>
-imap <right> <nop>
+map  <up>     <nop>
+map  <down>   <nop>
+map  <left>   <nop>
+map  <right>  <nop>
+imap <up>     <nop>
+imap <down>   <nop>
+imap <left>   <nop>
+imap <right>  <nop>
 
 autocmd vimenter * NERDTree
 
