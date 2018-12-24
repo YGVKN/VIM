@@ -2,60 +2,54 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
-Plug 'kovisoft/paredit',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
-
+Plug 'kovisoft/paredit'
 "RACKET"
 Plug 'wlangstroth/vim-racket'
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'mhinz/vim-grepper',   { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 "HASKEL"
 "PURESCRIPT"
 "OCAML"
 "REASON"
-
 "PROLOG"
 Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
-
 "^%CLOJURE%$"
+Plug 'guns/vim-clojure-highlight'
 Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-classpath'
+"Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-salve'
+"Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
-"generate markup"
+"markup"
 Plug 'mattn/emmet-vim',{'for': '*'}
 "ELM"
 Plug 'ElmCast/elm-vim',    {'for': 'elm'}
 Plug 'lambdatoast/elm.vim',{'for': 'elm'}
-
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
-
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 "HTML"
 Plug 'othree/html5.vim',   {'for': 'html'}
-Plug 'alvan/vim-closetag', {'for': 'html'}
-Plug 'gregsexton/MatchTag',{'for': 'html'}
+Plug 'alvan/vim-closetag'
+Plug 'gregsexton/MatchTag'
 "CSS"
+Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
-Plug 'lepture/vim-css',{'for':'css'}
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'jiangmiao/auto-pairs'
 "PYTHON"
 Plug 'klen/python-mode',{'for': 'python'}
-
 "RUBY"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
 "CRYSTAL"
@@ -69,56 +63,69 @@ Plug 'rust-lang/rust.vim',{'for': 'rust'}
 "SCALA"
 Plug 'derekwyatt/vim-scala'
 "colorSchemes"
-
-"Plug 'TroyFletcher/vim-colors-synthwave'
 "OTHER"
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
-syntax on
 
-filetype on
+syntax on
 filetype plugin indent on
 
 colorscheme solarized
 set background=dark
 set encoding=utf8
+set shell=bash
+set ttyfast
 set title
 set number
 set cursorline
 set cursorcolumn
-set wildmenu
-set list
-set listchars=tab:..
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set smarttab
+set listchars=tab:..
+set et
+set ai
+set lz
+set wildmenu
+set list
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
 set laststatus=2
 set ruler
 set smartindent
 set wrap
 set linebreak
-set showcmd
-set hlsearch
-set incsearch
 set nowrapscan
+set showmode
+set showcmd
 set mps+=<:>
-set showmatch
-set smartcase
-set ignorecase
 set confirm
 set t_Co=256
 "set paste
 set pastetoggle=<F12>
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
-set textwidth=111
-set colorcolumn=111
-set belloff=all
+set textwidth=88
+set colorcolumn=+1,+11
+set iskeyword+=-
+set mouse= 
+set autoread
+set lazyredraw
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
-
+set omnifunc=syntaxcomplete#Complete
+set completeopt=noinsert,menuone
+inoremap jj <Esc>
+map <silent> <F8>   :Explore<CR>
+map <silent> <S-F8> :sp +Explore<CR>
 "rainbow brackets"
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -141,21 +148,32 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max=16
 let g:rbpt_loadcmd_toggle=0
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+au Syntax   * RainbowParenthesesLoadRound
+au Syntax   * RainbowParenthesesLoadSquare
+au Syntax   * RainbowParenthesesLoadBraces
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
-hi NERDTreeClosable ctermfg=5
-hi NERDTreeOpenable ctermfg=magenta
-"lang scope settings"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
-
+let NERDTreeIgnore=['.DS_Store']
+let NERDTreeShowBookmarks=0
+let NERDTreeHighlightCursorline=1
+let NERDTreeShowLineNumbers=0
+let NERDTreeMinimalUI=1
+hi NERDTreeClosable ctermfg=DarkMagenta
+hi NERDTreeOpenable ctermfg=Magenta
+map <F2> :NERDTreeToggle<CR>
+"NETRW"
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+"airline"
+let g:airline_theme = 'atomic'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 "highlight whitespace etc"
 highlight ExtraWhitespace ctermbg=red guibg=darkred
 match ExtraWhitespace /\s\+$/
@@ -164,19 +182,25 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
-"cursorline settings"
-"hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-"hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-
-"hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
-"hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
 hi CursorLine   guibg=#ff1493
-hi LineNr       guifg=#ff0000
+"hi LineNr       guifg=#ff0000"
+hi LineNr ctermfg=5
+hi Comment guifg=#d70087
+hi Identifier ctermfg=207
+hi Type ctermfg=133
+hi Error ctermfg=93
+hi Special ctermfg=162
 "Background Color"
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
-:match ErrorMsg '\%111v.\+'
+:match ErrorMsg '\%88v.\+'
+:autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
 
 function! Smart_TabComplete()
   let line = getline('.')
@@ -201,7 +225,6 @@ endfunction
 
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-
 function! InsertTabWrapper(direction)
 	let col = col('.')-1
 	if !col || getline('.')[col - 1] !~ '\k'
@@ -214,28 +237,29 @@ function! InsertTabWrapper(direction)
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
-"other setting"
+"other ..."
 
 "highlight syntax picolisp as classic lisp"
-
-"au BufNewFile,BufRead,BufReadPost *.somEextensin set syntax=yourExtension"
+"au BufNewFile,BufRead,BufReadPost *.somEextension set syntax=yourExtension"
 augroup l
 	au!
 	autocmd BufNewFile,BufRead *.l set syntax=lisp
 augroup END
-"completing..."
+"VIMCSS settings"
+augroup VimCSS3Syntax
+  autocmd!
 
+  autocmd FileType css set iskeyword+=-
+augroup END
+hi VendorPrefix guifg=#00ffff gui=bold
+match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/
+"""""""""""
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType ruby       set omnifunc=rubycomplete#Complete
 autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
 
 autocmd BufWrite *.php  :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
@@ -243,8 +267,17 @@ autocmd BufWrite *.css  :call DeleteTrailingWS()
 autocmd BufWrite *.js   :call DeleteTrailingWS()
 autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
-"TODO"
 
-"autoload"
+"Disable Arrow
+map <up>     <nop>
+map <down>   <nop>
+map <left>   <nop>
+map <right>  <nop>
+imap <up>    <nop>
+imap <down>  <nop>
+imap <left>  <nop>
+imap <right> <nop>
+
 autocmd vimenter * NERDTree
+
 "^$"
