@@ -86,12 +86,12 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set smarttab
+set listchars=tab:..
 set et
 set ai
 set lz
 set wildmenu
 set list
-set listchars=tab:..
 set showmatch
 set hlsearch
 set incsearch
@@ -112,10 +112,12 @@ set t_Co=256
 set pastetoggle=<F12>
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set fillchars+=vert:\ 
-set textwidth=111
-set colorcolumn=111
+set textwidth=88
+set colorcolumn=+1,+11
 set iskeyword+=-
 set mouse= 
+set autoread
+set lazyredraw
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
@@ -154,10 +156,15 @@ let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden = 1
+let NERDTreeIgnore=['.DS_Store']
+let NERDTreeShowBookmarks=0
+let NERDTreeHighlightCursorline=1
+let NERDTreeShowLineNumbers=0
+let NERDTreeMinimalUI=1
 hi NERDTreeClosable ctermfg=DarkMagenta
 hi NERDTreeOpenable ctermfg=Magenta
+map <F2> :NERDTreeToggle<CR>
 "NETRW"
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 2
@@ -175,13 +182,6 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
-
-"cursorline settings"
-"hi CursorLine   cterm=underline ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-"hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-
-"hi Cursor ctermfg=Red ctermbg=Red cterm=bold guifg=red guibg=red gui=bold
-"hi CursorColumn ctermfg=Blue ctermbg=Yellow cterm=bold guifg=red guibg=yellow gui=bold
 hi CursorLine   guibg=#ff1493
 "hi LineNr       guifg=#ff0000"
 hi LineNr ctermfg=5
@@ -194,8 +194,8 @@ hi Special ctermfg=162
 hi! Normal ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
-:match ErrorMsg '\%111v.\+'
-
+:match ErrorMsg '\%88v.\+'
+:autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
@@ -224,7 +224,6 @@ function! Smart_TabComplete()
 endfunction
 
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-
 
 function! InsertTabWrapper(direction)
 	let col = col('.')-1
