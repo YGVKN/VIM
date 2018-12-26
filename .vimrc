@@ -19,6 +19,7 @@ Plug 'adimit/prolog.vim',{'for': 'prolog'}
 "^%CLOJURE%$"
 Plug 'guns/vim-clojure-highlight'
 Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
 "Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'tpope/vim-salve'
@@ -58,8 +59,6 @@ Plug 'rhysd/vim-crystal',{'for':'crystal'}
 Plug 'pangloss/vim-javascript',     {'for': 'javascript'}
 Plug 'jelera/vim-javascript-syntax',{'for': 'javascript'}
 Plug 'isruslan/vim-es6',            {'for': 'javascript'}
-"RUST"
-Plug 'rust-lang/rust.vim',{'for': 'rust'}
 "SCALA"
 Plug 'derekwyatt/vim-scala'
 "colorSchemes"
@@ -72,11 +71,14 @@ call plug#end()
 
 syntax on
 filetype plugin indent on
-
+scriptencoding utf-8
 colorscheme solarized
 set background=dark
-set encoding=utf8
+set runtimepath^=~/.vim/autoload/plug.vim
+set encoding=utf-8
 set shell=bash
+set splitright
+set splitbelow
 set ttyfast
 set title
 set number
@@ -118,32 +120,34 @@ set iskeyword+=-
 set mouse= 
 set autoread
 set lazyredraw
+set pumheight=11
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
 set omnifunc=syntaxcomplete#Complete
 set completeopt=noinsert,menuone
+set backspace=indent,eol,start
 inoremap jj <Esc>
 map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
 "rainbow brackets"
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
+    \ ['brown',        'RoyalBlue3'],
+    \ ['Darkblue',      'SeaGreen3'],
     \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
+    \ ['darkgreen',    'firebrick3'],
+    \ ['darkcyan',     'RoyalBlue3'],
+    \ ['darkred',       'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['black',       'SeaGreen3'],
+    \ ['brown',        'firebrick3'],
+    \ ['gray',         'RoyalBlue3'],
+    \ ['black',         'SeaGreen3'],
     \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
+    \ ['Darkblue',     'firebrick3'],
+    \ ['darkgreen',    'RoyalBlue3'],
+    \ ['darkcyan',      'SeaGreen3'],
     \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
+    \ ['red',          'firebrick3'],
     \ ]
 let g:rbpt_max=16
 let g:rbpt_loadcmd_toggle=0
@@ -160,7 +164,8 @@ let NERDTreeIgnore=['.DS_Store']
 let NERDTreeShowBookmarks=0
 let NERDTreeHighlightCursorline=1
 let NERDTreeShowLineNumbers=0
-let NERDTreeMinimalUI=1
+let NERDTreeMinimalUI=0
+let NERDTreeQuitOnOpen=1
 hi NERDTreeClosable ctermfg=DarkMagenta
 hi NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
@@ -199,7 +204,7 @@ hi CursorLine   guibg=#ff1493
 hi LineNr ctermfg=5
 hi Comment guifg=#d70087
 hi Identifier ctermfg=207
-hi Type ctermfg=133
+hi Type ctermfg=162
 hi Error ctermfg=93
 hi Special ctermfg=162
 "Background Color"
@@ -250,8 +255,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
 "other ..."
-
-"highlight syntax picolisp as classic lisp"
 "au BufNewFile,BufRead,BufReadPost *.somEextension set syntax=yourExtension"
 augroup l
 	au!
@@ -260,7 +263,6 @@ augroup END
 "VIMCSS settings"
 augroup VimCSS3Syntax
   autocmd!
-
   autocmd FileType css set iskeyword+=-
 augroup END
 hi VendorPrefix guifg=#00ffff gui=bold
