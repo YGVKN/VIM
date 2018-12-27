@@ -4,10 +4,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
 "RACKET"
-Plug 'wlangstroth/vim-racket'
+Plug 'wlangstroth/vim-racket',{'for': 'racket'}
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim',{'on': 'CtrlP'}
 Plug 'scrooloose/nerdcommenter'
 "HASKEL"
 "PURESCRIPT"
@@ -17,16 +17,17 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'mxw/vim-prolog',   {'for': 'prolog'}
 Plug 'adimit/prolog.vim',{'for': 'prolog'}
 "^%CLOJURE%$"
-Plug 'guns/vim-clojure-highlight'
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-clojure-static'
+Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
+Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
+Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 "Plug 'tpope/vim-classpath'
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
 "ELIXIR"
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
+Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
+
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
 "markup"
@@ -45,12 +46,12 @@ Plug 'othree/html5.vim',   {'for': 'html'}
 Plug 'alvan/vim-closetag'
 Plug 'gregsexton/MatchTag'
 "CSS"
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax',    {'for': 'css'}
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
 Plug 'jiangmiao/auto-pairs'
 "PYTHON"
-Plug 'klen/python-mode',{'for': 'python'}
+Plug 'klen/python-mode', {'for': 'python'}
 "RUBY"
 Plug 'vim-ruby/vim-ruby',{'for': 'ruby'}
 "CRYSTAL"
@@ -60,7 +61,7 @@ Plug 'pangloss/vim-javascript',     {'for': 'javascript'}
 Plug 'jelera/vim-javascript-syntax',{'for': 'javascript'}
 Plug 'isruslan/vim-es6',            {'for': 'javascript'}
 "SCALA"
-Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala',{'for': 'scala'}
 "colorSchemes"
 "OTHER"
 Plug 'tpope/vim-surround'
@@ -74,7 +75,6 @@ filetype plugin indent on
 scriptencoding utf-8
 colorscheme solarized
 set background=dark
-set runtimepath^=~/.vim/autoload/plug.vim
 set encoding=utf-8
 set shell=bash
 set splitright
@@ -294,4 +294,9 @@ imap <right>  <nop>
 
 autocmd vimenter * NERDTree
 
-"^$"
+"PLUG"
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
