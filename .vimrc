@@ -3,6 +3,8 @@ call plug#begin('~/.vim/plugged')
 "LISP"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
+Plug 'jpalardy/vim-slime'
+"COMMON LISP"
 "RACKET"
 Plug 'wlangstroth/vim-racket',{'for': 'racket'}
 "nav|search"
@@ -27,7 +29,6 @@ Plug 'kien/rainbow_parentheses.vim'
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
-
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
 "markup"
@@ -155,6 +156,8 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
+"REPL"
+let g:slime_target = "vimterminal"
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
@@ -198,7 +201,6 @@ au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
-
 hi CursorLine   guibg=#ff1493
 "hi LineNr       guifg=#ff0000"
 hi LineNr ctermfg=5
