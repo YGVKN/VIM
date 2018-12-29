@@ -68,6 +68,7 @@ Plug 'derekwyatt/vim-scala',{'for': 'scala'}
 "colorSchemes"
 "OTHER"
 Plug 'tpope/vim-surround'
+Plug 'elzr/vim-json',{'for': 'json'}
 Plug 'roman/golden-ratio'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -211,6 +212,18 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 hi CursorLine   guibg=#ff1493
 "hi LineNr       guifg=#ff0000"
+"JSON"
+au! BufRead,BufNewFile *.json set filetype=json
+augroup json_autocmd
+  autocmd!
+  autocmd FileType json set autoindent
+  autocmd FileType json set formatoptions=tcq2l
+  autocmd FileType json set textwidth=99 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=2
+  autocmd FileType json set expandtab
+  autocmd FileType json set foldmethod=syntax
+augroup END
+"******************"
 hi LineNr ctermfg=5
 hi Comment guifg=#d70087
 hi Identifier ctermfg=207
