@@ -5,6 +5,8 @@ Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','
 Plug 'kovisoft/paredit'
 Plug 'jpalardy/vim-slime'
 "COMMON LISP"
+Plug 'l04m33/vlime',{'for': 'lisp'}
+"SCHEME"
 "RACKET"
 Plug 'wlangstroth/vim-racket',{'for': 'racket'}
 "nav|search"
@@ -75,6 +77,9 @@ syntax on
 filetype plugin indent on
 scriptencoding utf-8
 colorscheme solarized
+set langmenu=en_US.UTF-8
+let $LANG = 'en_US'
+set spell spelllang=en_us,ru_ru
 set background=dark
 set encoding=utf-8
 set shell=bash
@@ -158,6 +163,9 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 "REPL"
 let g:slime_target = "vimterminal"
+"common lisp sbcl vlime settings"
+let g:vlime_enable_autodoc = v:true
+let g:vlime_window_settings = {'sldb': {'pos': 'belowright', 'vertical': v:true}, 'inspector': {'pos': 'belowright', 'vertical': v:true}, 'preview': {'pos': 'belowright', 'size': v:null, 'vertical': v:true}}
 "nerd settings"
 let g:NERDTreeDirArrowExpandable="λ"
 let g:NERDTreeDirArrowCollapsible=">"
