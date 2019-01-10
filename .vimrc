@@ -18,8 +18,8 @@ Plug 'scrooloose/nerdcommenter'
 "OCAML"
 "REASON"
 "PROLOG"
-Plug 'mxw/vim-prolog',   {'for': 'prolog'}
-Plug 'adimit/prolog.vim',{'for': 'prolog'}
+Plug 'mxw/vim-prolog',    {'for': 'prolog'}
+Plug 'adimit/prolog.vim', {'for': 'prolog'}
 "^%CLOJURE%$"
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
 Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
@@ -36,8 +36,8 @@ Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
 "markup"
 Plug 'mattn/emmet-vim',{'for': '*'}
 "ELM"
-Plug 'ElmCast/elm-vim',    {'for': 'elm'}
-Plug 'lambdatoast/elm.vim',{'for': 'elm'}
+Plug 'ElmCast/elm-vim',     {'for': 'elm'}
+Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
 "GIT"
@@ -134,6 +134,7 @@ set pumheight=11
 set omnifunc=syntaxcomplete#Complete
 set completeopt=noinsert,menuone
 set backspace=indent,eol,start
+set nrformats=
 inoremap jj <Esc>
 map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
@@ -156,28 +157,30 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',          'firebrick3'],
     \ ]
-let g:rbpt_max=16
-let g:rbpt_loadcmd_toggle=0
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
+au Syntax   * RainbowParenthesesLoadChevrons
 "REPL"
 let g:slime_target = "vimterminal"
 "common lisp sbcl vlime settings"
-let g:vlime_enable_autodoc = v:true
+let g:vlime_enable_autodoc  = v:true
 let g:vlime_window_settings = {'sldb': {'pos': 'belowright', 'vertical': v:true}, 'inspector': {'pos': 'belowright', 'vertical': v:true}, 'preview': {'pos': 'belowright', 'size': v:null, 'vertical': v:true}}
 "nerd settings"
-let g:NERDTreeDirArrowExpandable="λ"
-let g:NERDTreeDirArrowCollapsible=">"
+autocmd vimenter * NERDTree
+let g:NERDTreeDirArrowExpandable   = "λ"
+let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
-let NERDTreeIgnore=['.DS_Store']
-let NERDTreeShowBookmarks=0
-let NERDTreeHighlightCursorline=1
-let NERDTreeShowLineNumbers=0
-let NERDTreeMinimalUI=0
-let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden  = 1
+let NERDTreeIgnore = ['.DS_Store']
+let NERDTreeShowBookmarks       = 0
+let NERDTreeHighlightCursorline = 1
+let NERDTreeShowLineNumbers     = 0
+let NERDTreeMinimalUI  = 0
+let NERDTreeQuitOnOpen = 1
 hi NERDTreeClosable ctermfg=DarkMagenta
 hi NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
@@ -194,14 +197,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "λ"
     \ }
 "NETRW"
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_banner       = 0
+let g:netrw_liststyle    = 3
 let g:netrw_browse_split = 2
-let g:netrw_winsize = 25
+let g:netrw_winsize      = 25
 "airline"
 let g:airline_theme = 'atomic'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#enabled      = 1
+let g:airline#extensions#tabline#left_sep     = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 "highlight whitespace etc"
 highlight ExtraWhitespace ctermbg=red guibg=darkred
@@ -211,7 +214,8 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 hi CursorLine   guibg=#ff1493
-"hi LineNr       guifg=#ff0000"
+hi LineNr ctermfg=5
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -224,18 +228,17 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 "******************"
-hi LineNr ctermfg=5
-hi Comment guifg=#d70087
-hi Identifier ctermfg=207
-hi Type ctermfg=162
-hi Error ctermfg=93
-hi Special ctermfg=162
+"hi Comment guifg=#d70087
+"hi Identifier ctermfg=207
+"hi Type ctermfg=162
+"hi Error ctermfg=93
+"hi Special ctermfg=162
 "Background Color"
-hi! Normal ctermbg=NONE guibg=NONE
+hi! Normal  ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
 "lineLength"
-:match ErrorMsg '\%99v.\+'
-:autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
+match ErrorMsg '\%99v.\+'
+autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
 func! DeleteTrailingWS()
   exe "normal mz"
   %s/\s\+$//ge
@@ -253,7 +256,7 @@ function! Smart_TabComplete()
     return "\<tab>"
   endif
   let has_period = match(substr, '\.') != -1
-  let has_slash = match(substr, '\/') != -1
+  let has_slash  = match(substr, '\/') != -1
   if (!has_period && !has_slash)
     return "\<C-X>\<C-P>"
   elseif ( has_slash )
@@ -275,10 +278,10 @@ function! InsertTabWrapper(direction)
 		return "\<c-n>"
 	endif
 endfunction
-inoremap <tab> <c-r>=InsertTabWrapper ('forward')<cr>
-inoremap <s-tab> <c-r>=InsertTabWrapper ('forward')<cr>
+inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
+inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 "other ..."
-"au BufNewFile,BufRead,BufReadPost *.somEextension set syntax=yourExtension"
+"au BufNewFile,BufRead,BufReadPost *.markdown,*.md set syntax=yaml"
 augroup l
 	au!
 	autocmd BufNewFile,BufRead *.l set syntax=lisp
@@ -315,11 +318,8 @@ imap <down>   <nop>
 imap <left>   <nop>
 imap <right>  <nop>
 
-autocmd vimenter * NERDTree
-
 "PLUG"
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
-
