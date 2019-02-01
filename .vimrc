@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','racket']}
 Plug 'kovisoft/paredit'
 Plug 'jpalardy/vim-slime'
+Plug 'kien/rainbow_parentheses.vim'
 "COMMON LISP"
 Plug 'l04m33/vlime',{'for': 'lisp'}
 "SCHEME"
@@ -25,7 +26,6 @@ Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
 Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 "Plug 'tpope/vim-classpath'
-Plug 'kien/rainbow_parentheses.vim'
 "Plug 'tpope/vim-salve'
 "CLOJURESCRIPT"
 "ELIXIR"
@@ -34,7 +34,7 @@ Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
 "JULIA"
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
 "markup"
-Plug 'mattn/emmet-vim',{'for': '*'}
+Plug 'mattn/emmet-vim' ,{'on': 'Emmet'}
 "ELM"
 Plug 'ElmCast/elm-vim',     {'for': 'elm'}
 Plug 'lambdatoast/elm.vim', {'for': 'elm'}
@@ -47,7 +47,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "HTML"
 Plug 'othree/html5.vim',   {'for': 'html'}
 Plug 'alvan/vim-closetag'
-Plug 'gregsexton/MatchTag'
+"Plug 'gregsexton/MatchTag'
 "CSS"
 Plug 'hail2u/vim-css3-syntax',    {'for': 'css'}
 Plug 'gorodinskiy/vim-coloresque',{'for': 'css'}
@@ -74,7 +74,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
-syntax on
 filetype plugin indent on
 scriptencoding utf-8
 colorscheme solarized
@@ -100,6 +99,7 @@ set et
 set ai
 set lz
 set wildmenu
+set wildmode=full
 set list
 set showmatch
 set hlsearch
@@ -127,7 +127,7 @@ set iskeyword+=-
 set mouse= 
 set autoread
 set lazyredraw
-set pumheight=11
+set pumheight=33
 "set termguicolors
 "set relativenumber
 "set foldcolumn=13
@@ -135,35 +135,14 @@ set omnifunc=syntaxcomplete#Complete
 set completeopt=noinsert,menuone
 set backspace=indent,eol,start
 set nrformats=
+set nofoldenable
+set history=888
+set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt
+set path=.
 inoremap jj <Esc>
+sy on
 map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
-"rainbow brackets"
-let g:rbpt_colorpairs = [
-    \ ['brown',        'RoyalBlue3'],
-    \ ['Darkblue',      'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',    'firebrick3'],
-    \ ['darkcyan',     'RoyalBlue3'],
-    \ ['darkred',       'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',        'firebrick3'],
-    \ ['gray',         'RoyalBlue3'],
-    \ ['black',         'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',     'firebrick3'],
-    \ ['darkgreen',    'RoyalBlue3'],
-    \ ['darkcyan',      'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',          'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
-au Syntax   * RainbowParenthesesLoadRound
-au Syntax   * RainbowParenthesesLoadSquare
-au Syntax   * RainbowParenthesesLoadBraces
-au Syntax   * RainbowParenthesesLoadChevrons
 "REPL"
 let g:slime_target = "vimterminal"
 "common lisp sbcl vlime settings"
@@ -181,8 +160,8 @@ let NERDTreeHighlightCursorline = 1
 let NERDTreeShowLineNumbers     = 0
 let NERDTreeMinimalUI  = 0
 let NERDTreeQuitOnOpen = 1
-hi NERDTreeClosable ctermfg=DarkMagenta
-hi NERDTreeOpenable ctermfg=Magenta
+hi  NERDTreeClosable ctermfg=DarkMagenta
+hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "?",
@@ -214,7 +193,7 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 hi CursorLine   guibg=#ff1493
-hi LineNr ctermfg=5
+hi LineNr       ctermfg=5
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
@@ -228,14 +207,12 @@ augroup json_autocmd
   autocmd FileType json set foldmethod=syntax
 augroup END
 "******************"
-"hi Comment guifg=#d70087
-"hi Identifier ctermfg=207
-"hi Type ctermfg=162
-"hi Error ctermfg=93
-"hi Special ctermfg=162
 "Background Color"
 hi! Normal  ctermbg=NONE guibg=NONE
 hi! NonText ctermbg=NONE guibg=NONE
+"colorscheme settings"
+"autocmd BufEnter * colorscheme solarized
+autocmd BufEnter *.html colorscheme solarized8
 "lineLength"
 match ErrorMsg '\%99v.\+'
 autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
@@ -281,7 +258,8 @@ endfunction
 inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 "other ..."
-"au BufNewFile,BufRead,BufReadPost *.markdown,*.md set syntax=yaml"
+"au BufNewFile,BufRead,BufReadPost *.markdown,*.md set syntax=lisp
+"###########################################"
 augroup l
 	au!
 	autocmd BufNewFile,BufRead *.l set syntax=lisp
@@ -308,6 +286,31 @@ autocmd BufWrite *.js   :call DeleteTrailingWS()
 autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
 
+"rainbow_parentheses"
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3' ],
+    \ ['Darkblue',    'SeaGreen3'  ],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3' ],
+    \ ['darkcyan',    'RoyalBlue3' ],
+    \ ['darkred',     'SeaGreen3'  ],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3' ],
+    \ ['gray',        'RoyalBlue3' ],
+    \ ['black',       'SeaGreen3'  ],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3' ],
+    \ ['darkgreen',   'RoyalBlue3' ],
+    \ ['darkcyan',    'SeaGreen3'  ],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3' ],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 "Disable Arrow
 map  <up>     <nop>
 map  <down>   <nop>
@@ -318,8 +321,3 @@ imap <down>   <nop>
 imap <left>   <nop>
 imap <right>  <nop>
 
-"PLUG"
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
