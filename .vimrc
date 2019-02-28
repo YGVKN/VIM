@@ -30,9 +30,6 @@ Plug 'tpope/vim-salve',           {'for': 'clojure'}
 "CLOJURESCRIPT"
 "ERLANG"
 Plug 'vim-erlang/vim-erlang-omnicomplete' ,{'for': 'erlang'}
-
-
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
