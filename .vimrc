@@ -25,9 +25,14 @@ Plug 'adimit/prolog.vim', {'for': 'prolog'}
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
 Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
-"Plug 'tpope/vim-classpath'
-"Plug 'tpope/vim-salve'
+Plug 'tpope/vim-classpath',       {'for': ['clojure','clojurescript','lisp']}
+Plug 'tpope/vim-salve',           {'for': 'clojure'}
 "CLOJURESCRIPT"
+"ERLANG"
+Plug 'vim-erlang/vim-erlang-omnicomplete' ,{'for': 'erlang'}
+
+
+
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',{'for':'elixir'}
 Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
@@ -139,6 +144,7 @@ set nofoldenable
 set history=888
 set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt
 set path=.
+set runtimepath^=~/.vim/plugged/vim-erlang-omnicomplete
 inoremap jj <Esc>
 sy on
 map <silent> <F8>   :Explore<CR>
@@ -213,7 +219,7 @@ hi! NonText ctermbg=NONE guibg=NONE
 "colorscheme settings"
 "autocmd BufEnter * colorscheme solarized
 autocmd BufEnter *.html colorscheme solarized8
-"lineLength"
+"LineLength"
 match ErrorMsg '\%99v.\+'
 autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
 func! DeleteTrailingWS()
@@ -278,6 +284,7 @@ autocmd FileType htmlset    set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType cssset     set omnifunc=csscomplete#CompleteCSS
 autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
+autocmd Filetype erlang     set omnifunc=erlang_complete#Complete
 
 autocmd BufWrite *.php  :call DeleteTrailingWS()
 autocmd BufWrite *.html :call DeleteTrailingWS()
