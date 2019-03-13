@@ -5,14 +5,16 @@ Plug 'bhurlow/vim-parinfer',{'for': ['lisp','clojure','clojurescript','scheme','
 Plug 'kovisoft/paredit'
 Plug 'jpalardy/vim-slime'
 Plug 'kien/rainbow_parentheses.vim'
+"Plug 'amdt/vim-niji'
 "COMMON LISP"
 Plug 'l04m33/vlime',{'for': 'lisp'}
-"SCHEME"
 "RACKET"
 Plug 'wlangstroth/vim-racket',{'for': 'racket'}
 "nav|search"
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim',{'on': 'CtrlP'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
 "HASKEL"
 "PURESCRIPT"
@@ -37,9 +39,6 @@ Plug 'slashmili/alchemist.vim',  {'for':'elixir'}
 Plug 'JuliaEditorSupport/julia-vim',{'for': 'julia'}
 "markup"
 Plug 'mattn/emmet-vim' ,{'on': 'Emmet'}
-"ELM"
-Plug 'ElmCast/elm-vim',     {'for': 'elm'}
-Plug 'lambdatoast/elm.vim', {'for': 'elm'}
 "PHP"
 Plug 'stanangeloff/php.vim',{'for': 'php'}
 "GIT"
@@ -139,7 +138,7 @@ set backspace=indent,eol,start
 set nrformats=
 set nofoldenable
 set history=888
-set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt
+set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt,.c,.lisp
 set path=.
 set runtimepath^=~/.vim/plugged/vim-erlang-omnicomplete
 inoremap jj <Esc>
@@ -289,6 +288,12 @@ autocmd BufWrite *.css  :call DeleteTrailingWS()
 autocmd BufWrite *.js   :call DeleteTrailingWS()
 autocmd BufWrite *.py   :call DeleteTrailingWS()
 autocmd BufWrite *.rb   :call DeleteTrailingWS()
+autocmd BufWrite *.erl  :call DeleteTrailingWS()
+autocmd BufWrite *.ex   :call DeleteTrailingWS()
+autocmd BufWrite *.exs  :call DeleteTrailingWS()
+autocmd BufWrite *.clj  :call DeleteTrailingWS()
+autocmd BufWrite *.cljs :call DeleteTrailingWS()
+autocmd BufWrite *.lisp :call DeleteTrailingWS()
 
 "rainbow_parentheses"
 let g:rbpt_colorpairs = [
@@ -312,9 +317,21 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+au Syntax   * RainbowParenthesesLoadRound
+au Syntax   * RainbowParenthesesLoadSquare
+au Syntax   * RainbowParenthesesLoadBraces
+
+"Yet another parentheses brackets"
+let g:niji_dark_colours = [
+    \ [ '81', '#5fd7ff'],
+    \ [ '99', '#875fff'],
+    \ [ '1',  '#dc322f'],
+    \ [ '76', '#5fd700'],
+    \ [ '3',  '#b58900'],
+    \ [ '2',  '#859900'],
+    \ [ '6',  '#2aa198'],
+    \ [ '4',  '#268bd2'],
+    \ ]
 "Disable Arrow
 map  <up>     <nop>
 map  <down>   <nop>
