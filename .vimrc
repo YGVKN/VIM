@@ -27,7 +27,7 @@ Plug 'adimit/prolog.vim', {'for': 'prolog'}
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
 Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
-Plug 'tpope/vim-classpath',       {'for': ['clojure','clojurescript','lisp']}
+Plug 'tpope/vim-classpath',       {'for': ['clojure','clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 "CLOJURESCRIPT"
 "ERLANG"
@@ -66,6 +66,8 @@ Plug 'jelera/vim-javascript-syntax',{'for': 'javascript'}
 Plug 'isruslan/vim-es6',            {'for': 'javascript'}
 "SCALA"
 Plug 'derekwyatt/vim-scala',{'for': 'scala'}
+"GROOVY"
+Plug 'johnlim/vim-groovy'
 "colorSchemes"
 "OTHER"
 Plug 'tpope/vim-surround'
@@ -73,11 +75,13 @@ Plug 'elzr/vim-json',{'for': 'json'}
 Plug 'roman/golden-ratio'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'posva/vim-vue'
 call plug#end()
 
 filetype plugin indent on
 scriptencoding utf-8
 colorscheme solarized
+set tags=tags
 set langmenu=en_US.UTF-8
 let $LANG = 'en_US'
 set spell spelllang=en_us,ru_ru
@@ -138,11 +142,16 @@ set backspace=indent,eol,start
 set nrformats=
 set nofoldenable
 set history=888
-set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt,.c,.lisp
+set suffixesadd+=.rb,.cr,.php,.py,.clj,.cljs,.erl,.escript,.ex,.exs,.elm,.js,.html,.css,.hs,.lisp,.scm,.rkt,.c
 set path=.
 set runtimepath^=~/.vim/plugged/vim-erlang-omnicomplete
 inoremap jj <Esc>
 sy on
+
+if exists('sy on')
+  syntax reset
+endif
+
 map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
 "REPL"
@@ -215,6 +224,7 @@ hi! NonText ctermbg=NONE guibg=NONE
 "colorscheme settings"
 "autocmd BufEnter * colorscheme solarized
 autocmd BufEnter *.html colorscheme solarized8
+autocmd FileType vue syntax sync fromstart
 "LineLength"
 match ErrorMsg '\%99v.\+'
 autocmd BufWinEnter * call matchadd('ErrorMsg', '\%>'.&l:textwidth.'v.\+', -1)
@@ -282,18 +292,22 @@ autocmd FileType PHPset     set omnifunc=phpcomplete#CompletePHP
 autocmd FileType python     set omnifunc=pythoncomplete#Complete
 autocmd Filetype erlang     set omnifunc=erlang_complete#Complete
 
-autocmd BufWrite *.php  :call DeleteTrailingWS()
-autocmd BufWrite *.html :call DeleteTrailingWS()
-autocmd BufWrite *.css  :call DeleteTrailingWS()
-autocmd BufWrite *.js   :call DeleteTrailingWS()
-autocmd BufWrite *.py   :call DeleteTrailingWS()
-autocmd BufWrite *.rb   :call DeleteTrailingWS()
-autocmd BufWrite *.erl  :call DeleteTrailingWS()
-autocmd BufWrite *.ex   :call DeleteTrailingWS()
-autocmd BufWrite *.exs  :call DeleteTrailingWS()
-autocmd BufWrite *.clj  :call DeleteTrailingWS()
-autocmd BufWrite *.cljs :call DeleteTrailingWS()
-autocmd BufWrite *.lisp :call DeleteTrailingWS()
+autocmd BufWrite *.ygvkn  :call DeleteTrailingWS()
+autocmd BufWrite *.php    :call DeleteTrailingWS()
+autocmd BufWrite *.html   :call DeleteTrailingWS()
+autocmd BufWrite *.css    :call DeleteTrailingWS()
+autocmd BufWrite *.js     :call DeleteTrailingWS()
+autocmd BufWrite *.py     :call DeleteTrailingWS()
+autocmd BufWrite *.rb     :call DeleteTrailingWS()
+autocmd BufWrite *.cr     :call DeleteTrailingWS()
+autocmd BufWrite *.erl    :call DeleteTrailingWS()
+autocmd BufWrite *.ex     :call DeleteTrailingWS()
+autocmd BufWrite *.exs    :call DeleteTrailingWS()
+autocmd BufWrite *.rkt    :call DeleteTrailingWS()
+autocmd BufWrite *.scm    :call DeleteTrailingWS()
+autocmd BufWrite *.clj    :call DeleteTrailingWS()
+autocmd BufWrite *.cljs   :call DeleteTrailingWS()
+autocmd BufWrite *.lisp   :call DeleteTrailingWS()
 
 "rainbow_parentheses"
 let g:rbpt_colorpairs = [
