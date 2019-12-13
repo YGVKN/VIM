@@ -33,8 +33,8 @@ Plug 'roman/golden-ratio'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
-Plug 'jpalardy/vim-slime'
-
+Plug 'junegunn/fzf', {'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
@@ -72,7 +72,6 @@ set nojoinspaces
 
 set splitright
 set splitbelow
-
 
 set cursorline
 set cursorcolumn
@@ -140,8 +139,6 @@ au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
-
-let g:slime_target = "vimterminal"
 
 "NerdTree Settings"
 if empty(argv())
