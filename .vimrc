@@ -122,16 +122,14 @@ set formatoptions=tcqrn2
 set nrformats=
 set pumheight=33
 set t_Co=256
-"set paste
 "set termguicolors
 "set relativenumber
-"set foldcolumn=13
 set path=.
 set runtimepath^=~/.vim/plugged
 set omnifunc=syntaxcomplete#Complete
 
 "OTHER"
-inoremap jj <Esc>
+imap jj <Esc>
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC
 hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
 hi CursorColumn ctermfg=White ctermbg=Yellow cterm=bold
@@ -214,8 +212,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 hi MatchParen ctermbg=darkred ctermfg=white
 
-"au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-"au FileType json setlocal ts=2 sts=2 sw=2 expandtab
 
 "YAML"
 au! BufRead,BufNewFile *.yaml, set filetype=yaml
