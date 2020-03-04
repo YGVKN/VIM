@@ -1,7 +1,7 @@
 filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'"
 
 "ColorScheme"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
@@ -11,15 +11,18 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
 Plug 'kovisoft/paredit'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'"
 
 "CLOJURE"
+Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
-Plug 'tpope/vim-fireplace',       {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
+
+"SBCL"
+
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -33,8 +36,11 @@ Plug 'roman/golden-ratio'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
+Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', {'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
@@ -210,18 +216,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 hi MatchParen ctermbg=darkred ctermfg=white
 
 
-"YAML"
-au! BufRead,BufNewFile *.yaml, set filetype=yaml
-augroup yaml_autocmd
-  autocmd!
-  autocmd FileType yaml set autoindent
-  autocmd FileType yaml set formatoptions=tcq2l
-  autocmd FileType yaml set textwidth=88 shiftwidth=2
-  autocmd FileType yaml set softtabstop=2 tabstop=2
-  autocmd FileType yaml set expandtab
-  autocmd FileType yaml set foldmethod=syntax
-augroup END
-
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -233,6 +227,15 @@ augroup json_autocmd
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+
+"YAML"
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+au FileType yaml setlocal ts=1 sts=1 sw=1 expandtab
+
+"CLOJURE"
+au! BufNewFile,BufReadPost *.{clj,cljc} set filetype=clojure foldmethod=indent
+au FileType clojure setlocal ts=1 sts=1 sw=1 expandtab
+
 
 
 "Auto compl"
@@ -274,6 +277,6 @@ hi OverLength ctermbg=darkred ctermfg=white
 hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 
 match OverLength /\%>88v.\+/
-autocmd BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
+au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
 
