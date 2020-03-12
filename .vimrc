@@ -4,13 +4,13 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'scrooloose/nerdcommenter'"
 
 "ColorScheme"
-Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'kyoz/purify', { 'rtp': 'vim' }"
 "Plug 'lifepillar/vim-solarized8'"
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
-Plug 'kovisoft/paredit'
+"Plug 'kovisoft/paredit'"
 "Plug 'jiangmiao/auto-pairs'"
 
 "CLOJURE"
@@ -23,6 +23,8 @@ Plug 'guns/vim-sexp',             {'for': 'clojure'}
 
 "SBCL"
 
+"ELIXIR"
+Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -50,12 +52,15 @@ filetype plugin indent on
 sy on
 colorscheme purify
 
+
 scriptencoding utf-8
 set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
+set shell=zsh
+
 set title
 set number
 set magic
@@ -64,15 +69,15 @@ set ttyfast
 set lazyredraw
 set autoindent
 set autoread
-set cmdheight=2
-set shell=zsh
-set switchbuf=useopen
-set backspace=indent,eol,start
-set timeout timeoutlen=1000 ttimeoutlen=100
-set pastetoggle=<F12>
+set wildmenu
 set modeline
-set modelines=3
-set foldmethod=manual
+set linebreak
+set nowrapscan
+set wrap
+set confirm
+set list
+set noshiftround
+
 set nofoldenable
 set nojoinspaces
 
@@ -81,7 +86,6 @@ set splitbelow
 
 set cursorline
 set cursorcolumn
-set colorcolumn=+1,+12
 
 set showmode
 set showcmd
@@ -95,41 +99,32 @@ set smartcase
 set smartindent
 set expandtab
 set smarttab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set noshiftround
-set history=888
 
-set textwidth=88
-set colorcolumn=88,99
+set t_Co=256
 set mps+=<:>
 set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\   
-set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
-set wildmenu
-set wildmode=longest,list
+
 set linespace=3
-set linebreak
-set nowrapscan
-set wrap
-set confirm
-set list
-set esckeys
-set tags=tags
+set modelines=3
+set cmdheight=2
+set laststatus=2
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+
+set pastetoggle=<F12>
+set textwidth=88
+set colorcolumn=88,99
+set wildmode=longest,list
 set guifont=Fira\ Code:h12
-set mouse=
 set completeopt=menu,preview
 set formatoptions=tcqrn2
-set nrformats=
 set pumheight=33
-set t_Co=256
-"set termguicolors
-"set relativenumber
-set path=.
 set runtimepath^=~/.vim/plugged
 set omnifunc=syntaxcomplete#Complete
 
@@ -153,6 +148,7 @@ else
   au VimEnter * NERDTree
 endif
 
+
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
@@ -167,6 +163,21 @@ let NERDTreeAutoDeleteBuffer = 1
 hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
+
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
 
 "NETRW"
 let g:netrw_banner       = 0
@@ -231,11 +242,6 @@ augroup END
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 au FileType yaml setlocal ts=1 sts=1 sw=1 expandtab
-
-"CLOJURE"
-au! BufNewFile,BufReadPost *.{clj,cljc} set filetype=clojure foldmethod=indent
-au FileType clojure setlocal ts=1 sts=1 sw=1 expandtab
-
 
 
 "Auto compl"
