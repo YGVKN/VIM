@@ -4,7 +4,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'scrooloose/nerdcommenter'"
 
 "ColorScheme"
-Plug 'kyoz/purify', { 'rtp': 'vim' }"
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 "Plug 'lifepillar/vim-solarized8'"
 
 "LISP"
@@ -22,10 +22,17 @@ Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
 
 "SBCL"
+"Plug 'vlime/vlime', {'rtp': 'vim/'}"
+"Plug kovisoft/slimv, {'for': 'lisp'}"
+
 "ERLANG"
+
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+
+"OCAML"
+Plug 'ocaml/vim-ocaml', {'for': 'ml'}
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -37,14 +44,19 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'itchyny/lightline.vim'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
 Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', {'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+"RUBY"
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
 
+"CRYSTAL"
+Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
+
+"JS & NODEJS"
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
@@ -53,7 +65,6 @@ filetype plugin indent on
 
 sy on
 colorscheme purify
-
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -133,7 +144,7 @@ set omnifunc=syntaxcomplete#Complete
 
 "OTHER"
 imap jj <Esc>
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC
+au! bufwritepost $MYVIMRC source $MYVIMRC
 hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
 hi CursorColumn ctermfg=White ctermbg=Yellow cterm=bold
 hi StatusLine ctermbg=0 cterm=NONE
@@ -151,6 +162,7 @@ else
   au VimEnter * NERDTree
 endif
 
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
 
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
@@ -192,21 +204,15 @@ map <silent> <S-F8> :sp +Explore<CR>
 map <silent> <F10>  :bw<CR>
 
 
-"AriLines"
-"let g:airline_theme='purify'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-
 
 let g:lightline = {
       \ 'colorscheme': 'one light',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
+      \             [ 'readonly', 'filename', 'modified', 'ygvkn' ] ]
       \ },
       \ 'component': {
-      \   'helloworld': 'YGVKN/ZHUZHA'
+      \   'ygvkn': 'YGVKN/ZHUZHA'
       \ },
       \ }
 
@@ -240,7 +246,6 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 
 hi MatchParen ctermbg=darkred ctermfg=white
-
 
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
@@ -300,3 +305,4 @@ hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 match OverLength /\%>88v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
+
