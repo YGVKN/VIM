@@ -2,6 +2,8 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'scrooloose/nerdcommenter'"
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
@@ -26,6 +28,8 @@ Plug 'guns/vim-sexp',             {'for': 'clojure'}
 "Plug kovisoft/slimv, {'for': 'lisp'}"
 
 "ERLANG"
+"PROLOG"
+"HASKEL"
 
 
 "ELIXIR"
@@ -43,7 +47,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
 Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', {'do': './install --all' }
@@ -58,6 +61,11 @@ Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
+
+"...and again"
+"PHP"
+Plug 'stanangeloff/php.vim', {'for': 'php'}
+
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
@@ -65,6 +73,9 @@ filetype plugin indent on
 
 sy on
 colorscheme purify
+
+
+set omnifunc=syntaxcomplete#Complete
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -140,7 +151,6 @@ set completeopt=menu,preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
-set omnifunc=syntaxcomplete#Complete
 
 "OTHER"
 imap jj <Esc>
@@ -155,14 +165,20 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
+"VIM AIRLINE"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='badwolf'
+
+
+
 "NerdTree Settings"
 if empty(argv())
   au Vimenter * NERDTree | wincmd l | wincmd c
 else
   au VimEnter * NERDTree
 endif
-
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
 
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
@@ -203,18 +219,6 @@ map <silent> <F8>   :Explore<CR>
 map <silent> <S-F8> :sp +Explore<CR>
 map <silent> <F10>  :bw<CR>
 
-
-
-let g:lightline = {
-      \ 'colorscheme': 'one light',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'ygvkn' ] ]
-      \ },
-      \ 'component': {
-      \   'ygvkn': 'YGVKN/ZHUZHA'
-      \ },
-      \ }
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
@@ -305,4 +309,3 @@ hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 match OverLength /\%>88v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
-
