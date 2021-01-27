@@ -11,6 +11,7 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
+"Plug 'amdt/vim-niji'"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
 "Plug 'kovisoft/paredit'"
 "Plug 'jiangmiao/auto-pairs'"
@@ -251,6 +252,18 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
+
+
+"let g:niji_dark_colours = [
+"    \ [ '81', '#5fd7ff'],
+"    \ [ '99', '#875fff'],
+"    \ [ '1',  '#dc322f'],
+"    \ [ '76', '#5fd700'],
+"    \ [ '3',  '#b58900'],
+"    \ [ '2',  '#859900'],
+"    \ [ '6',  '#2aa198'],
+"    \ [ '4',  '#268bd2'],
+"    \ ]
 
 hi MatchParen ctermbg=darkred ctermfg=white
 
