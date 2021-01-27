@@ -23,6 +23,10 @@ Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
 
+"MIT SCHEME"
+Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
 "Plug kovisoft/slimv, {'for': 'lisp'}"
@@ -172,7 +176,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='badwolf'
 
 
-
 "NerdTree Settings"
 if empty(argv())
   au Vimenter * NERDTree | wincmd l | wincmd c
@@ -251,6 +254,9 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 hi MatchParen ctermbg=darkred ctermfg=white
 
+"MIT SCHEME"
+let g:scheme_split_size = -10
+
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -265,7 +271,7 @@ augroup END
 
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-au FileType yaml setlocal ts=1 sts=1 sw=1 expandtab
+au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 "Auto compl"
