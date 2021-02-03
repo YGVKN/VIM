@@ -1,0 +1,32 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+
+  #DOCKER_HOST: tcp://docker:2375
+  #WHOAMI
+  #REGISTRY_LOGIN
+  #REGISTRY_PASS
+
+before_script:
+  - ip addr show eth0 | grep inet | awk '{ print ; }' | sed 's/\/.*$//'
+
+stages:
+  - origin
+
+
+build:
+  stage: origin
+  script:
+    - docker info
+    - echo ${WHOAMI}
+    - ip addr show eth0 | grep inet | awk '{ print ; }' | sed 's/\/.*$//'
+  tags:
+    - YGVKN
+
+
+
+
+#YGVN/ZHUZHA#
