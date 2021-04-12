@@ -6,7 +6,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-Plug 'kyoz/purify', { 'rtp': 'vim' }
+"Plug 'kyoz/purify', { 'rtp': 'vim' }"
 "Plug 'lifepillar/vim-solarized8'"
 
 "LISP"
@@ -33,6 +33,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "Plug kovisoft/slimv, {'for': 'lisp'}"
 
 "ERLANG"
+Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 "PROLOG"
 "HASKEL"
 
@@ -47,6 +48,9 @@ Plug 'ocaml/vim-ocaml', {'for': 'ml'}
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+"TERRAFORM"
+Plug 'hashivim/vim-terraform', {'for': 'terraform'}
 
 "OTHER"
 Plug 'gorodinskiy/vim-coloresque'
@@ -77,8 +81,7 @@ call plug#end()
 filetype plugin indent on
 
 sy on
-colorscheme purify
-
+colorscheme ron
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -160,8 +163,8 @@ set runtimepath^=~/.vim/plugged
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
-hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
-hi CursorColumn ctermfg=White ctermbg=Yellow cterm=bold
+"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
+"hi CursorColumn ctermfg=White ctermbg=Yellow cterm=bold
 hi StatusLine ctermbg=0 cterm=NONE
 hi ExtraWhitespace ctermbg=red guibg=darkred
 match ExtraWhitespace /\s\+$/
@@ -285,6 +288,12 @@ augroup END
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+"TERRAFORM"
+let g:terraform_align=1
+let g:terraform_fold_sections=1
+let g:terraform_fmt_on_save=1
+autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 
 "Auto compl"
