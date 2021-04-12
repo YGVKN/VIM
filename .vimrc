@@ -34,6 +34,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 "ERLANG"
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
+Plug 'jimenezrick/vimerl', {'for': 'erlang'}
 "PROLOG"
 "HASKEL"
 
