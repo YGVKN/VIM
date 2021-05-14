@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline-themes'
 "ColorScheme"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 "Plug 'lifepillar/vim-solarized8'"
+Plug 'whatyouhide/vim-gotham'
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
@@ -35,7 +36,10 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 "ERLANG"
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 Plug 'jimenezrick/vimerl', {'for': 'erlang'}
+
 "PROLOG"
+Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
+
 "HASKEL"
 
 
@@ -44,6 +48,9 @@ Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 
 "OCAML"
 Plug 'ocaml/vim-ocaml', {'for': 'ml'}
+
+"SCALA"
+Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -59,7 +66,7 @@ Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
 Plug 'gregsexton/matchtag'
-Plug 'junegunn/fzf', {'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 "RUBY"
@@ -82,7 +89,8 @@ call plug#end()
 filetype plugin indent on
 
 sy on
-colorscheme ron
+
+colorscheme gotham256
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -160,6 +168,8 @@ set completeopt=menu,preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
+
+set termguicolors
 
 "OTHER"
 imap jj <Esc>
@@ -338,3 +348,4 @@ hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 match OverLength /\%>88v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
+autocmd BufWritePre * %s/\s\+$//e
