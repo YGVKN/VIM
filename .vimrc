@@ -6,9 +6,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-"Plug 'kyoz/purify', { 'rtp': 'vim' }"
 "Plug 'lifepillar/vim-solarized8'"
-Plug 'whatyouhide/vim-gotham'
+
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
@@ -59,6 +58,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "TERRAFORM"
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion', {'for': 'terraform'}
 
 "OTHER"
 Plug 'gorodinskiy/vim-coloresque'
@@ -90,9 +91,7 @@ filetype plugin indent on
 
 sy on
 
-colorscheme gotham256
-
-set omnifunc=syntaxcomplete#Complete
+colorscheme torte
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -101,7 +100,6 @@ set fileencoding=utf-8
 
 set background=dark
 set shell=zsh
-"set shell=bash"
 
 set title
 set number
@@ -146,13 +144,13 @@ set t_Co=256
 set mps+=<:>
 set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
-set fillchars+=vert:\   
+set fillchars+=vert:\  
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
 
 set linespace=3
 set modelines=3
-set cmdheight=2
+set cmdheight=7
 set laststatus=2
 set shiftwidth=2
 set softtabstop=2
@@ -164,12 +162,36 @@ set textwidth=88
 set colorcolumn=88,99
 set wildmode=longest,list
 set guifont=Fira\ Code:h12
-set completeopt=menu,preview
+"set completeopt=menu,preview
+set completeopt-=preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
 
 set termguicolors
+
+set omnifunc=syntaxcomplete#Complete
+
+"Syntastic Config"
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
+
+" (Optional) Enable terraform plan to be include in filter
+let g:syntastic_terraform_tffilter_plan = 1
+
+" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
+let g:terraform_completion_keys = 1
+
+" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
+let g:terraform_registry_module_completion = 0
 
 "OTHER"
 imap jj <Esc>
@@ -307,6 +329,8 @@ let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 
+
+
 "Auto compl"
 function! Smart_TabComplete()
   let line = getline('.')
@@ -348,4 +372,3 @@ hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 match OverLength /\%>88v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
-autocmd BufWritePre * %s/\s\+$//e
