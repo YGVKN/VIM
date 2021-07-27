@@ -23,6 +23,10 @@ Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
+Plug 'liquidz/vim-iced',          {'for': 'clojure'}
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'liquidz/vim-iced-asyncomplete', {'for': 'clojure'}
 
 "MIT SCHEME"
 Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
@@ -192,6 +196,9 @@ let g:terraform_completion_keys = 1
 
 " (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
 let g:terraform_registry_module_completion = 0
+
+"ICED"
+let g:iced_enable_default_key_mappings = v:true
 
 "OTHER"
 imap jj <Esc>
