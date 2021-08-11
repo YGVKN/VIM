@@ -95,7 +95,7 @@ filetype plugin indent on
 
 sy on
 
-colorscheme torte
+colorscheme  peachpuff
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -379,3 +379,4 @@ hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 match OverLength /\%>88v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
+autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=lisp | endif

@@ -1,0 +1,14 @@
+FROM alpine
+MAINTAINER YGVKN
+LABEL YGVKN ZHUZHA
+RUN apk add --no-cache --update \
+        curl openssl bash \
+     && curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
+     && chmod +x get_helm.sh && ./get_helm.sh \
+     && rm -rf /var/cache/apk/*
+HEALTHCHECK --interval=8m --timeout=4s CMD cat /etc/*release* > /tmp/health_check || exit 1
+STOPSIGNAL SIGTERM
+ENTRYPOINT ["helm"]
+CMD ["--help"]
+#ENTRYPOINT ["tail"]
+#CMD ["-f", "/dev/null","2>&1"]
