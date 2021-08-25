@@ -66,6 +66,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion', {'for': 'terraform'}
 
 "OTHER"
+Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
@@ -175,6 +176,8 @@ set runtimepath^=~/.vim/plugged
 set termguicolors
 
 set omnifunc=syntaxcomplete#Complete
+"Makefile"
+autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 
 "Syntastic Config"
 set statusline+=%#warningmsg#
