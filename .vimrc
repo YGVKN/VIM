@@ -25,8 +25,11 @@ Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
 Plug 'liquidz/vim-iced',          {'for': 'clojure'}
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'liquidz/vim-iced-asyncomplete', {'for': 'clojure'}
+Plug 'prabirshrestha/asyncomplete.vim', {'for': 'clojure'}
+Plug 'liquidz/vim-iced-asyncomplete',   {'for': 'clojure'}
+"Syntax Check Clojure & more..."
+Plug 'dense-analysis/ale', {'for': 'clojure'}
+
 
 "MIT SCHEME"
 Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
@@ -45,7 +48,6 @@ Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
 
 "HASKEL"
 
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 
@@ -54,6 +56,9 @@ Plug 'ocaml/vim-ocaml', {'for': 'ml'}
 
 "SCALA"
 Plug 'derekwyatt/vim-scala', {'for': 'scala'}
+
+"GOLANG"
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -83,11 +88,8 @@ Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
 
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+"exec '!/usr/local/bin/node' '-e'  shellescape(getline('.'))"
 
-
-"...and again"
-"PHP"
-Plug 'stanangeloff/php.vim', {'for': 'php'}
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
@@ -96,7 +98,10 @@ filetype plugin indent on
 
 sy on
 
-colorscheme  peachpuff
+colorscheme  torte
+
+set exrc
+set secure
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -163,12 +168,12 @@ set tabstop=2
 
 
 set pastetoggle=<F12>
-set textwidth=88
-set colorcolumn=88,99
+set textwidth=99
+set colorcolumn=99,111
 set wildmode=longest,list
 set guifont=Fira\ Code:h12
-"set completeopt=menu,preview
-set completeopt-=preview
+set completeopt=menu,preview
+"set completeopt-=preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
@@ -176,6 +181,7 @@ set runtimepath^=~/.vim/plugged
 set termguicolors
 
 set omnifunc=syntaxcomplete#Complete
+let g:indentLine_char = '⦙'
 "Makefile"
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 
@@ -202,6 +208,11 @@ let g:terraform_registry_module_completion = 0
 
 "ICED"
 let g:iced_enable_default_key_mappings = v:true
+"ALE"
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_linters = {'clojure': ['clj-kondo']}
+"let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}"
 
 "OTHER"
 imap jj <Esc>
@@ -340,7 +351,6 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 
 
-
 "Auto compl"
 function! Smart_TabComplete()
   let line = getline('.')
@@ -379,7 +389,6 @@ inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 hi OverLength ctermbg=darkred ctermfg=white
 hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
 
-match OverLength /\%>88v.\+/
+match OverLength /\%>99v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
-call matchadd('ColorColumn', '\(\%88v\|\%99v\)')
-autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=lisp | endif
+call matchadd('ColorColumn', '\(\%99v\|\%111v\)')
