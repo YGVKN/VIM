@@ -54,9 +54,6 @@ Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 "OCAML"
 Plug 'ocaml/vim-ocaml', {'for': 'ml'}
 
-"SCALA"
-Plug 'derekwyatt/vim-scala', {'for': 'scala'}
-
 "GOLANG"
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -98,7 +95,7 @@ filetype plugin indent on
 
 sy on
 
-colorscheme  torte
+colorscheme  elflord
 
 set exrc
 set secure
@@ -182,8 +179,6 @@ set termguicolors
 
 set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
-"Makefile"
-autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0
 
 "Syntastic Config"
 set statusline+=%#warningmsg#
@@ -349,7 +344,13 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
-
+"FUNCTIONZ"
+function! RubyTest()
+ruby << EOF
+  puts "sooooooo"
+EOF
+endfunction
+"call RubyTest()
 
 "Auto compl"
 function! Smart_TabComplete()
