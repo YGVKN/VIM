@@ -7,6 +7,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
 "Plug 'lifepillar/vim-solarized8'"
+Plug 'kyoz/purify', { 'rtp': 'vim' }
+
 
 
 "LISP"
@@ -95,7 +97,10 @@ filetype plugin indent on
 
 sy on
 
-colorscheme  elflord
+colorscheme purify
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
 
 set exrc
 set secure
@@ -351,6 +356,10 @@ ruby << EOF
 EOF
 endfunction
 "call RubyTest()
+function! Exec()
+  execute "!curl --version"
+endfunction
+
 
 "Auto compl"
 function! Smart_TabComplete()
@@ -388,8 +397,8 @@ inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 "OverLength"
 hi OverLength ctermbg=darkred ctermfg=white
-hi ColorColumn ctermfg=White ctermbg=Yellow cterm=bold
+hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
 
-match OverLength /\%>99v.\+/
+match OverLength /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%99v\|\%111v\)')
