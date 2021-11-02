@@ -1,4 +1,4 @@
 <p align="center">
-  <img src="https://media.giphy.com/media/26FPB9J8XlrBPtcg8/giphy.gifn" />
+  <img src="https://giphy.com/gifs/philipper-animation-artists-on-tumblr-w21zhR3jkI0SI/tile" />
 </p>
 
