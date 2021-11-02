@@ -1,5 +1,6 @@
 filetype off
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'scrooloose/nerdcommenter'"
 Plug 'vim-airline/vim-airline'
@@ -8,8 +9,8 @@ Plug 'vim-airline/vim-airline-themes'
 "ColorScheme"
 "Plug 'lifepillar/vim-solarized8'"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
-
-
+"DART | FLUTTER"
+Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
@@ -87,7 +88,7 @@ Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
 
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-"exec '!/usr/local/bin/node' '-e'  shellescape(getline('.'))"
+
 
 
 "Plug '~/my-prototype-plugin'"
@@ -180,8 +181,9 @@ set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
 
-set termguicolors
 
+
+set termguicolors
 set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
 
@@ -218,7 +220,7 @@ let g:ale_linters = {'clojure': ['clj-kondo']}
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
 "hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
-"hi CursorColumn ctermfg=White ctermbg=Yellow cterm=bold
+hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
 hi StatusLine ctermbg=0 cterm=NONE
 hi ExtraWhitespace ctermbg=red guibg=darkred
 match ExtraWhitespace /\s\+$/
@@ -353,13 +355,12 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 function! RubyTest()
 ruby << EOF
   puts "sooooooo"
+  require 'httparty'
+  response = HTTParty.get('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
+  puts response.body, response.code, response.message, response.headers.inspect
 EOF
 endfunction
 "call RubyTest()
-function! Exec()
-  execute "!curl --version"
-endfunction
-
 
 "Auto compl"
 function! Smart_TabComplete()
