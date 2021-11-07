@@ -7,6 +7,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
+
 "DART | FLUTTER"
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
@@ -50,9 +51,6 @@ Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
 
 "OCAML"
 Plug 'ocaml/vim-ocaml', {'for': 'ml'}
-
-"GOLANG"
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -207,7 +205,6 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_linters = {'clojure': ['clj-kondo']}
 let g:ale_completion_enabled = 1
-
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
