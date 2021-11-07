@@ -7,7 +7,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-"Plug 'lifepillar/vim-solarized8'"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 "DART | FLUTTER"
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
@@ -16,7 +15,7 @@ Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'amdt/vim-niji'"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
-"Plug 'kovisoft/paredit'"
+Plug 'kovisoft/paredit'"
 "Plug 'jiangmiao/auto-pairs'"
 
 "CLOJURE"
@@ -26,10 +25,7 @@ Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
-Plug 'liquidz/vim-iced',          {'for': 'clojure'}
 
-Plug 'prabirshrestha/asyncomplete.vim', {'for': 'clojure'}
-Plug 'liquidz/vim-iced-asyncomplete',   {'for': 'clojure'}
 "Syntax Check Clojure & more..."
 Plug 'dense-analysis/ale', {'for': 'clojure'}
 
@@ -44,7 +40,6 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 "ERLANG"
 Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
-Plug 'jimenezrick/vimerl', {'for': 'erlang'}
 
 "PROLOG"
 Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
@@ -208,13 +203,10 @@ let g:terraform_completion_keys = 1
 " (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
 let g:terraform_registry_module_completion = 0
 
-"ICED"
-let g:iced_enable_default_key_mappings = v:true
 "ALE"
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_linters = {'clojure': ['clj-kondo']}
-"let g:ale_linters = {'clojure': ['clj-kondo', 'joker']}"
 
 "OTHER"
 imap jj <Esc>
@@ -313,6 +305,7 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 
 
+
 "let g:niji_dark_colours = [
 "    \ [ '81', '#5fd7ff'],
 "    \ [ '99', '#875fff'],
@@ -343,8 +336,12 @@ augroup END
 
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
+"au FileType yaml setlocal ts=2 sts=2 sw=2 expandtab"
+augroup yaml_fix
+    autocmd!
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+augroup END
+autocmd FileType yaml setl indentkeys-=<:>
 "TERRAFORM"
 let g:terraform_align=1
 let g:terraform_fold_sections=1
@@ -360,7 +357,6 @@ ruby << EOF
   puts response.body, response.code, response.message, response.headers.inspect
 EOF
 endfunction
-"call RubyTest()
 
 "Auto compl"
 function! Smart_TabComplete()
