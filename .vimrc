@@ -1,6 +1,5 @@
 filetype off
 call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'scrooloose/nerdcommenter'"
 Plug 'vim-airline/vim-airline'
@@ -207,6 +206,7 @@ let g:terraform_registry_module_completion = 0
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_linters = {'clojure': ['clj-kondo']}
+let g:ale_completion_enabled = 1
 
 "OTHER"
 imap jj <Esc>
