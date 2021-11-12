@@ -11,6 +11,9 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 "DART | FLUTTER"
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
+"RUST"
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
+
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'amdt/vim-niji'"
