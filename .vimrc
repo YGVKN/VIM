@@ -8,11 +8,14 @@ Plug 'vim-airline/vim-airline-themes'
 "ColorScheme"
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
+"Ballerina"
+Plug 'ballerina-attic/plugin-vim', {'for': 'ballerina'}
+
 "DART | FLUTTER"
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 
 "RUST"
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+"Plug 'rust-lang/rust.vim', {'for': 'rust'}"
 
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
@@ -60,9 +63,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+"Syntastic"
+Plug 'vim-syntastic/syntastic'
+
 "TERRAFORM"
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion', {'for': 'terraform'}
 
 "OTHER"
@@ -74,6 +79,7 @@ Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
 Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 
 "RUBY"
 Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
@@ -100,13 +106,13 @@ let &t_ZR="\e[23m"
 set exrc
 set secure
 
+set encoding=UTF-8
 scriptencoding utf-8
-set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
-set shell=zsh
+set shell=/usr/local/bin/zsh
 
 set title
 set number
@@ -203,8 +209,8 @@ let g:terraform_completion_keys = 1
 let g:terraform_registry_module_completion = 0
 
 "ALE"
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = '>>>'
+let g:ale_sign_warning = '???'
 let g:ale_linters = {'clojure': ['clj-kondo']}
 let g:ale_completion_enabled = 1
 highlight ALEWarning ctermbg=DarkMagenta
@@ -213,8 +219,6 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 set omnifunc=ale#completion#OmniFunc
-
-
 
 
 
@@ -361,12 +365,12 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 "FUNCTIONZ"
 function! RubyTest()
 ruby << EOF
-  puts "sooooooo"
   require 'httparty'
   response = HTTParty.get('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
   puts response.body, response.code, response.message, response.headers.inspect
 EOF
 endfunction
+":call RubyTest()"
 
 "Auto compl"
 function! Smart_TabComplete()
