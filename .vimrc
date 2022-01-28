@@ -9,7 +9,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "Ballerina"
-Plug 'ballerina-attic/plugin-vim', {'for': 'ballerina'}
+"Plug 'ballerina-attic/plugin-vim', {'for': 'ballerina'}"
 
 "DART | FLUTTER"
 Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
@@ -21,8 +21,8 @@ Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'amdt/vim-niji'"
 Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
-Plug 'kovisoft/paredit'"
-"Plug 'jiangmiao/auto-pairs'"
+Plug 'kovisoft/paredit', {'for': ['lisp', 'clojure', 'clojurescript'] }
+Plug 'jiangmiao/auto-pairs'
 
 "CLOJURE"
 Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
@@ -38,7 +38,6 @@ Plug 'dense-analysis/ale', {'for': 'clojure'}
 
 "MIT SCHEME"
 Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
@@ -209,8 +208,8 @@ let g:terraform_completion_keys = 1
 let g:terraform_registry_module_completion = 0
 
 "ALE"
-let g:ale_sign_error = '>>>'
-let g:ale_sign_warning = '???'
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
 let g:ale_linters = {'clojure': ['clj-kondo']}
 let g:ale_completion_enabled = 1
 highlight ALEWarning ctermbg=DarkMagenta
