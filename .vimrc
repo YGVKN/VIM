@@ -220,7 +220,6 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 set omnifunc=ale#completion#OmniFunc
 
 
-
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
