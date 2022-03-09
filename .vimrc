@@ -32,9 +32,6 @@ Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
 
-"Syntax Check Clojure & more..."
-Plug 'dense-analysis/ale', {'for': 'clojure'}
-
 
 "MIT SCHEME"
 Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
@@ -62,8 +59,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"Syntastic"
-Plug 'vim-syntastic/syntastic'
 
 "TERRAFORM"
 Plug 'hashivim/vim-terraform', {'for': 'terraform'}
@@ -186,38 +181,6 @@ set termguicolors
 set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
 
-"Syntastic Config"
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave  * if pumvisible() == 0|pclose|endif
-
-" (Optional) Enable terraform plan to be include in filter
-let g:syntastic_terraform_tffilter_plan = 1
-
-" (Optional) Default: 0, enable(1)/disable(0) plugin's keymapping
-let g:terraform_completion_keys = 1
-
-" (Optional) Default: 1, enable(1)/disable(0) terraform module registry completion
-let g:terraform_registry_module_completion = 0
-
-"ALE"
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_linters = {'clojure': ['clj-kondo']}
-let g:ale_completion_enabled = 1
-highlight ALEWarning ctermbg=DarkMagenta
-let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-set omnifunc=ale#completion#OmniFunc
 
 
 "OTHER"
