@@ -25,9 +25,9 @@ Plug 'kovisoft/paredit', {'for': ['lisp', 'clojure', 'clojurescript'] }
 Plug 'jiangmiao/auto-pairs'
 
 "CLOJURE"
-Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
 Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
+Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
 Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
 Plug 'tpope/vim-salve',           {'for': 'clojure'}
 Plug 'guns/vim-sexp',             {'for': 'clojure'}
@@ -41,10 +41,10 @@ Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
 "Plug kovisoft/slimv, {'for': 'lisp'}"
 
 "ERLANG"
-Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
+"Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 
 "PROLOG"
-Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
+"Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
 
 "HASKEL"
 
