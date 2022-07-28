@@ -20,21 +20,13 @@ Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 "LISP"
 Plug 'kien/rainbow_parentheses.vim'
 "Plug 'amdt/vim-niji'"
-Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript', 'scheme', 'racket']}
-Plug 'kovisoft/paredit', {'for': ['lisp', 'clojure', 'clojurescript'] }
-Plug 'jiangmiao/auto-pairs'
+Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript']}
+"Plug 'jiangmiao/auto-pairs'
 
 "CLOJURE"
 Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
-Plug 'guns/vim-clojure-static',   {'for': 'clojure'}
 Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
-Plug 'tpope/vim-classpath',       {'for': ['clojure', 'clojurescript']}
-Plug 'tpope/vim-salve',           {'for': 'clojure'}
-Plug 'guns/vim-sexp',             {'for': 'clojure'}
 
-
-"MIT SCHEME"
-Plug 'Olical/vim-scheme', { 'for': 'scheme', 'on': 'SchemeConnect' }
 
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
@@ -106,7 +98,7 @@ set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
-set shell=/usr/local/bin/zsh
+set shell=/usr/bin/zsh
 
 set title
 set number
@@ -294,8 +286,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 hi MatchParen ctermbg=darkred ctermfg=white
 
-"MIT SCHEME"
-let g:scheme_split_size = -10
 
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
@@ -324,14 +314,6 @@ let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 "FUNCTIONZ"
-function! RubyTest()
-ruby << EOF
-  require 'httparty'
-  response = HTTParty.get('http://api.stackexchange.com/2.2/questions?site=stackoverflow')
-  puts response.body, response.code, response.message, response.headers.inspect
-EOF
-endfunction
-":call RubyTest()"
 
 "Auto compl"
 function! Smart_TabComplete()
