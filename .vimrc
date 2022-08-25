@@ -62,7 +62,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
-Plug 'gregsexton/matchtag'
+"Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -356,3 +356,7 @@ hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
 match OverLength /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 call matchadd('ColorColumn', '\(\%99v\|\%111v\)')
+"Plug"
+let g:plug_threads=22
+let g:plug_timeout=100
+let g:plug_retries=3
