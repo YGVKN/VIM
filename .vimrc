@@ -1,7 +1,6 @@
-filetype off
+"filetype off"
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-"Plug 'scrooloose/nerdcommenter'"
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -12,21 +11,18 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 "Plug 'ballerina-attic/plugin-vim', {'for': 'ballerina'}"
 
 "DART | FLUTTER"
-Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
+"Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}""
 
 "RUST"
 "Plug 'rust-lang/rust.vim', {'for': 'rust'}"
 
-"LISP"
-Plug 'kien/rainbow_parentheses.vim'
-"Plug 'amdt/vim-niji'"
-Plug 'bhurlow/vim-parinfer',{'for': ['lisp', 'clojure', 'clojurescript']}
-"Plug 'jiangmiao/auto-pairs'
-
 "CLOJURE"
-Plug 'guns/vim-clojure-highlight',{'for': 'clojure'}
-Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
-
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
+Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
+Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
+"Plug 'kovisoft/paredit',          {'for': 'clojure'}
 
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
@@ -35,16 +31,8 @@ Plug 'tpope/vim-fireplace'       ,{'for': 'clojure'}
 "ERLANG"
 "Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 
-"PROLOG"
-"Plug 'LukasLeppich/prolog-vim', {'for': 'prolog'}
-
-"HASKEL"
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
-
-"OCAML"
-Plug 'ocaml/vim-ocaml', {'for': 'ml'}
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -62,9 +50,9 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
-"Plug 'gregsexton/matchtag'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+"Plug 'jiangmiao/auto-pairs'"
 
 
 "RUBY"
@@ -85,6 +73,8 @@ filetype plugin indent on
 sy on
 
 colorscheme purify
+hi Normal guibg=#252834 ctermbg=234
+
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
@@ -92,13 +82,13 @@ let &t_ZR="\e[23m"
 set exrc
 set secure
 
-set encoding=UTF-8
+set encoding=utf-8
 scriptencoding utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
-set shell=/usr/bin/zsh
+set shell=/bin/zsh
 
 set title
 set number
@@ -146,7 +136,6 @@ set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
-
 set linespace=3
 set modelines=3
 set cmdheight=7
@@ -162,7 +151,6 @@ set colorcolumn=99,111
 set wildmode=longest,list
 set guifont=Fira\ Code:h12
 set completeopt=menu,preview
-"set completeopt-=preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
@@ -233,13 +221,13 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 "NETRW"
-let g:netrw_banner       = 0
-let g:netrw_liststyle    = 3
-let g:netrw_browse_split = 2
-let g:netrw_winsize      = 25
-map <silent> <F8>   :Explore<CR>
-map <silent> <S-F8> :sp +Explore<CR>
-map <silent> <F10>  :bw<CR>
+"let g:netrw_banner       = 0
+"let g:netrw_liststyle    = 3
+"let g:netrw_browse_split = 2
+"let g:netrw_winsize      = 25
+"map <silent> <F8>   :Explore<CR>
+"map <silent> <S-F8> :sp +Explore<CR>
+"map <silent> <F10>  :bw<CR>
 
 
 "Rainbow Parentheses"
@@ -313,7 +301,6 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
-"FUNCTIONZ"
 
 "Auto compl"
 function! Smart_TabComplete()
@@ -355,8 +342,8 @@ hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
 
 match OverLength /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
-call matchadd('ColorColumn', '\(\%99v\|\%111v\)')
+
 "Plug"
-let g:plug_threads=22
-let g:plug_timeout=100
+let g:plug_threads=24
+let g:plug_timeout=120
 let g:plug_retries=3
