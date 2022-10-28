@@ -6,7 +6,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
-Plug 'thedenisnikulin/vim-cyberpunk'
+Plug 'bignimbus/pop-punk.vim'
+
 
 "DART | FLUTTER"
 "Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}""
@@ -63,7 +64,7 @@ call plug#end()
 
 filetype plugin indent on
 
-colorscheme cyberpunk
+colorscheme pop-punk
 sy on
 
 
@@ -153,15 +154,14 @@ set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
 
 
-
 "fireplace"
 nnoremap <C-e> :Eval<CR>
 nnoremap E :%Eval<CR>
 "ctrl-e & shift-e"
 
 " Switch Buffs"
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+"map <C-J> :bnext<CR>
+"map <C-K> :bprev<CR>
 
 
 "CLJ Comp"
@@ -197,9 +197,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='cyberpunk'
+let g:airline_section_c = 'λ %F'
+let g:airline_theme='pop_punk'
 
-let g:cyberpunk_cursorline="red"
+let g:terminal_ansi_colors = pop_punk#AnsiColors()
+
 
 "NerdTree Settings & dorks"
 if empty(argv())
