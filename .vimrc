@@ -1,14 +1,12 @@
-"filetype off"
+filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-Plug 'kyoz/purify', { 'rtp': 'vim' }
-
-"Ballerina"
-"Plug 'ballerina-attic/plugin-vim', {'for': 'ballerina'}"
+"Plug 'kyoz/purify', { 'rtp': 'vim' }
+Plug 'thedenisnikulin/vim-cyberpunk'
 
 "DART | FLUTTER"
 "Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}""
@@ -22,7 +20,8 @@ Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
-"Plug 'kovisoft/paredit',          {'for': 'clojure'}
+Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
+"Plug 'kovisoft/paredit',           {'for': 'clojure'}"
 
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
@@ -55,12 +54,6 @@ Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
 
 
-"RUBY"
-Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
-
-"CRYSTAL"
-Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
-
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
@@ -70,10 +63,9 @@ call plug#end()
 
 filetype plugin indent on
 
+colorscheme cyberpunk
 sy on
 
-colorscheme purify
-hi Normal guibg=#252834 ctermbg=234
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -156,20 +148,44 @@ set pumheight=33
 set runtimepath^=~/.vim/plugged
 
 
-
 set termguicolors
 set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
 
 
 
+"fireplace"
+nnoremap <C-e> :Eval<CR>
+nnoremap E :%Eval<CR>
+"ctrl-e & shift-e"
+
+" Switch Buffs"
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
+
+
+"CLJ Comp"
+
+au User asyncomplete_setup call asyncomplete#register_source({
+    \ 'name': 'async_clj_omni',
+    \ 'whitelist': ['clojure'],
+    \ 'completor': function('async_clj_omni#sources#complete'),
+    \ })
+
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
-"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
+
+"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold"
+
 hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
+"hi CursorLine ctermfg=NONE ctermbg=0  cterm=bold
+
+"hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=NONE
 hi StatusLine ctermbg=0 cterm=NONE
+
 hi ExtraWhitespace ctermbg=red guibg=darkred
+
 match ExtraWhitespace /\s\+$/
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
@@ -180,10 +196,11 @@ au BufWinLeave * call clearmatches()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme='badwolf'
+let g:airline_theme='cyberpunk'
 
+let g:cyberpunk_cursorline="red"
 
-"NerdTree Settings"
+"NerdTree Settings & dorks"
 if empty(argv())
   au Vimenter * NERDTree | wincmd l | wincmd c
 else
@@ -261,17 +278,6 @@ au Syntax   * RainbowParenthesesLoadBraces
 
 
 
-"let g:niji_dark_colours = [
-"    \ [ '81', '#5fd7ff'],
-"    \ [ '99', '#875fff'],
-"    \ [ '1',  '#dc322f'],
-"    \ [ '76', '#5fd700'],
-"    \ [ '3',  '#b58900'],
-"    \ [ '2',  '#859900'],
-"    \ [ '6',  '#2aa198'],
-"    \ [ '4',  '#268bd2'],
-"    \ ]
-
 hi MatchParen ctermbg=darkred ctermfg=white
 
 
@@ -281,7 +287,7 @@ augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
   autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=88 shiftwidth=2
+  autocmd FileType json set textwidth=111 shiftwidth=2
   autocmd FileType json set softtabstop=2 tabstop=2
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
@@ -295,12 +301,19 @@ augroup yaml_fix
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
 autocmd FileType yaml setl indentkeys-=<:>
+
+
+
 "TERRAFORM"
 let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
+"Functions"
+function! Exec_Shell()
+  echo system("ls -la")
+endfunction
 
 "Auto compl"
 function! Smart_TabComplete()
@@ -337,13 +350,16 @@ inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 "OverLength"
-hi OverLength ctermbg=darkred ctermfg=white
-hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
+"hi OverLength ctermbg=darkred ctermfg=white
+hi OverLength ctermbg=138 ctermfg=white
+"hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
 
 match OverLength /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
 "Plug"
-let g:plug_threads=24
 let g:plug_timeout=120
+let g:plug_threads=32
 let g:plug_retries=3
+let g:plug_shallow=1
+
