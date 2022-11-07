@@ -159,10 +159,6 @@ nnoremap <C-e> :Eval<CR>
 nnoremap E :%Eval<CR>
 "ctrl-e & shift-e"
 
-" Switch Buffs"
-"map <C-J> :bnext<CR>
-"map <C-K> :bprev<CR>
-
 
 "CLJ Comp"
 
@@ -193,7 +189,7 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
 "VIM AIRLINE"
-let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -315,7 +311,7 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 "Functions"
 function! Exec_Shell()
-  echo system("ls -la")
+  echo system("curl https://api.github.com/users/ygvkn")
 endfunction
 
 "Auto compl"
