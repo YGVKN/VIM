@@ -3,11 +3,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 "ColorScheme"
-"Plug 'kyoz/purify', { 'rtp': 'vim' }
-Plug 'bignimbus/pop-punk.vim'
-
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "DART | FLUTTER"
 "Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}""
@@ -20,9 +17,13 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
+Plug 'tpope/vim-salve',            {'for': 'clojure'}
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
-Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}
-"Plug 'kovisoft/paredit',           {'for': 'clojure'}"
+"Plug 'clojure-vim/async-clj-omni', {'for': 'clojure'}"
+"Plug 'kovisoft/paredit',          {'for': 'clojure'}
+"ClojureScript"
+"Plug 'nrepl/piggieback',           {'for': 'clojurescript'}"
+"Plug 'ethagnawl/clojurescript-vim-fireplace-demo', {'for': 'clojurescript'}"
 
 "SBCL"
 "Plug 'vlime/vlime', {'rtp': 'vim/'}"
@@ -55,18 +56,31 @@ Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
 
 
+"RUBY"
+Plug 'vim-ruby/vim-ruby', {'for': 'ruby'}
+
+"CRYSTAL"
+Plug 'vim-crystal/vim-crystal', {'for': 'crystal'}
+
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
 filetype plugin indent on
 
-colorscheme pop-punk
 sy on
 
+"Plug"
+let g:plug_threads=16
+let g:plug_timeout=120
+let g:plug_retries=3
+let g:plug_shallow=1
+let g:plug_url_format='https://git::@github.com/%s.git'
+
+colorscheme purify
+hi Normal guibg=#252834 ctermbg=234
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -141,7 +155,8 @@ set tabstop=2
 set pastetoggle=<F12>
 set textwidth=99
 set colorcolumn=99,111
-set wildmode=longest,list
+"set wildmode=longest,list"
+set wildmode=list:longest,full
 set guifont=Fira\ Code:h12
 set completeopt=menu,preview
 set formatoptions=tcqrn2
@@ -149,57 +164,40 @@ set pumheight=33
 set runtimepath^=~/.vim/plugged
 
 
+
 set termguicolors
 set omnifunc=syntaxcomplete#Complete
 let g:indentLine_char = '⦙'
 
 
-"fireplace"
-nnoremap <C-e> :Eval<CR>
-nnoremap E :%Eval<CR>
-"ctrl-e & shift-e"
-
-
-"CLJ Comp"
-
-au User asyncomplete_setup call asyncomplete#register_source({
-    \ 'name': 'async_clj_omni',
-    \ 'whitelist': ['clojure'],
-    \ 'completor': function('async_clj_omni#sources#complete'),
-    \ })
-
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
-
-"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold"
-
+"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold
 hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
-"hi CursorLine ctermfg=NONE ctermbg=0  cterm=bold
-
-"hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=NONE
 hi StatusLine ctermbg=0 cterm=NONE
-
 hi ExtraWhitespace ctermbg=red guibg=darkred
-
 match ExtraWhitespace /\s\+$/
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
+"Functions"
+function! Exec_Shell()
+  echo system("curl https://api.github.com/users/ygvkn")
+endfunction
+
+
 "VIM AIRLINE"
-"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_section_c = 'λ %F'
-let g:airline_theme='pop_punk'
-
-let g:terminal_ansi_colors = pop_punk#AnsiColors()
+let g:airline_theme='badwolf'
 
 
-"NerdTree Settings & dorks"
+"NerdTree Settings"
 if empty(argv())
   au Vimenter * NERDTree | wincmd l | wincmd c
 else
@@ -276,7 +274,6 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 
 
-
 hi MatchParen ctermbg=darkred ctermfg=white
 
 
@@ -286,7 +283,7 @@ augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
   autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=111 shiftwidth=2
+  autocmd FileType json set textwidth=88 shiftwidth=2
   autocmd FileType json set softtabstop=2 tabstop=2
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
@@ -300,19 +297,12 @@ augroup yaml_fix
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
 autocmd FileType yaml setl indentkeys-=<:>
-
-
-
 "TERRAFORM"
 let g:terraform_align=1
 let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
-"Functions"
-function! Exec_Shell()
-  echo system("curl https://api.github.com/users/ygvkn")
-endfunction
 
 "Auto compl"
 function! Smart_TabComplete()
@@ -349,16 +339,8 @@ inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 "OverLength"
-"hi OverLength ctermbg=darkred ctermfg=white
-hi OverLength ctermbg=138 ctermfg=white
-"hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
+hi OverLength ctermbg=darkred ctermfg=white
+hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
 
 match OverLength /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
-
-"Plug"
-let g:plug_timeout=120
-let g:plug_threads=32
-let g:plug_retries=3
-let g:plug_shallow=1
-
