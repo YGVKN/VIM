@@ -8,15 +8,12 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'bignimbus/pop-punk.vim'
 
-"DART | FLUTTER"
-"Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}""
-
 "RUST"
 "Plug 'rust-lang/rust.vim', {'for': 'rust'}"
 
 "CLOJURE"
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}
+"Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
 
@@ -25,13 +22,13 @@ Plug 'tpope/vim-salve',            {'for': 'clojure'}
 Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
 Plug 'tpope/vim-projectionist',    {'for': 'clojure'}
 
-
+Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
+"Lattay/slimy.vim"
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
+
 " ... or git clone [Fireplace & vim-dispatch & vim-projectionist & vim-salve] -> ~/.vim/pack/tpope/start/"
 
 "SBCL"
-"Plug 'vlime/vlime', {'rtp': 'vim/'}"
-"Plug kovisoft/slimv, {'for': 'lisp'}"
 
 "ERLANG"
 "Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
@@ -57,7 +54,7 @@ Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}
+"Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}"
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
@@ -65,7 +62,6 @@ Plug 'junegunn/fzf.vim'
 
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
@@ -240,13 +236,16 @@ let g:NERDTreeIndicatorMapCustom = {
 "map <silent> <F10>  :bw<CR>
 
 
+"VIM Slime"
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = "lein repl"
+let g:slime_vimterminal_config = {"term_finish": "close"}
+let g:slime_paste_file = expand("$HOME/.slime_paste")
+let g:slime_paste_file = tempname()
 "Plugin Fireplace"
 "Evaluate Clojure buffers on load"
 autocmd BufRead *.clj try | silent! Require  | catch /^Fireplace/ | endtry
 autocmd BufRead *.clj try | silent! Require! | catch /^Fireplace/ | endtry
-let g:default_lein_task = 'repl | lolcat'
-
-
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
