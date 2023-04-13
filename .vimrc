@@ -189,18 +189,34 @@ let g:airline_theme='pop_punk'
 
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
+autocmd VimEnter * NERDTree
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+autocmd VimEnter * NERDTree | wincmd p
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+
 "NerdTree settings start & "
-if empty(argv())
-  au Vimenter * NERDTree | wincmd l | wincmd c
-else
-  au VimEnter * NERDTree
-endif
+"if empty(argv())
+"  au Vimenter * NERDTree | wincmd l | wincmd c
+"else
+"  au VimEnter * NERDTree
+"endif
 
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden  = 1
-let NERDTreeIgnore = ['.DS_Store']
+let NERDTreeIgnore = ['*.swp', '*.swo', '*.DS_Store']
 let NERDTreeShowBookmarks       = 0
 let NERDTreeHighlightCursorline = 1
 let NERDTreeShowLineNumbers     = 0
