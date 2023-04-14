@@ -326,6 +326,10 @@ function! Exec_Shell()
   echo system("curl https://api.github.com/users/ygvkn")
 endfunction
 
+function! Exec_Repl()
+  execute ':Start lein repl | lolcat'
+endfunction
+
 "Auto compl"
 function! Smart_TabComplete()
   let line = getline('.')
