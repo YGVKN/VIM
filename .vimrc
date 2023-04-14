@@ -8,12 +8,9 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'bignimbus/pop-punk.vim'
 
-"RUST"
-"Plug 'rust-lang/rust.vim', {'for': 'rust'}"
-
 "CLOJURE"
 Plug 'kien/rainbow_parentheses.vim'
-"Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
+
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
 
@@ -23,15 +20,14 @@ Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
 Plug 'tpope/vim-projectionist',    {'for': 'clojure'}
 
 Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
-"Lattay/slimy.vim"
+
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
 
 " ... or git clone [Fireplace & vim-dispatch & vim-projectionist & vim-salve] -> ~/.vim/pack/tpope/start/"
 
-"SBCL"
+"Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
+"Lattay/slimy.vim"
 
-"ERLANG"
-"Plug 'vim-erlang/vim-erlang-omnicomplete', {'for': 'erlang'}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
@@ -79,7 +75,7 @@ let &t_ZR="\e[23m"
 
 set exrc
 set secure
-
+set history=1000
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -148,16 +144,17 @@ set textwidth=99
 set colorcolumn=99,111
 set wildmode=list:longest,full
 set guifont=Fira\ Code:h12
-set completeopt=longest,menu,preview
 set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
 
 set nocompatible
 set termguicolors
-set omnifunc=syntaxcomplete#Complete
-let g:indentLine_char = '⦙'
 
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menu,preview
+
+set omnifunc=clojurecomplete#CompleteClojure
 
 "OTHER"
 imap jj <Esc>
@@ -188,6 +185,7 @@ let g:airline_section_c = 'λ %F'
 let g:airline_theme='pop_punk'
 
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
+
 
 autocmd VimEnter * NERDTree
 
@@ -227,7 +225,6 @@ hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
 
-
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -241,23 +238,13 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-
-"NETRW"
-"let g:netrw_banner       = 0
-"let g:netrw_liststyle    = 3
-"let g:netrw_browse_split = 2
-"let g:netrw_winsize      = 25
-"map <silent> <F8>   :Explore<CR>
-"map <silent> <S-F8> :sp +Explore<CR>
-"map <silent> <F10>  :bw<CR>
-
-
 "VIM Slime"
 let g:slime_target = "vimterminal"
 let g:slime_vimterminal_cmd = "lein repl"
 let g:slime_vimterminal_config = {"term_finish": "close"}
 let g:slime_paste_file = expand("$HOME/.slime_paste")
 let g:slime_paste_file = tempname()
+
 "Plugin Fireplace"
 "Evaluate Clojure buffers on load"
 autocmd BufRead *.clj try | silent! Require  | catch /^Fireplace/ | endtry
@@ -282,6 +269,7 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3' ],
     \ ]
+
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 let g:rainbow#pairs = [['(', ')'],['[',']'],['{','}'],['<','>']]
