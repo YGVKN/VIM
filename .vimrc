@@ -9,24 +9,23 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'bignimbus/pop-punk.vim'
 
 "CLOJURE"
+Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
 Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
 
 Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
-Plug 'tpope/vim-salve',            {'for': 'clojure'}
-Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
-Plug 'tpope/vim-projectionist',    {'for': 'clojure'}
+Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
+"Plug 'tpope/vim-salve',            {'for': 'clojure'}
+"Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
 
-Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
+"Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
 
-Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
-
+"Plug 'lattay/vim-slime'
 " ... or git clone [Fireplace & vim-dispatch & vim-projectionist & vim-salve] -> ~/.vim/pack/tpope/start/"
 
 "Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
-"Lattay/slimy.vim"
 
 
 "ELIXIR"
@@ -237,13 +236,25 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+"VIM Slimy"
+let g:slimy_config = {
+\    '*': {
+\         'cmd': 'zsh'
+\    },
+\    'clojure': {
+\         'cmd': 'lein repl',
+\         'confirm': 1
+\    }
+\}
 
+let g:slimy_terminal_config = {"term_finish": "close"}
 "VIM Slime"
-let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = "lein repl"
-let g:slime_vimterminal_config = {"term_finish": "close"}
-let g:slime_paste_file = expand("$HOME/.slime_paste")
-let g:slime_paste_file = tempname()
+"let g:slime_target = 'vimterminal'
+"let g:slime_vimterminal_cmd = 'lein repl | lolcat'
+"let g:slime_vimterminal_config = {"term_finish": "close"}
+"let g:slime_paste_file = tempname()
+"let g:slime_paste_file = expand("$HOME/.slime_paste")
+
 
 "Plugin Fireplace"
 "Evaluate Clojure buffers on load"
@@ -313,12 +324,12 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 function! Exec_Shell()
   echo system("curl https://api.github.com/users/ygvkn")
 endfunction
+"dispatch plugin"
+"function! Exec_Repl()
+"  execute ':Start lein repl | lolcat'
+"endfunction
 
-function! Exec_Repl()
-  execute ':Start lein repl | lolcat'
-endfunction
-
-"Auto compl"
+"Tab compl"
 function! Smart_TabComplete()
   let line = getline('.')
   let substr = strpart(line, -1, col('.')+1)
