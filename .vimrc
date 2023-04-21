@@ -19,11 +19,10 @@ Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
 Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
 "Plug 'tpope/vim-salve',            {'for': 'clojure'}
 "Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
-
 "Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
 
 "Plug 'lattay/vim-slime'
-" ... or git clone [Fireplace & vim-dispatch & vim-projectionist & vim-salve] -> ~/.vim/pack/tpope/start/"
+" ... or git clone [Fireplace & vim-dispatch & vim-salve] -> ~/.vim/pack/tpope/start/"
 
 "Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
 
@@ -147,7 +146,6 @@ set formatoptions=tcqrn2
 set pumheight=33
 set runtimepath^=~/.vim/plugged
 
-set nocompatible
 set termguicolors
 
 set omnifunc=syntaxcomplete#Complete
@@ -158,22 +156,10 @@ set omnifunc=clojurecomplete#CompleteClojure
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
-
-"hi Cursor ctermfg=White ctermbg=Yellow cterm=bold"
-
-hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
-"hi CursorLine ctermfg=NONE ctermbg=0  cterm=bold
-
-"hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=NONE
+"Cursor &"
+"hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
+"hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=DarkMagenta
 hi StatusLine ctermbg=0 cterm=NONE
-
-hi ExtraWhitespace ctermbg=red guibg=darkred
-
-match ExtraWhitespace /\s\+$/
-au BufWinEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-au BufWinLeave * call clearmatches()
 
 "VIM AIRLINE"
 "let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -185,12 +171,10 @@ let g:airline_theme='pop_punk'
 
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
-
 autocmd VimEnter * NERDTree
-
+autocmd VimEnter * NERDTree | wincmd p
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-autocmd VimEnter * NERDTree | wincmd p
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 autocmd StdinReadPre * let s:std_in=1
@@ -236,6 +220,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+
 "VIM Slimy"
 let g:slimy_config = {
 \    '*': {
@@ -248,12 +233,6 @@ let g:slimy_config = {
 \}
 
 let g:slimy_terminal_config = {"term_finish": "close"}
-"VIM Slime"
-"let g:slime_target = 'vimterminal'
-"let g:slime_vimterminal_cmd = 'lein repl | lolcat'
-"let g:slime_vimterminal_config = {"term_finish": "close"}
-"let g:slime_paste_file = tempname()
-"let g:slime_paste_file = expand("$HOME/.slime_paste")
 
 
 "Plugin Fireplace"
@@ -363,18 +342,31 @@ endfunction
 inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
+
+
+hi MatchParen ctermbg=darkred ctermfg=DarkMagenta guibg=magenta
+
+
+hi ExtraWhitespace ctermbg=red guibg=darkred
+
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
+
+match ExtraWhitespace /\s\+$/
+
 "OverLength"
-hi OverLength ctermbg=darkred ctermfg=white
-hi OverLength ctermbg=138 ctermfg=white
-"hi ColorColumn ctermfg=White ctermbg=darkred cterm=bold
-
-hi MatchParen ctermbg=darkred ctermfg=white
-
-match OverLength /\%>111v.\+/
+highlight ColorColumn ctermbg=magenta guibg=Magenta ctermfg=DarkMagenta
+match ErrorMsg '\%>111v.\+'
+match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
+"call matchadd('ColorColumn', '\%99v', 111)
+"hi Normal guibg=NONE ctermbg=NONE  opacity background
 
 "Plug"
 let g:plug_timeout=120
 let g:plug_threads=32
 let g:plug_retries=3
+
 let g:plug_shallow=1
