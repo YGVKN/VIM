@@ -4,6 +4,11 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+"VIM Async run code ..."
+"Plug 'skywind3000/asyncrun.vim'"
+"Plug 'tpope/vim-dispatch'"
+
+
 "ColorScheme"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'bignimbus/pop-punk.vim'
@@ -70,7 +75,7 @@ scriptencoding utf-8
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-
+set re=0
 set exrc
 set secure
 set history=1000
@@ -87,7 +92,7 @@ set number
 set magic
 set ruler
 set ttyfast
-set lazyredraw
+set lazyredraw "redraw & redraw!"
 set autoindent
 set autoread
 set wildmenu
@@ -370,3 +375,6 @@ let g:plug_threads=32
 let g:plug_retries=3
 
 let g:plug_shallow=1
+
+"VIM Async run code"
+":call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }']) & job_status()"
