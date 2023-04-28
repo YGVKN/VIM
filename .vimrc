@@ -79,6 +79,7 @@ set re=0
 set exrc
 set secure
 set history=1000
+set viminfo='100,\"20000,:2000,%,n~/.viminfo
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -202,7 +203,7 @@ let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
 let NERDTreeShowHidden  = 1
-let NERDTreeIgnore = ['*.swp', '*.swo', '*.DS_Store']
+let NERDTreeIgnore = ['*.DS_Store']
 let NERDTreeShowBookmarks       = 0
 let NERDTreeHighlightCursorline = 1
 let NERDTreeShowLineNumbers     = 0
