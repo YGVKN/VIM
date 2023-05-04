@@ -198,6 +198,10 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+augroup nerdtreehidecwd
+	autocmd!
+	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+augroup end
 
 "NerdTree settings start & "
 "if empty(argv())
@@ -316,7 +320,6 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 function! Exec_Shell()
   echo system("curl https://api.github.com/users/ygvkn")
 endfunction
-"dispatch plugin"
 "function! Exec_Repl()
 "  execute ':Start lein repl | lolcat'
 "endfunction
@@ -370,7 +373,7 @@ au BufWinLeave * call clearmatches()
 match ExtraWhitespace /\s\+$/
 
 "OverLength"
-highlight ColorColumn ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
+highlight ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
 match ErrorMsg '\%>111v.\+'
 match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
