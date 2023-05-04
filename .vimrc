@@ -10,8 +10,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 
 "ColorScheme"
-"Plug 'kyoz/purify', { 'rtp': 'vim' }
 Plug 'bignimbus/pop-punk.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-colorscheme-switcher'
+"Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "CLOJURE"
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
