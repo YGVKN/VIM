@@ -353,10 +353,10 @@ inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 
 
-hi MatchParen ctermbg=darkred ctermfg=DarkMagenta guibg=magenta
+hi MatchParen ctermbg=181 ctermfg=DarkMagenta guibg=magenta
 
 
-hi ExtraWhitespace ctermbg=red guibg=darkred
+hi ExtraWhitespace ctermbg=181 guibg=darkred
 
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
@@ -366,12 +366,11 @@ au BufWinLeave * call clearmatches()
 match ExtraWhitespace /\s\+$/
 
 "OverLength"
-highlight ColorColumn ctermbg=magenta guibg=Magenta ctermfg=DarkMagenta
+highlight ColorColumn ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
 match ErrorMsg '\%>111v.\+'
 match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 "call matchadd('ColorColumn', '\%99v', 111)
-"hi Normal guibg=NONE ctermbg=NONE  opacity background
 
 "Plug"
 let g:plug_timeout=120
