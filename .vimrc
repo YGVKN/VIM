@@ -168,7 +168,7 @@ au! bufwritepost $MYVIMRC source $MYVIMRC
 "Cursor &"
 "hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
 "hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=DarkMagenta
-hi StatusLine ctermbg=0 cterm=NONE
+"hi StatusLine guibg=#8fbfdc ctermfg=black ctermbg=cyan cterm=bold
 
 "VIM AIRLINE"
 "let g:airline#extensions#tabline#buffer_nr_show = 1
