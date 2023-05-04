@@ -171,14 +171,18 @@ au! bufwritepost $MYVIMRC source $MYVIMRC
 "hi StatusLine guibg=#8fbfdc ctermfg=black ctermbg=cyan cterm=bold
 
 "VIM AIRLINE"
-"let g:airline#extensions#tabline#buffer_nr_show = 1
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline_section_c = 'λ %F'
 let g:airline_theme='pop_punk'
 
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
+let g:airline_highlighting_cache = 1
+
 
 autocmd VimEnter * NERDTree
 autocmd VimEnter * NERDTree | wincmd p
