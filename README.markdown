@@ -1,3 +1,3 @@
-![ZHUZHA CORP* Origin](photo_2023-04-17_06-52-03.jpg)
+![ZHUZHA CORP*](photo_2023-06-21_15-06-37.jpg)
 
 
