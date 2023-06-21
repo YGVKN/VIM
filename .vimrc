@@ -8,7 +8,6 @@ Plug 'vim-airline/vim-airline-themes'
 "Plug 'skywind3000/asyncrun.vim'"
 "Plug 'tpope/vim-dispatch'"
 
-
 "ColorScheme"
 Plug 'bignimbus/pop-punk.vim'
 Plug 'flazz/vim-colorschemes'
@@ -165,6 +164,11 @@ set omnifunc=clojurecomplete#CompleteClojure
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
+"Buffers"
+nnoremap <F3> :bprevious<CR>
+nnoremap <F4> :bnext<CR>
+nnoremap <F5> :bfirst<CR>
+nnoremap <F6> :blast<CR>
 "Cursor &"
 "hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
 "hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=DarkMagenta
@@ -184,7 +188,7 @@ let g:terminal_ansi_colors = pop_punk#AnsiColors()
 let g:airline_highlighting_cache = 1
 
 
-autocmd VimEnter * NERDTree
+"autocmd VimEnter * NERDTree | :echom winnr('$') | :close 2
 autocmd VimEnter * NERDTree | wincmd p
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
@@ -225,7 +229,7 @@ hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -359,7 +363,6 @@ inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 
-
 hi MatchParen ctermbg=181 ctermfg=DarkMagenta guibg=magenta
 
 
@@ -385,6 +388,10 @@ let g:plug_threads=32
 let g:plug_retries=3
 
 let g:plug_shallow=1
-
+"Other Info"
+":h map-which-keys"
+"edit as badd | bad"
+"--startuptime & :echom & :messages & changes"
+"Run VIM terminal + mod ':term ++curwin some_command' run term in current window & override"
 "VIM Async run code"
-":call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }']) & job_status()"
+":call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }']) & job_status()""
