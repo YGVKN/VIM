@@ -16,11 +16,13 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
+"Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
 Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+
 Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
+Plug 'guns/vim-sexp',              {'for': 'clojure'}
 
 Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
 Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
@@ -60,19 +62,21 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
 
-
 "JS & NODEJS"
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
+sy on
+
 filetype plugin indent on
 
 colorscheme pop-punk
-sy on
 
 scriptencoding utf-8
+
+set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -164,6 +168,7 @@ set omnifunc=clojurecomplete#CompleteClojure
 "OTHER"
 imap jj <Esc>
 au! bufwritepost $MYVIMRC source $MYVIMRC
+
 "Buffers"
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
@@ -173,6 +178,36 @@ nnoremap <F6> :blast<CR>
 "hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
 "hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=DarkMagenta
 "hi StatusLine guibg=#8fbfdc ctermfg=black ctermbg=cyan cterm=bold
+
+function! StartUpVIM()
+    if !argc() && !exists("s:std_in")
+        NERDTree | wincmd l | wincmd c
+    end
+    if argc() > 0 || exists("s:std_in")
+       execute 'NERDTree' argv()[0] | wincmd p
+    end
+    if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in')
+      execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd l | wincmd c
+    end
+endfunction
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * call StartUpVIM()
+
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+augroup nerdtreehidecwd
+	autocmd!
+	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+augroup end
+
+"NerdTree settings start & "
+"if empty(argv())
+"if (argc() )
+"if empty(argc()) && !exists("s:std_in")
+"  au Vimenter * NERDTree | wincmd l | wincmd c
+"else
+"  au VimEnter * NERDTree | wincmd p
+"endif
 
 "VIM AIRLINE"
 
@@ -187,33 +222,7 @@ let g:airline_theme='pop_punk'
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 let g:airline_highlighting_cache = 1
 
-
-"autocmd VimEnter * NERDTree | :echom winnr('$') | :close 2
-autocmd VimEnter * NERDTree | wincmd p
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-augroup nerdtreehidecwd
-	autocmd!
-	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
-augroup end
-
-"NerdTree settings start & "
-"if empty(argv())
-"  au Vimenter * NERDTree | wincmd l | wincmd c
-"else
-"  au VimEnter * NERDTree
-"endif
-
+"NERDTree"
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
@@ -257,9 +266,7 @@ let g:slimy_terminal_config = {"term_finish": "close"}
 
 
 "Plugin Fireplace"
-"Evaluate Clojure buffers on load"
-autocmd BufRead *.clj try | silent! Require  | catch /^Fireplace/ | endtry
-autocmd BufRead *.clj try | silent! Require! | catch /^Fireplace/ | endtry
+
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
@@ -381,6 +388,10 @@ match ErrorMsg '\%>111v.\+'
 match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 "call matchadd('ColorColumn', '\%99v', 111)
+
+"Visual mode change color"
+
+hi Visual term=reverse cterm=reverse ctermbg=NONE ctermfg=NONE gui=NONE guibg=Magenta
 
 "Plug"
 let g:plug_timeout=120
