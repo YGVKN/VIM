@@ -4,19 +4,16 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"VIM Async run code ..."
-"Plug 'skywind3000/asyncrun.vim'"
-"Plug 'tpope/vim-dispatch'"
-
 "ColorScheme"
 Plug 'bignimbus/pop-punk.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
+"Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 "CLOJURE"
-"Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
+Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
 Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
@@ -25,6 +22,8 @@ Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
 Plug 'guns/vim-sexp',              {'for': 'clojure'}
 
 Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
+
+Plug 'tpope/vim-classpath',        {'for': 'clojure'} "$HOME/.cache/classpath"
 Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
 "Plug 'tpope/vim-salve',            {'for': 'clojure'}
 "Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
@@ -77,7 +76,7 @@ colorscheme pop-punk
 scriptencoding utf-8
 
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-
+"set makeprg=bazel\ build\ //bazelapp:BazelApp"
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
@@ -167,17 +166,17 @@ set omnifunc=clojurecomplete#CompleteClojure
 
 "OTHER"
 imap jj <Esc>
-au! bufwritepost $MYVIMRC source $MYVIMRC
+
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 
 "Buffers"
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
-"Cursor &"
-"hi CursorColumn ctermfg=NONE ctermbg=Magenta  cterm=bold
-"hi CursorLine term=bold cterm=bold  ctermbg=Magenta guibg=DarkMagenta
-"hi StatusLine guibg=#8fbfdc ctermfg=black ctermbg=cyan cterm=bold
+"Delete full Buffer - :bwipe buffer"
+
+
 
 function! StartUpVIM()
     if !argc() && !exists("s:std_in")
@@ -331,9 +330,18 @@ autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 function! Exec_Shell()
   echo system("curl https://api.github.com/users/ygvkn")
 endfunction
-"function! Exec_Repl()
-"  execute ':Start lein repl | lolcat'
-"endfunction
+
+function! Run_Job()
+  let s:job = job_start(['/bin/zsh', '-c', '{ touch ~/vim_job_file && echo "some text && sleep 3" >  ~/vim_job_file; }'])
+  echom job_info(s:job)
+  echom job_status(s:job)
+  echom job_getchannel(s:job)
+  echom job_stop(s:job, "kill")
+"  if job_status(job) !=# 'run'
+"    return 0
+"  endif
+endfunction
+
 
 "Tab compl"
 function! Smart_TabComplete()
@@ -399,10 +407,3 @@ let g:plug_threads=32
 let g:plug_retries=3
 
 let g:plug_shallow=1
-"Other Info"
-":h map-which-keys"
-"edit as badd | bad"
-"--startuptime & :echom & :messages & changes"
-"Run VIM terminal + mod ':term ++curwin some_command' run term in current window & override"
-"VIM Async run code"
-":call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }']) & job_status()""
