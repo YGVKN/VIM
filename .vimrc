@@ -9,8 +9,9 @@ Plug 'bignimbus/pop-punk.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
+"Plug 'sonph/onehalf'"
 "Plug 'rose-pine/vim'"
-"Plug 'kyoz/purify', { 'rtp': 'vim' }
+"Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
 Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
