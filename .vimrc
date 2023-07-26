@@ -77,13 +77,14 @@ colorscheme pop-punk
 scriptencoding utf-8
 
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-"set makeprg=bazel\ build\ //bazelapp:BazelApp"
+"set makeprg=<your command>"
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
 set re=0
 set exrc
 set secure
+"set lines=100
 set history=1000
 set viminfo='100,\"20000,:2000,%,n~/.viminfo
 
@@ -100,10 +101,10 @@ set magic
 set ruler
 set ttyfast
 set lazyredraw "redraw & redraw!"
-set autoindent
+
 set autoread
 set wildmenu
-set modeline
+
 set linebreak
 set nowrapscan
 set wrap
@@ -124,14 +125,20 @@ set showmode
 set showcmd
 set showmatch
 
-set incsearch
-set hlsearch
 
+set hlsearch
 set ignorecase
 set smartcase
-set smartindent
+"set smarttab"
+set incsearch
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
-set smarttab
+set autoindent
+set smartindent
+set cindent
 
 set t_Co=256
 set mps+=<:>
@@ -140,13 +147,10 @@ set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
-set linespace=3
+set modeline
 set modelines=3
 set cmdheight=7
 set laststatus=2
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
 
 
 set pastetoggle=<F12>
@@ -163,21 +167,14 @@ set termguicolors
 set omnifunc=syntaxcomplete#Complete
 set completeopt=longest,menu,preview
 
-set omnifunc=clojurecomplete#CompleteClojure
-
 "OTHER"
 imap jj <Esc>
-
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 
 "Buffers"
 nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
-"Delete full Buffer - :bwipe buffer"
-
-
 
 function! StartUpVIM()
     if !argc() && !exists("s:std_in")
@@ -208,6 +205,19 @@ augroup end
 "else
 "  au VimEnter * NERDTree | wincmd p
 "endif
+
+"Native complete"
+if has("autocmd")
+  autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
+endif
+"TODO"
+"if has("autocmd") && exists("+omnifunc")
+"  autocmd Filetype *
+"          \	if &omnifunc == "" |
+"          \		setlocal omnifunc=syntaxcomplete#Complete |
+"          \	endif
+"endif
+
 
 "VIM AIRLINE"
 
@@ -263,9 +273,6 @@ let g:slimy_config = {
 \}
 
 let g:slimy_terminal_config = {"term_finish": "close"}
-
-
-"Plugin Fireplace"
 
 
 "Rainbow Parentheses"
@@ -338,9 +345,6 @@ function! Run_Job()
   echom job_status(s:job)
   echom job_getchannel(s:job)
   echom job_stop(s:job, "kill")
-"  if job_status(job) !=# 'run'
-"    return 0
-"  endif
 endfunction
 
 
@@ -396,15 +400,19 @@ highlight ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMa
 match ErrorMsg '\%>111v.\+'
 match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
-"call matchadd('ColorColumn', '\%99v', 111)
 
 "Visual mode change color"
-
 hi Visual term=reverse cterm=reverse ctermbg=NONE ctermfg=NONE gui=NONE guibg=Magenta
 
 "Plug"
 let g:plug_timeout=120
 let g:plug_threads=32
 let g:plug_retries=3
-
 let g:plug_shallow=1
+
+autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
+"help uganda
+"help!
+"help 42
+"help quotes
+"help holy-grail
