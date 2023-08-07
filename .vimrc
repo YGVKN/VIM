@@ -28,19 +28,10 @@ Plug 'tpope/vim-classpath',        {'for': 'clojure'} "$HOME/.cache/classpath"
 Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
 "Plug 'tpope/vim-salve',            {'for': 'clojure'}
 "Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
-"Plug 'jpalardy/vim-slime',         {'for': 'clojure'}
-
-"Plug 'lattay/vim-slime'
-" ... or git clone [Fireplace & vim-dispatch & vim-salve] -> ~/.vim/pack/tpope/start/"
-
-"Plug 'clojure-vim/vim-jack-in',    {'for': 'clojure'}"
 
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
-
-"GOLANG"
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 "GIT"
 Plug 'tpope/vim-fugitive'
@@ -62,9 +53,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
 
-"JS & NODEJS"
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
@@ -77,14 +65,13 @@ colorscheme pop-punk
 scriptencoding utf-8
 
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-"set makeprg=<your command>"
+"set makeprg=<make -j$(nproc) something>"
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
 set re=0
 set exrc
 set secure
-"set lines=100
 set history=1000
 set viminfo='100,\"20000,:2000,%,n~/.viminfo
 
@@ -100,7 +87,7 @@ set number
 set magic
 set ruler
 set ttyfast
-set lazyredraw "redraw & redraw!"
+set lazyredraw
 
 set autoread
 set wildmenu
@@ -125,11 +112,9 @@ set showmode
 set showcmd
 set showmatch
 
-
 set hlsearch
 set ignorecase
 set smartcase
-"set smarttab"
 set incsearch
 
 set tabstop=2
@@ -152,19 +137,17 @@ set modelines=3
 set cmdheight=7
 set laststatus=2
 
-
 set pastetoggle=<F12>
 set textwidth=99
 set colorcolumn=99,111
 set wildmode=list:longest,full
-set guifont=Fira\ Code:h12
 set formatoptions=tcqrn2
-set pumheight=33
 set runtimepath^=~/.vim/plugged
 
 set termguicolors
 
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete"
+set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
 
 "OTHER"
@@ -207,7 +190,7 @@ augroup end
 "endif
 
 "Native complete"
-if has("autocmd")
+if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
 endif
 "TODO"
@@ -335,18 +318,31 @@ let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 "Functions"
-function! Exec_Shell()
-  echo system("curl https://api.github.com/users/ygvkn")
-endfunction
+func! OutHandler(ch,msg)
+  echom a:msg
+endfunc
 
-function! Run_Job()
-  let s:job = job_start(['/bin/zsh', '-c', '{ touch ~/vim_job_file && echo "some text && sleep 3" >  ~/vim_job_file; }'])
-  echom job_info(s:job)
+func! JobCallback(ch,msg)
+    echom a:msg
+endfunc
+
+func! ErrHandler(ch,msg)
+  echom a:msg
+endfunc
+
+func! ExitHandler(job,status)
+  echom a:job
+  echom a:status
+endfunc
+
+func! Run_Job()
+  let s:cmd = ['/bin/zsh', '-c', '{curl https://api.github.com/users/ygvkn}']
+  let s:job = job_start(s:cmd, {"out_io": "buffer", "out_name": "out_buffer", "exit_cb": "ExitHandler"})
   echom job_status(s:job)
-  echom job_getchannel(s:job)
-  echom job_stop(s:job, "kill")
-endfunction
-
+  echom job_info(s:job)
+endfunc
+"{'out_io': 'buffer', 'out_name': 'mybuffer'}
+"{'out_io': 'file', 'out_name': '/tmp/file.txt'}
 
 "Tab compl"
 function! Smart_TabComplete()
@@ -385,7 +381,6 @@ inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
 hi MatchParen ctermbg=181 ctermfg=DarkMagenta guibg=magenta
 
-
 hi ExtraWhitespace ctermbg=181 guibg=darkred
 
 au BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -410,9 +405,13 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
+"source ~/.vim/autoload/stuff/other.vim"
+
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 "help uganda
 "help!
 "help 42
 "help quotes
 "help holy-grail
+":smile"
+"pipe - <bar> help <Bar>
