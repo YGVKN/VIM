@@ -26,9 +26,6 @@ Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',        {'for': 'clojure'} "$HOME/.cache/classpath"
 Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
-"Plug 'tpope/vim-salve',            {'for': 'clojure'}
-"Plug 'tpope/vim-dispatch',         {'for': 'clojure'}
-
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
@@ -48,7 +45,6 @@ Plug 'stephpy/vim-yaml', {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-"Plug 'mattn/emmet-vim' ,   {'on': 'Emmet'}"
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'jiangmiao/auto-pairs'"
@@ -64,8 +60,13 @@ colorscheme pop-punk
 
 scriptencoding utf-8
 
+set spell spelllang=en_us,ru_ru
+"Add custom dictionary set spellfile=~/.vim/spell/en.utf-8.add"
+"set spelllang=ru_ru,en_us"
+"nnoremap 99 :set invspell<CR>"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 "set makeprg=<make -j$(nproc) something>"
+
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
@@ -180,18 +181,11 @@ augroup nerdtreehidecwd
 	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
 
-"NerdTree settings start & "
-"if empty(argv())
-"if (argc() )
-"if empty(argc()) && !exists("s:std_in")
-"  au Vimenter * NERDTree | wincmd l | wincmd c
-"else
-"  au VimEnter * NERDTree | wincmd p
-"endif
-
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
+":set dictionary?
+":set dictionary+=/usr/share/dict/words
 endif
 "TODO"
 "if has("autocmd") && exists("+omnifunc")
@@ -250,7 +244,7 @@ let g:slimy_config = {
 \         'cmd': 'zsh'
 \    },
 \    'clojure': {
-\         'cmd': 'lein repl',
+\         'cmd': 'lein repl | lolcal',
 \         'confirm': 1
 \    }
 \}
@@ -317,32 +311,6 @@ let g:terraform_fold_sections=1
 let g:terraform_fmt_on_save=1
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
-"Functions"
-func! OutHandler(ch,msg)
-  echom a:msg
-endfunc
-
-func! JobCallback(ch,msg)
-    echom a:msg
-endfunc
-
-func! ErrHandler(ch,msg)
-  echom a:msg
-endfunc
-
-func! ExitHandler(job,status)
-  echom a:job
-  echom a:status
-endfunc
-
-func! Run_Job()
-  let s:cmd = ['/bin/zsh', '-c', '{curl https://api.github.com/users/ygvkn}']
-  let s:job = job_start(s:cmd, {"out_io": "buffer", "out_name": "out_buffer", "exit_cb": "ExitHandler"})
-  echom job_status(s:job)
-  echom job_info(s:job)
-endfunc
-"{'out_io': 'buffer', 'out_name': 'mybuffer'}
-"{'out_io': 'file', 'out_name': '/tmp/file.txt'}
 
 "Tab compl"
 function! Smart_TabComplete()
@@ -405,13 +373,10 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
-"source ~/.vim/autoload/stuff/other.vim"
-
 autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 "help uganda
 "help!
 "help 42
 "help quotes
 "help holy-grail
-":smile"
-"pipe - <bar> help <Bar>
+":smile
