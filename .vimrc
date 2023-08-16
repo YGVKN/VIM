@@ -1,6 +1,6 @@
 filetype off
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree',          { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -14,39 +14,34 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',       {'for': ['clojure', 'clojurescript']}
-Plug 'kien/rainbow_parentheses.vim'
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}
 
-Plug 'guns/vim-clojure-highlight', {'for': 'clojure'}
+Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
-Plug 'guns/vim-clojure-static',    {'for': 'clojure'}
-Plug 'guns/vim-sexp',              {'for': 'clojure'}
+Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
+Plug 'guns/vim-sexp',                {'for': 'clojure'}
 
-Plug 'tpope/vim-fireplace',        {'for': 'clojure'}
+Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
-Plug 'tpope/vim-classpath',        {'for': 'clojure'} "$HOME/.cache/classpath"
-Plug 'Lattay/slimy.vim',           {'for': 'clojure'}
+Plug 'tpope/vim-classpath',          {'for': 'clojure'} "$HOME/.cache/classpath"
 
 "ELIXIR"
-Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-
-"TERRAFORM"
-Plug 'hashivim/vim-terraform', {'for': 'terraform'}
-Plug 'juliosueiras/vim-terraform-completion', {'for': 'terraform'}
-
 "OTHER"
-Plug 'stephpy/vim-yaml', {'for': 'yaml'}
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() } }"
+"Plug 'junegunn/fzf.vim'"
+
 "Plug 'jiangmiao/auto-pairs'"
 
 "Plug '~/my-prototype-plugin'"
@@ -60,10 +55,9 @@ colorscheme pop-punk
 
 scriptencoding utf-8
 
-set spell spelllang=en_us,ru_ru
+"set spell spelllang=en_us,ru_ru"
 "Add custom dictionary set spellfile=~/.vim/spell/en.utf-8.add"
 "set spelllang=ru_ru,en_us"
-"nnoremap 99 :set invspell<CR>"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 "set makeprg=<make -j$(nproc) something>"
 
@@ -91,7 +85,6 @@ set ttyfast
 set lazyredraw
 
 set autoread
-set wildmenu
 
 set linebreak
 set nowrapscan
@@ -141,15 +134,24 @@ set laststatus=2
 set pastetoggle=<F12>
 set textwidth=99
 set colorcolumn=99,111
+
+set wildmenu
+set wildignorecase
 set wildmode=list:longest,full
+
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
+"set path+=**/*"
+set path+=**
 
 set termguicolors
 
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
+
+"find & search"
+command! -nargs=1 FF let i=1|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1 |endfor|let choice=input('FF: ')|exec 'e ' . mm[choice-1]
 
 "OTHER"
 imap jj <Esc>
@@ -160,7 +162,7 @@ nnoremap <F4> :bnext<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
-function! StartUpVIM()
+func StartUpVIM()
     if !argc() && !exists("s:std_in")
         NERDTree | wincmd l | wincmd c
     end
@@ -170,7 +172,8 @@ function! StartUpVIM()
     if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in')
       execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd l | wincmd c
     end
-endfunction
+endfunc
+
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * call StartUpVIM()
 
@@ -238,19 +241,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-"VIM Slimy"
-let g:slimy_config = {
-\    '*': {
-\         'cmd': 'zsh'
-\    },
-\    'clojure': {
-\         'cmd': 'lein repl | lolcal',
-\         'confirm': 1
-\    }
-\}
-
-let g:slimy_terminal_config = {"term_finish": "close"}
-
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
@@ -303,13 +293,6 @@ augroup yaml_fix
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
 autocmd FileType yaml setl indentkeys-=<:>
-
-
-"TERRAFORM"
-let g:terraform_align=1
-let g:terraform_fold_sections=1
-let g:terraform_fmt_on_save=1
-autocmd BufRead,BufNewFile *.hcl set filetype=terraform
 
 
 "Tab compl"
@@ -380,3 +363,4 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 "help quotes
 "help holy-grail
 ":smile
+"set <something>?"
