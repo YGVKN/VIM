@@ -14,7 +14,13 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}
+Plug 'eraserhd/parinfer-rust', {'do':
+        \  'cargo build --release',
+        \ 'for': ['clojure', 'clojurescript']}
+
+"Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}"
+"Plug 'kovisoft/paredit',             {'for': ['clojure, 'clojurescript']}"
+"http://danmidwood.com/content/2014/11/21/animated-paredit.html"
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -145,13 +151,11 @@ set runtimepath^=~/.vim/plugged
 set path+=**
 
 set termguicolors
-
+"set completepopup=height:10,width:60,highlight:InfoPopup
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
 
-"find & search"
-command! -nargs=1 FF let i=1|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1 |endfor|let choice=input('FF: ')|exec 'e ' . mm[choice-1]
 
 "OTHER"
 imap jj <Esc>
@@ -187,19 +191,9 @@ augroup end
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
-":set dictionary?
-":set dictionary+=/usr/share/dict/words
+":set dictionary? show set?"
+":set dictionary+=/usr/share/dict/words"
 endif
-"TODO"
-"if has("autocmd") && exists("+omnifunc")
-"  autocmd Filetype *
-"          \	if &omnifunc == "" |
-"          \		setlocal omnifunc=syntaxcomplete#Complete |
-"          \	endif
-"endif
-
-
-"VIM AIRLINE"
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -347,7 +341,7 @@ match ErrorMsg '\%>111v.\+'
 match ColorColumn /\%>111v.\+/
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
-"Visual mode change color"
+"Visual mode - changed color"
 hi Visual term=reverse cterm=reverse ctermbg=NONE ctermfg=NONE gui=NONE guibg=Magenta
 
 "Plug"
@@ -356,7 +350,11 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
-autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
+"Custom stuff"
+command! -nargs=? -complete=file -bar Date :echo strftime('%c')
+":command! -nargs=1 Silent execute ':silent!!'.<q-args>.' &' | execute ':redraw!'
+"call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }'])
+au! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 "help uganda
 "help!
 "help 42
@@ -364,3 +362,6 @@ autocmd! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
 "help holy-grail
 ":smile
 "set <something>?"
+":bufdo bwipeout Delete all buffers"
+":bufdo  bd  Delete all buffers"
+"show history lasts commands in normal mode - q: - last command  & q/ - last searching"
