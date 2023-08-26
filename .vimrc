@@ -5,9 +5,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
+Plug 'xolox/vim-misc'
 Plug 'bignimbus/pop-punk.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'sonph/onehalf'"
 "Plug 'rose-pine/vim'"
@@ -62,8 +62,6 @@ colorscheme pop-punk
 scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
-"Add custom dictionary set spellfile=~/.vim/spell/en.utf-8.add"
-"set spelllang=ru_ru,en_us"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 "set makeprg=<make -j$(nproc) something>"
 
@@ -151,7 +149,6 @@ set runtimepath^=~/.vim/plugged
 set path+=**
 
 set termguicolors
-"set completepopup=height:10,width:60,highlight:InfoPopup
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
@@ -166,7 +163,7 @@ nnoremap <F4> :bnext<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
-func StartUpVIM()
+func StartUpVIM() abort
     if !argc() && !exists("s:std_in")
         NERDTree | wincmd l | wincmd c
     end
@@ -184,14 +181,13 @@ autocmd VimEnter * call StartUpVIM()
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 augroup nerdtreehidecwd
-	autocmd!
-	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+ autocmd!
+ autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
-":set dictionary? show set?"
 ":set dictionary+=/usr/share/dict/words"
 endif
 
@@ -338,7 +334,7 @@ match ExtraWhitespace /\s\+$/
 "OverLength"
 highlight ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
 match ErrorMsg '\%>111v.\+'
-match ColorColumn /\%>111v.\+/
+match ColorColumn '\%>111v.\+'
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
 "Visual mode - changed color"
@@ -351,17 +347,20 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
-command! -nargs=? -complete=file -bar Date :echo strftime('%c')
-":command! -nargs=1 Silent execute ':silent!!'.<q-args>.' &' | execute ':redraw!'
-"call job_start(['/bin/bash', '-c', '{ sleep 2 && printf "Done."; }'])
-au! bufwritepost $MYVIMRC source $MYVIMRC | echom "Reloaded $MYVIMRC"
-"help uganda
+
+func Inner_fn(param = "%c") abort
+  echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
+endfunc
+":Date | :Date "%Y %b %d %X""
+command! -nargs=? Date exe ':call Inner_fn(<args>)'
+"au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
+"au VimLeave * :!some command <example  !ls -la>"
+au! bufwritepost $MYVIMRC source $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+
 "help!
 "help 42
 "help quotes
 "help holy-grail
 ":smile
-"set <something>?"
-":bufdo bwipeout Delete all buffers"
-":bufdo  bd  Delete all buffers"
 "show history lasts commands in normal mode - q: - last command  & q/ - last searching"
+"vim run as cli command with args - vim -Nu NONE -S -c <args>"
