@@ -79,6 +79,7 @@ set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
+set ttimeoutlen=0
 set shell=/bin/zsh
 
 set title
@@ -146,7 +147,9 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 "set path+=**/*"
+"set path^=**"
 set path+=**
+
 
 set termguicolors
 "set omnifunc=syntaxcomplete#Complete"
@@ -185,12 +188,8 @@ augroup nerdtreehidecwd
  autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
 
-"Native complete"
-if has("autocmd") && exists("+omnifunc")
-  autocmd FileType clojure set complete+=k~/.vim/autoload/complete/clj_dict.vim
-":set dictionary+=/usr/share/dict/words"
-endif
 
+"AirLine"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -199,8 +198,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline_section_c = 'λ %F'
 let g:airline_theme='pop_punk'
 
-let g:terminal_ansi_colors = pop_punk#AnsiColors()
 let g:airline_highlighting_cache = 1
+let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "NERDTree"
 let g:NERDTreeDirArrowExpandable   = "λ"
@@ -217,6 +216,7 @@ let NERDTreeAutoDeleteBuffer = 1
 hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
+"Shift + ? - show NERDTree doc"
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -284,6 +284,12 @@ augroup yaml_fix
 augroup END
 autocmd FileType yaml setl indentkeys-=<:>
 
+"Native complete"
+if has("autocmd") && exists("+omnifunc")
+  autocmd FileType clojure setlocal complete+=k~/.vim/autoload/complete/clj_dict.vim
+":set dictionary+=/usr/share/dict/words"
+endif
+
 
 "Tab compl"
 function! Smart_TabComplete()
@@ -348,19 +354,34 @@ let g:plug_shallow=1
 
 "Custom stuff"
 
-func Inner_fn(param = "%c") abort
+func Ruby_exec() abort
+ruby << EOF
+puts "Test"
+EOF
+endfunc
+"Manage rbenv & $GEM_PATH .rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/"
+"ruby $LOAD_PATH.unshift File.join(File.dirname(Vim.evaluate('expand("<sfile>")')), 'lib')"
+"lib -> plugin/lib  & help sfile"
+
+func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date "%Y %b %d %X""
-command! -nargs=? Date exe ':call Inner_fn(<args>)'
+command! -nargs=? Date exe ':call Date_data(<args>)'
 "au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
 "au VimLeave * :!some command <example  !ls -la>"
 au! bufwritepost $MYVIMRC source $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
+"gf"
+"f<symbol>"
+"star - *  Show all matches"
+"Ctrl + o - back to last cursor"
 "help!
 "help 42
 "help quotes
 "help holy-grail
 ":smile
+"https://learnvimscriptthehardway.stevelosh.com/"
 "show history lasts commands in normal mode - q: - last command  & q/ - last searching"
 "vim run as cli command with args - vim -Nu NONE -S -c <args>"
+" ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm"
