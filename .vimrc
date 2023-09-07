@@ -79,7 +79,10 @@ set termencoding=utf-8
 set fileencoding=utf-8
 
 set background=dark
-set ttimeoutlen=0
+
+"set ttimeoutlen=0"
+set timeout timeoutlen=3000 ttimeoutlen=100
+
 set shell=/bin/zsh
 
 set title
@@ -130,6 +133,7 @@ set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
+set statusline+=%F
 
 set modeline
 set modelines=3
@@ -148,6 +152,9 @@ set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 "set path+=**/*"
 "set path^=**"
+"set suffixesadd=.clj"
+"For gf add directory to path"
+"set path+=/path/to/directory"
 set path+=**
 
 
@@ -166,15 +173,16 @@ nnoremap <F4> :bnext<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
+"Start VIM with NERDTree"
 func StartUpVIM() abort
     if !argc() && !exists("s:std_in")
         NERDTree | wincmd l | wincmd c
     end
     if argc() > 0 || exists("s:std_in")
-       execute 'NERDTree' argv()[0] | wincmd p
+       exe 'NERDTree' argv()[0] | wincmd p
     end
     if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in')
-      execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | wincmd l | wincmd c
+      exe 'NERDTree' argv()[0] | wincmd p | enew | exe 'cd '.argv()[0] | wincmd l | wincmd c
     end
 endfunc
 
@@ -216,7 +224,6 @@ let NERDTreeAutoDeleteBuffer = 1
 hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
-"Shift + ? - show NERDTree doc"
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
@@ -372,16 +379,23 @@ command! -nargs=? Date exe ':call Date_data(<args>)'
 "au VimLeave * :!some command <example  !ls -la>"
 au! bufwritepost $MYVIMRC source $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
-"gf"
-"f<symbol>"
-"star - *  Show all matches"
-"Ctrl + o - back to last cursor"
 "help!
 "help 42
 "help quotes
 "help holy-grail
 ":smile
-"https://learnvimscriptthehardway.stevelosh.com/"
-"show history lasts commands in normal mode - q: - last command  & q/ - last searching"
+
+"Runnig & profiling"
+"vim --cmd 'profile start profile.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 "vim run as cli command with args - vim -Nu NONE -S -c <args>"
-" ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm"
+"vim -c 'profile start vim.log' -c 'profile func *' -c 'q' - profiling by all funcs & time execution"
+
+"Other stuff"
+
+"https://learnvimscriptthehardway.stevelosh.com/"
+"ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm | sort -k 3 -n"
+"gf"
+"q: & q/"
+"f|t<symbol>"
+"star - *  Show all matches"
+"Ctrl + o - back to last cursor | action"
