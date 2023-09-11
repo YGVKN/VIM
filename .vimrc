@@ -63,6 +63,7 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 "set makeprg=<make -j$(nproc) something>"
 
 let &t_ZH="\e[3m"
@@ -149,12 +150,9 @@ set wildignorecase
 set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
-set runtimepath^=~/.vim/plugged
+"set runtimepath^=~/.vim/plugged"
 "set path+=**/*"
 "set path^=**"
-"set suffixesadd=.clj"
-"For gf add directory to path"
-"set path+=/path/to/directory"
 set path+=**
 
 
@@ -187,7 +185,7 @@ func StartUpVIM() abort
 endfunc
 
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * call StartUpVIM()
+autocmd VimEnter     * call StartUpVIM()
 
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -289,7 +287,7 @@ augroup yaml_fix
     autocmd!
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
-autocmd FileType yaml setl indentkeys-=<:>
+autocmd FileType yaml setlocal indentkeys-=<:>
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
@@ -299,7 +297,7 @@ endif
 
 
 "Tab compl"
-function! Smart_TabComplete()
+func Smart_TabComplete()
   let line = getline('.')
   let substr = strpart(line, -1, col('.')+1)
   let substr = matchstr(substr, "[^ \t]*$")
@@ -315,11 +313,11 @@ function! Smart_TabComplete()
   else
     return "\<C-X>\<C-O>"
   endif
-endfunction
+endfunc
 
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-function! InsertTabWrapper(direction)
+func InsertTabWrapper(direction)
  let col = col('.')-1
  if !col || getline('.')[col - 1] !~ '\k'
   return "\<tab>"
@@ -328,7 +326,7 @@ function! InsertTabWrapper(direction)
  else
   return "\<c-n>"
  endif
-endfunction
+endfunc
 inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
@@ -360,8 +358,11 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
+"""command! -nargs=1 FF let i=1
+"""      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
+"""      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
 
-func Ruby_exec() abort
+func Ruby_Exec() abort
 ruby << EOF
 puts "Test"
 EOF
@@ -373,11 +374,12 @@ endfunc
 func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
-":Date | :Date "%Y %b %d %X""
+":Date | :Date("%Y %b %d %X")"
 command! -nargs=? Date exe ':call Date_data(<args>)'
-"au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
+au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
 "au VimLeave * :!some command <example  !ls -la>"
-au! bufwritepost $MYVIMRC source $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+
 
 "help!
 "help 42
@@ -387,15 +389,12 @@ au! bufwritepost $MYVIMRC source $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
 "Runnig & profiling"
 "vim --cmd 'profile start profile.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
-"vim run as cli command with args - vim -Nu NONE -S -c <args>"
+"vim run as cli command with args - vim -Nu NONE -c <args>"
 "vim -c 'profile start vim.log' -c 'profile func *' -c 'q' - profiling by all funcs & time execution"
-
-"Other stuff"
 
 "https://learnvimscriptthehardway.stevelosh.com/"
 "ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm | sort -k 3 -n"
-"gf"
+"bufdo %bwipeout | q"
 "q: & q/"
-"f|t<symbol>"
-"star - *  Show all matches"
-"Ctrl + o - back to last cursor | action"
+"f|t<symbol> & ; "
+".vim/autoload/stuff.vim - call stuff#Some_fn"
