@@ -362,14 +362,6 @@ let g:plug_shallow=1
 """      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
 """      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
 
-func Ruby_Exec() abort
-ruby << EOF
-puts "Test"
-EOF
-endfunc
-"Manage rbenv & $GEM_PATH .rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/"
-"ruby $LOAD_PATH.unshift File.join(File.dirname(Vim.evaluate('expand("<sfile>")')), 'lib')"
-"lib -> plugin/lib  & help sfile"
 
 func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
@@ -380,12 +372,11 @@ au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
 "au VimLeave * :!some command <example  !ls -la>"
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
-
 "help!
 "help 42
 "help quotes
 "help holy-grail
-":smile
+":smile"
 
 "Runnig & profiling"
 "vim --cmd 'profile start profile.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
