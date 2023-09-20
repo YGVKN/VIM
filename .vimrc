@@ -9,17 +9,14 @@ Plug 'xolox/vim-misc'
 Plug 'bignimbus/pop-punk.vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-colorscheme-switcher'
+"Plug 'matsuuu/pinkmare'"
 "Plug 'sonph/onehalf'"
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'eraserhd/parinfer-rust', {'do':
-        \  'cargo build --release',
-        \ 'for': ['clojure', 'clojurescript']}
 
-"Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}"
-"Plug 'kovisoft/paredit',             {'for': ['clojure, 'clojurescript']}"
+Plug 'kovisoft/paredit',             {'for': ['clojure', 'clojurescript']}
 "http://danmidwood.com/content/2014/11/21/animated-paredit.html"
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
@@ -45,8 +42,6 @@ Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-"Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() } }"
-"Plug 'junegunn/fzf.vim'"
 
 "Plug 'jiangmiao/auto-pairs'"
 
@@ -63,8 +58,8 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-"set makeprg=<make -j$(nproc) something>"
+set grepprg=rg\ --vimgrep\ -in\ -j8\ --follow
+set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
@@ -81,7 +76,6 @@ set fileencoding=utf-8
 
 set background=dark
 
-"set ttimeoutlen=0"
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=/bin/zsh
@@ -150,9 +144,10 @@ set wildignorecase
 set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
-"set runtimepath^=~/.vim/plugged"
+set runtimepath^=~/.vim/plugged
 "set path+=**/*"
 "set path^=**"
+"set path+=**"
 set path+=**
 
 
@@ -358,9 +353,30 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
+
 """command! -nargs=1 FF let i=1
 """      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
 """      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
+
+
+
+"Socket Server"
+"python3 $VIMRUNTIME/tools/demoserver.py"
+
+"""let ch = ch_open('localhost:8765')
+"""let ch = ch_open('127.0.0.1:8765')
+""func MyHandler(channel, msg)
+""  echo "from the handler: " .. a:msg
+""endfunc
+""
+""echo ch_evalexpr(ch, 'Some msg',{'callback': "MyHandler"})
+"""echowindow ch_status(ch)
+
+"call ch_close(ch)"
+
+"""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
+
+"""client clojure.core/server remote-repl host port +opts
 
 
 func Date_data(param = "%c") abort
@@ -368,8 +384,10 @@ func Date_data(param = "%c") abort
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 command! -nargs=? Date exe ':call Date_data(<args>)'
+
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
-"au VimLeave * :!some command <example  !ls -la>"
+"au VimLeave * :!some command <example  !ls -la> or your custom hook"
+
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
 "help!
@@ -381,11 +399,10 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Runnig & profiling"
 "vim --cmd 'profile start profile.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
 "vim run as cli command with args - vim -Nu NONE -c <args>"
+"vim -U NONE -X -Z -e -s -S poc -c qa"
 "vim -c 'profile start vim.log' -c 'profile func *' -c 'q' - profiling by all funcs & time execution"
 
 "https://learnvimscriptthehardway.stevelosh.com/"
 "ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm | sort -k 3 -n"
-"bufdo %bwipeout | q"
 "q: & q/"
-"f|t<symbol> & ; "
 ".vim/autoload/stuff.vim - call stuff#Some_fn"
