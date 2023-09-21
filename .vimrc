@@ -131,7 +131,7 @@ set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
 set statusline+=\ %F
-set statusline+=\ %{strftime("%Y %b %d %X")}
+""set statusline+=\ %{strftime("%Y %b %d %X")}
 set statusline+=%l,%c%V
 set statusline+=\ %P
 set modeline
