@@ -131,6 +131,7 @@ set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
 set statusline+=\ %F
+""set statusline+=\ %{strftime('%Y %b %d %X')}
 set statusline+=\ %{strftime('%c')}
 set statusline+=%l,%c%V
 set statusline+=\ %P
@@ -411,3 +412,5 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm | sort -k 3 -n"
 "q: & q/"
 ".vim/autoload/stuff.vim - call stuff#Some_fn"
+"nc -v -z -w 3 waww.io 443 &> /dev/null && echo "Port 443 [tcp/https] - OPEN" || echo "CLOSE" "
+"curl wttr.in/Moscow"
