@@ -414,3 +414,5 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 ".vim/autoload/stuff.vim - call stuff#Some_fn"
 "nc -v -z -w 3 waww.io 443 &> /dev/null && echo "Port 443 [tcp/https] - OPEN" || echo "CLOSE" "
 "curl wttr.in/Moscow"
+"Get IP   curl icanhazip.com"
+"https://foragoodstrftime.com/ Date format"
