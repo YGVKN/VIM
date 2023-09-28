@@ -1,0 +1,10 @@
+From Clojure
+cd clj-socket && lein do clean && lein deps && lein run
+From VIM
+let ch = ch_open('127.0.0.1:8765')
+echo ch_status(ch)
+echo ch_evalexpr(ch, 'Some msg')
+echo ch_status(ch)
+
+call ch_close(ch)
+
