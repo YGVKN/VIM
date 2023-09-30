@@ -153,9 +153,7 @@ set formatoptions=tcqrn2
 "set path+=**/*"
 "set path^=**"
 "set path+=**"
-set path+=**
-
-
+set path^=**
 set termguicolors
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
@@ -415,4 +413,6 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "nc -v -z -w 3 waww.io 443 &> /dev/null && echo "Port 443 [tcp/https] - OPEN" || echo "CLOSE" "
 "curl wttr.in/Moscow"
 "Get IP   curl icanhazip.com"
+"Get info by IP  curl -s https://ipinfo.io/87.249.25.6 | jq '.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' "
+"example | curl -s "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
 "https://foragoodstrftime.com/ Date format"
