@@ -25,9 +25,12 @@
               (ssend sock msg-out))))))
     running))
 
+;;(def server  (serve-persistent 8765 #(.toUpperCase %)))
+;;(reset! server false) ;stop server
+
 
 (defn -main [& _]
-  (println "======== Socket Open ========")
+  (println "======== Socket Opened ========")
   (serve-persistent 8765 #(.toUpperCase %)))
 
 
