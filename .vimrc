@@ -14,8 +14,10 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
-"CLOJURE"
+"V Lang"
+Plug 'ollykel/v-vim',                {'for': 'v'}
 
+"CLOJURE"
 Plug 'kovisoft/paredit',             {'for': ['clojure', 'clojurescript']}
 "http://danmidwood.com/content/2014/11/21/animated-paredit.html"
 
@@ -44,7 +46,6 @@ Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 
 "Plug 'jiangmiao/auto-pairs'"
-
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
@@ -131,7 +132,6 @@ set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
 set statusline+=\ %F
-""set statusline+=\ %{strftime('%Y %b %d %X')}
 set statusline+=\ %{strftime('%c')}
 set statusline+=%l,%c%V
 set statusline+=\ %P
@@ -151,21 +151,21 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 ""set runtimepath^=~/.vim/plugged
 "set path+=**/*"
-"set path^=**"
-"set path+=**"
-set path^=**
+""set path^=**4
+""set path+=**3
+""set path=.,/usr/include,,,**3
 set termguicolors
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
 
-
 "OTHER"
 imap jj <Esc>
 
 "Buffers"
-nnoremap <F3> :bprevious<CR>
 nnoremap <F4> :bnext<CR>
+nnoremap <F3> :bprevious<CR>
+
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
@@ -192,14 +192,13 @@ augroup nerdtreehidecwd
  autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
 
-
 "AirLine"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline_section_c = 'λ %F'
+let g:airline_section_c = 'λ WΛWW.IO %F'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
@@ -266,6 +265,8 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 au Syntax   * RainbowParenthesesLoadChevrons
 
+"V Lang Settings"
+let g:v_autofmt_bufwritepre = 1
 
 "JSON"
 au! BufRead,BufNewFile *.json set filetype=json
@@ -286,6 +287,19 @@ augroup yaml_fix
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
 autocmd FileType yaml setlocal indentkeys-=<:>
+
+"Jenkinsfile syntax"
+
+au! BufRead,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
+augroup groovy_autocmd
+  autocmd!
+  autocmd FileType groovy set autoindent
+  autocmd FileType groovy set formatoptions=tcq2l
+  autocmd FileType groovy set textwidth=111 shiftwidth=2
+  autocmd FileType groovy set softtabstop=2 tabstop=2
+  autocmd FileType groovy set expandtab
+  autocmd FileType groovy set foldmethod=syntax
+augroup END
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
@@ -366,8 +380,7 @@ let g:plug_shallow=1
 "Socket Server"
 "python3 $VIMRUNTIME/tools/demoserver.py"
 
-""let ch = ch_open('localhost:8765')
-""echowindow ch_status(ch)
+"let ch = ch_open('localhost:8765')
 """let ch = ch_open('127.0.0.1:8765')
 ""func MyHandler(channel, msg)
 ""  echo "from the handler: " .. a:msg
@@ -391,7 +404,7 @@ command! -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
 "au VimLeave * :!some command <example  !ls -la> or your custom hook"
-
+"echowindow wordcount()"
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 
 "help!
@@ -413,6 +426,9 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "nc -v -z -w 3 waww.io 443 &> /dev/null && echo "Port 443 [tcp/https] - OPEN" || echo "CLOSE" "
 "curl wttr.in/Moscow"
 "Get IP   curl icanhazip.com"
-"Get info by IP  curl -s https://ipinfo.io/87.249.25.6 | jq '.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' "
-"example | curl -s "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
+"get IP https://api.ipify.org/"
+"Get info by IP  curl -sSL https://ipinfo.io/87.249.25.6 | jq '.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' "
+"example | curl -sSL "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
+"example | curl -# "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
+"Scanning ports nc -z -n -v -w 3 31.31.196.139  1-1000>nc.out 2>&1  "
 "https://foragoodstrftime.com/ Date format"

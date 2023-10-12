@@ -1,6 +1,6 @@
 (ns clj-socket.core
   (:require [clojure.java.io :as io])
-  (:import [java.net ServerSocket])
+  (:import  [java.net ServerSocket])
   (:gen-class))
 
 
