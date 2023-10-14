@@ -269,7 +269,7 @@ au Syntax   * RainbowParenthesesLoadChevrons
 let g:v_autofmt_bufwritepre = 1
 
 "JSON"
-au! BufRead,BufNewFile *.json set filetype=json
+au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
   autocmd!
   autocmd FileType json set autoindent
@@ -289,8 +289,7 @@ augroup END
 autocmd FileType yaml setlocal indentkeys-=<:>
 
 "Jenkinsfile syntax"
-
-au! BufRead,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
+au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
 augroup groovy_autocmd
   autocmd!
   autocmd FileType groovy set autoindent
@@ -301,12 +300,23 @@ augroup groovy_autocmd
   autocmd FileType groovy set foldmethod=syntax
 augroup END
 
+".conf & other shell stuff"
+au! BufReadPost,BufNewFile *.{conf,config,shell} set filetype=sh
+augroup sh_autocmd
+  autocmd!
+  autocmd FileType sh set autoindent
+  autocmd FileType sh set formatoptions=tcq2l
+  autocmd FileType sh set textwidth=111 shiftwidth=2
+  autocmd FileType sh set softtabstop=2 tabstop=2
+  autocmd FileType sh set expandtab
+  autocmd FileType sh set foldmethod=syntax
+augroup END
+
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure setlocal complete+=k~/.vim/autoload/complete/clj_dict.vim
 ":set dictionary+=/usr/share/dict/words"
 endif
-
 
 "Tab compl"
 func Smart_TabComplete()
@@ -371,29 +381,27 @@ let g:plug_shallow=1
 
 "Custom stuff"
 
-"""command! -nargs=1 FF let i=1
-"""      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
-"""      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
-
-
+""command! -nargs=1 FF let i=1
+""      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
+""      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
 
 "Socket Server"
 "python3 $VIMRUNTIME/tools/demoserver.py"
 
 "let ch = ch_open('localhost:8765')
-"""let ch = ch_open('127.0.0.1:8765')
+""let ch = ch_open('127.0.0.1:8765')
 ""func MyHandler(channel, msg)
 ""  echo "from the handler: " .. a:msg
 ""endfunc
-""
+
 ""echo ch_evalexpr(ch, 'Some msg',{'callback': "MyHandler"})
-"""echowindow ch_status(ch)
+""echowindow ch_status(ch)
 
 ""call ch_close(ch)
 
-"""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
+""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
 
-"""client clojure.core/server remote-repl host port +opts
+""client clojure.core/server remote-repl host port +opts
 
 
 func Date_data(param = "%c") abort
@@ -402,33 +410,6 @@ endfunc
 ":Date | :Date("%Y %b %d %X")"
 command! -nargs=? Date exe ':call Date_data(<args>)'
 
-au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif"
-"au VimLeave * :!some command <example  !ls -la> or your custom hook"
-"echowindow wordcount()"
+""autocmd BufReadPost * echowindow strftime("%Y %b %d %X")
+au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-
-"help!
-"help 42
-"help quotes
-"help holy-grail
-":smile"
-
-"Runnig & profiling"
-"vim --cmd 'profile start profile.log' --cmd 'profile func *' --cmd 'profile file *' -c 'profdel func *' -c 'profdel file *' -c 'qa!'"
-"vim run as cli command with args - vim -Nu NONE -c <args>"
-"vim -U NONE -X -Z -e -s -S poc -c qa"
-"vim -c 'profile start vim.log' -c 'profile func *' -c 'q' - profiling by all funcs & time execution"
-
-"https://learnvimscriptthehardway.stevelosh.com/"
-"ps x -o user,pid,rss,comm | awk 'NR>1 {$3=int($3/1024)"Mb";}{ print ;}' | grep -i iterm | sort -k 3 -n"
-"q: & q/"
-".vim/autoload/stuff.vim - call stuff#Some_fn"
-"nc -v -z -w 3 waww.io 443 &> /dev/null && echo "Port 443 [tcp/https] - OPEN" || echo "CLOSE" "
-"curl wttr.in/Moscow"
-"Get IP   curl icanhazip.com"
-"get IP https://api.ipify.org/"
-"Get info by IP  curl -sSL https://ipinfo.io/87.249.25.6 | jq '.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' "
-"example | curl -sSL "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
-"example | curl -# "https://ipinfo.io/$(curl icanhazip.com)" | jq -C "'.ip,.hostname,.city,.region,.country,.loc,.org,.timezone' |"
-"Scanning ports nc -z -n -v -w 3 31.31.196.139  1-1000>nc.out 2>&1  "
-"https://foragoodstrftime.com/ Date format"
