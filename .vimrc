@@ -408,8 +408,9 @@ func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
-command! -nargs=? Date exe ':call Date_data(<args>)'
+com -nargs=? Date exe ':call Date_data(<args>)'
 
 ""autocmd BufReadPost * echowindow strftime("%Y %b %d %X")
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+""gfind -O3 -L  ./Downloads  -maxdepth 1 -mindepth 1  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
