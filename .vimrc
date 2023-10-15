@@ -131,10 +131,10 @@ set fillchars+=vert:\
 set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
-set statusline+=\ %F
-set statusline+=\ %{strftime('%c')}
-set statusline+=%l,%c%V
-set statusline+=\ %P
+"set statusline+=\ %F
+"set statusline+=\ %{strftime('%c')}
+"set statusline+=%l,%c%V
+"set statusline+=\ %P
 set modeline
 set modelines=3
 set cmdheight=7
@@ -151,7 +151,7 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 ""set runtimepath^=~/.vim/plugged
 "set path+=**/*"
-""set path^=**4
+""set path^=**2
 ""set path+=**3
 ""set path=.,/usr/include,,,**3
 set termguicolors
@@ -382,25 +382,22 @@ let g:plug_shallow=1
 "Custom stuff"
 
 ""command! -nargs=1 FF let i=1
-""      \|let mm=findfile(<q-args>, '', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
+""      \|let mm=findfile(<q-args>, '.;', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
 ""      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
 
 "Socket Server"
 "python3 $VIMRUNTIME/tools/demoserver.py"
-
 "let ch = ch_open('localhost:8765')
 ""let ch = ch_open('127.0.0.1:8765')
-""func MyHandler(channel, msg)
-""  echo "from the handler: " .. a:msg
+""func MyHandler(channel, msg) abort
+ ""echo ch_status(a:channel)
+""  echo "From the handler: ".a:msg
 ""endfunc
-
 ""echo ch_evalexpr(ch, 'Some msg',{'callback': "MyHandler"})
 ""echowindow ch_status(ch)
-
 ""call ch_close(ch)
 
 ""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
-
 ""client clojure.core/server remote-repl host port +opts
 
 
@@ -410,7 +407,8 @@ endfunc
 ":Date | :Date("%Y %b %d %X")"
 com -nargs=? Date exe ':call Date_data(<args>)'
 
-""autocmd BufReadPost * echowindow strftime("%Y %b %d %X")
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 ""gfind -O3 -L  ./Downloads  -maxdepth 1 -mindepth 1  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
+"":enew | .! <command>
+""curl  -fsSLZ https://raw.githubusercontent.com/ygvkn/vim/master/.vimrc -o .vimrc
