@@ -18,9 +18,7 @@ Plug 'xolox/vim-colorscheme-switcher'
 Plug 'ollykel/v-vim',                {'for': 'v'}
 
 "CLOJURE"
-Plug 'kovisoft/paredit',             {'for': ['clojure', 'clojurescript']}
-"http://danmidwood.com/content/2014/11/21/animated-paredit.html"
-
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescrpt']}
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -45,7 +43,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 
-"Plug 'jiangmiao/auto-pairs'"
+"""Plug 'jiangmiao/auto-pairs'
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
@@ -130,11 +128,8 @@ set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
+set statusline+=\ %{strftime('%c')}
 
-"set statusline+=\ %F
-"set statusline+=\ %{strftime('%c')}
-"set statusline+=%l,%c%V
-"set statusline+=\ %P
 set modeline
 set modelines=3
 set cmdheight=7
@@ -145,15 +140,12 @@ set colorcolumn=99,111
 
 set wildmenu
 set wildignorecase
-""set wildignore=*.o,*.obj
 set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
 ""set runtimepath^=~/.vim/plugged
-"set path+=**/*"
+"set path+=**"
 ""set path^=**2
-""set path+=**3
-""set path=.,/usr/include,,,**3
 set termguicolors
 "set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
@@ -232,7 +224,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-
+if !empty($NERDTREE_BOOKMARKS)
+    if filereadable($NERDTREE_BOOKMARKS)
+        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
+    endif
+endif
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
@@ -399,6 +395,19 @@ let g:plug_shallow=1
 
 ""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
 ""client clojure.core/server remote-repl host port +opts
+
+
+""clj "-J-Dclojure.server.repl={:port 5555 :accept clojure.core.server/repl}"
+""ssh -L :5555:localhost:5555 remoteuser@remotehost -p 22 -N -v
+"""Clients"
+""(require '[clojure.core.server :as server])
+""(server/remote-prepl "127.0.0.1" 5555 *in* println)
+
+""(require '[nrepl.core :as nrepl])
+""(with-open [conn (nrepl/connect :port 59258)]
+""     (-> (nrepl/client conn 1000)    ; message receive timeout required
+""         (nrepl/message {:op "eval" :code "(+ 2 3)"})
+""         nrepl/response-values))
 
 
 func Date_data(param = "%c") abort
