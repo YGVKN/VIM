@@ -393,18 +393,24 @@ let g:plug_shallow=1
 ""echowindow ch_status(ch)
 ""call ch_close(ch)
 
-""clj -J-Dclojure.server.jvm="{:port 5555 :accept clojure.core.server/io-prepl}"
-""client clojure.core/server remote-repl host port +opts
+""Server io-prepl
+""clj -J-Dclojure.server.jvm="{:name '"io-prepl"' :port 1234 :accept clojure.core.server/io-prepl :server-daemon false}" --repl
+""clj -X clojure.core.server/start-server :name '"io-prepl"' :port 1234 :accept clojure.core.server/io-prepl :server-daemon false
 
+""Connect
 
-""clj "-J-Dclojure.server.repl={:port 5555 :accept clojure.core.server/repl}"
-""ssh -L :5555:localhost:5555 remoteuser@remotehost -p 22 -N -v
-"""Clients"
+""ssh -L :1234:localhost:1234 ucm@10.195.44.217 -p 22 -N -f -v
+
+""Clients
+
+""nc localhost 1234 | lolcat
+""Or ->
+
 ""(require '[clojure.core.server :as server])
-""(server/remote-prepl "127.0.0.1" 5555 *in* println)
+""(server/remote-prepl "127.0.0.1" 1234 *in* println)
 
 ""(require '[nrepl.core :as nrepl])
-""(with-open [conn (nrepl/connect :port 59258)]
+""(with-open [conn (nrepl/connect :port 1234)]
 ""     (-> (nrepl/client conn 1000)    ; message receive timeout required
 ""         (nrepl/message {:op "eval" :code "(+ 2 3)"})
 ""         nrepl/response-values))
@@ -418,6 +424,6 @@ com -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-""gfind -O3 -L  ./Downloads  -maxdepth 1 -mindepth 1  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
+""gfind -O3 -L  ./Downloads  -maxdepth 5 -mindepth 0  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
 "":enew | .! <command>
 ""curl  -fsSLZ https://raw.githubusercontent.com/ygvkn/vim/master/.vimrc -o .vimrc
