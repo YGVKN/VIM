@@ -426,4 +426,5 @@ au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 ""gfind -O3 -L  ./Downloads  -maxdepth 5 -mindepth 0  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
 "":enew | .! <command>
+"" :enew | .! cowsay -e XX Hello YGVKN | lolcat
 ""curl  -fsSLZ https://raw.githubusercontent.com/ygvkn/vim/master/.vimrc -o .vimrc
