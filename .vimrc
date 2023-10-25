@@ -57,7 +57,7 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ -in\ -j8\ --follow
+set grepprg=rg\ --vimgrep\ --color=always\ -j8\ -LIin
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
