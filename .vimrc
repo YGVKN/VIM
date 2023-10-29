@@ -43,7 +43,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 
-"""Plug 'jiangmiao/auto-pairs'
+""Plug 'jiangmiao/auto-pairs'
 "Plug '~/my-prototype-plugin'"
 call plug#end()
 
@@ -155,8 +155,8 @@ set completeopt=longest,menu,preview
 imap jj <Esc>
 
 "Buffers"
-nnoremap <F4> :bnext<CR>
-nnoremap <F3> :bprevious<CR>
+nnoremap <F3> :bnext<CR>
+nnoremap <F4> :bprevious<CR>
 
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
@@ -399,11 +399,12 @@ let g:plug_shallow=1
 
 ""Connect
 
-""ssh -L :1234:localhost:1234 ucm@10.195.44.217 -p 22 -N -f -v
+""ssh -L :1234:localhost:1234 ucm@10.195.44.217 -p 22 -N -f
 
 ""Clients
 
 ""nc localhost 1234 | lolcat
+
 ""Or ->
 
 ""(require '[clojure.core.server :as server])
@@ -415,7 +416,6 @@ let g:plug_shallow=1
 ""         (nrepl/message {:op "eval" :code "(+ 2 3)"})
 ""         nrepl/response-values))
 
-
 func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
@@ -424,7 +424,8 @@ com -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-""gfind -O3 -L  ./Downloads  -maxdepth 5 -mindepth 0  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
+""gfind -O3 -L  ./Downloads  -maxdepth 5  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
 "":enew | .! <command>
-"" :enew | .! cowsay -e XX Hello YGVKN | lolcat
 ""curl  -fsSLZ https://raw.githubusercontent.com/ygvkn/vim/master/.vimrc -o .vimrc
+""ruby -e "$(curl -fsSLZ raw.githubusercontent.com/ygvkn/vim/master/bash-colors-256)"
+""cowsay -W 50 -f dragon  $(date) | lolcat -t --animate --speed=30.0 --duration=30 --freq=0.4 --spread=1.0
