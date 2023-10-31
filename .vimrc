@@ -57,7 +57,8 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ --color=always\ -j8\ -LIin
+set grepprg=rg\ --vimgrep\ --color=always\ --no-hidden\ --no-heading\ -Lin\ -j$(nproc)
+":vimgrep pattern path/to/file | copen" & h vimgrepadd
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -197,6 +198,13 @@ let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "NERDTree"
+
+if !empty($NERDTREE_BOOKMARKS)
+    if filereadable($NERDTREE_BOOKMARKS)
+        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
+    endif
+endif
+
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
 let g:NERDTreeDirArrows = 1
@@ -224,11 +232,6 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
-if !empty($NERDTREE_BOOKMARKS)
-    if filereadable($NERDTREE_BOOKMARKS)
-        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
-    endif
-endif
 
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
@@ -377,11 +380,7 @@ let g:plug_shallow=1
 
 "Custom stuff"
 
-""command! -nargs=1 FF let i=1
-""      \|let mm=findfile(<q-args>, '.;', -1)|for f in mm| echo i.':'.f|let i+=1|endfor
-""      \|let choice=input('FF: ')|exec 'e ' . mm[choice-1]"
-
-"Socket Server"
+"Socket Server & VIM as a client"
 "python3 $VIMRUNTIME/tools/demoserver.py"
 "let ch = ch_open('localhost:8765')
 ""let ch = ch_open('127.0.0.1:8765')
@@ -393,29 +392,6 @@ let g:plug_shallow=1
 ""echowindow ch_status(ch)
 ""call ch_close(ch)
 
-""Server io-prepl
-""clj -J-Dclojure.server.jvm="{:name '"io-prepl"' :port 1234 :accept clojure.core.server/io-prepl :server-daemon false}" --repl
-""clj -X clojure.core.server/start-server :name '"io-prepl"' :port 1234 :accept clojure.core.server/io-prepl :server-daemon false
-
-""Connect
-
-""ssh -L :1234:localhost:1234 ucm@10.195.44.217 -p 22 -N -f
-
-""Clients
-
-""nc localhost 1234 | lolcat
-
-""Or ->
-
-""(require '[clojure.core.server :as server])
-""(server/remote-prepl "127.0.0.1" 1234 *in* println)
-
-""(require '[nrepl.core :as nrepl])
-""(with-open [conn (nrepl/connect :port 1234)]
-""     (-> (nrepl/client conn 1000)    ; message receive timeout required
-""         (nrepl/message {:op "eval" :code "(+ 2 3)"})
-""         nrepl/response-values))
-
 func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
@@ -424,8 +400,5 @@ com -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-""gfind -O3 -L  ./Downloads  -maxdepth 5  -type f -iname '*.pdf' -size -222k -ctime -10  | lolcat
-"":enew | .! <command>
-""curl  -fsSLZ https://raw.githubusercontent.com/ygvkn/vim/master/.vimrc -o .vimrc
-""ruby -e "$(curl -fsSLZ raw.githubusercontent.com/ygvkn/vim/master/bash-colors-256)"
-""cowsay -W 50 -f dragon  $(date) | lolcat -t --animate --speed=30.0 --duration=30 --freq=0.4 --spread=1.0
+"Other stuff"
+"":bufdo vimgrepadd threading % | copen
