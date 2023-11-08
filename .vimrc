@@ -128,8 +128,19 @@ set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set laststatus=2
-set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
-set statusline+=\ %{strftime('%c')}
+
+""set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
+set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
+
+""set statusline=
+""set statusline+=%7*\[%n]                                  "buffernr
+""set statusline+=%1*\ %<%F\                                "File+path
+""set statusline+=%2*\ %y\                                  "FileType
+""set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+""set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
+""set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+""set statusline+=%9*\ col:%03c\                            "Colnr
+""set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
 
 set modeline
 set modelines=3
@@ -144,7 +155,7 @@ set wildignorecase
 set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
-""set runtimepath^=~/.vim/plugged
+set runtimepath^=~/.vim/plugged
 "set path+=**"
 ""set path^=**2
 set termguicolors
@@ -191,7 +202,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline_section_c = 'λ🧸 WΛWW.IO %F'
+let g:airline_section_c = 'λ 🧸 WΛWW.IO %F'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
