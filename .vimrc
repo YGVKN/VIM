@@ -158,8 +158,9 @@ set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 "set path+=**"
 ""set path^=**2
+":find <pattern>"
+set path=.,/usr/local/include,,
 set termguicolors
-"set omnifunc=syntaxcomplete#Complete"
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
 
