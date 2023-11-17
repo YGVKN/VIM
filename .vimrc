@@ -78,7 +78,8 @@ set background=dark
 
 set timeout timeoutlen=3000 ttimeoutlen=100
 
-set shell=/bin/zsh
+""set shell=/bin/zsh
+set shell=$SHELL
 
 set title
 set number
@@ -157,9 +158,8 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 "set path+=**"
-""set path^=**2
-":find <pattern>"
 set path=.,/usr/local/include,,
+set path+=YGVKN/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
@@ -391,19 +391,6 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
-
-"Socket Server & VIM as a client"
-"python3 $VIMRUNTIME/tools/demoserver.py"
-"let ch = ch_open('localhost:8765')
-""let ch = ch_open('127.0.0.1:8765')
-""func MyHandler(channel, msg) abort
- ""echo ch_status(a:channel)
-""  echo "From the handler: ".a:msg
-""endfunc
-""echo ch_evalexpr(ch, 'Some msg',{'callback': "MyHandler"})
-""echowindow ch_status(ch)
-""call ch_close(ch)
-
 func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
@@ -412,5 +399,3 @@ com -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-"Other stuff"
-"":bufdo vimgrepadd threading % | copen
