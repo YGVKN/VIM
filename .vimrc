@@ -130,18 +130,7 @@ set listchars=tab:..,trail:.,nbsp:_
 set fillchars+=vert:\  
 set laststatus=2
 
-""set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
-
-""set statusline=
-""set statusline+=%7*\[%n]                                  "buffernr
-""set statusline+=%1*\ %<%F\                                "File+path
-""set statusline+=%2*\ %y\                                  "FileType
-""set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-""set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-""set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-""set statusline+=%9*\ col:%03c\                            "Colnr
-""set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.
 
 set modeline
 set modelines=3
@@ -160,6 +149,7 @@ set runtimepath^=~/.vim/plugged
 "set path+=**"
 set path=.,/usr/local/include,,
 set path+=YGVKN/**
+set path+=WORK/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
