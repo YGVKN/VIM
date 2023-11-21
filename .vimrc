@@ -133,8 +133,9 @@ set laststatus=2
 set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
 
 set modeline
-set modelines=3
-set cmdheight=7
+set modelines=2
+""set cmdheight=7
+set cmdheight=2
 
 set pastetoggle=<F12>
 set textwidth=99
@@ -153,7 +154,12 @@ set path+=WORK/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
+set dictionary+=/usr/share/dict/words
+set complete+=k
+set complete+=d
+set complete+=U
 
+""au FileType * execute 'setlocal dict+=~/.vim/words/'.&filetype.'.txt'
 "OTHER"
 imap jj <Esc>
 
@@ -317,6 +323,8 @@ augroup END
 if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure setlocal complete+=k~/.vim/autoload/complete/clj_dict.vim
 ":set dictionary+=/usr/share/dict/words"
+""add .zsh_history
+""add repl history
 endif
 
 "Tab compl"
