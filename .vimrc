@@ -159,7 +159,6 @@ set complete+=k
 set complete+=d
 set complete+=U
 
-""au FileType * execute 'setlocal dict+=~/.vim/words/'.&filetype.'.txt'
 "OTHER"
 imap jj <Esc>
 
@@ -326,6 +325,7 @@ if has("autocmd") && exists("+omnifunc")
 ""add .zsh_history
 ""add repl history
 endif
+""autocmd FileType * setlocal complete+=k~/.vim/autoload/dict/history_words.vim
 
 "Tab compl"
 func Smart_TabComplete()
