@@ -154,7 +154,7 @@ set path+=WORK/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
-set dictionary+=/usr/share/dict/words
+""set dictionary+=/usr/share/dict/words
 set complete+=k
 set complete+=d
 set complete+=U
@@ -325,7 +325,7 @@ if has("autocmd") && exists("+omnifunc")
 ""add .zsh_history
 ""add repl history
 endif
-""autocmd FileType * setlocal complete+=k~/.vim/autoload/dict/history_words.vim
+autocmd FileType * setlocal complete+=k~/.vim/autoload/dict/history_words.vim
 
 "Tab compl"
 func Smart_TabComplete()
@@ -396,4 +396,5 @@ endfunc
 com -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
+au VimLeave * !cat .zsh_history | cut -c16- > .vim/autoload/dict/history_words.vim
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
