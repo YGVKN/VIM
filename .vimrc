@@ -132,7 +132,6 @@ set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\he
 
 set modeline
 set modelines=2
-""set cmdheight=7
 set cmdheight=2
 
 set pastetoggle=<F12>
@@ -145,14 +144,11 @@ set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
-"set path+=**"
 set path=.,/usr/local/include,,
 set path+=YGVKN/**
-set path+=WORK/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
-""set dictionary+=/usr/share/dict/words
 set complete+=k
 set complete+=d
 set complete+=U
@@ -371,7 +367,7 @@ au BufWinLeave * call clearmatches()
 match ExtraWhitespace /\s\+$/
 
 "OverLength"
-highlight ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
+hi ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
 match ErrorMsg '\%>111v.\+'
 match ColorColumn '\%>111v.\+'
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
@@ -391,7 +387,8 @@ func Date_data(param = "%c") abort
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com -nargs=? Date exe ':call Date_data(<args>)'
-au VimLeave * echo "Exit value is " .. v:exiting
+
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au VimLeave * !cat .zsh_history | cut -c16- > .vim/autoload/dict/history_words.vim
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+au VimLeave * echo "Exit value is " .. v:exiting
