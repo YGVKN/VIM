@@ -14,9 +14,6 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
-"V Lang"
-Plug 'ollykel/v-vim',                {'for': 'v'}
-
 "CLOJURE"
 Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescrpt']}
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
@@ -26,7 +23,7 @@ Plug 'guns/vim-sexp',                {'for': 'clojure'}
 
 Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
-Plug 'tpope/vim-classpath',          {'for': 'clojure'} "$HOME/.cache/classpath"
+Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -57,7 +54,7 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ --color=always\ --no-hidden\ --no-heading\ -Lin\ -j$(nproc)
+set grepprg=rg\ --vimgrep\ --color=always\ --no-hidden\ --no-heading\ --max-depth=8\ -Lin\ -j$(nproc)
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -265,9 +262,6 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 au Syntax   * RainbowParenthesesLoadChevrons
 
-"V Lang Settings"
-let g:v_autofmt_bufwritepre = 1
-
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -392,3 +386,9 @@ au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au VimLeave * !cat .zsh_history | cut -c16- > .vim/autoload/dict/history_words.vim
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 au VimLeave * echo "Exit value is " .. v:exiting
+""https://vimhelp.org/windows.txt.html#CursorHold-example
+
+""let ch = ch_open('localhost:8765')
+""echo ch_evalexpr(ch, 'Some msg')
+""echo ch_status(ch)
+""echo call ch_close(ch)
