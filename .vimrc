@@ -362,7 +362,7 @@ match ExtraWhitespace /\s\+$/
 
 "OverLength"
 hi ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
-match ErrorMsg '\%>111v.\+'
+match ErrorMsg '\%>113v.\+'
 match ColorColumn '\%>111v.\+'
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
@@ -382,10 +382,11 @@ endfunc
 ":Date | :Date("%Y %b %d %X")"
 com -nargs=? Date exe ':call Date_data(<args>)'
 
-au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * !cat .zsh_history | cut -c16- > .vim/autoload/dict/history_words.vim
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-au VimLeave * echo "Exit value is " .. v:exiting
+
+au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
+au VimLeave * call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dict/history_words.vim")
+au VimLeave * echowindow "Exit value is " .. v:exiting
 ""https://vimhelp.org/windows.txt.html#CursorHold-example
 
 ""let ch = ch_open('localhost:8765')
