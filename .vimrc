@@ -382,11 +382,11 @@ endfunc
 ":Date | :Date("%Y %b %d %X")"
 com -nargs=? Date exe ':call Date_data(<args>)'
 
-au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-
 au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dict/history_words.vim")
+au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dict/history_words.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
+
+au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 ""https://vimhelp.org/windows.txt.html#CursorHold-example
 
 ""let ch = ch_open('localhost:8765')
