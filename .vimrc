@@ -41,7 +41,6 @@ Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 
 ""Plug 'jiangmiao/auto-pairs'
-"Plug '~/my-prototype-plugin'"
 call plug#end()
 
 sy on
@@ -388,8 +387,3 @@ au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 ""https://vimhelp.org/windows.txt.html#CursorHold-example
-
-""let ch = ch_open('localhost:8765')
-""echo ch_evalexpr(ch, 'Some msg')
-""echo ch_status(ch)
-""echo call ch_close(ch)
