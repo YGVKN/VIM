@@ -148,9 +148,11 @@ set completeopt=longest,menu,preview
 set complete+=k
 set complete+=d
 set complete+=U
-
 "OTHER"
 imap jj <Esc>
+
+"Lambda λ"
+imap <C-j> <C-k>l*
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -347,10 +349,9 @@ endfunc
 inoremap <tab>   <c-r>=InsertTabWrapper   ('forward')<cr>
 inoremap <s-tab> <c-r>=InsertTabWrapper   ('forward')<cr>
 
+hi MatchParen ctermbg=187  ctermfg=DarkMagenta guibg=magenta
 
-hi MatchParen ctermbg=181 ctermfg=DarkMagenta guibg=magenta
-
-hi ExtraWhitespace ctermbg=181 guibg=darkred
+hi ExtraWhitespace ctermbg=red guibg=red
 
 au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#@<!$/
@@ -361,8 +362,10 @@ match ExtraWhitespace /\s\+$/
 
 "OverLength"
 hi ColorColumn cterm=italic  ctermbg=magenta guibg=#1a1a1a ctermfg=DarkMagenta
+
 match ErrorMsg '\%>113v.\+'
 match ColorColumn '\%>111v.\+'
+
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
 "Visual mode - changed color"
@@ -386,4 +389,5 @@ au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+
 ""https://vimhelp.org/windows.txt.html#CursorHold-example
