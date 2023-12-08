@@ -76,7 +76,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title titlestring='%<%F%=%l/%L-%P' titlelen=77 titleold='YGVKN/ZHUZHA'
+set title  titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -143,8 +143,9 @@ set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
-set path=.,/usr/local/include,,
-set path+=YGVKN/**
+""set path=.,/usr/local/include,,
+set path=.,,
+set path^=$HOME/YGVKN/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
@@ -164,8 +165,7 @@ nnoremap <F4> :bprevious<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
-autocmd BufEnter * let &titlestring  = hostname() . '> ' . '%{expand("%:p:~:h")}'
-                \ . ' || %{&ft=~"^man"?"man":&ro?"view":"vim"} %f %m'
+autocmd BufEnter * let &titlestring  = hostname() . ' λ '
 
 "Start VIM with NERDTree"
 func StartUpVIM() abort
