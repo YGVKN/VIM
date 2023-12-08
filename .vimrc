@@ -60,6 +60,7 @@ let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
 set re=0
+set ffs=unix,mac
 set exrc
 set secure
 set history=1000
@@ -75,7 +76,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title
+set title titlestring=%<%F%=%l/%L-%P titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -162,6 +163,9 @@ nnoremap <F4> :bprevious<CR>
 
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
+
+autocmd BufEnter * let &titlestring  = hostname() . '> ' . '%{expand("%:p:~:h")}'
+                \ . ' || %{&ft=~"^man"?"man":&ro?"view":"vim"} %f %m'
 
 "Start VIM with NERDTree"
 func StartUpVIM() abort
@@ -394,3 +398,4 @@ au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim
 au VimLeave * echom "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+"Shift ? - <search something>"
