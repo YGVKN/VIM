@@ -20,7 +20,7 @@ repos:
     - id: custom-hook-shell-script
       name: custom-hook-shell-script
       entry: .git/hooks/script.sh
-      types: [sh]
+      #types: [sh]
       language: script
       pass_filenames: false
       #files: ^requirements.*\.txt$
