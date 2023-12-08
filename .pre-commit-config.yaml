@@ -8,4 +8,7 @@ repos:
         exclude: |
           (?x)^(.vimrc)$
     -   id: check-added-large-files
-        args: ['--maxkb=8000']
+        args: ['--maxkb=1000']
+    -   id: check-json
+    -   id: pretty-format-json
+        args: [--autofix, --indent=2, --no-ensure-ascii, --no-sort-keys]

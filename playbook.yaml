@@ -1,0 +1,32 @@
+---
+- name: Run
+  connection: local
+  gather_facts: False
+  pre_tasks:
+    - setup:
+       gather_subset:
+         - "!all"
+         - "!any"
+         - "network"
+         - "virtual"
+  hosts: local
+  tasks:
+
+    - name: Check Up
+      shell: echo $USER
+      register: shell_result
+
+    - name: Some Sys Info
+      vars:
+        msg: |
+          Ansible Distribution: {{ ansible_distribution }}
+          Ansible Dist version: {{ ansible_distribution_version }}
+
+      debug:
+        msg: "{{ msg.split('\n') }}"
+      tags: some info
+
+    - debug:
+        var: shell_result.stdout_lines
+      tags: debug_info
+...

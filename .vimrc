@@ -80,7 +80,9 @@ set number
 set magic
 set ruler
 set ttyfast
+set ttyscroll=3
 set lazyredraw
+set synmaxcol=1111
 
 set autoread
 
@@ -368,6 +370,9 @@ match ColorColumn '\%>111v.\+'
 
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
+"autocmd CursorMoved * echom "CursorMoved"
+"autocmd CursorHold  * echom "CursorHold"
+
 "Visual mode - changed color"
 hi Visual term=reverse cterm=reverse ctermbg=NONE ctermfg=NONE gui=NONE guibg=Magenta
 
@@ -384,10 +389,8 @@ endfunc
 ":Date | :Date("%Y %b %d %X")"
 com -nargs=? Date exe ':call Date_data(<args>)'
 
-au VimLeavePre * if v:dying | echo "\nAAAAaaaarrrggghhhh!!!\n" | endif
+au VimLeavePre * if v:dying | echom "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dict/history_words.vim")'
-au VimLeave * echowindow "Exit value is " .. v:exiting
+au VimLeave * echom "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-
-""https://vimhelp.org/windows.txt.html#CursorHold-example
