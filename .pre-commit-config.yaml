@@ -2,6 +2,9 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0
     hooks:
+    -   id: check-json
+        types: [file]  # override `types: [json]`
+        files: \.(json)$
     -   id: check-yaml
         args: [--allow-multiple-documents]
     -   id: trailing-whitespace
@@ -9,7 +12,14 @@ repos:
           (?x)^(.vimrc)$
     -   id: check-added-large-files
         args: ['--maxkb=1000']
-    -   id: check-json
-        files: '\.\/*.json'
     -   id: pretty-format-json
         args: [--autofix, --indent=2, --no-ensure-ascii, --no-sort-keys]
+
+-   repo: local
+    hooks:
+    - id: custom-hook-shell-script
+      name: custom-hook-shell-script
+      entry: .git/hooks/script.sh
+      language: script
+      pass_filenames: false
+      #files: ^requirements.*\.txt$
