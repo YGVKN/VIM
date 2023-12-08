@@ -76,7 +76,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title titlestring=%<%F%=%l/%L-%P titlelen=77 titleold='YGVKN/ZHUZHA'
+set title titlestring='%<%F%=%l/%L-%P' titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
