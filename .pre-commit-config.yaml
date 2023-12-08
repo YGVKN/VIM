@@ -3,7 +3,7 @@ repos:
     rev: v4.5.0
     hooks:
     -   id: check-json
-        types: [file]  # override `types: [json]`
+        types: [json]
         files: \.(json)$
     -   id: check-yaml
         args: [--allow-multiple-documents]
@@ -20,6 +20,7 @@ repos:
     - id: custom-hook-shell-script
       name: custom-hook-shell-script
       entry: .git/hooks/script.sh
+      types: [sh]
       language: script
       pass_filenames: false
       #files: ^requirements.*\.txt$
