@@ -1,10 +1,8 @@
 #!/bin/zsh
 set -ueE
 trap 'echo >&2 "\nError - exited with status $?\r\nExit at line $LINENO"' ERR
-echo "Custom shell hook"
 #echo $@
 #echo $#
 #echo $$
 #echo $!
-
-
+echo "# sh_hook"
