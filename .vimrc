@@ -26,7 +26,6 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
-""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 ""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
 "ELIXIR"
