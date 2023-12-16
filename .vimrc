@@ -424,3 +424,4 @@ au VimLeave * echom "Exit value is " .. v:exiting
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
 "Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
+
