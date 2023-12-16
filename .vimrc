@@ -26,9 +26,7 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
-""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 ""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
-
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -82,7 +80,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title  titlelen=77 titleold='YGVKN/ZHUZHA'
+set title titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -150,7 +148,7 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 ""set path=.,/usr/local/include,,
-set path=.,,../**
+set path=.,,
 set path^=$HOME/YGVKN/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
@@ -164,7 +162,6 @@ imap jj <Esc>
 
 "Lambda λ"
 imap <C-j> <C-k>l*
-
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
