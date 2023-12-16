@@ -13,14 +13,12 @@ repos:
     -   id: check-added-large-files
         args: ['--maxkb=1000']
     -   id: pretty-format-json
-        args: [--autofix, --indent=2, --no-ensure-ascii, --no-sort-keys]
-
+        args: [--autofix, --indent=2, --no-sort-keys]
 -   repo: local
     hooks:
-    - id: custom-hook-shell-script
-      name: custom-hook-shell-script
-      entry: .git/hooks/script.sh
-      #types: [sh]
-      language: script
-      pass_filenames: false
-      #files: ^requirements.*\.txt$
+    -   id: sh_hook
+        name: sh_hook
+        entry: .git-hooks/sh_hook
+        description: Custom shell hook
+        language: script
+        pass_filenames: false

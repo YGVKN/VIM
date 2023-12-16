@@ -15,6 +15,7 @@ Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
+Plug 'jpalardy/vim-slime'
 Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescrpt']}
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -24,6 +25,10 @@ Plug 'guns/vim-sexp',                {'for': 'clojure'}
 Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
+
+""Plug 'tpope/vim-salve',              {'for': 'clojure'}
+""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -39,6 +44,7 @@ Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
+Plug 'Shougo/vimproc.vim',           {'do' : 'make'}
 
 ""Plug 'jiangmiao/auto-pairs'
 call plug#end()
@@ -76,7 +82,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title  titlelen=77 titleold='YGVKN/ZHUZHA'
+set title titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -152,11 +158,13 @@ set completeopt=longest,menu,preview
 set complete+=k
 set complete+=d
 set complete+=U
+
 "OTHER"
 imap jj <Esc>
 
 "Lambda λ"
 imap <C-j> <C-k>l*
+
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -164,8 +172,6 @@ nnoremap <F4> :bprevious<CR>
 
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
-
-autocmd BufEnter * let &titlestring  = hostname() . ' λ '
 
 "Start VIM with NERDTree"
 func StartUpVIM() abort
@@ -238,6 +244,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+"NetRW"
+let g:netrw_keepdir = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3' ],
@@ -269,6 +280,19 @@ au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 au Syntax   * RainbowParenthesesLoadChevrons
 
+"VIM Slime"
+"https://github.com/jpalardy/vim-slime/blob/main/doc/vim-slime.txt"
+"Start Slime to vimterminal"
+"<c-c>v CTRL-C v | :SlimeConfig"
+"Send to REPL visual mode CTRL-C CTRL-C"
+
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = '/bin/zsh'
+let g:slime_paste_file = "$HOME/.slime_paste"
+let b:slime_bracketed_paste = 1
+let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-repl"}
+autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
+
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -284,8 +308,8 @@ augroup END
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 augroup yaml_fix
-    autocmd!
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+   autocmd!
+   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
 autocmd FileType yaml setlocal indentkeys-=<:>
 
@@ -399,3 +423,4 @@ au VimLeave * echom "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
+"Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
