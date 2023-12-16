@@ -165,7 +165,6 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-
 "Buffers"
 nnoremap <F3> :bnext<CR>
 nnoremap <F4> :bprevious<CR>
@@ -424,4 +423,3 @@ au VimLeave * echom "Exit value is " .. v:exiting
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
 "Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
-
