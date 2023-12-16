@@ -28,7 +28,8 @@ Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
 ""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 ""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
@@ -43,6 +44,7 @@ Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
+Plug 'Shougo/vimproc.vim',           {'do' : 'make'}
 
 ""Plug 'jiangmiao/auto-pairs'
 call plug#end()
@@ -148,7 +150,7 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 ""set path=.,/usr/local/include,,
-set path=.,,
+set path=.,,../**
 set path^=$HOME/YGVKN/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
@@ -163,18 +165,6 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-"VIM Slime"
-"https://github.com/jpalardy/vim-slime/blob/main/doc/vim-slime.txt"
-"Start Slime to vimterminal"
-"<c-c>v CTRL-C v | :SlimeConfig"
-"Send to REPL visual mode CTRL-C CTRL-C"
-
-let g:slime_target = "vimterminal"
-let g:term_name = "slime_vimname"
-let g:slime_vimterminal_cmd = '/bin/zsh'
-let g:slime_paste_file = "$HOME/.slime_paste"
-let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-repl"}
-autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -254,6 +244,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+"NetRW"
+let g:netrw_keepdir = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+
 "Rainbow Parentheses"
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3' ],
@@ -284,6 +279,19 @@ au Syntax   * RainbowParenthesesLoadRound
 au Syntax   * RainbowParenthesesLoadSquare
 au Syntax   * RainbowParenthesesLoadBraces
 au Syntax   * RainbowParenthesesLoadChevrons
+
+"VIM Slime"
+"https://github.com/jpalardy/vim-slime/blob/main/doc/vim-slime.txt"
+"Start Slime to vimterminal"
+"<c-c>v CTRL-C v | :SlimeConfig"
+"Send to REPL visual mode CTRL-C CTRL-C"
+
+let g:slime_target = "vimterminal"
+let g:slime_vimterminal_cmd = '/bin/zsh'
+let g:slime_paste_file = "$HOME/.slime_paste"
+let b:slime_bracketed_paste = 1
+let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-repl"}
+autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
