@@ -423,19 +423,4 @@ au VimLeave * echom "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
-""func Handle(channel, msg)
-""  echo 'Received: ' .. a:msg
-""endfunc
-""let ch = ch_open("127.0.0.1:5678")
-""aall ch_sendexpr(ch, 'Data', {'callback': "Handle"})
-"Vim to job: term_sendkeys() ~
-""func SendToTerm(what)
-""  call term_sendkeys('', a:what)
-""  return ''
-""endfunc
-""call term_sendkeys('vim-repl', "ls *.awk\<CR>")
-""call term_sendkeys('vim-repl', "\<C-c>")
-
-"vip (select paragraph)
-"“ry (copy to register r)
-":call system(“screen -S session01 -p window01 -X stuff ’” . @r . ”’”)
+"Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
