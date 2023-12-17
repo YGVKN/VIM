@@ -26,7 +26,9 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
+""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 ""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -43,7 +45,7 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'Shougo/vimproc.vim',           {'do' : 'make'}
-
+Plug 'yegappan/taglist'
 ""Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
@@ -80,7 +82,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 
-set title titlelen=77 titleold='YGVKN/ZHUZHA'
+set title  titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -147,9 +149,6 @@ set wildmode=list:longest,full
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
-""set path=.,/usr/local/include,,
-set path=.,,
-set path^=$HOME/YGVKN/**
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
 set completeopt=longest,menu,preview
@@ -199,11 +198,15 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#taglist#enabled = 1
 let g:airline_section_c = 'λ 🧸 WΛWW | ZHUZHA CORP %F'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
+
+"Ctags"
+let tlist_clojure_settings = 'Clojure;f:function'
 
 "NERDTree"
 
