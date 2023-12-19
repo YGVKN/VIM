@@ -29,7 +29,6 @@ Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 ""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 ""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
@@ -44,9 +43,13 @@ Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-Plug 'Shougo/vimproc.vim',           {'do' : 'make'}
+Plug 'Shougo/vimproc.vim',           {'do' : 'make'} "Async lib | replace shell"
 Plug 'yegappan/taglist'
+Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 ""Plug 'jiangmiao/auto-pairs'
+""Plug '~/my-prototype-plugin'
 call plug#end()
 
 sy on
@@ -81,7 +84,7 @@ set background=dark
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
-
+set tags=./.tags;$HOME
 set title  titlelen=77 titleold='YGVKN/ZHUZHA'
 set number
 set magic
@@ -198,15 +201,14 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#taglist#enabled = 1
 let g:airline_section_c = 'λ 🧸 WΛWW | ZHUZHA CORP %F'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
-"Ctags"
-let tlist_clojure_settings = 'Clojure;f:function'
+"Tag list of Ctags"
+let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
 
 "NERDTree"
 
@@ -287,11 +289,12 @@ au Syntax   * RainbowParenthesesLoadChevrons
 "Send to REPL visual mode CTRL-C CTRL-C"
 
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = '/bin/zsh'
+let g:slime_vimterminal_cmd = $SHELL
 let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-repl"}
-autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
+au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
+""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
@@ -342,7 +345,7 @@ if has("autocmd") && exists("+omnifunc")
   autocmd FileType clojure setlocal complete+=k~/.vim/autoload/complete/clj_dict.vim
   autocmd FileType * setlocal complete+=k~/.vim/autoload/dict/history_words.vim
 ":set dictionary+=/usr/share/dict/words"
-""add repl history
+"add repl history"
 endif
 
 "Tab compl"
@@ -398,9 +401,6 @@ match ColorColumn '\%>111v.\+'
 
 au BufWinEnter * call matchadd('CursorColumn', '\%>'.&l:textwidth.'v.\+', -1)
 
-"autocmd CursorMoved * echom "CursorMoved"
-"autocmd CursorHold  * echom "CursorHold"
-
 "Visual mode - changed color"
 hi Visual term=reverse cterm=reverse ctermbg=NONE ctermfg=NONE gui=NONE guibg=Magenta
 
@@ -424,3 +424,4 @@ au VimLeave * echom "Exit value is " .. v:exiting
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
 "Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
+"TMUX C-b z"
