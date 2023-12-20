@@ -208,8 +208,8 @@ let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "FZF"
-let $FZF_DEFAULT_COMMAND="gfind -O3 -L ."
-"let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'"
+""let $FZF_DEFAULT_COMMAND="gfind -O3 -L ."
+let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden -l -g ""'"
 
 "Tag list of Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
