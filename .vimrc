@@ -62,7 +62,7 @@ scriptencoding utf-8
 
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ --color=always\ --no-hidden\ --no-heading\ --max-depth=8\ -Lin\ -j$(nproc)
+set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -206,6 +206,10 @@ let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
+
+"FZF"
+let $FZF_DEFAULT_COMMAND="gfind -O3 -L ."
+"let $FZF_DEFAULT_COMMAND = 'ag --hidden -l -g ""'"
 
 "Tag list of Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
