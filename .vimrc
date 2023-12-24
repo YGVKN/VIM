@@ -208,8 +208,8 @@ let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "FZF"
-""let $FZF_DEFAULT_COMMAND="gfind -O3 -L ."
-let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden -l -g ""'"
+
+let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden --depth 8 -i -f -l -g ""'
 
 "Tag list of Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
@@ -296,9 +296,10 @@ let g:slime_target = "vimterminal"
 let g:slime_vimterminal_cmd = $SHELL
 let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
-let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-repl"}
+let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal-repl"}
 au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
 ""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
+""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
 
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
