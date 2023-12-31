@@ -16,7 +16,7 @@ Plug 'xolox/vim-colorscheme-switcher'
 
 "CLOJURE"
 Plug 'jpalardy/vim-slime'
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescrpt']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -26,8 +26,8 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
-""Plug 'tpope/vim-salve',              {'for': 'clojure'}
-""Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+Plug 'tpope/vim-salve',              {'for': 'clojure'}
+Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -43,13 +43,11 @@ Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
-Plug 'Shougo/vimproc.vim',           {'do' : 'make'} "Async lib | replace shell"
-Plug 'yegappan/taglist'
-Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() } }
+Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
+Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 ""Plug 'jiangmiao/auto-pairs'
-""Plug '~/my-prototype-plugin'
 call plug#end()
 
 sy on
@@ -137,7 +135,6 @@ set fillchars+=vert:\
 set laststatus=2
 
 set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
-
 set modeline
 set modelines=2
 set cmdheight=2
@@ -154,10 +151,11 @@ set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
-set completeopt=longest,menu,preview
 set complete+=k
 set complete+=d
 set complete+=U
+""set completeopt=longest,menu,preview
+set completeopt=longest,menuone,noinsert,noselect,preview
 
 "OTHER"
 imap jj <Esc>
@@ -185,14 +183,14 @@ func StartUpVIM() abort
     end
 endfunc
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter     * call StartUpVIM()
+au StdinReadPre * let s:std_in=1
+au VimEnter     * call StartUpVIM()
 
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+au BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 augroup nerdtreehidecwd
- autocmd!
- autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+ au!
+ au FileType nerdtree setl conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
 
 "AirLine"
@@ -208,14 +206,12 @@ let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "FZF"
-
 let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden --depth 8 -i -f -l -g ""'
 
 "Tag list of Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
 
 "NERDTree"
-
 if !empty($NERDTREE_BOOKMARKS)
     if filereadable($NERDTREE_BOOKMARKS)
         let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
@@ -233,6 +229,7 @@ let NERDTreeShowLineNumbers     = 0
 let NERDTreeMinimalUI  = 0
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
+
 hi  NERDTreeClosable ctermfg=DarkMagenta
 hi  NERDTreeOpenable ctermfg=Magenta
 map <F2> :NERDTreeToggle<CR>
@@ -301,54 +298,59 @@ au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.b
 ""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 ""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
 
+"Parinfer"
+let g:vim_parinfer_filetypes = ['clojure']
+let g:vim_parinfer_mode = 'paren'
+
+
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
-  autocmd!
-  autocmd FileType json set autoindent
-  autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=111 shiftwidth=2
-  autocmd FileType json set softtabstop=2 tabstop=2
-  autocmd FileType json set expandtab
-  autocmd FileType json set foldmethod=syntax
+  au!
+  au FileType json set autoindent
+  au FileType json set formatoptions=tcq2l
+  au FileType json set textwidth=111 shiftwidth=2
+  au FileType json set softtabstop=2 tabstop=2
+  au FileType json set expandtab
+  au FileType json set foldmethod=syntax
 augroup END
 
 "YAML"
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 augroup yaml_fix
-   autocmd!
-   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+   au!
+   au FileType yaml setl ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
 augroup END
-autocmd FileType yaml setlocal indentkeys-=<:>
+au FileType yaml setl indentkeys-=<:>
 
 "Jenkinsfile syntax"
 au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
 augroup groovy_autocmd
-  autocmd!
-  autocmd FileType groovy set autoindent
-  autocmd FileType groovy set formatoptions=tcq2l
-  autocmd FileType groovy set textwidth=111 shiftwidth=2
-  autocmd FileType groovy set softtabstop=2 tabstop=2
-  autocmd FileType groovy set expandtab
-  autocmd FileType groovy set foldmethod=syntax
+  au!
+  au FileType groovy set autoindent
+  au FileType groovy set formatoptions=tcq2l
+  au FileType groovy set textwidth=111 shiftwidth=2
+  au FileType groovy set softtabstop=2 tabstop=2
+  au FileType groovy set expandtab
+  au FileType groovy set foldmethod=syntax
 augroup END
 
 ".conf & other shell stuff"
 au! BufReadPost,BufNewFile *.{conf,config,shell} set filetype=sh
 augroup sh_autocmd
-  autocmd!
-  autocmd FileType sh set autoindent
-  autocmd FileType sh set formatoptions=tcq2l
-  autocmd FileType sh set textwidth=111 shiftwidth=2
-  autocmd FileType sh set softtabstop=2 tabstop=2
-  autocmd FileType sh set expandtab
-  autocmd FileType sh set foldmethod=syntax
+  au!
+  au FileType sh set autoindent
+  au FileType sh set formatoptions=tcq2l
+  au FileType sh set textwidth=111 shiftwidth=2
+  au FileType sh set softtabstop=2 tabstop=2
+  au FileType sh set expandtab
+  au FileType sh set foldmethod=syntax
 augroup END
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
-  autocmd FileType clojure setlocal complete+=k~/.vim/autoload/complete/clj_dict.vim
-  autocmd FileType * setlocal complete+=k~/.vim/autoload/dict/history_words.vim
+  au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim
+  au FileType * setl complete+=k~/.vim/autoload/dicts/history_words.vim
 ":set dictionary+=/usr/share/dict/words"
 "add repl history"
 endif
@@ -420,13 +422,18 @@ func Date_data(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
-com -nargs=? Date exe ':call Date_data(<args>)'
+com! -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echom "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dict/history_words.vim")'
+au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echom "Exit value is " .. v:exiting
+
+"runtime autoload/public/stuff.vim"
+"call public#stuff#Out()"
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
 "Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
 "TMUX C-b z"
+""let @+=42
+""let @*=42
