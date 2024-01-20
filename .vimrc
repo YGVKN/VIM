@@ -52,6 +52,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rhysd/vim-healthcheck'
+"Plug 'github/copilot.vim'"
 "Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
@@ -62,7 +63,6 @@ filetype plugin indent on
 colorscheme pop-punk
 
 scriptencoding utf-8
-
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
@@ -155,7 +155,7 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
-set omnifunc=syntaxcomplete#Smart_TabComplete
+""set omnifunc=syntaxcomplete#Smart_TabComplete
 set complete+=k
 set complete+=d
 set complete+=U
@@ -163,7 +163,6 @@ set complete+=U
 set completeopt=longest,menuone,noinsert,noselect,preview
 
 "LSP"
-
 if executable('clojure-lsp')
   au User lsp_setup call lsp#register_server({
       \ 'name': 'clojure-lsp',
@@ -185,12 +184,12 @@ func! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>rn <plug>(lsp-rename)
   nmap <buffer> [g <plug>(lsp-previous-diagnostic)
   nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-  nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> K  <plug>(lsp-hover)
   nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 3000
-  au! BufWritePre *.clj, *.cljs, *.cljx, *.cljc call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljx,cljc} call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
@@ -203,9 +202,6 @@ augroup END
 let g:lsp_log_verbose = 1
 let g:lsp_fold_enabled = 0
 let g:lsp_log_file = expand('~/vim-lsp.log')
-let g:lsp_settings = {
-\  'clojure': {'cmd': ['/opt/homebrew/bin/clojure-lsp']}
-\}
 
 let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 0
@@ -400,12 +396,12 @@ augroup sh_autocmd
 augroup END
 
 "Native complete"
-if has("autocmd") && exists("+omnifunc")
-  au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim
-  au FileType * setl complete+=k~/.vim/autoload/dicts/history_words.vim
-":set dictionary+=/usr/share/dict/words"
-"add repl history"
-endif
+""if has("autocmd") && exists("+omnifunc")
+""  au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim
+""  au FileType * setl complete+=k~/.vim/autoload/dicts/history_words.vim
+""":set dictionary+=/usr/share/dict/words"
+"""add repl history"
+""endif
 
 "Tab compl"
 func Smart_TabComplete()
