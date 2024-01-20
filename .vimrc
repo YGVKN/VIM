@@ -155,12 +155,12 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
-""set omnifunc=syntaxcomplete#Smart_TabComplete
+set omnifunc=syntaxcomplete#Smart_TabComplete
 set complete+=k
 set complete+=d
 set complete+=U
 ""set completeopt=longest,menu,preview
-set completeopt=longest,menuone,noinsert,noselect,preview
+set completeopt=menuone,noinsert,noselect,preview
 
 "LSP"
 if executable('clojure-lsp')
