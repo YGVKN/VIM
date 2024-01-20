@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Contrib How-To</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Language Dev</div>
+            <a href="dev" class="w-nav-link clj-section-nav-item-link">Development</a>
+            <a href="contributor_agreement" class="w-nav-link clj-section-nav-item-link">Contributor Agreement</a>
+            <a href="workflow" class="w-nav-link clj-section-nav-item-link">Workflow</a>
+            <a href="creating_tickets" class="w-nav-link clj-section-nav-item-link">Creating Tickets</a>
+            <a href="developing_patches" class="w-nav-link clj-section-nav-item-link">Developing Patches</a>
+            <a href="screening_tickets" class="w-nav-link clj-section-nav-item-link">Screening Tickets</a>
+            <a href="contributors" class="w-nav-link clj-section-nav-item-link">Contributors</a>
+            <div class="w-nav-link clj-section-nav-heading">Contrib Libs</div>
+            <a href="contrib_libs" class="w-nav-link clj-section-nav-item-link">Contrib libs</a>
+            <a href="contrib_history" class="w-nav-link clj-section-nav-item-link">Contrib lib history</a>
+            <div class="w-nav-link clj-section-nav-heading">Resources</div>
+            <a href="https://github.com/clojure/clojure" class="w-nav-link clj-section-nav-item-link">Source</a>
+            <a href="https://clojure.atlassian.net/servicedesk/customer/portal/1" class="w-nav-link clj-section-nav-item-link">Support Portal</a>
+            <a href="https://clojure.atlassian.net/projects/CLJ" class="w-nav-link clj-section-nav-item-link">Issue Tracker</a>
+            <a href="https://build.clojure.org" class="w-nav-link clj-section-nav-item-link">Build box</a>
+            <a href="/releases/downloads" class="w-nav-link clj-section-nav-item-link">Downloads</a>
+            <a href="https://clojure.github.io/clojure" class="w-nav-link clj-section-nav-item-link">API Docs</a>
+            <a href="../community/license" class="w-nav-link clj-section-nav-item-link">License</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Contrib How-To</h1>
+
+      <div class="sect1">
+<h2 id="_readmes"><a class="anchor" href="#_readmes"></a>Readmes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Contrib library readmes should contain:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Instructions for including the library as a dependency in Maven / Leiningen</p>
+</li>
+<li>
+<p>Links to the library&#8217;s pages on Jenkins and JIRA</p>
+</li>
+<li>
+<p>Links to the available releases on Maven Central and oss.sonatype.org</p>
+</li>
+<li>
+<p>Link to generated API documentation, if available</p>
+</li>
+<li>
+<p>General usage instructions (should mention which namespace to use/require)</p>
+</li>
+<li>
+<p>Developer Information: links to GitHub project, Bug Tracker, Continuous Integration, Compatibility Test Matrix</p>
+</li>
+<li>
+<p>Change log of all releases (may also be in separate file)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_committer_guidelines"><a class="anchor" href="#_committer_guidelines"></a>Committer Guidelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Things you should do if you are a Clojure Contrib committer:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>maintain your library and respond to questions/issues that arise</p>
+</li>
+<li>
+<p>do your work on the master branch, or (if you are working on a significant chunk you want to keep temporarily separate) on a feature-specific branch that you create yourself</p>
+</li>
+<li>
+<p>use the Maven Release option on build.clojure.org to make releases</p>
+</li>
+<li>
+<p>coordinate with other committers before making changes to their libraries</p>
+</li>
+<li>
+<p>accept contributions from others only if they have <a href="contributors">signed the CA</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Things to avoid:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>please do not push to the release branches (names like 1.2.x)</p>
+</li>
+<li>
+<p>do not take non-contributor patches</p>
+</li>
+<li>
+<p>please do not take pull requests from contributors. Patches only.</p>
+</li>
+<li>
+<p>do not change the version number in pom.xml - use the Maven Release process mentioned above</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s the process outline for what it takes to become a committer:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get your <a href="contributor_agreement">CA</a> on file</p>
+</li>
+<li>
+<p>Join the <a href="http://groups.google.com/group/clojure-dev">clojure-dev</a> mailing list</p>
+</li>
+<li>
+<p>Create a <a href="https://clojure.atlassian.net/projects/CLJ">JIRA account</a></p>
+</li>
+<li>
+<p>Let Clojure core team know your github username and JIRA username so they can set up the correct permissions</p>
+</li>
+<li>
+<p>Clojure core team need to create your account on build.clojure.org as well - see below</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Moving an existing project into contrib:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All past contributors must:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Submit a Clojure Contributor Agreement</p>
+</li>
+<li>
+<p>Send an email to the clojure-dev mailing list granting permission, such as: "I, (NAME), give my permission to release my contributions to (PROJECT) under the Clojure Contributor Agreement."</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Setting up a new contrib project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Email clojure-dev mailing list to get new project approved and admin privileges in GitHub, Jira, and Jenkins.</p>
+</li>
+<li>
+<p>Ask for a new GitHub repo under the clojure <a href="https://github.com/clojure">organization</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Specify project name (must be approved by Clojure core)</p>
+</li>
+<li>
+<p>Specify description</p>
+</li>
+<li>
+<p>Collaborators - add Team: Contrib Commit which includes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>clojure-build - for Jenkins to tag releases, build autodocs, etc</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Disable Issues tab (we use JIRA instead)</p>
+</li>
+<li>
+<p>Project structure (see existing projects for example)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>/README.md - readme, see above</p>
+</li>
+<li>
+<p>/CHANGES.md - changelog</p>
+</li>
+<li>
+<p>/CONTRIBUTING.md - example</p>
+</li>
+<li>
+<p>/epl.html - EPL license information</p>
+</li>
+<li>
+<p>/pom.xml - according to the <a href="https://github.com/clojure/build.poms">build.poms</a> instructions - used for build/deploy</p>
+</li>
+<li>
+<p>/src/main/clojure - Clojure sources</p>
+</li>
+<li>
+<p>/src/test/clojure - Clojure tests</p>
+</li>
+<li>
+<p>/src/main/cljs - ClojureScript sources</p>
+</li>
+<li>
+<p>/src/test/cljs - ClojureScript tests</p>
+</li>
+<li>
+<p>/src/main/java - Java sources, if needed</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create a new JIRA project (requires JIRA admin privileges):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Specify name (same as GitHub project name)</p>
+</li>
+<li>
+<p>Specify key (approved by Clojure core, derived from project name) - should usually be first char of first part with up to 5 chars of second part - TBENCH, DJSON, etc.</p>
+</li>
+<li>
+<p>Specify project lead&#8217;s JIRA account</p>
+</li>
+<li>
+<p>Edit project to add url and description (same as GitHub project)</p>
+</li>
+<li>
+<p>Set notification scheme - usually "Default scheme plus notify project lead"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Setting up builds (requires Jenkins admin privileges, except step 2):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create Jenkins user account for authors</p>
+</li>
+<li>
+<p>Edit ci_data.clj in the <a href="https://github.com/clojure/build.ci">build.ci</a> repo add the new project / update authors (so they can run builds / cut releases)</p>
+</li>
+<li>
+<p>Request on clojure-dev mailing list to run build.ci Jenkins job - this will recreate all Jenkins job definition files!</p>
+</li>
+<li>
+<p>Force Jenkins to reload its configuration files</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Autodoc</p>
+<div class="ulist">
+<ul>
+<li>
+<p>WIP</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Performing releases</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Snapshot releases are automatically created every time the job builds (triggered by any source change)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>To use snapshots, see Maven Settings and Repositories</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Perform a release according to How to Make Releases section below</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_make_releases"><a class="anchor" href="#_how_to_make_releases"></a>How to Make Releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prep</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your project must have a pom.xml file with a -SNAPSHOT version</p>
+</li>
+<li>
+<p>The pom.xml file must specify a parent, the latest released version of pom.contrib in <a href="https://github.com/clojure/build.poms">build.poms</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>How to make a -SNAPSHOT release</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your project must have a pom.xml file with a -SNAPSHOT version</p>
+</li>
+<li>
+<p>Push to "master" branch on GitHub</p>
+</li>
+<li>
+<p>Jenkins polls GitHub and builds automatically</p>
+</li>
+<li>
+<p>Or you can click "Build Now" on the project page</p>
+</li>
+<li>
+<p>Jenkins builds and uploads a uniquely-numbered JAR file to the <a href="https://oss.sonatype.org/">Sonatype OSS Snapshot Repository</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>How to make a numbered release</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The "master" branch in GitHub must have a pom.xml file with a -SNAPSHOT version, not a bare version number</p>
+</li>
+<li>
+<p>Log in to <a href="https://build.clojure.org">Jenkins</a></p>
+</li>
+<li>
+<p>Navigate to your project&#8217;s job</p>
+</li>
+<li>
+<p>Click "Perform Maven Release" link on the left</p>
+</li>
+<li>
+<p>On the "Perform Maven Release" page:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Select "Specify one version for all modules"</p>
+</li>
+<li>
+<p>In the "Release Version" field, enter the version number for this release of your project</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This will normally be the current development version with the "-SNAPSHOT" suffix removed</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In the "Development version" field, enter the version number for the subsequent development version of your project</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This will end with "-SNAPSHOT"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click "Schedule Maven Release Build"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>After the build completes successfully:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>git pull</code> on your development machine to get the new release tags</p>
+</li>
+<li>
+<p>The release JAR file will be uploaded to the Sonatype OSS staging repository</p>
+</li>
+<li>
+<p>The release will automatically be copied to the Maven Central repository within 24 hours (usually within 15 minutes)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Don&#8217;t forget to update the project README if it recommends a version to users.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Contrib Release Numbering Policy</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>major.minor.patch</p>
+</li>
+<li>
+<p>Follow guidelines for accretion and fixation, not breakage, if at all possible</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_coding_guidelines"><a class="anchor" href="#_coding_guidelines"></a>Coding Guidelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Disclaimer:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Rules are made to be broken. Know the standards, but do not treat them as absolutes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Standards:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the name and signature right. Rich strongly respects Java&#8217;s commitment to not break existing code. In practice, that means we can tweak the implementation forever, but once we publish a name and signature we need to stick with it. (In practice I think this means that we want many people to review the name and sig, even if they don&#8217;t review the implementation details.)</p>
+</li>
+<li>
+<p>Use type hints for functions that are likely to be on critical code; otherwise keep code simple and hint-free.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Only use type hints that matter. If you are not certain a type hint helps, don&#8217;t add it.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use good names, and don&#8217;t be afraid to collide with names in other namespaces. That&#8217;s what the flexible namespace support is there for.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>OTOH, using the same name with a different signature or semantics begs the question as to whether one of them is less than ideal.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Be explicit and minimalist about dependencies on other packages. (Prefer :require :refer to :use)</p>
+</li>
+<li>
+<p>Don&#8217;t use a macro when a function can do the job. If a macro is important for ease-of-use, expose the function version as well.</p>
+</li>
+<li>
+<p>If you are sure you have all the information at compile time, use a macro where it would improve performance sensitive code.</p>
+</li>
+<li>
+<p>Provide a library-level docstring.</p>
+</li>
+<li>
+<p>Provide automated tests.</p>
+</li>
+<li>
+<p>Use '?' suffix for predicates, and return booleans.</p>
+</li>
+<li>
+<p>Use '_' for destructuring targets and formal arguments names whose value will be ignored by the code at hand.</p>
+</li>
+<li>
+<p>Include a docstring.</p>
+</li>
+<li>
+<p>When in doubt, expose the performant version. Clojure goes to great lengths to enable performance when you need it, and lib should too. (That&#8217;s why we don&#8217;t have multimethod + in core, for instance.) Users can always create more polymorphic APIs on their own, hijacking symbols if they want to.</p>
+</li>
+<li>
+<p>If you take a good name that collides with core, make sure your semantics are parallel (possibly minus laziness). Good example of this is string functions that shadow core seq functions.</p>
+</li>
+<li>
+<p>Use assert and pre- and post- conditions.</p>
+</li>
+<li>
+<p>Be lazy where possible.</p>
+</li>
+<li>
+<p>Follow clojure.core&#8217;s example for idiomatic names like pred and coll.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>in fns</p>
+<div class="ulist">
+<ul>
+<li>
+<p>f, g, h - function input</p>
+</li>
+<li>
+<p>n - integer input usually a size</p>
+</li>
+<li>
+<p>index - integer index</p>
+</li>
+<li>
+<p>x, y - numbers</p>
+</li>
+<li>
+<p>s - string input</p>
+</li>
+<li>
+<p>coll - a collection</p>
+</li>
+<li>
+<p>pred - a predicate closure</p>
+</li>
+<li>
+<p>&amp; more - variadic input</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>in macros</p>
+<div class="ulist">
+<ul>
+<li>
+<p>expr - an expression</p>
+</li>
+<li>
+<p>body - a macro body</p>
+</li>
+<li>
+<p>binding - a macro binding vector</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Do NOT follow idioms from clojure.core&#8217;s preamble code. That code runs in a limited environment because Clojure is not bootstrapped yet.</p>
+</li>
+<li>
+<p>Decompose the pieces. If your name isn&#8217;t Rich, don&#8217;t write a form as long as, say, the definition of doseq.</p>
+</li>
+<li>
+<p>Use keyword-first syntax to access properties on objects: <code>(:property object-like-map)</code></p>
+</li>
+<li>
+<p>Use collection-first syntax to extract values from a collection (or use get if the collection might be nil): <code>(collection-like-map key)</code> or <code>(get collection-like-map key)</code>. Note that not all collections are keyed by keyword.</p>
+</li>
+<li>
+<p>Idiomatic code uses destructuring a lot. However, you should only destructure in the arg list if you want to communicate the substructure as part of the caller contract. Otherwise, destructure in a first-line let.</p>
+</li>
+<li>
+<p>Prefer updating over setting. Many reasons: the unified update model provides a simple standard way to do this. Helps you discover commutative operations. Reduces the surface area of assumptions you are making about the object you are updating.</p>
+</li>
+<li>
+<p>Don&#8217;t support operations on the wrong collection type. If your algorithm is only performant with random access, then require an arg that has random access.</p>
+</li>
+<li>
+<p>Use *earmuffs* only for things intended for rebinding. Don&#8217;t use a special notation for constants; everything is assumed a constant unless specified otherwise.</p>
+</li>
+<li>
+<p>Use the bang! only for things not safe in an STM transaction.</p>
+</li>
+<li>
+<p>Prefer sequence-library composition over explicit loop/recur.</p>
+</li>
+<li>
+<p>Rebindable vars should be paired with scoping macros, e.g. in and with-in-str.</p>
+</li>
+<li>
+<p>Lazy seqs should be exposed as functions that hold only the minimum state needed, a.k.a. "let go of your head." Let the caller decide how much local memory they want to use.</p>
+</li>
+<li>
+<p>Use Klass/staticField, (Klass/staticMethod), (Klass.) and (.method obj) interop styles with the only exception being in code-generating-code where the older (. obj method) style may be easier to produce.</p>
+</li>
+<li>
+<p>If you present an interface that implicitly passes a parameter via dynamic binding (e.g. db in sql), also provide an identical interface but with the parameter passed explicitly.</p>
+</li>
+<li>
+<p>When providing a default case for cond, use the keyword :else as a condition instead of true</p>
+</li>
+<li>
+<p>To access a private var (e.g. for testing), use the @#'some.ns/var form</p>
+</li>
+<li>
+<p>Protocols:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>One should only extend a protocol to a type if they own either the type or the protocol.</p>
+</li>
+<li>
+<p>If one breaks the previous rule, they should be prepared to withdraw, should the implementor of either provide a definition</p>
+</li>
+<li>
+<p>If a protocol comes with Clojure itself, avoid extending it to types you don&#8217;t own, especially e.g. java.lang.String and other core Java interfaces. Rest assured if a protocol should extend to it, it will, else lobby for it.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The motive is, as stated by Rich Hickey, to prevent "people extend protocols to types for which they don&#8217;t make sense, e.g. for which the protocol authors considered but rejected an implementation due to a semantic mismatch.". "No extension will be there (by design), and people without sufficient understanding/skills might fill the void with broken ideas."</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/dev/contrib_howto.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

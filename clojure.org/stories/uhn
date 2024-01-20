@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - University Health Network</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+
+<div class="clj-section-nav-container">
+  <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+    <div class="w-container">
+      <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+        <a href="/community/community_stories" class="w-nav-link clj-section-nav-item-link clj-section-nav-heading">Community Stories</a>
+                  <a href="/stories/freshcode" class="w-nav-link clj-section-nav-item-link">Freshcode</a>
+          <a href="/stories/reify" class="w-nav-link clj-section-nav-item-link">Reify Health</a>
+          <a href="/stories/pisano" class="w-nav-link clj-section-nav-item-link">Pisano</a>
+          <a href="/stories/cognician" class="w-nav-link clj-section-nav-item-link">Cognician</a>
+          <a href="/stories/cloudrepo" class="w-nav-link clj-section-nav-item-link">CloudRepo</a>
+          <a href="/stories/stitch" class="w-nav-link clj-section-nav-item-link">Stitch</a>
+          <a href="/stories/anychart" class="w-nav-link clj-section-nav-item-link">AnyChart</a>
+          <a href="/stories/swing" class="w-nav-link clj-section-nav-item-link">Swing Education</a>
+          <a href="/stories/zimpler" class="w-nav-link clj-section-nav-item-link">Zimpler</a>
+          <a href="/stories/lendup" class="w-nav-link clj-section-nav-item-link">LendUp</a>
+          <a href="/stories/kidblog" class="w-nav-link clj-section-nav-item-link">Kidblog</a>
+          <a href="/stories/signal" class="w-nav-link clj-section-nav-item-link">Signal</a>
+          <a href="/stories/empear" class="w-nav-link clj-section-nav-item-link">Empear</a>
+          <a href="/stories/ona" class="w-nav-link clj-section-nav-item-link">Ona</a>
+          <a href="/stories/uhn" class="w-nav-link clj-section-nav-item-link">University Health Network</a>
+          <a href="/stories/cstap" class="w-nav-link clj-section-nav-item-link">cstap</a>
+          <a href="/stories/collbox" class="w-nav-link clj-section-nav-item-link">CollBox</a>
+          <a href="/stories/rts" class="w-nav-link clj-section-nav-item-link">Radio Télévision Suisse</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="clj-content-container">
+	<h1>University Health Network</h1>
+        <p><em>11 April 2017</em><br/></p>
+
+      	<div class="paragraph">
+<p>This interview is a discussion with Dmitri Sotnikov about his use of Clojure and ClojureScript at University Health Network (UHN).</p>
+</div>
+<div class="paragraph right">
+<p><span class="image"><img src="/images/content/stories/logo-uhn.png" alt="UHN" height="55"></span></p>
+</div>
+<div class="paragraph">
+<p><strong>How long have you been working with Clojure and ClojureScript?</strong></p>
+</div>
+<div class="paragraph">
+<p>My team started using Clojure about six years ago, and we integrated ClojureScript into our stack last year with our latest project.</p>
+</div>
+<div class="paragraph">
+<p><strong>How big is the team you have using Clojure or ClojureScript?</strong></p>
+</div>
+<div class="paragraph">
+<p>We have a team of about 30 developers, some of them are using Clojure while others are using other languages such as Java and C#. The number of people using Clojure has been steadily increasing as the benefits have become evident. My immediate team consists of eight developers working exclusively with Clojure.</p>
+</div>
+<div class="paragraph">
+<p><strong>What products or services are you building?</strong></p>
+</div>
+<div class="paragraph">
+<p>The clinicians at the University Health Network (UHN) operate in a complex healthcare environment where many aspects of patient care have to be coordinated between multiple disciplines. Our team builds products that help clinicians streamline their workflow.</p>
+</div>
+<div class="paragraph">
+<p>An example of such a workflow is the one found at the Bariatric Clinic, where obese patients require assessments for weight loss surgery. Let&#8217;s take a look at the problem we faced and how we addressed it.</p>
+</div>
+<div class="paragraph">
+<p>Assessments are conducted by professionals from across five disciplines. The assessment starts with a nurse consultation, followed by a visit with a social worker, then a dietitian, and then the psych team. Finally, patient is scheduled for the surgeon interview. The surgeon must have the information collected by other disciplines in condensed form.</p>
+</div>
+<div class="paragraph">
+<p>The assessments must be completed in a specific order with each assessment being dependent on the results from the previous ones.</p>
+</div>
+<div class="paragraph">
+<p>The task is further complicated by the fact that all the assessments work with a common set of data. Each discipline requires to see a subset of the data and uses a different set of terminologies when referring to the data elements.</p>
+</div>
+<div class="paragraph">
+<p>When a piece of data is modified, it may trigger updates in the data model including those that aren&#8217;t part of the view that the user is working on. Since multiple users may be working on different parts of the assessment concurrently, we have to take extra care to ensure data integrity within the application.</p>
+</div>
+<div class="paragraph">
+<p>The project aimed to provide a new kind of workflow for the users, and this implied having evolving requirements as we continued to receive user feedback.</p>
+</div>
+<div class="paragraph">
+<p>The project team chose to use an agile development approach to allow for greater flexibility. The workflow was broken up into modules for each discipline. We would deploy each module as it was finished, and integrate user feedback into design of the system as further modules were developed.</p>
+</div>
+<div class="paragraph">
+<p>The team created a Clojure DSL for writing screens and business logic for the application. These definitions are stored in a database, and are used to generate the views at runtime.</p>
+</div>
+<div class="paragraph">
+<p>This model provides us with the ability to modify any aspect of the assessment without the need to redeploy either the client or the server portions of the application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Why is using Clojure or ClojureScript valuable to your business?</strong></p>
+</div>
+<div class="paragraph">
+<p>Clojure allowed us to deliver an innovative product that provided the best possible workflow for the users. Our application was ultimately the recipient of the <a href="http://www.itworldcanada.com/article/university-health-network-transforms-patient-care/387156">2016 ITAC Ingenious Award</a>.</p>
+</div>
+<div class="paragraph">
+<p>Through the use of the of the application, the clinic dramatically reduced wait times for the patients from 128 to 63 days. While the dictation time used by clinicians fell by 80%, representing a total savings so far of $240,000.</p>
+</div>
+<div class="paragraph">
+<p><strong>What about working with Clojure and ClojureScript gives you the most value?</strong></p>
+</div>
+<div class="paragraph">
+<p>We really like working with the JVM, and wish to continue leveraging this platform for our projects. However, we also recognized the need for a language that facilitated both rapid development and prototyping while allowing us to produce robust and maintainable applications.</p>
+</div>
+<div class="paragraph">
+<p>Our prior experience with Java projects showed that it was a poor fit for these requirements. Meanwhile, Clojure stood out as a strong technology choice for a variety of reasons.</p>
+</div>
+<div class="paragraph">
+<p>The language lets us seamlessly use existing Java libraries and tools in our projects. This allowed for a gentle transition from our legacy stack towards a modern one based around Clojure.</p>
+</div>
+<div class="paragraph">
+<p>Clojure allows us to develop the system interactively, and to quickly respond to changing needs of the project. The team is able to quickly prototype solutions without sacrificing code quality. The dynamic nature of the language allows for a cheaper and faster development process than what was available to us with Java.</p>
+</div>
+<div class="paragraph">
+<p>REPL driven development provides us with the ability to explore the problem space interactively and come up with the best solution through experimentation. We find that the REPL workflow results in a better feedback loop than unit testing.</p>
+</div>
+<div class="paragraph">
+<p>Clojure based solutions end up having a fraction of the code seen in the projects of similar scope that we previously built in Java. Not only that, but Clojure makes it much easier to separate the intent of the code from the implementation details. The ability to separate what is being done from how it is done results in code that&#8217;s much easier to maintain.</p>
+</div>
+<div class="paragraph">
+<p>Clojure&#8217;s focus on immutability facilitates a natural decoupling between parts of the application. In absence of shared global state, it becomes possible to work on parts of the application in isolation. The resulting code requires fewer tests since the functions are pure and do not depend on the overall application state.</p>
+</div>
+<div class="paragraph">
+<p>Since Clojure is a small and focused language, it made it easy to train new developers to become productive with it. Our partner CyLogix was able to train their contractors to work with Clojure in a short time.</p>
+</div>
+<div class="paragraph">
+<p>Macros provided us with the ability to create domain specific abstractions. This let us express domain specific logic using the semantics of that domain.</p>
+</div>
+<div class="paragraph">
+<p>Finally, Clojure proved to be a stable and reliable platform. We were able to upgrade the project to new versions of the language without any changes throughout the development cycle.</p>
+</div>
+<div class="paragraph">
+<p><strong>What is your stack?</strong></p>
+</div>
+<div class="paragraph">
+<p>We use the <a href="http://www.luminusweb.net/">Luminus</a> stack as the base for our projects. Some of the libraries that I&#8217;d like to mention specifically are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.hugsql.org/">HugSQL</a></p>
+</li>
+<li>
+<p><a href="http://immutant.org/">Immutant</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Day8/re-frame">re-frame</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ring-clojure/">Ring</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ptaoussanis/sente">Sente</a></p>
+</li>
+</ul>
+</div>
+
+        <p><em>If you'd like to share your Clojure story, please <a href="https://goo.gl/forms/5UdrL52dbcWnCs3F2">complete this form</a>.</em></p>
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/stories/uhn.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

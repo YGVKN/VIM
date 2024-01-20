@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Editors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Learning</div>
+            <a href="getting_started" class="w-nav-link clj-section-nav-item-link">Getting Started</a>
+            <a href="install_clojure" class="w-nav-link clj-section-nav-item-link">Install Clojure</a>
+            <a href="editors" class="w-nav-link clj-section-nav-item-link">Editors</a>
+            <a href="structural_editing" class="w-nav-link clj-section-nav-item-link">Structural Editing</a>
+            <a href="repl/introduction" class="w-nav-link clj-section-nav-item-link">REPL Programming <span class="clj-nav-nested-icon">&#xeab8;</span></a>
+            <a href="learn/clojure" class="w-nav-link clj-section-nav-item-link">Learn Clojure <span class="clj-nav-nested-icon">&#xeab8;</span></a>
+            <a href="faq" class="w-nav-link clj-section-nav-item-link">FAQ</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Language</div>
+            <a href="spec" class="w-nav-link clj-section-nav-item-link">spec</a>
+            <a href="weird_characters" class="w-nav-link clj-section-nav-item-link">Reading Clojure Characters</a>
+            <a href="destructuring" class="w-nav-link clj-section-nav-item-link">Destructuring</a>
+            <a href="threading_macros" class="w-nav-link clj-section-nav-item-link">Threading Macros</a>
+            <a href="equality" class="w-nav-link clj-section-nav-item-link">Equality</a>
+            <a href="comparators" class="w-nav-link clj-section-nav-item-link">Comparators</a>
+            <a href="reader_conditionals" class="w-nav-link clj-section-nav-item-link">Reader Conditionals</a>
+            <a href="higher_order_functions" class="w-nav-link clj-section-nav-item-link">Higher Order Functions</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Usage</div>
+            <a href="dev_startup_time" class="w-nav-link clj-section-nav-item-link">Dev Startup Time</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Tools</div>
+            <a href="deps_and_cli" class="w-nav-link clj-section-nav-item-link">Deps and CLI</a>
+            <a href="tools_build" class="w-nav-link clj-section-nav-item-link">tools.build</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Libraries</div>
+            <a href="async_walkthrough" class="w-nav-link clj-section-nav-item-link">core.async Walkthrough</a>
+            <a href="core_async_go" class="w-nav-link clj-section-nav-item-link">Go Block Best Practices</a>
+            <a href="test_check_beginner" class="w-nav-link clj-section-nav-item-link">test.check</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Editors</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Editors</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_emacs_most_popular_most_customizable">Emacs - most popular, most customizable</a></li>
+<li><a href="#_intellij_clojure_with_a_java_tilt">IntelliJ - Clojure with a Java tilt</a></li>
+<li><a href="#_vs_code_rapidly_evolving_beginner_friendly">VS Code - rapidly evolving, beginner friendly</a></li>
+<li><a href="#_vim_highly_efficient_text_editing">Vim - highly efficient text editing</a></li>
+<li><a href="#_others">Others</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Clojure is an interactive language and you will only get the best Clojure experience by using an editor that supports code evaluation (via a connected REPL) and structural editing (manipulating code forms as if they are data, not text). Fortunately, there are many excellent Clojure editors that provide these features and many other programmer conveniences.</p>
+</div>
+<div class="paragraph">
+<p>Note that many of the editors described below are in active development. Links and resources here might become stale. We welcome <a href="https://ask.clojure.org">questions</a> and <a href="https://github.com/clojure/clojure-site/issues">issues</a>!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_emacs_most_popular_most_customizable"><a class="anchor" href="#_emacs_most_popular_most_customizable"></a>Emacs - most popular, most customizable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.gnu.org/software/emacs/">Emacs</a> is one of the oldest editors still in active use. As a platform extensible in its own variant of Lisp, options exist for almost anything you might want to do. As you may expect, great extensibility means configuring this tool to your liking can be a job in itself and for some Emacs is more of a lifestyle than an editor. That said, there are friendly starting points just for Clojure developers and you choose the rate at which you absorb the Emacs ecosystem.</p>
+</div>
+<div class="paragraph">
+<p>The main Emacs modes to be aware of are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/clojure-emacs/clojure-mode">clojure-mode</a>, an Emacs major mode that provides font-lock (syntax highlighting), indentation, navigation and refactoring support for Clojure(Script)</p>
+</li>
+<li>
+<p><a href="https://cider.mx/">CIDER</a> extends Emacs with support for interactive programming in Clojure via cider-mode, an Emacs minor-mode that complements clojure-mode to provide interactive support.</p>
+</li>
+<li>
+<p><a href="https://github.com/clojure-emacs/inf-clojure">inf-clojure</a> - provides basic interaction with a Clojure subprocess (REPL), based on ideas from the popular inferior-lisp package</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Some places to start:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.gnu.org/software/emacs/download.html">GNU Emacs - download and install</a> - the official GNU Emacs page</p>
+</li>
+<li>
+<p><a href="https://practical.li/spacemacs/install-spacemacs/">Practicalli guide to Spacemacs</a>, a community driven Emacs configuration for Clojure - includes clojure-mode and CIDER</p>
+</li>
+<li>
+<p><a href="https://prelude.emacsredux.com/en/latest/">Prelude</a> - an Emacs configuration for Emacs beginners, not specific to Clojure, but includes Clojure support (clojure-mode, CIDER)</p>
+</li>
+<li>
+<p><a href="https://aquamacs.org/">Aquamacs</a> - Aquamacs is Emacs designed for the Mac native user in mind and is sufficient for a minimalist Clojure environment when paired with inf-clojure mode</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_intellij_clojure_with_a_java_tilt"><a class="anchor" href="#_intellij_clojure_with_a_java_tilt"></a>IntelliJ - Clojure with a Java tilt</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> is one of the premiere "modern" IDEs with support for a wide variety of languages and tools. IntelliJ made its name as a sophisticated Java editor, leveraging a static analysis platform to provide great explorability and refactoring for large Java codebases. The IntelliJ IDEA Community Edition for JVM development is available as a <a href="https://www.jetbrains.com/idea/download/#section=mac">free download</a>.</p>
+</div>
+<div class="paragraph">
+<p>Two important plugins are available to enable Clojure development on IntelliJ:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cursive-ide.com/">Cursive</a> - a full featured Clojure development environment</p>
+</li>
+<li>
+<p><a href="https://plugins.jetbrains.com/plugin/18108-clojure-extras/">clojure-extras</a> - integrates extras like inline evaluation results and linting via <a href="https://github.com/clj-kondo/clj-kondo">clj-kondo</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Cursive is a good fit if you are already familiar with Java or expect to work with mixed Clojure/Java projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vs_code_rapidly_evolving_beginner_friendly"><a class="anchor" href="#_vs_code_rapidly_evolving_beginner_friendly"></a>VS Code - rapidly evolving, beginner friendly</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> is rapidly growing in use for a variety of languages, and Clojure is no exception.</p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://calva.io/">Calva</a> environment for interactive Clojure development uses a mix of static and dynamic analysis to provide a wide range of language support. Additionally, Calva has made extra efforts to be approachable to beginners with their <a href="https://calva.io/get-started-with-clojure/">Getting Started</a> experience, which is a zero-install version that runs in the browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vim_highly_efficient_text_editing"><a class="anchor" href="#_vim_highly_efficient_text_editing"></a>Vim - highly efficient text editing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://www.vim.org/">Vim</a> (or vi) is also an editor with a long history, known for its ability to edit text quickly and efficiently.  It has become the de-facto replacement for vi, the original Unix visual editor on which it was based.</p>
+</div>
+<div class="paragraph">
+<p>Its unique, powerful UI is popular enough that most other editors mentioned above include vi-modes that reproduce Vim&#8217;s core UI functionality.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://neovim.io/">Neovim</a> is a fork of Vim.  While it maintains a high degree of compatibility, there are some significant differences between the two editors.</p>
+</div>
+<div class="paragraph">
+<p>Both Vim and Neovim are highly extensible and a vast array of plugins are available for them.  Most, but not all, plugins will work with both editors.</p>
+</div>
+<div class="paragraph">
+<p>The following plugins provide Clojure support for both Vim and Neovim:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/tpope/vim-fireplace">Fireplace</a> - Clojure support and REPL integration</p>
+</li>
+<li>
+<p><a href="https://liquidz.github.io/vim-iced/">vim-iced</a> - CIDER inspired</p>
+</li>
+<li>
+<p><a href="https://github.com/guns/vim-slamhound">vim-slamhound</a> - Automated namespace rewriting</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following plugins only provide Clojure support to Neovim:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/Olical/conjure">Conjure</a> - focus on interactive development</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to the Clojure plugins, it is also worth extending Vim to improve the editing of s-expressions. The plugins below can be used with both Vim and Neovim:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/guns/vim-sexp">vim-sexp</a> - precision editing of S-expressions</p>
+</li>
+<li>
+<p><a href="https://github.com/tpope/vim-sexp-mappings-for-regular-people">vim-sexp-mappings-for-regular-people</a> - alternative keybindings that some users may prefer</p>
+</li>
+<li>
+<p><a href="https://github.com/tpope/vim-surround">vim-surround</a> - makes it easier to wrap expressions in brackets, quotes, and other tokens.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There are also numerous plugins that provide color-matching of parentheses.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_others"><a class="anchor" href="#_others"></a>Others</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Other environments exist but are less active and/or less used. See the <a href="xref/../../../community/tools">Tools</a> page for other ideas.</p>
+</div>
+</div>
+</div>
+
+      <p><em>Original author: Alex Miller</em></p>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/guides/editors.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

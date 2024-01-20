@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Clojure user groups</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Community</div>
+            <a href="success_stories" class="w-nav-link clj-section-nav-item-link">Success Stories</a>
+            <a href="community_stories" class="w-nav-link clj-section-nav-item-link">Community Stories</a>
+            <a href="companies" class="w-nav-link clj-section-nav-item-link">Companies</a>
+            <a href="tools" class="w-nav-link clj-section-nav-item-link">Tools</a>
+            <a href="libraries" class="w-nav-link clj-section-nav-item-link">Libraries</a>
+            <a href="contributing" class="w-nav-link clj-section-nav-item-link">Contributing</a>
+            <a href="resources" class="w-nav-link clj-section-nav-item-link">Community Resources</a>
+            <a href="ask" class="w-nav-link clj-section-nav-item-link">Forum</a>
+            <a href="events" class="w-nav-link clj-section-nav-item-link">Events</a>
+            <a href="training" class="w-nav-link clj-section-nav-item-link">Training</a>
+            <a href="etiquette" class="w-nav-link clj-section-nav-item-link">Etiquette</a>
+            <div class="w-nav-link clj-section-nav-heading">Help</div>
+            <a href="books" class="w-nav-link clj-section-nav-item-link">Books</a>
+            <a href="user_groups" class="w-nav-link clj-section-nav-item-link">User Groups</a>
+            <a href="start_group" class="w-nav-link clj-section-nav-item-link">Starting a User Group</a>
+            <div class="w-nav-link clj-section-nav-heading">Site Updates</div>
+            <a href="contributing_site" class="w-nav-link clj-section-nav-item-link">Site Contributions</a>
+            <a href="editing" class="w-nav-link clj-section-nav-item-link">Editing tips</a>
+            <a href="license" class="w-nav-link clj-section-nav-item-link">License</a>
+            <a href="/privacy" class="w-nav-link clj-section-nav-item-link">Privacy Policy</a>
+            <div class="w-nav-link clj-section-nav-heading">Etc</div>
+            <a href="swag" class="w-nav-link clj-section-nav-item-link">Swag</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Clojure user groups</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Clojure user groups</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Do you wish there was a Clojure User Group in your area? Check
+out our page of <a href="start_group">tips for starting your own</a></p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;d like to have your group listed here, please submit a PR against the
+<a href="https://github.com/clojure/clojure-site">clojure-site</a> github repo.</p>
+</div>
+<div class="paragraph">
+<p>[ <a href="user_groups#americas">Americas</a> ] [ <a href="user_groups#europe">Europe</a> ]
+[ <a href="user_groups#asia">Asia</a> ] [ <a href="user_groups#australiannz">Australia / New Zealand</a> ]</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="americas"><a class="anchor" href="#americas"></a>Americas</h2>
+<div class="sectionbody">
+<div id="argentina" class="ulist">
+<ul>
+<li>
+<p>Argentina <a href="https://www.meetup.com/ClojureBA/">Clojure User Group Buenos Aires</a> (Twitter: <a href="https://twitter.com/ClojureBA">@ClojureBA</a>)</p>
+</li>
+<li>
+<p>Brazil <a href="https://www.meetup.com/clj-sp/">Grupo de Usuários Clojure de São Paulo e Rio de Janeiro</a></p>
+</li>
+<li>
+<p>Canada</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/montreal-clojure-user-group">Montreal Clojure User
+Group</a></p>
+</li>
+<li>
+<p><a href="https://clojureto.github.io">Clojure Toronto</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Vancouver-Clojure">Vancouver Clojure</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>United states</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Northeast</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Boston-Clojure-Group/">Boston Clojure Group</a></p>
+</li>
+<li>
+<p>Functional Programming Connoisseurs (Western
+Massachusetts &amp; surroundings) Welcoming all FP-ers (Erlang/Scheme/Scala/Haskell/etc etc etc), but
+Clojure fans generally form a plurality.</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Clojure-NYC/">NYC Clojure Users Group</a> (Twitter: <a href="https://twitter.com/ClojureNYC">@ClojureNYC</a>)</p>
+</li>
+<li>
+<p>ClojureScript NYC (Twitter: <a href="https://twitter.com/ClojureNYC">@ClojureNYC</a>)</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Clojadelphia/">Clojadelphia - The Philadelphia User
+Group</a></p>
+</li>
+<li>
+<p>Pittsburgh Clojure Users Group is part of <a href="http://www.codeandsupply.co/">Pittsburgh Code &amp; Supply</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Midwest</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Chicago-Clojure/">Chicago</a></p>
+</li>
+<li>
+<p><a href="https://cincyfp.wordpress.com/">Cincy Functional Programmers Group</a></p>
+</li>
+<li>
+<p>Detroit Clojure Group</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/clojure-mke/">Clojure MKE - Milwaukee, WI</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Madison-Clojure-Meetup/">Madison Clojure Meetup</a> - Madison, WI</p>
+</li>
+<li>
+<p><a href="http://clojure.mn/">Minnesota Clojure Users Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/stl-clojure">St. Louis Clojure Meetup</a></p>
+</li>
+<li>
+<p><a href="http://www.columbusclojure.com">Columbus Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>South</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Baltimore-Clojure/">Baltimore Clojure Meetup</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Cap-Clug/">National Capital Area Clojure Users
+Group</a> - Reston, VA</p>
+</li>
+<li>
+<p>ClojureDC - Washington, DC</p>
+</li>
+<li>
+<p><a href="https://meetup.com/TriClojure/">TriClojure Meetup</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Atl-Clj/">Atlanta Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/group/clj-houston">Clojure Houston User Group</a></p>
+</li>
+<li>
+<p>Dallas/Fort Worth Clojure Interest Group (<a href="https://groups.google.com/forum/#topic/clojure/Cym7oiViFoQ">
+See mailing list thread for more info</a>)</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Clojure-Mid-Cities/">DFW-Southlake Clojure Mid-Cities Meetup</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Austin-Clojure-Meetup/">Austin Clojure Meetup</a></p>
+</li>
+<li>
+<p>Greenville Clojure Users Group (and <a href="https://groups.google.com/forum/#!forum/greenville-clojure">mailing list</a>)</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Clojure-Co-Lab/">Clojure Co-Lab</a> - Columbia, South
+Carolina</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>West</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://seajure.github.io">Seajure - Seattle Clojure Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/clojerks/">Clojure user group in Portland</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/The-Bay-Area-Clojure-User-Group/">Bay Area Clojure User
+Group</a> - San Francisco (monthly meetup plus monthly
+dojo); San Mateo (monthly meetup)</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Denver-Clojure-Meetup/">Denver Clojure Meetup</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Los-Angeles-Clojure-Users-Group/">Los Angeles Clojure Users Group</a> and <a href="https://groups.google.com/forum/#!forum/clj-la">mailing list</a></p>
+</li>
+<li>
+<p>Santa Barbara Clojure Users Group</p>
+</li>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/clj-phx">Phoenix Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/San-Diego-Clojure-Users-Group/">San Diego Clojure Users Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="europe"><a class="anchor" href="#europe"></a>Europe</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Austria</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/clojure-vienna/">Vienna Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Belgium</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.beclojure.org">BeClojure</a> (Twitter: <a href="https://twitter.com/beclojure">@beclojure</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Bulgaria</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Lambda-Dojo-Sofia/">Lambda Dojo Sofia</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Czech Republic</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plus.google.com/communities/110902954360410928675">Lambda Meetup Ostrava</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Lambda-Meetup-Group/">Prague Lambda Meetup</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Denmark</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gath.io/group/itQUVzllL3FKEm_f6jQRd">Aarhus Clojure Meetup</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Copenhagen-Clojure-Meetup/">Copenhagen Clojure Meetup</a> - meetings every 6 weeks</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Finland</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/forum/#%21forum/clojure-finland">Clojure Finland</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>France</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/group/clojure-fr/">French community mailing list</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/fr-FR/Paris-Clojure-User-Group/">Paris Clojure Meetup</a></p>
+</li>
+<li>
+<p><a href="http://clojure-lyon.eventbrite.fr/">Clojure Lyon EventBrite (France)</a>- local meetups registration</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/riviera-scala-clojure">Riviera Clojure</a> (Join with
+Riviera Scala, (Twitter: <a href="https://twitter.com/riviera_func">@riviera_func</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Germany</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Clojure-Berlin/">Berlin Clojure User Group</a> and <a href="https://groups.google.com/forum/#!forum/clojure-user-group-berlin">mailing list</a></p>
+</li>
+<li>
+<p><a href="http://www.cugb.de">Bonn Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/de-DE/Clojure-Usergroup-Franken/">Clojure Usergroup Franken</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/clojure-cologne/">Cologne Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/de-DE/Dusseldorf-Clojure-Meetup/">Düsseldorf Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/ClojureUserGroupHH/">Hamburg Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Hungary</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Budapest-Clojure-User-Group/">Budapest Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ireland</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Clojure-Ireland/">Clojure Ireland</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Italia</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/group/clojure-italy">Italian Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Netherlands</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://amsclj.nl/">The Dutch Clojure Meetup</a> (Twitter: <a href="https://twitter.com/amsclj">@amsclj</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Norway</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/Oslo-Clojure-Meetup/">Oslo Clojure Meetup</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Russia</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://plus.google.com/u/0/communities/114227952963737516047">Clojure Russia</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Slovakia</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/group/bratislava-clojure/">Bratislava Clojure</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Sweden</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/got-lambda">Got.λ - Göteborg Functional Programming Group</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/group/stockholm-clojure-user-group">Stockholm Clojure User Group</a> (Twitter: <a href="https://twitter.com/sclojug">@sclojug</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Switzerland</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/zh-clj-Zurich-Clojure-User-Group/">Zürich Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>UK</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.meetup.com/London-Clojurians/">London Clojurians</a> (<a href="https://londonclojurians.org/">website</a>, <a href="https://twitter.com/ldnclj">@ldnclj</a>, <a href="https://www.youtube.com/c/LondonClojurians">YouTube</a>, <a href="https://opencollective.com/london-clojurians">Sponsors</a>)</p>
+</li>
+<li>
+<p>Manchester Clojure Dojo</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Cambridge-NonDysFunctional-Programmers/">Cambridge NonDysFunctional Programmers</a> and <a href="https://groups.google.com/forum/#!forum/camclj">Cambridge Clojure User Group</a> mailing list</p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Bristol-Clojurians/">Bristol Clojurians</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/edinburgh-clojurians">Edinburgh Clojurians</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/glasgow-clojurians">Glasgow Clojurians</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="asia"><a class="anchor" href="#asia"></a>Asia</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://groups.google.com/group/bangalore-clj">Bangalore Clojure Group</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/group/cn-clojure">Chinese Clojure Group</a></p>
+</li>
+<li>
+<p><a href="http://clojure-china.org/">Clojure China</a> and <a href="http://weibo.com/clojurechina" class="bare">http://weibo.com/clojurechina</a></p>
+</li>
+<li>
+<p><a href="https://www.meetup.com/Clojure-Israel/">Clojure Israel</a></p>
+</li>
+<li>
+<p><a href="https://groups.google.com/forum/#!forum/clojuresg">Singapore Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="https://www.facebook.com/groups/defnclojure">Clojure Korea</a></p>
+</li>
+<li>
+<p><a href="http://clojure.tw">Clojure Taiwan</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="australianz"><a class="anchor" href="#australianz"></a>Australia / New Zealand</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.meetup.com/clj-syd/">Sydney Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="http://www.meetup.com/clj-melb/">Melbourne Clojure User Group</a></p>
+</li>
+<li>
+<p><a href="http://www.meetup.com/Auckland-Clojure/">Auckland Clojure User Group</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/community/user_groups.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

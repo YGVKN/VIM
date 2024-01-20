@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Frequently Asked Questions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Learning</div>
+            <a href="getting_started" class="w-nav-link clj-section-nav-item-link">Getting Started</a>
+            <a href="install_clojure" class="w-nav-link clj-section-nav-item-link">Install Clojure</a>
+            <a href="editors" class="w-nav-link clj-section-nav-item-link">Editors</a>
+            <a href="structural_editing" class="w-nav-link clj-section-nav-item-link">Structural Editing</a>
+            <a href="repl/introduction" class="w-nav-link clj-section-nav-item-link">REPL Programming <span class="clj-nav-nested-icon">&#xeab8;</span></a>
+            <a href="learn/clojure" class="w-nav-link clj-section-nav-item-link">Learn Clojure <span class="clj-nav-nested-icon">&#xeab8;</span></a>
+            <a href="faq" class="w-nav-link clj-section-nav-item-link">FAQ</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Language</div>
+            <a href="spec" class="w-nav-link clj-section-nav-item-link">spec</a>
+            <a href="weird_characters" class="w-nav-link clj-section-nav-item-link">Reading Clojure Characters</a>
+            <a href="destructuring" class="w-nav-link clj-section-nav-item-link">Destructuring</a>
+            <a href="threading_macros" class="w-nav-link clj-section-nav-item-link">Threading Macros</a>
+            <a href="equality" class="w-nav-link clj-section-nav-item-link">Equality</a>
+            <a href="comparators" class="w-nav-link clj-section-nav-item-link">Comparators</a>
+            <a href="reader_conditionals" class="w-nav-link clj-section-nav-item-link">Reader Conditionals</a>
+            <a href="higher_order_functions" class="w-nav-link clj-section-nav-item-link">Higher Order Functions</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Usage</div>
+            <a href="dev_startup_time" class="w-nav-link clj-section-nav-item-link">Dev Startup Time</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Tools</div>
+            <a href="deps_and_cli" class="w-nav-link clj-section-nav-item-link">Deps and CLI</a>
+            <a href="tools_build" class="w-nav-link clj-section-nav-item-link">tools.build</a>
+
+            <div class="w-nav-link clj-section-nav-heading">Libraries</div>
+            <a href="async_walkthrough" class="w-nav-link clj-section-nav-item-link">core.async Walkthrough</a>
+            <a href="core_async_go" class="w-nav-link clj-section-nav-item-link">Go Block Best Practices</a>
+            <a href="test_check_beginner" class="w-nav-link clj-section-nav-item-link">test.check</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Frequently Asked Questions</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Frequently Asked Questions</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_reader_and_syntax">Reader and Syntax</a></li>
+<li><a href="#_collections_sequences_and_transducers">Collections, Sequences, and Transducers</a></li>
+<li><a href="#_core_functions">Core functions</a></li>
+<li><a href="#_spec">Spec</a></li>
+<li><a href="#_state_and_concurrency">State and Concurrency</a></li>
+<li><a href="#_namespaces">Namespaces</a></li>
+<li><a href="#_compiler">Compiler</a></li>
+<li><a href="#_java_and_interop">Java and Interop</a></li>
+<li><a href="#_design_and_use">Design and Use</a></li>
+<li><a href="#_deps_and_cli">Deps and CLI</a></li>
+<li><a href="#_contributing">Contributing</a></li>
+<li><a href="#_future_ideas">Future ideas</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These questions and answers are adapted from mailing lists and other Clojure community forums.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reader_and_syntax"><a class="anchor" href="#_reader_and_syntax"></a>Reader and Syntax</h2>
+<div class="sectionbody">
+<div id="why_keywords" class="paragraph">
+<p><strong><a href="faq#why_keywords">What&#8217;s the advantage of representing text tokens as keywords (instead of as strings)?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Keywords are cached and interned. This means that a keyword is reused (reducing memory) everywhere in your program and that checks for equality really become checks for identity (which are fast). Additionally, keywords are invokable to look themselves up in a map and thus this enables the common pattern of extracting a particular field from a collection of maps possible.</p>
+</div>
+<div id="keyword_number" class="paragraph">
+<p><strong><a href="faq#keyword_number">Is :1 a valid keyword?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>The <a href="xref/../../reference/reader">reader</a> page defines keywords as "like symbols" and symbols "begin with a non-numeric character" so the original intent was that <code>:1</code> would be invalid. In fact, the only reason it is readable at all is due to a <a href="https://clojure.atlassian.net/browse/CLJ-1252">bug</a> in the keyword regex. This bug was fixed in a 1.6 alpha but we quickly discovered that these keywords were in use in many actual projects. To avoid breaking existing working code, the change was rolled back and this form will continue to be supported. (There are still some <a href="https://clojure.atlassian.net/browse/CLJ-1286">open</a> <a href="https://clojure.atlassian.net/browse/CLJ-1527">issues</a> to clarify this in code and/or docs.)</p>
+</div>
+<div class="paragraph">
+<p>Note that namespaced keywords with names starting with numbers have never been readable or valid, ie <code>:foo/1</code>. However, auto-resolved keywords like <code>::1</code> can be read but not round-tripped from print to read.</p>
+</div>
+<div class="paragraph">
+<p>In general, it&#8217;s best to avoid using keywords that start with a number unless it is in a narrow and controlled scope.</p>
+</div>
+<div id="unreadable_keywords" class="paragraph">
+<p><strong><a href="faq#unreadable_keywords">Why is it possible to create keywords that can&#8217;t be read by the reader?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>The <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/keyword"><code>keyword</code></a> function can be used to programmatically create keywords based on user data or other sources of input. Similarly, the <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/namespace"><code>namespace</code></a> and <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/name"><code>name</code></a> functions can be used to pull a keyword back apart into components. It is common for programs to use this functionality to create keywords to be used as identifiers or map keys without ever printing and reading that data back.</p>
+</div>
+<div class="paragraph">
+<p>Because of this use case (and also for general performance), no validation check is performed on the inputs to <code>keyword</code> (or <code>symbol</code>), which makes it possible to create keywords that, when printed, cannot be read back into a keyword (due to spaces or other non-allowed characters). If this is important to you, you should validate the keyword inputs first, before creating the keyword.</p>
+</div>
+<div id="reader_macros" class="paragraph">
+<p><strong><a href="faq#reader_macros">Why does Clojure not have user-extensible reader macros?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>The reader takes text (Clojure source) and returns Clojure data, which is subsequently compiled and evaluated. Reader macros tell the Clojure reader how to read something that is not a typical s-expression (examples are things like quoting <code>'</code> and anonymous functions <code>#()</code>). Reader macros can be used to define entirely new syntaxes read by the reader (for example: JSON, XML, or other formats) - this is a more powerful syntactic capability than regular macros (which come into play later at compile time).</p>
+</div>
+<div class="paragraph">
+<p>However, unlike Lisp, Clojure does not allow the user to extend this set of reader macros. This avoids the possibility of creating code that another user cannot read (because they do not have the proper reader macros). Clojure gives back some of the power of reader macros with tagged literals, allowing you to create generically readable <em>data</em>, that is still extensible.</p>
+</div>
+<div class="paragraph">
+<p>Also see the <a href="xref/../../about/history">History of Clojure</a> paper section about this (search for "reader macros").</p>
+</div>
+<div id="underscore" class="paragraph">
+<p><strong><a href="faq#underscore">What does an _ mean in a let binding or parameter?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>_ has no special meaning in Clojure as a symbol. However, it is a convention to use _ (or a leading _) to denote a binding that will not be used in the expression. A common case for this is skipping unneeded values in <a href="destructuring#_sequential_destructuring">sequential destructuring</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(defn get-y [point]
+  (let [[_ y] point]   ;; x-value of point is unused, so mark it with _
+    y))</code></pre>
+</div>
+</div>
+<div id="qmark_bang" class="paragraph">
+<p><strong><a href="faq#qmark_bang">What does a ? or ! mean in a function name?</a></strong></p>
+</div>
+<div class="paragraph">
+<p><code>?</code> and <code>!</code> have no special meaning in Clojure as part of a function name. However, it is a convention to use a trailing <code>?</code> to denote a predicate function and a trailing <code>!</code> to denote a function with side-effects. More specifically, a trailing <code>?</code> indicates that a predicate strictly returns a boolean result (<code>true</code> or <code>false</code>). A trailing <code>!</code> was originally intended to indicate that a function has side-effects that would make it unsafe to use inside a <a href="xref/../../reference/refs">ref transaction</a> (in the Software Transactional Memory sense). In the wild, the use of <code>!</code> is less consistent and is sometimes used in a broader way to indicate any sort of side-effecting behavior.</p>
+</div>
+<div id="anon_vector" class="paragraph">
+<p><strong><a href="faq#anon_vector">Why doesn&#8217;t the anonymous function <code>#([%1])</code> work to construct a vector?</a></strong></p>
+</div>
+<div class="paragraph">
+<p><code>#()</code> always expands to include parens around the expression you give it, thus in this case it yields <code>(fn [x] ([x]))</code> which fails when the vector is invoked. Instead, use the vector function <code>#(vector %)</code> or just <code>vector</code>, which is the function being described.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collections_sequences_and_transducers"><a class="anchor" href="#_collections_sequences_and_transducers"></a>Collections, Sequences, and Transducers</h2>
+<div class="sectionbody">
+<div id="conj" class="paragraph">
+<p><strong><a href="faq#conj">Why does <code>conj</code> add to the front of a list, but the back of a vector?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Most Clojure data structure operations, including <code>conj</code> (conjoin), are designed to give the user a performance expectation. With <code>conj</code>, the expectation is that insertion should happen at the place where this operation is efficient. Lists (as linked lists) can make a constant time insertion only at the front. Vectors (indexed) are designed to expand at the back. As the user, you should consider this when you choose which data structure to use. In Clojure, vectors are used with much greater frequency.</p>
+</div>
+<div class="paragraph">
+<p>If your goal is specifically to "add to the front of the collection", then the appropriate function to use is <code>cons</code>, which will always add to the front. Note however that this will produce a sequence, not an instance of the original collection type.</p>
+</div>
+<div id="seqs_vs_colls" class="paragraph">
+<p><strong><a href="faq#seqs_vs_colls">I keep forgetting that after calling sequence functions on vectors/sets, the return value is no longer a vector or a set.</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Generally you should divide the Clojure core functions into these two categories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data structure functions - take a data structure and return a modified versions of that data structure (conj, disj, assoc, dissoc, etc). These functions always take the data structure <em>first</em>.</p>
+</li>
+<li>
+<p>Sequence functions - take a "seqable" and return a seqable. [Generally we try to avoid committing to the return values actually being an instance of ISeq - this allows for performance optimizations in some cases.] Examples are map, filter, remove, etc. All of these functions take the seqable <em>last</em>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It sounds like you are using the latter but expecting the semantics of the former (which is a common issue for new Clojurists!). If you want to apply sequence functions but have more control over the output data structure, there are a number of ways to do that.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use data-structure equivalents like mapv or filterv, etc - this is a very limited set that lets you perform these ops but return a data structure rather than a seqable. <code>(mapv inc (filterv odd? [1 2 3]))</code></p>
+</li>
+<li>
+<p>Pour the results of your sequence transformations back into a data structure with into: <code>(into [] (map inc (filter odd? [1 2 3])))</code></p>
+</li>
+<li>
+<p>Use transducers (likely with <code>into</code>) - this has much the same effect as #2, but combinations of transformations can be applied more efficiently without creating any sequences - only the final result is built: <code>(into [] (comp (filter odd?) (map inc)) [1 2 3])</code>. As you work with larger sequences or more transformations, this makes a significant difference in performance.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note that all of these are eager transformations - they produce the output vector when you invoke them. The original sequence version <code>(map inc (filter odd? [1 2 3]))</code> is lazy and will only produce values as needed (with chunking under the hood for greater performance). Neither of these is right or wrong, but they are both useful in different circumstances.</p>
+</div>
+<div id="arg_order" class="paragraph">
+<p><strong><a href="faq#arg_order">What are the rules of thumb for arg order in core functions?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Primary collection operands come first. That way one can write <code>-></code> and
+its ilk, and their position is independent of whether or not they have
+variable arity parameters. There is a tradition of this in OO
+languages and Common Lisp (<code>slot-value</code>, <code>aref</code>, <code>elt</code>).</p>
+</div>
+<div class="paragraph">
+<p>One way to think about sequences is that they are read from the left,
+and fed from the right:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>&lt;- [1 2 3 4]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Most of the sequence functions consume and produce sequences. So one
+way to visualize that is as a chain:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>map &lt;- filter &lt;- [1 2 3 4]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and one way to think about many of the seq functions is that they are
+parameterized in some way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>(map f) &lt;- (filter pred) &lt;- [1 2 3 4]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, sequence functions take their source(s) last, and any other
+parameters before them, and partial allows for direct parameterization
+as above. There is a tradition of this in functional languages and
+Lisps.</p>
+</div>
+<div class="paragraph">
+<p>Note that this is not the same as taking the primary operand last.
+Some sequence functions have more than one source (concat,
+interleave). When sequence functions are variadic, it is usually in
+their sources.</p>
+</div>
+<div class="paragraph">
+<p><em>Adapted from <a href="https://groups.google.com/d/msg/clojure/iyyNyWs53dc/Q_8BtjRthqgJ">comments by Rich Hickey</a>.</em></p>
+</div>
+<div id="transducers_vs_seqs" class="paragraph">
+<p><strong><a href="faq#transducers_vs_seqs">What are good use cases for transducers?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>When performing a series of transformations, sequences will create an intermediate (cached) sequence between each transformation. Transducers create a single compound transformation that is executed in one eager pass over the input. These are different models, which are both useful.</p>
+</div>
+<div class="paragraph">
+<p>Performance benefits of transducers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Source collection iteration - when used on reducible inputs (collections and other things), avoid creating an unnecessary input collection sequence - helps memory and time.</p>
+</li>
+<li>
+<p>Intermediate sequences and cached values - as the transformation happens in a single pass, you remove all intermediate sequence and cached value creation - again, helps memory and time. The combination of the prior item and this one will start to win big as the size of the input collection or number of transformations goes up (but for small numbers of either, chunked sequences can be surprisingly fast and will compete).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Design / usage benefits of transducers:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Transformation composition - some use cases will have a cleaner design if they separate transformation composition from transformation application. Transducers support this.</p>
+</li>
+<li>
+<p>Eagerness - transducers are great for cases where eagerly processing a transformation (and potentially encountering any errors) is more important than laziness</p>
+</li>
+<li>
+<p>Resource control - because you have more control over when the input collection is traversed, you also know when processing is complete. It&#8217;s thus easier to release or clean up input resources because you know when that happens.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Performance benefits of sequences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Laziness - if you will only need some of the outputs (for example a user is deciding how many to use), then lazy sequences can often be more efficient in deferring processing. In particular, sequences can be lazy with intermediate results, but transducers use a pull model that will eagerly produce all intermediate values.</p>
+</li>
+<li>
+<p>Infinite streams - because transducers are typically eagerly consumed, they don&#8217;t match well with infinite streams of values</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Design benefits of sequences:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumer control - returning a seq from an API lets you combine input + transformation into something that gives the consumer control. Transducers don&#8217;t work as well for this (but will work better for cases where input and transformation are separated).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_functions"><a class="anchor" href="#_core_functions"></a>Core functions</h2>
+<div class="sectionbody">
+<div id="def_minus" class="paragraph">
+<p><strong><a href="faq#def_minus">Why <code>defn-</code> but no <code>def-</code>?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>At one point, metadata was more cumbersome to use than now (the syntax for a private defn was <code>#^{:private true}</code>), and <code>defn-</code> seemed worth creating as an "easy" version. The metadata support improved and became "stackable" which allowed easier composition of independent metadata. Rather than create private variants of all the def forms, it is simply preferred to use <code>^:private</code> metadata when needed on <code>def</code> or other def forms..</p>
+</div>
+<div id="partial" class="paragraph">
+<p><strong><a href="faq#partial">Why does <code>partial</code> not see updates to vars or protocols?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>When <code>partial</code> (or other higher-order function combinators like <code>comp</code>, <code>juxt</code>, etc) is used, any vars referenced are evaluated to function objects before <code>partial</code> is invoked, and thus it captures the value of any function vars referenced, not the var itself. For example: <code>(partial my-fn 100)</code> evaluates <code>my-fn</code> to the current function value of <code>#'my-fn</code>, then invokes <code>partial</code> with it. If the <code>my-fn</code> var is rebound in the REPL, the prior <code>partial</code> function will not "see" those changes, because it only has the function, not the var.</p>
+</div>
+<div class="paragraph">
+<p>If you are finding this to be a problem in interactive development, you can insert a layer of indirection. One option is to use the var reference <code>#'myfn</code> instead or you can use a separate <code>fn</code> or <code>defn</code> to re-include var dereferencing. Alternately, you can use a <code>fn</code> or anonymous function literal in place of the partial.</p>
+</div>
+<div class="paragraph">
+<p>In general, this is not an issue in a running app (because vars are not typically getting re-bound), but can occur in interactive REPL development.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_spec"><a class="anchor" href="#_spec"></a>Spec</h2>
+<div class="sectionbody">
+<div id="spec_alpha" class="paragraph">
+<p><strong><a href="faq#spec_alpha">Why is spec alpha?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>spec is in alpha to indicate that the API may still change. spec was broken out of Clojure core so that spec can be updated independently from the main Clojure version. At some point spec&#8217;s API will be considered stable and at that point the alpha will be removed. The next version of spec is being developed at <a href="https://github.com/clojure/spec-alpha2">alpha.spec</a>.</p>
+</div>
+<div id="spec_location" class="paragraph">
+<p><strong><a href="faq#spec_location">Where should I put my specs?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>There is no single right answer to this question. For data specs, it is often useful to put them in their own namespace, which may or may not match the qualifier used in the data specs. Matching the qualifier to the namespace allows the use of auto-resolved keywords both within the specs and in aliases in other namespaces, but also entwines them, making refactoring more complicated.</p>
+</div>
+<div class="paragraph">
+<p>For function specs, most people either put them immediately before or after the function they apply to, or in a separate namespace that can optionally be required when needed (for testing or validation). In the latter case, Clojure core has followed the pattern of using foo.bar.specs to hold function specs for the functions in foo.bar.</p>
+</div>
+<div id="regex_nesting" class="paragraph">
+<p><strong><a href="faq#regex_nesting">How do nested regex ops work?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Regex ops (cat, alt, *, +, ?, etc) always describe the elements in a sequential collection. They are not, by themselves, specs. When used in a spec context they are coerced into specs. Nested regex ops combine to form a single regex spec over the same sequential collection.</p>
+</div>
+<div class="paragraph">
+<p>To validate a nested collection, use <code>s/spec</code> to wrap the inner regex, forcing a spec boundary between regex ops.</p>
+</div>
+<div id="instrument_ret" class="paragraph">
+<p><strong><a href="faq#instrument_ret">Why doesn&#8217;t <code>instrument</code> check return values?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Instrument is intended to verify that a function is being invoked according to its args spec. That is, is the function being called correctly? This functionality should be used during development.</p>
+</div>
+<div class="paragraph">
+<p>Checking whether a function operates correctly is a test-time activity and this should be checked with the <code>check</code> function which will actually invoke the function with generated args and verify the ret and fn specs on each invocation.</p>
+</div>
+<div id="skip_macros" class="paragraph">
+<p><strong><a href="faq#skip_macros">Is there a way to skip checking macro specs?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Yes, set the Java system property <code>-Dclojure.spec.skip-macros=true</code> and no macro specs will be checked during macroexpansion.</p>
+</div>
+<div id="exclusive_keys" class="paragraph">
+<p><strong><a href="faq#exclusive_keys">How do I write a map that only allows certain keys?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Spec&#8217;s general philosophy is one of "open" specs where maps can contain additional keys beyond what is specified as required or optional in an s/keys spec. One way to accomplish a constrained key set is to <code>s/and</code> an additional constraint:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(s/def ::auth
+  (s/and
+    (s/keys :req [::user ::password])
+    #(every? #{::user ::password} (keys %))))</code></pre>
+</div>
+</div>
+<div id="spec_doc" class="paragraph">
+<p><strong><a href="faq#spec_doc">Can I add docs or metadata for specs?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Currently, no. This is under consideration for the next version of spec.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_state_and_concurrency"><a class="anchor" href="#_state_and_concurrency"></a>State and Concurrency</h2>
+<div class="sectionbody">
+<div id="concurrency_features" class="paragraph">
+<p><strong><a href="faq#concurrency_features">What are the trade-offs between reducers, core.async, futures, and pmap?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Each of these really addresses a different use case.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reducers are best for fine-grained data parallelism when computing a transformation over existing in-memory data (in a map or vector). Generally it&#8217;s best when you have thousands of small data items to compute over and many cores to do the work. Anything described as "embarrassingly parallel".</p>
+</li>
+<li>
+<p>Futures are best for pushing work onto a background thread and picking it up later (or for doing I/O waits in parallel). It&#8217;s better for big chunky tasks (go fetch a bunch of data in the background).</p>
+</li>
+<li>
+<p>core.async is primarily used to organize the subsystems or internal structure of your application. It has channels (queues) to convey values from one "subprocess" (go block) to another. So you&#8217;re really getting concurrency and architectural benefits in how you break up your program. The killer feature you can really only get in core.async is the ability to wait on I/O events from multiple channels for the first response on any of them (via alt/alts). Promises can also be used to convey single values between independent threads/subprocesses but they are single delivery only.</p>
+</li>
+<li>
+<p>Tools like pmap, java.util queues and executors, and libraries like claypoole are doing coarse-level "task" concurrency. There is some overlap with core.async here which has a very useful transducer-friendly pipeline functionality.</p>
+</li>
+</ul>
+</div>
+<div id="agent_shutdown" class="paragraph">
+<p><strong><a href="faq#agent_shutdown">Why does Clojure "hang" for 1 minute when my program ends?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>This is most commonly asked in the context of programs that use <code>future</code>, <code>pmap</code>, <code>agent-send</code>, or other functions that invoke those functions. When a program like this finishes, there will be a 60 second pause before exit. To fix this problem, call <a href="https://clojure.github.io/clojure/clojure.core-api.html#clojure.core/shutdown-agents">shutdown-agents</a> as the program exits.</p>
+</div>
+<div class="paragraph">
+<p>Clojure uses two internal thread pools to service futures and agent function executions. Both pools use non-daemon threads and the JVM will not exit while any non-daemon thread is alive. In particular, the pool that services futures and agent send-off calls uses an Executor cached thread pool with a 60 second timeout. In the scenario above, the program will wait until the background threads have completed their work and the threads expire before it can exit.</p>
+</div>
+<div id="write_skew" class="paragraph">
+<p><strong><a href="faq#write_skew">Why the Clojure STM does not guarantee serializability but only snapshot isolation?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>If reads were included by default, then STM would be slower (as more transactions would require serializability). However, in many cases, reads do not need to be included. Thus, users can choose to accept the performance penalty when it is necessary and get faster performance when it is not.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_namespaces"><a class="anchor" href="#_namespaces"></a>Namespaces</h2>
+<div class="sectionbody">
+<div id="ns_file" class="paragraph">
+<p><strong><a href="faq#ns_file">Do namespaces map 1-to-1 with files?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>No (although that is typical). One namespace can be split across multiple files by using <code>load</code> to load secondary files and <code>in-ns</code> in those files to retain the namespace (clojure.core is defined in this way). Also, it is possible to declare multiple namespaces in a single file (although this is very unusual).</p>
+</div>
+<div id="ns_as_fn" class="paragraph">
+<p><strong><a href="faq#ns_as_fn">Do namespaces work like regular functions? Looking at the syntax, it seems ns could be returning a function that makes a namespace, and then if you just stick parens around the contents of the file, that would be a regular S expression too. Does that imply you can put more than one in a file?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>ns is a macro that does a number of things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>creates a new internal Namespace object (if it does not yet exist)</p>
+</li>
+<li>
+<p>makes that namespace the new current namespace (<code>*ns*</code>)</p>
+</li>
+<li>
+<p>auto-refers all vars from clojure.core and imports all classes from java.lang</p>
+</li>
+<li>
+<p>requires/refers other namespaces and vars as specified</p>
+</li>
+<li>
+<p>(and other optional things)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ns does not return a function or anything invokable as you suggest.</p>
+</div>
+<div class="paragraph">
+<p>While ns is typically placed at the top of a clj file, it is actually just a normal macro and can be invoked at the repl just the same. It could also be used more than once in a single file (although this would be surprising to most clj programmers and would likely not work as desired in AOT).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compiler"><a class="anchor" href="#_compiler"></a>Compiler</h2>
+<div class="sectionbody">
+<div id="direct_linking_repl" class="paragraph">
+<p><strong><a href="faq#direct_linking_repl">How does direct linking affect the REPL experience?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Anything that has been direct linked will not see redefinitions to vars. For example, if you redefine something in clojure.core, other parts of core that use that var will not see the redefinition (however anything that you newly compile at the REPL will). In practice, this is not typically a problem.</p>
+</div>
+<div class="paragraph">
+<p>For parts of your own app, you may wish to only enable direct linking when you build and deploy for production, rather than using it when you developing at the REPL. Or you may need to mark parts of your app with ^:redef if you want to always allow redefinition or ^:dynamic for dynamic vars.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_java_and_interop"><a class="anchor" href="#_java_and_interop"></a>Java and Interop</h2>
+<div class="sectionbody">
+<div id="inner" class="paragraph">
+<p><strong><a href="faq#inner">How do you refer to a nested or inner class?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Use a $ to separate outer from inner class name. For example: <code>java.util.Map$Entry</code> is the Entry inner class inside Map.</p>
+</div>
+<div id="primitive_type" class="paragraph">
+<p><strong><a href="faq#primitive_type">How do you refer to the class representing a primitive?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Primitive types can be found as the static TYPE field on the boxed class, for example: <code>Integer/TYPE</code>.</p>
+</div>
+<div id="varargs" class="paragraph">
+<p><strong><a href="faq#varargs">How do you invoke a Java method with a vararg signature?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Java treats a trailing varargs parameter as an array and it can be invoked from Clojure by passing an explicit array.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">;; Invoke static Arrays.asList(T... a)
+(java.util.Arrays/asList (object-array [0 1 2]))
+
+;; Invoke static String.format(String format, Object... args)
+(String/format "%s %s, %s" (object-array ["March" 1 2016]))
+
+;; For a primitive vararg, use the appropriate primitive array constructor
+;; Invoke put(int row, int col, double... data)
+(.put o 1 1 (double-array [2.0]))
+
+;; Passing at least an empty array is required if there are no varargs
+(.put o 1 1 (double-array []))
+
+;; into-array can be used to create an empty typed array
+;; Invoke getMethod(String name, Class... parameterTypes) on a Class instance
+(.getMethod String "getBytes" (into-array Class []))</code></pre>
+</div>
+</div>
+<div id="illegal_access" class="paragraph">
+<p><strong><a href="faq#illegal_access">Why do I get an illegal access warning?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Java 9 added a module system, allowing code to be partitioned into modules where code outside a module cannot invoke code inside the module unless it has been exported by the module. One of the areas affected by this change in Java is reflective access. Clojure uses reflection when it encounters a Java interop call without sufficient type information about the target object or the function arguments. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(def fac (javax.xml.stream.XMLInputFactory/newInstance))
+(.createXMLStreamReader fac (java.io.StringReader. ""))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here <code>fac</code> is an instance of <code>com.sun.xml.internal.stream.XMLInputFactoryImpl</code>, which is an extension of <code>javax.xml.stream.XMLInputFactory</code>. In the java.xml module, javax.xml.stream is an exported package, but the XMLInputFactoryImpl is an internal implementation of the public abstract class in that package. The invocation of <code>createXMLStreamReader</code> here will be reflective and the Reflector will attempt to invoke the method based on the implementation class, which is not accessible outside the module, yielding:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="shell">WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by clojure.lang.Reflector (file:/.m2/repository/org/clojure/clojure/1.10.0/clojure-1.10.0.jar) to method com.sun.xml.internal.stream.XMLInputFactoryImpl.createXMLStreamReader(java.io.Reader)
+WARNING: Please consider reporting this to the maintainers of clojure.lang.Reflector
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first thing to note here is that this is a warning. Java 9 through all current releases will permit the call to be made and the code will continue to work.</p>
+</div>
+<div class="paragraph">
+<p>There are several potential workarounds:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Perhaps the best is to provide type hints to the exported types so the call is no longer reflective:<br></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(.createXMLStreamReader ^javax.xml.stream.XMLInputFactory fac (java.io.StringReader. ""))</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>As of Clojure 1.10, turn off illegal access with <code>--illegal-access=deny</code>. The Java reflection system will then provide the necessary feedback to Clojure to detect that calling through the inaccessible class is not an option. Clojure will find the public invocation path instead and no warning will be issued.</p>
+</li>
+<li>
+<p>Use JVM module system flags (<code>--add-exports</code> etc ) to forcibly export the internal packages to avoid the warning. This is not recommended.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If it is difficult to tell from the warning where the reflection is occurring, it may help to add the flag:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>--illegal-access=debug</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For example, via the Clojure CLI, using the <code>-J</code> option (or as part of <code>:jvm-opts</code> under an alias in <code>deps.edn</code>):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>clj -J--illegal-access=debug</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_design_and_use"><a class="anchor" href="#_design_and_use"></a>Design and Use</h2>
+<div class="sectionbody">
+<div id="encapsulation" class="paragraph">
+<p><strong><a href="faq#encapsulation">How do you achieve encapsulation with Clojure?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Because of its focus on immutable data, there is generally not a high value placed on data encapsulation. Because data is immutable, there is no need to worry about someone else modifying a value. Likewise, because Clojure data is designed to be manipulated directly, there is significant value in providing direct access to data, rather than wrapping it in APIs.</p>
+</div>
+<div class="paragraph">
+<p>All Clojure vars are globally available so again there is not much in the way of encapsulation of functions within namespaces. However, the ability to mark vars private (either using <code>defn-</code> for functions or <code>def</code> with <code>^:private</code> for values) is a convenience for a developer to indicate which parts of an API should be considered public for use vs part of the implementation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deps_and_cli"><a class="anchor" href="#_deps_and_cli"></a>Deps and CLI</h2>
+<div class="sectionbody">
+<div id="clj_replace" class="paragraph">
+<p><strong><a href="faq#clj_replace">Is clj a replacement for lein and boot?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>No. The Clojure CLI is focused on a) building classpaths and b) launching clojure programs. It does not (and will not) create artifacts, deploy artifacts, etc, although they may facilitate these actions through tools and libraries.</p>
+</div>
+<div class="paragraph">
+<p>tools.deps aims to provide programmatic building blocks for dependency resolution and classpath construction. clj/clojure wraps these into a command-line form that can be used to run Clojure programs. You can compose these pieces to do many other things.</p>
+</div>
+<div id="clj_dynamic" class="paragraph">
+<p><strong><a href="faq#clj_dynamic">Do these tools allow you to dynamically add dependencies to a running repl?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>No. Other tools exist to do this now or could be added on top of the existing functionality but this was not part of the initial goal.</p>
+</div>
+<div id="clj_standalone" class="paragraph">
+<p><strong><a href="faq#clj_standalone">How can I create a single-file Clojure script, ideally self-invokable via a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang line</a>?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t need any extra dependencies, just put <code>#!/usr/bin/env clojure</code> as the first line. Note that <code>clojure</code> won&#8217;t automatically call a <code>-main</code> function, so be sure your file does more than just define functions. You can find command-line arguments in <code>*command-line-args*</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you do need extra dependencies, try the following, courtesy Dominic Monroe, substituting whatever deps you need in place of <code>funcool/tubax</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/sh
+
+"exec" "clojure" "-Sdeps" '{:deps {funcool/tubax {:mvn/version "0.2.0"}}}' "$0" "$@"
+
+;; Clojure code goes here.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing"><a class="anchor" href="#_contributing"></a>Contributing</h2>
+<div class="sectionbody">
+<div id="ca" class="paragraph">
+<p><strong><a href="faq#ca">Why does Clojure require that contributors first sign a contributor agreement (CA)?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://clojure.org/contributing" class="bare">http://clojure.org/contributing</a></p>
+</div>
+<div class="paragraph">
+<p>It boils down to two reasons:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To protect Clojure from future legal challenges that might discourage businesses from adopting it.</p>
+</li>
+<li>
+<p>To enable Clojure to be relicensed under a different open-source license if that would be advantageous.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Signing the Contributor Agreement grants Rich Hickey joint ownership of your contributions. In exchange, Rich Hickey guarantees that Clojure will always be available under an open-source license approved by either the <a href="http://www.fsf.org/">Free Software Foundation</a> or the <a href="http://opensource.org/">Open Source Initiative</a>.</p>
+</div>
+<div id="echosign_bug" class="paragraph">
+<p><strong><a href="faq#echosign_bug">Why does my CA email confirmation say "Clojure CA (between &lt;my-company&gt; and Rich Hickey) is Signed and Filed!"</a></strong></p>
+</div>
+<div class="paragraph">
+<p>This is a quirk of Adobe EchoSign specific to users whose email account is already associated with an Adobe EchoSign account. In those cases, EchoSign will use the company name from your existing profile in the subject line rather than the individual name that was signed on the form. Don&#8217;t worry! This has no effect - the agreement is as signed and attached in the email.</p>
+</div>
+<div id="prs" class="paragraph">
+<p><strong><a href="faq#prs">Other projects hosted on GitHub accept pull requests.  Why not Clojure?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Rich Hickey prefers to evaluate patches attached to JIRA tickets.  This is not to make it more difficult for contributors, or for legal reasons, but because of workflow preferences. See <a href="xref/../../dev/dev">the development page</a> for more details.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://groups.google.com/forum/#!msg/clojure/jWMaop_eVaQ/3M4gddaXDZoJ">Link</a> to Oct 2012 Clojure Google group message from Rich Hickey on this topic.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_future_ideas"><a class="anchor" href="#_future_ideas"></a>Future ideas</h2>
+<div class="sectionbody">
+<div id="native" class="paragraph">
+<p><strong><a href="faq#native">Will there be a native version of Clojure in the future?</a></strong></p>
+</div>
+<div class="paragraph">
+<p>Frequently people ask for a "native" version of Clojure, ie one that does not rely on the JVM. ClojureScript self-hosting is one current path but probably only useful for a subset of use cases. The <a href="https://www.graalvm.org/">GraalVM</a> project can be used to create a standalone binary executable. Native images produced with Graal start extremely fast but may have fewer opportunities to optimize performance than the full JVM.</p>
+</div>
+<div class="paragraph">
+<p>However, neither of these is likely what people are envisioning when they ask for a "native version of Clojure", which is a version of the language that is not JVM-hosted and compiles directly to a native executable, probably via something like LLVM. Clojure leverages an enormous amount of performance, portability, and functionality from the JVM and relies heavily on things like a world-class garbage collector. Building a "Clojure native" would require a large amount of work to make a version of Clojure that was slower (probably much slower), less portable, and with significantly less functionality (as the Clojure library relies heavily on the JDK). The Clojure core team has no plans to work on this but it would be an amazing learning project for anyone and we encourage you to go for it!</p>
+</div>
+</div>
+</div>
+
+      <p><em>Original author: Alex Miller</em></p>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/guides/faq.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

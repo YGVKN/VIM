@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Learn Clojure - Namespaces</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <a href="../guides" class="w-nav-link clj-section-nav-item-link"><span class="clj-nav-nested-icon">&#xeab5;</span> Back to Guides</a>
+            <div class="w-nav-link clj-section-nav-heading">Topics</div>
+            <a href="clojure" class="w-nav-link clj-section-nav-item-link">Introduction</a>
+            <a href="syntax" class="w-nav-link clj-section-nav-item-link">Syntax</a>
+            <a href="functions" class="w-nav-link clj-section-nav-item-link">Functions</a>
+            <a href="sequential_colls" class="w-nav-link clj-section-nav-item-link">Sequential Collections</a>
+            <a href="hashed_colls" class="w-nav-link clj-section-nav-item-link">Hashed Collections</a>
+            <a href="flow" class="w-nav-link clj-section-nav-item-link">Flow Control</a>
+            <a href="namespaces" class="w-nav-link clj-section-nav-item-link">Namespaces</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Namespaces</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Learn Clojure - Namespaces</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_namespaces_and_names">Namespaces and names</a>
+<ul class="sectlevel2">
+<li><a href="#_vars">Vars</a></li>
+<li><a href="#_loading">Loading</a></li>
+</ul>
+</li>
+<li><a href="#_declaring_namespaces">Declaring namespaces</a>
+<ul class="sectlevel2">
+<li><a href="#_refer">Refer</a></li>
+<li><a href="#_require">require</a></li>
+<li><a href="#_java_classes_and_imports">Java classes and imports</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_namespaces_and_names"><a class="anchor" href="#_namespaces_and_names"></a>Namespaces and names</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Namespaces provide a means to organize our code and the names we use in our code. Specifically, they let us give new unambiguous names to functions or other values. These full names are naturally long because they include context. Thus namespaces also provide a means to unambiguously reference the names of other functions and values but using names that are shorter and easier to type.</p>
+</div>
+<div class="paragraph">
+<p>A namespace is both a name context and a container for vars. Namespace names are symbols where periods are used to separate namespace parts, such as <code>clojure.string</code>. By convention, namespace names are typically lower-case and use <code>-</code> to separate words, although this is not required.</p>
+</div>
+<div class="sect2">
+<h3 id="_vars"><a class="anchor" href="#_vars"></a>Vars</h3>
+<div class="paragraph">
+<p>Vars are associations between a name (a symbol) and a value. Vars in a namespace have a fully-qualified name that is the combination of the namespace name and the var name. For example, <code>clojure.string/join</code> is a fully-qualified var name where <code>clojure.string</code> refers to the namespace and <code>join</code> refers to the var inside the namespace. All vars are globally accessible via their fully-qualified name. By convention vars have lower case names with <code>-</code> separating words, although this is also not required. Var names may contain most non-whitespace characters.</p>
+</div>
+<div class="paragraph">
+<p>Vars are created using <code>def</code> and other special forms or macros that start with <code>def</code>, like <code>defn</code>. Vars are created in the "current" namespace. The Clojure runtime tracks the current namespace in the var <code>clojure.core/*ns*</code>. The current namespace can be changed using the <code>in-ns</code> function.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_loading"><a class="anchor" href="#_loading"></a>Loading</h3>
+<div class="paragraph">
+<p>In addition to providing a naming context, namespace names also provide a convention for where a namespace&#8217;s code should be found for loading. A path is created based on the namespace name:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Periods become directory separators</p>
+</li>
+<li>
+<p>Hyphens become underscores</p>
+</li>
+<li>
+<p>The file extension <code>.clj</code> is added</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Thus the namespace name <code>com.some-example.my-app</code> becomes the load path <code>com/some_example/my_app.clj</code>. Load paths are searched using the JVM classpath. The classpath is a series of directory locations or JAR files (JARs are essentially just zip files).</p>
+</div>
+<div class="paragraph">
+<p>When a resource is needed, the JVM searches each classpath location in order for a file at the relative location of the load path. So if the classpath was <code>src:test</code>, the load path would be checked at <code>src/com/some_example/my_app.clj</code> then <code>test/com/some_example/my_app.clj</code>.</p>
+</div>
+<div class="paragraph">
+<p>There are several ways to load code in Clojure, but most commonly loading is accomplished via <code>require</code>.</p>
+</div>
+<div class="paragraph">
+<p>Due to this loading convention, most Clojure is structured with a 1-to-1 mapping of namespaces to files, stored in hierarchical fashion that maps to the namespace structure.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_declaring_namespaces"><a class="anchor" href="#_declaring_namespaces"></a>Declaring namespaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most Clojure files represent a single namespace and declare the dependencies for that namespace at the top of the file using the <code>ns</code> macro, which often looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(ns com.some-example.my-app
+  "My app example"
+  (:require
+    [clojure.set :as set]
+    [clojure.string :as str]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>ns</code> macro specifies the namespace name (this should match the file path location using the conventions above), an optional docstring, and then one or more clauses that declare things about the namespace.</p>
+</div>
+<div class="sect2">
+<h3 id="_refer"><a class="anchor" href="#_refer"></a>Refer</h3>
+<div class="paragraph">
+<p>By default, we can refer to or invoke vars in the current namespace without specifying the namespace (the current namespace is the "default").</p>
+</div>
+<div class="paragraph">
+<p>Additionally, you may have noticed that we can usually refer to <code>clojure.core</code> library functions without fully qualifying them either. The reason for that is that all of the <code>clojure.core</code> library vars have been <code>referred</code> into the current namespace. <code>refer</code> makes an entry in the current namespace&#8217;s symbol table that refers to the var in the other namespace.</p>
+</div>
+<div class="paragraph">
+<p>The <code>clojure.core</code> referral is done by the <code>ns</code> macro. (There are ways to suppress this in part if you&#8217;d like to re-use names in core without warnings.)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_require"><a class="anchor" href="#_require"></a>require</h3>
+<div class="paragraph">
+<p>The <code>:require</code> clause corresponds to the <code>require</code> function which specifies one or more namespaces to load that this namespace depends on. For each namespace, <code>require</code> can do several things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Load (or reload) the namespace</p>
+</li>
+<li>
+<p>Optionally assign an <em>alias</em> that can be used to refer to vars from the loaded namespace only in the scope of this namespace</p>
+</li>
+<li>
+<p>Optionally <em>refer</em> vars from the loaded namespace for use by unqualified name in this namespace</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The last two parts are all about making names easier to use. While vars can always be referred to by their fully-qualified name, we rarely want to type fully-qualified names in our code. Aliases let us use shorter versions of longer fully-qualified aliases. Refer allows us to use names without a namespace qualifier at all.</p>
+</div>
+<div class="paragraph">
+<p>In <code>require</code>, namespaces most commonly take one of four forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>clojure.set</code> - just loads <code>clojure.set</code> namespace (if not already loaded)</p>
+</li>
+<li>
+<p><code>[clojure.set :as set]</code> - load and create an alias <code>set</code> for the namespace <code>clojure.set</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>This allows you to refer to vars in <code>set</code> with for example <code>set/union</code> instead of <code>clojure.set/union</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>[clojure.set :refer [union intersection]]</code> - load and refer specific vars into this namespace</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This allows you to use just <code>union</code> instead of <code>clojure.set/union</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>[company.application.component.user :as-alias user]</code> - create an alias <code>user</code> for the namespace <code>company.application.component.user</code> without loading the namespace</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Typically, when using <code>:as-alias</code>, the namespace is being used as a qualifier but is not a loadable namespace</p>
+</li>
+<li>
+<p>This allows you to use a shorthand for a namespace qualifier, e.g. when creating maps: <code>{::user/id 1}</code>, registering specs: <code>(s/def ::user/id int?)</code> or destructuring: <code>(defn find-by-id [{::user/keys [id]}] ,,,)</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_java_classes_and_imports"><a class="anchor" href="#_java_classes_and_imports"></a>Java classes and imports</h3>
+<div class="paragraph">
+<p>In addition to vars, Clojure also provides support for Java interop and access to Java classes, which live in packages. Java classes can always be referred to using their fully-qualified class name, such as <code>java.util.Date</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ns</code> macro also imports the classes in the java.lang package so that they can be used as just the class name, rather than the fully-qualified class name. For example, just <code>String</code> rather than <code>java.lang.String</code>.</p>
+</div>
+<div class="paragraph">
+<p>Similar to <code>:refer</code>, the <code>ns</code> macro has an <code>:import</code> clause (that is supported by the <code>import</code> macro) that lets you import other classes so they can be used with unqualified names:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(ns com.some-example.my-app2
+  (:import
+    [java.util Date UUID]
+	[java.io File]))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example imports the <code>Date</code> and <code>UUID</code> class from the <code>java.util</code> package and the <code>File</code> class from the <code>java.io</code> package.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  <a href="flow" class="clj-prev-link"><span class="clj-prevnext-link-icon">&#xeab5;</span>&nbsp;Flow Control</a>
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/guides/learn/namespaces.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

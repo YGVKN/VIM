@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Community Resources</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Community</div>
+            <a href="success_stories" class="w-nav-link clj-section-nav-item-link">Success Stories</a>
+            <a href="community_stories" class="w-nav-link clj-section-nav-item-link">Community Stories</a>
+            <a href="companies" class="w-nav-link clj-section-nav-item-link">Companies</a>
+            <a href="tools" class="w-nav-link clj-section-nav-item-link">Tools</a>
+            <a href="libraries" class="w-nav-link clj-section-nav-item-link">Libraries</a>
+            <a href="contributing" class="w-nav-link clj-section-nav-item-link">Contributing</a>
+            <a href="resources" class="w-nav-link clj-section-nav-item-link">Community Resources</a>
+            <a href="ask" class="w-nav-link clj-section-nav-item-link">Forum</a>
+            <a href="events" class="w-nav-link clj-section-nav-item-link">Events</a>
+            <a href="training" class="w-nav-link clj-section-nav-item-link">Training</a>
+            <a href="etiquette" class="w-nav-link clj-section-nav-item-link">Etiquette</a>
+            <div class="w-nav-link clj-section-nav-heading">Help</div>
+            <a href="books" class="w-nav-link clj-section-nav-item-link">Books</a>
+            <a href="user_groups" class="w-nav-link clj-section-nav-item-link">User Groups</a>
+            <a href="start_group" class="w-nav-link clj-section-nav-item-link">Starting a User Group</a>
+            <div class="w-nav-link clj-section-nav-heading">Site Updates</div>
+            <a href="contributing_site" class="w-nav-link clj-section-nav-item-link">Site Contributions</a>
+            <a href="editing" class="w-nav-link clj-section-nav-item-link">Editing tips</a>
+            <a href="license" class="w-nav-link clj-section-nav-item-link">License</a>
+            <a href="/privacy" class="w-nav-link clj-section-nav-item-link">Privacy Policy</a>
+            <div class="w-nav-link clj-section-nav-heading">Etc</div>
+            <a href="swag" class="w-nav-link clj-section-nav-item-link">Swag</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Community Resources</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Community Resources</h1>
+
+      <div class="sect1">
+<h2 id="_clojure_discussion"><a class="anchor" href="#_clojure_discussion"></a>Clojure Discussion</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://ask.clojure.org">Q&amp;A Forum</a> (official)</p>
+</li>
+<li>
+<p><a href="https://groups.google.com/group/clojure">Clojure Google Group</a> (official)</p>
+</li>
+<li>
+<p><a href="http://clojurians.net">Clojurians Slack Chat</a></p>
+</li>
+<li>
+<p><a href="https://clojurians.zulipchat.com">Clojurians Zulip Chat</a></p>
+</li>
+<li>
+<p><a href="https://clojureverse.org">Clojureverse</a></p>
+</li>
+<li>
+<p><a href="https://clojure.org/community/user_groups">Clojure User Groups</a></p>
+</li>
+<li>
+<p><a href="http://planet.clojure.in/">Planet Clojure</a> blog aggregator</p>
+</li>
+<li>
+<p>#clojure IRC channel on <a href="https://libera.chat">Libera.Chat</a></p>
+</li>
+<li>
+<p><a href="https://discord.gg/discljord">Discljord Clojure Discord Server</a></p>
+</li>
+<li>
+<p><a href="https://twitter.com/i/communities/1494013093059432451">Twitter Community</a></p>
+</li>
+<li>
+<p><a href="https://clj.social">Clojure Community on Fediverse</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tutorials_and_learning_materials"><a class="anchor" href="#_tutorials_and_learning_materials"></a>Tutorials and Learning Materials</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Official:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.github.io/clojure/">Clojure API Docs</a></p>
+</li>
+<li>
+<p><a href="https://clojure.github.io/">Clojure Contrib Library API Docs</a></p>
+</li>
+<li>
+<p><a href="xref/../../reference/documentation">Clojure Reference Docs</a> - official reference information</p>
+</li>
+<li>
+<p><a href="xref/../../api/cheatsheet">Clojure Cheatsheet</a> - helpful categorization of most core functions</p>
+</li>
+<li>
+<p>Source - <a href="https://github.com/clojure/clojure">Clojure</a>, <a href="https://github.com/clojure/clojurescript">ClojureScript</a>, <a href="https://github.com/clojure/clojure-clr">ClojureCLR</a></p>
+</li>
+<li>
+<p>Issues - <a href="https://clojure.atlassian.net/projects/CLJ">Clojure</a>, <a href="https://clojure.atlassian.net/projects/CLJS">ClojureScript</a>, <a href="https://clojure.atlassian.net/projects/CLJCLR">ClojureCLR</a></p>
+</li>
+<li>
+<p><a href="https://archive.clojure.org/design-wiki/display/design/Home.html">Design wiki archive</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Community:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="books">Books</a></p>
+</li>
+<li>
+<p><a href="http://www.braveclojure.com/">Clojure for the Brave and True</a> - a beginner book by Daniel Higginbotham</p>
+</li>
+<li>
+<p><a href="http://aphyr.com/posts/301-clojure-from-the-ground-up-welcome">Clojure from the ground up</a> - a series of intro articles by Kyle Kingsbury</p>
+</li>
+<li>
+<p><a href="https://kimh.github.io/clojure-by-example">Clojure By Example</a></p>
+</li>
+<li>
+<p><a href="https://practicalli.github.io/">Practicalli</a> - books and video tutorials on developing with Clojure, it&#8217;s tooling and workflow</p>
+</li>
+<li>
+<p><a href="https://github.com/ClojureBridge/curriculum">ClojureBridge Curriculum</a></p>
+</li>
+<li>
+<p><a href="https://clojuredocs.org">ClojureDocs</a> - community provided example repository</p>
+</li>
+<li>
+<p><a href="http://clojure-doc.org/">Clojure Documentation</a> - community-driven documentation site</p>
+</li>
+<li>
+<p><a href="https://cljdoc.org/">cljdoc</a> - a website building &amp; hosting documentation for Clojure/Script libraries</p>
+</li>
+<li>
+<p><a href="http://clojurekoans.com/">Clojure Koans</a> (<a href="http://clojurescriptkoans.com/">online</a>)</p>
+</li>
+<li>
+<p><a href="http://exercism.io/">exercism.io</a> - crowd-source code reviews (supports Clojure)</p>
+</li>
+<li>
+<p><a href="https://guide.clojure.style/">Clojure Style Guide</a></p>
+</li>
+<li>
+<p><a href="https://www.maria.cloud/">Maria</a> - a coding environment for beginners</p>
+</li>
+</ul>
+</div>
+<div id="spec" class="paragraph">
+<p>Spec:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.org/news/2016/05/23/introducing-clojure-spec">Introducing clojure.spec</a> - Rich Hickey</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=YR5WdGrpoug">"Maybe Not"</a> - Rich Hickey</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=oyLBGkS5ICk">"Spec-ulation"</a> - Rich Hickey</p>
+</li>
+<li>
+<p><a href="https://vimeo.com/195711510">Rich Hickey on Clojure Spec</a> - LispNYC</p>
+</li>
+<li>
+<p><a href="https://www.cognitect.com/cognicast/103">Clojure spec with Rich Hickey</a> - Cognicast Episode 103</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/playlist?list=PLZdCLR02grLrju9ntDh3RGPpWSWBvjwXg">Spec Screencasts</a></p>
+</li>
+<li>
+<p><a href="https://corfield.org/blog/2019/09/13/using-spec/">How do you use clojure.spec</a> - Sean Corfield</p>
+</li>
+<li>
+<p><a href="https://www.pixelated-noise.com/blog/2020/09/10/what-spec-is/">What Clojure spec is and what you can do with it (an illustrated guide)</a> - Stathis Sideris</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Newsletters:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://therepl.net">The REPL</a></p>
+</li>
+<li>
+<p><a href="http://insideclojure.org">Inside Clojure</a> - weekly journals about development of Clojure</p>
+</li>
+<li>
+<p><a href="https://purelyfunctional.tv/newsletter">PurelyFunctional.tv Newsletter</a></p>
+</li>
+<li>
+<p><a href="https://us19.campaign-archive.com/home/?u=f5dea183eae58baf7428a4425&amp;id=ef5512dc35">Clojure Weekly</a> - curated links from various sources about all things Clojure and ClojureScript</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Videos and presentations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.youtube.com/user/ClojureTV/videos">ClojureTV</a> - talks by Rich Hickey and presentations from Clojure/conj and Clojure/west</p>
+</li>
+<li>
+<p><a href="http://www.infoq.com/Clojure/presentations/">InfoQ Clojure Presentations</a> - from a variety of conferences</p>
+</li>
+<li>
+<p><a href="https://github.com/matthiasn/talk-transcripts">Talk transcripts</a> - Rich Hickey, David Nolen, Alessandra Sierra, and others</p>
+</li>
+<li>
+<p><a href="http://www.parens-of-the-dead.com/">Parens of the Dead</a> - a screencast series writing a game from scratch with Clojure and ClojureScript</p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/c/+practicalli">Practicalli Clojure Study Guide</a> - weekly live broadcasts on developing with Clojure and ClojureScript</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Podcasts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://soundcloud.com/defn-771544745">defn</a> - The world&#8217;s greatest vegetarian Clojure podcast hosted by Vijay Kiran and Ray McDermott</p>
+</li>
+<li>
+<p><a href="https://www.therepl.net/episodes/">The REPL</a> - A podcast diving into Clojure programs and libraries by Daniel Compton</p>
+</li>
+<li>
+<p><a href="https://clojurescriptpodcast.com/">ClojureScript Podcast</a> - Join Jacek Schae and explore an unusually expressive programming language with Lisp roots</p>
+</li>
+<li>
+<p><a href="https://lispcast.com/category/podcast/">Thoughts on Functional Programming by Eric Normand</a> - An off-the-cuff stream of Functional Programming ideas, skills, patterns, and news from Functional Programming expert Eric Normand</p>
+</li>
+<li>
+<p><a href="https://clojuredesign.club/">Functional Design in Clojure</a> - Christoph and Nate discuss software design problems and how they might be solved using functional principles and the Clojure programming language.</p>
+</li>
+<li>
+<p><a href="http://blog.cognitect.com/cognicast">Audio - Cognitect Blog</a> - A podcast by Cognitect, Inc. about software and the people that create it</p>
+</li>
+<li>
+<p><a href="https://anchor.fm/dosync-radio">(dosync radio)</a> - A podcast to discuss Clojure matters in Japanese.</p>
+</li>
+<li>
+<p><a href="https://anchor.fm/lostinlambduhhs">Lost in Lambduhhs</a> - Jordan Miller interviews a myriad of guests from all sectors of tech with a special focus on Clojure and Clojurescript</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Video training (commercial):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.purelyfunctional.tv/intro-to-clojure">Introduction to Clojure</a> - Eric Normand (LispCast)</p>
+</li>
+<li>
+<p><a href="http://www.purelyfunctional.tv/web-dev-in-clojure">Web Development in Clojure</a> - Eric Normand (LispCast)</p>
+</li>
+<li>
+<p><a href="http://shop.oreilly.com/product/0636920030409.do">Clojure Inside Out</a> - Stuart Halloway, Neal Ford (O&#8217;Reilly)</p>
+</li>
+<li>
+<p><a href="http://shop.oreilly.com/product/0636920041474.do">Communicating Sequential Processes with core.async</a> - Timothy Baldridge (O&#8217;Reilly)</p>
+</li>
+<li>
+<p><a href="http://www.infiniteskills.com/training/building-microservices-with-clojure.html">Building Microservices with Clojure</a> - Scott Rehorn (O&#8217;Reilly)</p>
+</li>
+<li>
+<p><a href="http://www.infiniteskills.com/training/learning-clojure.html">Learning Clojure</a> - Adam Bard</p>
+</li>
+<li>
+<p><a href="http://www.infiniteskills.com/training/learning-clojurescript.html">Learning ClojureScript</a> - David Eisenberg</p>
+</li>
+<li>
+<p><a href="https://www.pluralsight.com/courses/clojure-fundamentals-part-one">Clojure Fundamentals</a> - Alan Dipert (PluralSight)</p>
+</li>
+<li>
+<p><a href="https://www.pluralsight.com/courses/clojure-concurrency-tutorial">Clojure Concurrency</a> - Craig Andera (PluralSight)</p>
+</li>
+<li>
+<p><a href="https://www.packtpub.com/web-development/building-web-applications-clojure-video">Building Web Applications with Clojure</a> - Tomek Lipski (Packt)</p>
+</li>
+<li>
+<p><a href="https://lambdaisland.com/">Lambda Island</a> - Screencast series about ClojureScript and Clojure</p>
+</li>
+<li>
+<p><a href="https://www.learnreagent.com/">Learn Reagent</a> - Jacek Schae</p>
+</li>
+<li>
+<p><a href="https://www.learnreframe.com/">Learn re-frame</a> - Jacek Schae</p>
+</li>
+<li>
+<p><a href="https://clojurehacker.com">Clojure Hacker</a> - build real web apps in Clojure and ClojureScript - Paul Jankowski</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conferences"><a class="anchor" href="#_conferences"></a>Conferences</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://clojure-conj.org/">Clojure/conj</a> (usually in November)</p>
+</li>
+<li>
+<p><a href="http://www.clojurebridge.org/">ClojureBridge</a> - beginner workshops for women</p>
+</li>
+<li>
+<p><a href="https://clojutre.org">ClojuTRE</a> - A Clojure conference in Tampere/Helsinki, Finland</p>
+</li>
+<li>
+<p><a href="https://reclojure.org">re:Clojure</a> - A yearly community-driven Clojure conference, hosted online and with a worldwide attendance</p>
+</li>
+<li>
+<p><a href="https://clojured.de/">clojureD</a> - A Clojure conference in Berlin, Germany</p>
+</li>
+<li>
+<p><a href="https://heartofclojure.eu/">Heart of Clojure</a> - A Clojure conference in Leuven, Belgium</p>
+</li>
+<li>
+<p><a href="https://clojuredays.org/">Dutch Clojure Days</a> - A Clojure conference in Amsterdam, the Netherlands</p>
+</li>
+<li>
+<p><a href="https://clojure-south.com/">Clojure/South</a> - A Clojure conference in Sao Paulo, Brazil</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/community/resources.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

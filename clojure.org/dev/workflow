@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Workflow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Language Dev</div>
+            <a href="dev" class="w-nav-link clj-section-nav-item-link">Development</a>
+            <a href="contributor_agreement" class="w-nav-link clj-section-nav-item-link">Contributor Agreement</a>
+            <a href="workflow" class="w-nav-link clj-section-nav-item-link">Workflow</a>
+            <a href="creating_tickets" class="w-nav-link clj-section-nav-item-link">Creating Tickets</a>
+            <a href="developing_patches" class="w-nav-link clj-section-nav-item-link">Developing Patches</a>
+            <a href="screening_tickets" class="w-nav-link clj-section-nav-item-link">Screening Tickets</a>
+            <a href="contributors" class="w-nav-link clj-section-nav-item-link">Contributors</a>
+            <div class="w-nav-link clj-section-nav-heading">Contrib Libs</div>
+            <a href="contrib_libs" class="w-nav-link clj-section-nav-item-link">Contrib libs</a>
+            <a href="contrib_history" class="w-nav-link clj-section-nav-item-link">Contrib lib history</a>
+            <div class="w-nav-link clj-section-nav-heading">Resources</div>
+            <a href="https://github.com/clojure/clojure" class="w-nav-link clj-section-nav-item-link">Source</a>
+            <a href="https://clojure.atlassian.net/servicedesk/customer/portal/1" class="w-nav-link clj-section-nav-item-link">Support Portal</a>
+            <a href="https://clojure.atlassian.net/projects/CLJ" class="w-nav-link clj-section-nav-item-link">Issue Tracker</a>
+            <a href="https://build.clojure.org" class="w-nav-link clj-section-nav-item-link">Build box</a>
+            <a href="/releases/downloads" class="w-nav-link clj-section-nav-item-link">Downloads</a>
+            <a href="https://clojure.github.io/clojure" class="w-nav-link clj-section-nav-item-link">API Docs</a>
+            <a href="../community/license" class="w-nav-link clj-section-nav-item-link">License</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Workflow</h1>
+
+      <div class="sect1">
+<h2 id="_how_a_ticket_becomes_a_commit"><a class="anchor" href="#_how_a_ticket_becomes_a_commit"></a>How a Ticket Becomes a Commit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page describes the overall workflow for how tickets (bugs and enhancement requests) make their way through the JIRA ticketing system and ultimately become part of Clojure, ClojureScript, and ClojureCLR.</p>
+</div>
+<div class="paragraph">
+<p>The overall process described here has several goals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintain Clojure quality</p>
+</li>
+<li>
+<p>Fix problems that are important to users</p>
+</li>
+<li>
+<p>Engage the community in working toward the best possible Clojure</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_groups"><a class="anchor" href="#_groups"></a>Groups</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are several groups involved in this process with increasing levels of responsibility:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Anyone - anyone can submit a bug or enhancement request to Clojure once you have created a Clojure JIRA account</p>
+</li>
+<li>
+<p>Contributors - anyone that has <a href="contributor_agreement">signed the contributor agreement</a> can supply patches or work on improving tickets</p>
+</li>
+<li>
+<p>Screeners - a smaller group of trusted individuals have been granted the ability to move tickets through (some of) the stages of the process, in particular the Triage and Screening activities</p>
+</li>
+<li>
+<p>BDFL - Rich Hickey is the creator and Benevolent Dictator for Life of what goes into Clojure. Stuart Halloway also has a special level of access and typically commits patches to Clojure.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ticket_fields"><a class="anchor" href="#_ticket_fields"></a>Ticket fields</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are several important fields on a ticket that jointly determine it&#8217;s "state" in the workflow below. Some key fields to know about:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JIRA status- these govern the default JIRA workflow and consist of Open, In progress, Reopened, Resolved, Closed</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The Clojure workflow does not really distinguish between these much other than general open/closed differentiation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Approval- a custom field that is (mostly) how Screeners change the state of a ticket</p>
+<div class="ulist">
+<ul>
+<li>
+<p>None - new ticket</p>
+</li>
+<li>
+<p>Triaged - screener has approved the ticket as worth working on</p>
+</li>
+<li>
+<p>Prescreened - screener has approved the ticket and screened the patch for review</p>
+</li>
+<li>
+<p>Vetted - screener and Rich have approved the ticket as worth working on</p>
+</li>
+<li>
+<p>Screened - screener has approved a ticket&#8217;s patch for review by Rich</p>
+</li>
+<li>
+<p>Incomplete - screener has requested improvements to a ticket or patch</p>
+</li>
+<li>
+<p>Ok - Rich has approved the ticket for inclusion</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Patch- qualifies the kind of patch attached</p>
+<div class="ulist">
+<ul>
+<li>
+<p>None - no patch</p>
+</li>
+<li>
+<p>Code - code only, no test</p>
+</li>
+<li>
+<p>Code and Test - code and test</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Fix version</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Release X.X - specific targeted release</p>
+</li>
+<li>
+<p>Backlog - will consider in future release</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Resolution- when a ticket is closed, it will have a resolution</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Declined - did not accept a ticket for work</p>
+</li>
+<li>
+<p>Duplicate</p>
+</li>
+<li>
+<p>Completed</p>
+</li>
+<li>
+<p>Unresolved</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow"><a class="anchor" href="#_workflow"></a>Workflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The diagram below documents the process used for how tickets make their way through the system. The rounded boxes represent states in the workflow. They have well defined criteria (which sometimes cover multiple fields) such that each of these states can have a report. In general, a single line state indicates the Approval state. If additional fields are in play, they are listed after the state.</p>
+</div>
+<div class="paragraph">
+<p>The colored blocks represent activities performed by different groups - the colors correspond to the group (Orange = contributors, Blue = screeners, Green = BDFL). Diamonds represent decisions to be made during an activity. Activities are described in more detail below the diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/content/community/process.png" alt="JIRA Workflow">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_activities"><a class="anchor" href="#_activities"></a>Activities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Triage</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Screeners</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10001">Open tickets</a></p>
+</li>
+<li>
+<p>Goal: decide whether the bug or enhancement described in the ticket is actually a real bug or enhancement.</p>
+</li>
+<li>
+<p>Process (see: <a href="creating_tickets">Creating Tickets</a>):</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Is the ticket about 1 thing?  If not, then either split the ticket yourself or ask the submitter to do so.</p>
+</li>
+<li>
+<p>Does the ticket clearly state the problem? If not, then either update yourself or ask the submitter to do so.</p>
+</li>
+<li>
+<p>For larger enhancements / features, it is probably better to suggest the submitter post to clojure-dev and then create a page on the design wiki instead.</p>
+</li>
+<li>
+<p>For bugs, there should be some demonstration that the problem actually exists (output from a repl, test, etc). Verify the problem exists in the current release of Clojure.</p>
+</li>
+<li>
+<p>Does the ticket include a link to other relevant discussion (such as a clojure-dev thread, IRC conversation, etc)?</p>
+</li>
+<li>
+<p>At this stage, it is not necessary for there to be a patch or to validate it fixes the problem.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Actions, pick one of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Comment on ticket to ask for more information, better description, better demonstration of problem, etc</p>
+</li>
+<li>
+<p>Close with Resolution=Decline, reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Not a bug: submitter misunderstood or misused a feature or ticket doesn&#8217;t make sense</p>
+</li>
+<li>
+<p>Scope too big: feature may be better served by creating a page in the design wiki than in a ticket</p>
+</li>
+<li>
+<p>Enhancement not wanted: enhancement is not something we want to do</p>
+</li>
+<li>
+<p>Duplicate: of existing ticket</p>
+</li>
+<li>
+<p>Too many things: break this ticket apart into smaller pieces</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set Approval=Triaged - problem is ok</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If needed, adjust ticket to standards in <a href="creating_tickets">Creating Tickets</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Prescreening</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Screeners</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10002">Triaged tickets</a></p>
+</li>
+<li>
+<p>Goal: improve the ticket and screen the patch before Rich does vetting, allows faster path through the remainder of the process</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set Approval=Prescreened - patch is ok</p>
+</li>
+<li>
+<p>Comment on ticket regarding issues with patch (leaves in Triaged)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Vetting</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Rich</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10002">Triaged</a> and <a href="https://clojure.atlassian.net/issues/?filter=10003">Prescreened</a> tickets</p>
+</li>
+<li>
+<p>Goal: second check on whether the bug/enhancement is worth working on and decision of whether it&#8217;s suitable for the next release.</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Close w Resolution=Declined - as above, ticket may not be something we want to address</p>
+</li>
+<li>
+<p>Set Approval=Vetted - problem is good</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Release scheduling</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Rich</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10004">Vetted tickets</a></p>
+</li>
+<li>
+<p>Goal: determine whether a ticket is in scope for next release or should be in backlog</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set Fix Version to "Backlog" - don&#8217;t want to fix it in the next release</p>
+</li>
+<li>
+<p>Set Fix Version to current release</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If does not have patch, will show up in <a href="https://clojure.atlassian.net/issues/?filter=10007">Needs Patch</a> report</p>
+</li>
+<li>
+<p>If does have patch, will show up in <a href="https://clojure.atlassian.net/issues/?filter=10008">Screenable</a> report</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Dev patch</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: contributors (anyone with signed CA)</p>
+</li>
+<li>
+<p>Report:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10007">Needs Patch</a> - for tickets that need a patch</p>
+</li>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10009">Incomplete</a> tickets - for tickets that have patches that need work</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Goal: create a high quality ticket and patch for consideration (see sections below)</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Edit ticket or update patch to address problems or gaps based on comments.</p>
+</li>
+<li>
+<p>Adding a new patch and changing "Patch" attribute to "Code" or "Code and Test" automatically causes a patch to move from the "Needs Patch" to the "Screenable" list of tickets.  However, adding a patch to an incomplete ticket does not.  Alex Miller periodically scans Incomplete tickets to see if they appear ready to go back to Screenable, and makes those state changes manually.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Screening</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Screeners</p>
+</li>
+<li>
+<p>Reports:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10008">Screenable</a> tickets (for new vetted tickets with patches)</p>
+</li>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10009">Incomplete</a> tickets that have changed recently - need to re-review if submitter has updated ticket since marked Incomplete.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Goal: verify that ticket and patch are ready for Rich to review.  The quality bar is HIGH - the ticket and patch should be perfect.</p>
+</li>
+<li>
+<p>Checks (see <a href="creating_tickets">Creating Tickets</a> and <a href="developing_patches">Developing Patches</a> and <a href="screening_tickets">Screening Tickets</a>):</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Is there a patch?</p>
+</li>
+<li>
+<p>Is there a test?</p>
+</li>
+<li>
+<p>Has author <a href="contributor_agreement">signed the CA</a>?</p>
+</li>
+<li>
+<p>Can you apply the patch to current source tree?</p>
+</li>
+<li>
+<p>Do all tests pass?</p>
+</li>
+<li>
+<p>Is patch clean (no extraneous whitespace or changes outside the scope of the problem)?</p>
+</li>
+<li>
+<p>Are docstrings still accurate?</p>
+</li>
+<li>
+<p>Are there potential performance impacts? If so, what benchmarks have been performed?</p>
+</li>
+<li>
+<p>Does the solution follow code guidelines and look like the surrounding code in style?</p>
+</li>
+<li>
+<p>Does the solution imply possible similar changes elsewhere?</p>
+</li>
+<li>
+<p>Does the solution introduce new failure conditions that might need to be considered or documented?</p>
+</li>
+<li>
+<p>Does the solution change external or internal APIs that might affect users?</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set Approval=Incomplete and add comment describing needed improvements</p>
+</li>
+<li>
+<p>Set Approval=Screened - ticket and patch are perfect and Rich should review</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Final screening</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Rich</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10010">Screened tickets</a></p>
+</li>
+<li>
+<p>Goal: Rich blessing the change</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set Approval=Incomplete - ticket or patch needs improvement</p>
+</li>
+<li>
+<p>Set Approval=OK - everything is good, ready to commit</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Commit</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Stu H (usually)</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10011">OK tickets</a></p>
+</li>
+<li>
+<p>Goal: Final review of change and commit to Clojure source</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure you have the right patch</p>
+</li>
+<li>
+<p>Make sure the author has signed the CA</p>
+</li>
+<li>
+<p>Double-check that the patch applies cleanly and builds locally</p>
+</li>
+<li>
+<p>Commit and push the patch</p>
+<div class="ulist">
+<ul>
+<li>
+<p>I find it safest to do committing from a separate local repository. I have a "clojure" git clone that does not have push permissions for dev and screening, and a separate "clojure-for-commit" checkout for committing. This reduces the chance that my muscle memory will produce a "git push" at the wrong time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Set Approval=Accepted and close ticket</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Backlog Review</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Who: Rich (primarily)</p>
+</li>
+<li>
+<p>Report: <a href="https://clojure.atlassian.net/issues/?filter=10006">Backlog tickets</a></p>
+</li>
+<li>
+<p>Goal: See if backlogged tickets should be pulled into next release</p>
+</li>
+<li>
+<p>Actions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set Fix Version from Backlog to current release</p>
+</li>
+<li>
+<p>(or don&#8217;t to leave in Backlog)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ticket_report_summary"><a class="anchor" href="#_ticket_report_summary"></a>Ticket report summary</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Clojure</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Release-independent reports</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10001">Open</a> | <a href="https://clojure.atlassian.net/issues/?filter=10002">Triaged</a> | <a href="https://clojure.atlassian.net/issues/?filter=10003">Prescreened</a> | <a href="https://clojure.atlassian.net/issues/?filter=10004">Vetted</a> | <a href="https://clojure.atlassian.net/issues/?filter=10005">Declined</a> | <a href="https://clojure.atlassian.net/issues/?filter=10006">Backlog</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Next release work queues</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10007">Needs Patch</a> | <a href="https://clojure.atlassian.net/issues/?filter=10008">Screenable</a> | <a href="https://clojure.atlassian.net/issues/?filter=10009">Incomplete</a> | <a href="https://clojure.atlassian.net/issues/?filter=10010">Screened</a> | <a href="https://clojure.atlassian.net/issues/?filter=10011">Ok</a> | <a href="https://clojure.atlassian.net/issues/?filter=10012">Accepted</a> | <a href="https://clojure.atlassian.net/issues/?filter=10013">Closed</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ClojureScript</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10028">Newbie</a> | <a href="https://clojure.atlassian.net/issues/?filter=10017">Screenable</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>core.async</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://clojure.atlassian.net/issues/?filter=10023">Open, no patch</a> | <a href="https://clojure.atlassian.net/issues/?filter=10024">Open, with patch</a> | <a href="https://clojure.atlassian.net/issues/?filter=10025">Open, CLJS-only</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/dev/workflow.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

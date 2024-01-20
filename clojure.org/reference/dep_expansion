@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Dep Expansion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <a href="reader" class="w-nav-link clj-section-nav-item-link">The Reader</a>
+            <a href="repl_and_main" class="w-nav-link clj-section-nav-item-link">The REPL and main</a>
+            <a href="evaluation" class="w-nav-link clj-section-nav-item-link">Evaluation</a>
+            <a href="special_forms" class="w-nav-link clj-section-nav-item-link">Special Forms</a>
+            <a href="macros" class="w-nav-link clj-section-nav-item-link">Macros</a>
+            <a href="other_functions" class="w-nav-link clj-section-nav-item-link">Other Functions</a>
+            <a href="data_structures" class="w-nav-link clj-section-nav-item-link">Data Structures</a>
+            <a href="datatypes" class="w-nav-link clj-section-nav-item-link">Datatypes</a>
+            <a href="sequences" class="w-nav-link clj-section-nav-item-link">Sequences</a>
+            <a href="transients" class="w-nav-link clj-section-nav-item-link">Transients</a>
+            <a href="transducers" class="w-nav-link clj-section-nav-item-link">Transducers</a>
+            <a href="multimethods" class="w-nav-link clj-section-nav-item-link">Multimethods and Hierarchies</a>
+            <a href="protocols" class="w-nav-link clj-section-nav-item-link">Protocols</a>
+            <a href="metadata" class="w-nav-link clj-section-nav-item-link">Metadata</a>
+            <a href="namespaces" class="w-nav-link clj-section-nav-item-link">Namespaces</a>
+            <a href="libs" class="w-nav-link clj-section-nav-item-link">Libs</a>
+            <a href="vars" class="w-nav-link clj-section-nav-item-link">Vars and Environments</a>
+            <a href="refs" class="w-nav-link clj-section-nav-item-link">Refs and Transactions</a>
+            <a href="agents" class="w-nav-link clj-section-nav-item-link">Agents</a>
+            <a href="atoms" class="w-nav-link clj-section-nav-item-link">Atoms</a>
+            <a href="reducers" class="w-nav-link clj-section-nav-item-link">Reducers</a>
+            <a href="java_interop" class="w-nav-link clj-section-nav-item-link">Java Interop</a>
+            <a href="compilation" class="w-nav-link clj-section-nav-item-link">Compilation and Class Generation</a>
+            <a href="other_libraries" class="w-nav-link clj-section-nav-item-link">Other Libraries</a>
+            <a href="lisps" class="w-nav-link clj-section-nav-item-link">Differences with Lisps</a>
+            <a href="deps_and_cli" class="w-nav-link clj-section-nav-item-link">Deps and CLI</a>
+            <a href="deps_edn" class="w-nav-link clj-section-nav-item-link">deps.edn</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Dep Expansion</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Dep Expansion</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_expansion">Expansion</a>
+<ul class="sectlevel2">
+<li><a href="#_dep_selection">Dep selection</a></li>
+<li><a href="#_exclusions">Exclusions</a></li>
+<li><a href="#_orphans">Orphans</a></li>
+</ul>
+</li>
+<li><a href="#_trace_data">Trace data</a></li>
+<li><a href="#_tree_printing">Tree printing</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This page is a deep dive into how the Clojure tools and tools.deps expand a set of root deps into a transitive set of dependencies. This algorithm is similar to Maven dep expansion (both are breadth-first tree expansions), they make different choices about version selection.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expansion"><a class="anchor" href="#_expansion"></a>Expansion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Expansion inputs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>initial dependencies - each dependency is defined as a lib (symbol) and coordinate (maven, git, local, etc)</p>
+</li>
+<li>
+<p>default-deps - a map of lib to coord to use if no coordinate is supplied</p>
+</li>
+<li>
+<p>override-deps - a map of lib to coord to use if lib is found</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The expansion process is a loop over a queue of paths in the tree. The initial queue consists of the single paths to the root deps.</p>
+</div>
+<div class="paragraph">
+<p>For each step of the loop we pull a path (ending in a dep) off of the queue for consideration. The default and override deps are used (if needed) to replace the coordinate to be used with the dep. We then consider this lib/coord and decide whether to include or exclude in the selection and record a reason code for later understanding. If the node has child nodes they are added to the queue.</p>
+</div>
+<div class="paragraph">
+<p>Throughout the loop, we track all libs, versions seen, and selection choices in the version map and exclusions in the exclusions map. If desired, each consideration and whether the node was included and why is recorded in an expansion trace.</p>
+</div>
+<div class="paragraph">
+<p>All choices are made during a single pass through the tree. The mainline expansion is single-threaded, however retrieving the child nodes of a dep may require fetching them from an external network source (like requesting the pom from a Maven repository). For improved performance, a thread pool is used to fetch metadata in parallel in advance of needing it.</p>
+</div>
+<div class="sect2">
+<h3 id="_dep_selection"><a class="anchor" href="#_dep_selection"></a>Dep selection</h3>
+<div class="paragraph">
+<p>When a node is being considered for selection, the lib will be included if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It is a top dep (top dep versions always win) or it is a new lib or a newer version of a known lib (Maven keeps only the first found version regardless of new/old)</p>
+</li>
+<li>
+<p>and it is not excluded in one of the parents of this node&#8217;s path (see the following Exclusions section)</p>
+</li>
+<li>
+<p>and all parent nodes in the path are selected (see the following Orphans section)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the lib/version is included, it will marked as selected in the version map.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exclusions"><a class="anchor" href="#_exclusions"></a>Exclusions</h3>
+<div class="paragraph">
+<p>Exclusions are marked on child nodes at nodes in the tree and apply to that child dependency and its sub nodes. Exclusions are recorded in the exclusions map and used when checking whether to include a lib below that point in the tree.</p>
+</div>
+<div class="paragraph">
+<p>One particularly thorny case occurs when the same lib and version occurs at different points in the tree with different exclusion sets. In these cases, the exclusions used for that lib will be the <strong>intersection</strong> of the two exclusion sets.</p>
+</div>
+<div class="paragraph">
+<p>For example, given a tree like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>A
+  B
+    C (excl X, Y)
+      X
+      Y
+      Z
+  D
+    C (excl X)
+      X
+      Y
+      Z</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>then C will exclude only X (the intersection of #{X Y} and #{X}) because the A-D-C branch needs that dependency!</p>
+</div>
+<div class="paragraph">
+<p>Also of importance, when path A-B-C is considered it will enqueue only Z as a child dependency (because X and Y are excluded). When A-D-C is considered, it narrows the exclusion set for C and marks Y to be included as a new child of C to be expanded. Note that whether A-B-C or A-D-C is considered first, the expansion order may differ, but the same final choices will be made about inclusion.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_orphans"><a class="anchor" href="#_orphans"></a>Orphans</h3>
+<div class="paragraph">
+<p>While expanding a large tree, we may enqueue the children of a particular lib version, then later find and select a newer version of the lib that has a different set of dependencies. In this case, the original lib version node is deselected, but its children may still be in the queue.</p>
+</div>
+<div class="paragraph">
+<p>When those children are encountered, they will only be included if all parent nodes are still selected.</p>
+</div>
+<div class="paragraph">
+<p>For example, given a tree like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>A
+  B
+    C1
+      X
+  D
+    C2
+      Y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A trace might show:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A - include A, top dep</p>
+</li>
+<li>
+<p>A-B - include B, new lib</p>
+</li>
+<li>
+<p>A-D - include D, new lib</p>
+</li>
+<li>
+<p>A-B-C1 - include C1, new lib (enqueue X, Y)</p>
+</li>
+<li>
+<p>A-D-C2 - include C2, newer version (+ deselect C1)</p>
+</li>
+<li>
+<p>A-B-C1-X - exclude X, parent omitted</p>
+</li>
+<li>
+<p>A-D-C2-Y - include Y</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In some cases, the child nodes may already have been selected in the version map before the parent node is deselected. To catch these cases, an orphan check is done after expansion to ensure all selected libs have included parent nodes. If that&#8217;s not the case, the orphaned nodes are cut.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>A
+  B1
+    X
+  C
+    B2
+      Z</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Trace:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A - include A, top dep</p>
+</li>
+<li>
+<p>A-B1 - include B1, new lib</p>
+</li>
+<li>
+<p>A-C - include C, new lib</p>
+</li>
+<li>
+<p>A-B1-X - include X, new lib</p>
+</li>
+<li>
+<p>A-C-B2 - include B2, newer version (+ deselect B1)</p>
+</li>
+<li>
+<p>A-C-B2-Z - include Z</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After expansion, we would have selected A, X, C, B2, and Z . However, upon checking each node we will find X&#8217;s parent B1 was not included so X will be cut.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_trace_data"><a class="anchor" href="#_trace_data"></a>Trace data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When using the command line tools, you can use the option <code>-Strace</code> to activate dep tracing, which will emit a trace data file <code>trace.edn</code> in the current directory. If you inspect that data you will find a map with the keys:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:log</code> - a log of the lib nodes considered, whether they were included, and the reason for each. The log will be a vector of maps, one per considered node with the following keys: <code>:lib</code>, <code>:coord</code>, <code>:coord-id</code>, <code>:paths</code>, <code>:include</code>, <code>:reason</code>, and possibly other keys.</p>
+</li>
+<li>
+<p><code>:vmap</code> - the version map (format subject to change)</p>
+</li>
+<li>
+<p><code>:exclusions</code> - the exclusions map (format subject to change)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tree_printing"><a class="anchor" href="#_tree_printing"></a>Tree printing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A dependency can be printed using either <code>clj -Stree</code> or the program <code>clj -X:deps tree</code> which <a href="https://clojure.github.io/tools.deps.cli/clojure.tools.deps.cli.api-api.html#clojure.tools.deps.cli.api/tree">has more options</a>.</p>
+</div>
+<div class="paragraph">
+<p>Trees are built from the trace log and include all considered nodes. Included nodes are prefixed with <code>.</code>. Excluded nodes are prefixed with <code>X</code>. The end of the line will contain the reason code (some codes are suppressed). The current set of reason codes (subject to change) are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>:new-top-dep</code> - included as top dep (suppressed)</p>
+</li>
+<li>
+<p><code>:new-dep</code> - included as new dep (suppressed)</p>
+</li>
+<li>
+<p><code>:same-version</code> - excluded, same as currently selected dep (suppressed)</p>
+</li>
+<li>
+<p><code>:newer-version</code> - included, newer version than previously selected</p>
+</li>
+<li>
+<p><code>:use-top</code> - excluded, same as top lib but not at top</p>
+</li>
+<li>
+<p><code>:older-version</code> - excluded, older version than previously selected</p>
+</li>
+<li>
+<p><code>:excluded</code> - excluded, node in parent path excluded this lib</p>
+</li>
+<li>
+<p><code>:parent-omitted</code> - excluded, parent node deselected</p>
+</li>
+<li>
+<p><code>:superseded</code> - excluded, this version was deselected</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/reference/dep_expansion.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

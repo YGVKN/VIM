@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Learn Clojure - Syntax</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <a href="../guides" class="w-nav-link clj-section-nav-item-link"><span class="clj-nav-nested-icon">&#xeab5;</span> Back to Guides</a>
+            <div class="w-nav-link clj-section-nav-heading">Topics</div>
+            <a href="clojure" class="w-nav-link clj-section-nav-item-link">Introduction</a>
+            <a href="syntax" class="w-nav-link clj-section-nav-item-link">Syntax</a>
+            <a href="functions" class="w-nav-link clj-section-nav-item-link">Functions</a>
+            <a href="sequential_colls" class="w-nav-link clj-section-nav-item-link">Sequential Collections</a>
+            <a href="hashed_colls" class="w-nav-link clj-section-nav-item-link">Hashed Collections</a>
+            <a href="flow" class="w-nav-link clj-section-nav-item-link">Flow Control</a>
+            <a href="namespaces" class="w-nav-link clj-section-nav-item-link">Namespaces</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Syntax</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Learn Clojure - Syntax</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_literals">Literals</a>
+<ul class="sectlevel2">
+<li><a href="#_numeric_types">Numeric types</a></li>
+<li><a href="#_character_types">Character types</a></li>
+<li><a href="#_symbols_and_idents">Symbols and idents</a></li>
+<li><a href="#_literal_collections">Literal collections</a></li>
+</ul>
+</li>
+<li><a href="#_evaluation">Evaluation</a>
+<ul class="sectlevel2">
+<li><a href="#_traditional_evaluation_java">Traditional Evaluation (Java)</a></li>
+<li><a href="#_clojure_evaluation">Clojure Evaluation</a></li>
+<li><a href="#_structure_vs_semantics">Structure vs Semantics</a></li>
+<li><a href="#_delaying_evaluation_with_quoting">Delaying evaluation with quoting</a></li>
+</ul>
+</li>
+<li><a href="#_repl">REPL</a>
+<ul class="sectlevel2">
+<li><a href="#_exploring_at_the_repl">Exploring at the REPL</a></li>
+</ul>
+</li>
+<li><a href="#_clojure_basics">Clojure basics</a>
+<ul class="sectlevel2">
+<li><a href="#_def"><code>def</code></a></li>
+<li><a href="#_printing">Printing</a></li>
+</ul>
+</li>
+<li><a href="#_test_your_knowledge">Test your knowledge</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_literals"><a class="anchor" href="#_literals"></a>Literals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below are some examples of literal representations of common primitives in Clojure.  All of these literals are valid Clojure expressions.</p>
+</div>
+<div class="paragraph">
+<p>The <code>;</code> creates a comment to the end of the line. Sometimes multiple semicolons are used to indicate header comment sections, but this is just a convention.</p>
+</div>
+<div class="sect2">
+<h3 id="_numeric_types"><a class="anchor" href="#_numeric_types"></a>Numeric types</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">42        ; integer
+-1.5      ; floating point
+22/7      ; ratio</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Integers are read as fixed precision 64-bit integers when they are in range and arbitrary precision otherwise. A trailing <code>N</code> can be used to force arbitrary precision. Clojure also supports the Java syntax for octal (prefix <code>0</code>), hexadecimal (prefix <code>0x</code>) and arbitrary radix (prefix with base then <code>r</code>) integers. Ratios are provided as their own type combining a numerator and denominator.</p>
+</div>
+<div class="paragraph">
+<p>Floating point values are read as double-precision 64-bit floats, or arbitrary precision with an <code>M</code> suffix. Exponential notation is also supported. The special symbolic values <code>##Inf</code>, <code>##-Inf</code>, and <code>##NaN</code> represent positive infinity, negative infinity, and "not a number" values respectively.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_character_types"><a class="anchor" href="#_character_types"></a>Character types</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">"hello"         ; string
+\e              ; character
+#"[0-9]+"       ; regular expression</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Strings are contained in double quotes and may span multiple lines. Individual characters are represented with a leading backslash. There are a few special named characters: <code>\newline</code> <code>\space</code> <code>\tab</code>, etc. Unicode characters can be represented with <code>\uNNNN</code> or in octal with <code>\oNNN</code>.</p>
+</div>
+<div class="paragraph">
+<p>Literal regular expressions are strings with a leading <code>#</code>. These are compiled to java.util.regex.Pattern objects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_symbols_and_idents"><a class="anchor" href="#_symbols_and_idents"></a>Symbols and idents</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">map             ; symbol
++               ; symbol - most punctuation allowed
+clojure.core/+  ; namespaced symbol
+nil             ; null value
+true false      ; booleans
+:alpha          ; keyword
+:release/alpha  ; keyword with namespace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Symbols are composed of letters, numbers, and other punctuation and are used to refer to something else, like a function, value, namespace, etc. Symbols may optionally have a namespace, separated with a forward slash from the name.</p>
+</div>
+<div class="paragraph">
+<p>There are three special symbols that are read as different types - <code>nil</code> is the null value, and <code>true</code> and <code>false</code> are the boolean values.</p>
+</div>
+<div class="paragraph">
+<p>Keywords start with a leading colon and always evaluate to themselves. They are frequently used as enumerated values or attribute names in Clojure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_literal_collections"><a class="anchor" href="#_literal_collections"></a>Literal collections</h3>
+<div class="paragraph">
+<p>Clojure also includes literal syntax for four collection types:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">'(1 2 3)     ; list
+[1 2 3]      ; vector
+#{1 2 3}     ; set
+{:a 1, :b 2} ; map</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll talk about these in much greater detail later - for now it&#8217;s enough to know that these four data structures can be used to create composite data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_evaluation"><a class="anchor" href="#_evaluation"></a>Evaluation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Next we will consider how Clojure reads and evaluates expressions.</p>
+</div>
+<div class="sect2">
+<h3 id="_traditional_evaluation_java"><a class="anchor" href="#_traditional_evaluation_java"></a>Traditional Evaluation (Java)</h3>
+<div class="paragraph">
+<p><span class="image"><img src="/images/content/guides/learn/syntax/traditional-evaluation.png" alt="Java evaluation"></span></p>
+</div>
+<div class="paragraph">
+<p>In Java, source code (.java files) are read as characters by the compiler (javac), which produces bytecode (.class files) which can be loaded by the JVM.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_clojure_evaluation"><a class="anchor" href="#_clojure_evaluation"></a>Clojure Evaluation</h3>
+<div class="paragraph">
+<p><span class="image"><img src="/images/content/guides/learn/syntax/clojure-evaluation.png" alt="Clojure evaluation"></span></p>
+</div>
+<div class="paragraph">
+<p>In Clojure, source code is read as characters by the <a href="xref/../../../reference/reader">Reader</a>. The Reader may read the source either from .clj files or be given a series of expressions interactively. The Reader produces Clojure data. The Clojure compiler then produces the bytecode for the JVM.</p>
+</div>
+<div class="paragraph">
+<p>There are two important points here:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The unit of source code is a <strong>Clojure expression</strong>, not a Clojure source file. Source files are read as a series of expressions, just as if you typed those expressions interactively at the REPL.</p>
+</li>
+<li>
+<p>Separating the Reader and the Compiler is a key separation that makes room for macros. Macros are special functions that take code (as data), and emit code (as data). Can you see where a loop for macro expansion could be inserted in the evaluation model?</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_structure_vs_semantics"><a class="anchor" href="#_structure_vs_semantics"></a>Structure vs Semantics</h3>
+<div class="paragraph">
+<p>Consider a Clojure expression:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="/images/content/guides/learn/syntax/structure-and-semantics.png" alt="Structure and semantics"></span></p>
+</div>
+<div class="paragraph">
+<p>This diagram illustrates the difference between syntax in green (the Clojure data structure produced by the Reader) and semantics in blue (how that data is understood by the Clojure runtime).</p>
+</div>
+<div class="paragraph">
+<p>Most literal Clojure forms evaluate to themselves, <strong>except</strong> symbols and lists. Symbols are used to refer to something else and when evaluated, return what they refer to. Lists (as in the diagram) are evaluated as invocation.</p>
+</div>
+<div class="paragraph">
+<p>In the diagram, (+ 3 4) is read as a list containing the symbol (+) and two numbers (3 and 4). The first element (where + is found) can be called "function position", that is, a place to find the thing to invoke. While functions are an obvious thing to invoke, there are also a few special operators known to the runtime, macros, and a handful of other invokable things.</p>
+</div>
+<div class="paragraph">
+<p>Considering the evaluation of the expression above:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3 and 4 evaluate to themselves (longs)</p>
+</li>
+<li>
+<p>+ evaluates to a function that implements <code>+</code></p>
+</li>
+<li>
+<p>evaluating the list will invoke the <code>+</code> function with 3 and 4 as arguments</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Many languages have both statements and expressions, where statements have some stateful effect but do not return a value. In Clojure, everything is an expression that evaluates to a value. Some expressions (but not most) also have side effects.</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s consider how we can interactively evaluate expressions in Clojure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delaying_evaluation_with_quoting"><a class="anchor" href="#_delaying_evaluation_with_quoting"></a>Delaying evaluation with quoting</h3>
+<div class="paragraph">
+<p>Sometimes it&#8217;s useful to suspend evaluation, in particular for symbols and lists. Sometimes a symbol should just be a symbol without looking up what it refers to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; 'x
+x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And sometimes a list should just be a list of data values (not code to evaluate):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; '(1 2 3)
+(1 2 3)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One confusing error you might see is the result of accidentally trying to evaluate a list of data as if it were code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (1 2 3)
+Execution error (ClassCastException) at user/eval156 (REPL:1).
+class java.lang.Long cannot be cast to class clojure.lang.IFn</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For now, don&#8217;t worry too much about quote but you will see it occasionally in these materials to avoid evaluation of symbols or lists.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_repl"><a class="anchor" href="#_repl"></a>REPL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most of the time when you are using Clojure, you will do so in an editor or a REPL (Read-Eval-Print-Loop). The REPL has the following parts:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Read an expression (a string of characters) to produce Clojure data.</p>
+</li>
+<li>
+<p>Evaluate the data returned from #1 to yield a result (also Clojure data).</p>
+</li>
+<li>
+<p>Print the result by converting it from data back to characters.</p>
+</li>
+<li>
+<p>Loop back to the beginning.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>One important aspect of #2 is that Clojure always compiles the expression before executing it; Clojure is <strong>always</strong> compiled to JVM bytecode. There is no Clojure interpreter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (+ 3 4)
+7</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The box above demonstrates evaluating an expression (+ 3 4) and receiving a result.</p>
+</div>
+<div class="sect2">
+<h3 id="_exploring_at_the_repl"><a class="anchor" href="#_exploring_at_the_repl"></a>Exploring at the REPL</h3>
+<div class="paragraph">
+<p>Most REPL environments support a few tricks to help with interactive use. For example, some special symbols remember the results of evaluating the last three expressions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>*1</code> (the last result)</p>
+</li>
+<li>
+<p><code>*2</code> (the result two expressions ago)</p>
+</li>
+<li>
+<p><code>*3</code> (the result three expressions ago)</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (+ 3 4)
+7
+user=&gt; (+ 10 *1)
+17
+user=&gt; (+ *1 *2)
+24</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, there is a namespace <code>clojure.repl</code> that is included in the standard Clojure library that provides a number of helpful functions. To load that library and make its functions available in our current context, call:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(require '[clojure.repl :refer :all])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For now, you can treat that as a magic incantation. Poof! We&#8217;ll unpack it when we get to namespaces.</p>
+</div>
+<div class="paragraph">
+<p>We now have access to some additional functions that are useful at the REPL: <code>doc</code>, <code>find-doc</code>, <code>apropos</code>, <code>source</code>, and <code>dir</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>doc</code> function displays the documentation for any function. Let&#8217;s call it on <code>+</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">user=&gt; (doc +)
+
+clojure.core/+
+([] [x] [x y] [x y &amp; more])
+  Returns the sum of nums. (+) returns 0. Does not auto-promote
+  longs, will throw on overflow. See also: +'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>doc</code> function prints the documentation for <code>+</code>, including the valid signatures.</p>
+</div>
+<div class="paragraph">
+<p>The doc function prints the documentation, then returns nil as the result - you will see both in the evaluation output.</p>
+</div>
+<div class="paragraph">
+<p>We can invoke <code>doc</code> on itself too:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (doc doc)
+
+clojure.repl/doc
+([name])
+Macro
+  Prints documentation for a var or special form given its name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Not sure what something is called? You can use the <code>apropos</code> command to find functions that match a particular string or regular expression.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (apropos "+")
+(clojure.core/+ clojure.core/+')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also widen your search to include the docstrings themselves with <code>find-doc</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (find-doc "trim")
+
+clojure.core/subvec
+([v start] [v start end])
+  Returns a persistent vector of the items in vector from
+  start (inclusive) to end (exclusive).  If end is not supplied,
+  defaults to (count vector). This operation is O(1) and very fast, as
+  the resulting vector shares structure with the original and no
+  trimming is done.
+
+clojure.string/trim
+([s])
+  Removes whitespace from both ends of string.
+
+clojure.string/trim-newline
+([s])
+  Removes all trailing newline \n or return \r characters from
+  string.  Similar to Perl's chomp.
+
+clojure.string/triml
+([s])
+  Removes whitespace from the left side of string.
+
+clojure.string/trimr
+([s])
+  Removes whitespace from the right side of string.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you&#8217;d like to see a full listing of the functions in a particular namespace, you can use the <code>dir</code> function. Here we can use it on the <code>clojure.repl</code> namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (dir clojure.repl)
+
+apropos
+demunge
+dir
+dir-fn
+doc
+find-doc
+pst
+root-cause
+set-break-handler!
+source
+source-fn
+stack-element-str
+thread-stopper</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, we can see not only the documentation but the underlying source for any function accessible by the runtime:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (source dir)
+
+(defmacro dir
+  "Prints a sorted directory of public vars in a namespace"
+  [nsname]
+  `(doseq [v# (dir-fn '~nsname)]
+     (println v#)))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you go through this workshop, please feel free to examine the docstring and source for the functions you are using. Exploring the implementation of the Clojure library itself is an excellent way to learn more about the language and how it is used.</p>
+</div>
+<div class="paragraph">
+<p>It is also an excellent idea to keep a copy of the <a href="xref/../../../api/cheatsheet">Clojure Cheatsheet</a> open while you are learning Clojure. The cheatsheet categorizes the functions available in the standard library and is an invaluable reference.</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s consider some Clojure basics to get you going&#8230;&#8203;.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clojure_basics"><a class="anchor" href="#_clojure_basics"></a>Clojure basics</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_def"><a class="anchor" href="#_def"></a><code>def</code></h3>
+<div class="paragraph">
+<p>When you are evaluating things at a REPL, it can be useful to save a piece of data for later. We can do this with <code>def</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (def x 7)
+#'user/x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>def</code> is a special form that associates a symbol (x) in the current namespace with a value (7). This linkage is called a <code>var</code>. In most actual Clojure code, vars should refer to either a constant value or a function, but it&#8217;s common to define and re-define them for convenience when working at the REPL.</p>
+</div>
+<div class="paragraph">
+<p>Note the return value above is <code>#'user/x</code> - that&#8217;s the literal representation for a var: <code>#'</code> followed by the namespaced symbol. <code>user</code> is the default namespace.</p>
+</div>
+<div class="paragraph">
+<p>Recall that symbols are evaluated by looking up what they refer to, so we can get the value back by just using the symbol:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (+ x x)
+14</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_printing"><a class="anchor" href="#_printing"></a>Printing</h3>
+<div class="paragraph">
+<p>One of the most common things you do when learning a language is to print out values. Clojure provides several functions for printing values:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch table">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">For humans</th>
+<th class="tableblock halign-left valign-top">Readable as data</th>
+<th class="tableblock halign-left valign-top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">With newline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">println</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">prn</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Without newline</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pr</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The human-readable forms will translate special print characters (like newlines and tabs) to their printed form and omit quotes in strings. We often use <code>println</code> to debug functions or print a value at the REPL. <code>println</code> takes any number of arguments and interposes a space between each argument&#8217;s printed value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">user=&gt; (println "What is this:" (+ 1 2))
+What is this: 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The println function has side-effects (printing) and returns nil as a result.</p>
+</div>
+<div class="paragraph">
+<p>Note that "What is this:" above did not print the surrounding quotes and is not a string that the Reader could read again as data.</p>
+</div>
+<div class="paragraph">
+<p>For that purpose, use prn to print as data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (prn "one\n\ttwo")
+"one\n\ttwo"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the printed result is a valid form that the Reader could read again. Depending on context, you may prefer either the human form or the data form.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_your_knowledge"><a class="anchor" href="#_test_your_knowledge"></a>Test your knowledge</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Using the REPL, compute the sum of 7654 and 1234.</p>
+</li>
+<li>
+<p>Rewrite the following algebraic expression as a Clojure expression: <code>( 7 + 3 * 4 + 5 ) / 10</code>.</p>
+</li>
+<li>
+<p>Using REPL documentation functions, find the documentation for the <code>rem</code> and <code>mod</code> functions. Compare the results of the provided expressions based on the documentation.</p>
+</li>
+<li>
+<p>Using <code>find-doc</code>, find the function that prints the stack trace of the most recent REPL exception.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><a href="answers#_syntax">Check your answers</a></p>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  <a href="clojure" class="clj-prev-link"><span class="clj-prevnext-link-icon">&#xeab5;</span>&nbsp;Introduction</a>
+  <a href="functions" class="clj-next-link">Functions&nbsp;<span class="clj-prevnext-link-icon">&#xeab8;</span></a>
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/guides/learn/syntax.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

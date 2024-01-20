@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Learn Clojure - Flow Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <a href="../guides" class="w-nav-link clj-section-nav-item-link"><span class="clj-nav-nested-icon">&#xeab5;</span> Back to Guides</a>
+            <div class="w-nav-link clj-section-nav-heading">Topics</div>
+            <a href="clojure" class="w-nav-link clj-section-nav-item-link">Introduction</a>
+            <a href="syntax" class="w-nav-link clj-section-nav-item-link">Syntax</a>
+            <a href="functions" class="w-nav-link clj-section-nav-item-link">Functions</a>
+            <a href="sequential_colls" class="w-nav-link clj-section-nav-item-link">Sequential Collections</a>
+            <a href="hashed_colls" class="w-nav-link clj-section-nav-item-link">Hashed Collections</a>
+            <a href="flow" class="w-nav-link clj-section-nav-item-link">Flow Control</a>
+            <a href="namespaces" class="w-nav-link clj-section-nav-item-link">Namespaces</a>
+          </nav>
+          <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+            <div class="clj-section-nav-text">Flow Control</div>
+            <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+            <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Learn Clojure - Flow Control</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_statements_vs_expressions">Statements vs. Expressions</a></li>
+<li><a href="#_flow_control_expressions">Flow Control Expressions</a>
+<ul class="sectlevel2">
+<li><a href="#_if"><code>if</code></a></li>
+<li><a href="#_truth">Truth</a></li>
+<li><a href="#_if_and_do"><code>if</code> and <code>do</code></a></li>
+<li><a href="#_when"><code>when</code></a></li>
+<li><a href="#_cond"><code>cond</code></a></li>
+<li><a href="#_cond_and_else"><code>cond</code> and <code>else</code></a></li>
+<li><a href="#_case"><code>case</code></a></li>
+<li><a href="#_case_with_else_expression"><code>case</code> with <code>else</code>-expression</a></li>
+</ul>
+</li>
+<li><a href="#_iteration_for_side_effects">Iteration for Side Effects</a>
+<ul class="sectlevel2">
+<li><a href="#_dotimes"><code>dotimes</code></a></li>
+<li><a href="#_doseq"><code>doseq</code></a></li>
+<li><a href="#_doseq_with_multiple_bindings"><code>doseq</code> with multiple bindings</a></li>
+</ul>
+</li>
+<li><a href="#_clojures_for">Clojure&#8217;s <code>for</code></a></li>
+<li><a href="#_recursion">Recursion</a>
+<ul class="sectlevel2">
+<li><a href="#_recursion_and_iteration">Recursion and Iteration</a></li>
+<li><a href="#_loop_and_recur"><code>loop</code> and <code>recur</code></a></li>
+<li><a href="#_defn_and_recur"><code>defn</code> and <code>recur</code></a></li>
+<li><a href="#_recur_for_recursion"><code>recur</code> for recursion</a></li>
+</ul>
+</li>
+<li><a href="#_exceptions">Exceptions</a>
+<ul class="sectlevel2">
+<li><a href="#_exception_handling">Exception handling</a></li>
+<li><a href="#_throwing_exceptions">Throwing exceptions</a></li>
+<li><a href="#_exceptions_with_clojure_data">Exceptions with Clojure data</a></li>
+<li><a href="#_with_open"><code>with-open</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_statements_vs_expressions"><a class="anchor" href="#_statements_vs_expressions"></a>Statements vs. Expressions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Java, expressions return values, whereas statements do not.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="java">// "if" is a statement because it doesn't return a value:
+String s;
+if (x &gt; 10) {
+    s = "greater";
+} else {
+    s = "less or equal";
+}
+obj.someMethod(s);
+
+// Ternary operator is an expression; it returns a value:
+obj.someMethod(x &gt; 10 ? "greater" : "less or equal");</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In Clojure, however, everything is an expression! <em>Everything</em> returns a value, and a block of multiple expressions returns the last value. Expressions that exclusively perform side-effects return <code>nil</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_flow_control_expressions"><a class="anchor" href="#_flow_control_expressions"></a>Flow Control Expressions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Accordingly, flow control operators are expressions, too!</p>
+</div>
+<div class="paragraph">
+<p>Flow control operators are composable, so we can use them anywhere. This leads to less duplicate code, as well as fewer intermediate variables.</p>
+</div>
+<div class="paragraph">
+<p>Flow control operators are also extensible via macros, which allow the compiler to be extended by user code. We won&#8217;t be discussing macros today, but you can read more about them at <a href="xref/../../../reference/macros">Macros</a>, <a href="https://aphyr.com/posts/305-clojure-from-the-ground-up-macros">Clojure from the Ground Up</a>, or <a href="http://www.braveclojure.com/writing-macros/">Clojure for the Brave and True</a>, among many other places.</p>
+</div>
+<div class="sect2">
+<h3 id="_if"><a class="anchor" href="#_if"></a><code>if</code></h3>
+<div class="paragraph">
+<p><code>if</code> is the most important conditional expression - it consists of a condition, a "then", and an "else". <code>if</code> will only evaluate the branch selected by the conditional.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (str "2 is " (if (even? 2) "even" "odd"))
+2 is even
+
+user=&gt; (if (true? false) "impossible!") ;; else is optional
+nil</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_truth"><a class="anchor" href="#_truth"></a>Truth</h3>
+<div class="paragraph">
+<p>In Clojure, all values are logically true or false. The only "false" values are <code>false</code> and <code>nil</code> - all other values are logically true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (if true :truthy :falsey)
+:truthy
+user=&gt; (if (Object.) :truthy :falsey) ; objects are true
+:truthy
+user=&gt; (if [] :truthy :falsey) ; empty collections are true
+:truthy
+user=&gt; (if 0 :truthy :falsey) ; zero is true
+:truthy
+user=&gt; (if false :truthy :falsey)
+:falsey
+user=&gt; (if nil :truthy :falsey)
+:falsey</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_if_and_do"><a class="anchor" href="#_if_and_do"></a><code>if</code> and <code>do</code></h3>
+<div class="paragraph">
+<p>The <code>if</code> only takes a single expression for the "then" and "else". Use <code>do</code> to create larger blocks that are a single expression.</p>
+</div>
+<div class="paragraph">
+<p>Note that the only reason to do this is if your bodies have side effects! (Why?)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(if (even? 5)
+  (do (println "even")
+      true)
+  (do (println "odd")
+      false))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_when"><a class="anchor" href="#_when"></a><code>when</code></h3>
+<div class="paragraph">
+<p><code>when</code> is an <code>if</code> with only a <code>then</code> branch. It checks a condition and then evaluates any number of statements as a body (so no <code>do</code> is required). The value of the last expression is returned. If the condition is false, nil is returned.</p>
+</div>
+<div class="paragraph">
+<p><code>when</code> communicates to a reader that there is no "else" branch.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(when (neg? x)
+  (throw (RuntimeException. (str "x must be positive: " x))))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cond"><a class="anchor" href="#_cond"></a><code>cond</code></h3>
+<div class="paragraph">
+<p><code>cond</code> is a series of tests and expressions. Each test is evaluated in order and the expression is evaluated and returned for the first true test.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(let [x 5]
+  (cond
+    (&lt; x 2) "x is less than 2"
+    (&lt; x 10) "x is less than 10"))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cond_and_else"><a class="anchor" href="#_cond_and_else"></a><code>cond</code> and <code>else</code></h3>
+<div class="paragraph">
+<p>If no test is satisfied, nil is returned. A common idiom is to use a final test of <code>:else</code>. Keywords (like <code>:else</code>) always evaluate to true so this will always be selected as a default.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(let [x 11]
+  (cond
+    (&lt; x 2)  "x is less than 2"
+    (&lt; x 10) "x is less than 10"
+    :else  "x is greater than or equal to 10"))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_case"><a class="anchor" href="#_case"></a><code>case</code></h3>
+<div class="paragraph">
+<p><code>case</code> compares an argument to a series of values to find a match. This is done in constant (not linear) time! However, each value must be a compile-time literal (numbers, strings, keywords, etc).</p>
+</div>
+<div class="paragraph">
+<p>Unlike <code>cond</code>, <code>case</code> will throw an exception if no value matches.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (defn foo [x]
+         (case x
+           5 "x is 5"
+           10 "x is 10"))
+#'user/foo
+
+user=&gt; (foo 10)
+x is 10
+
+user=&gt; (foo 11)
+IllegalArgumentException No matching clause: 11</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_case_with_else_expression"><a class="anchor" href="#_case_with_else_expression"></a><code>case</code> with <code>else</code>-expression</h3>
+<div class="paragraph">
+<p><code>case</code> can have a final trailing expression that will be evaluated if no test matches.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (defn foo [x]
+         (case x
+           5 "x is 5"
+           10 "x is 10"
+           "x isn't 5 or 10"))
+#'user/foo
+
+user=&gt; (foo 11)
+x isn't 5 or 10</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iteration_for_side_effects"><a class="anchor" href="#_iteration_for_side_effects"></a>Iteration for Side Effects</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_dotimes"><a class="anchor" href="#_dotimes"></a><code>dotimes</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Evaluate expression <em>n</em> times</p>
+</li>
+<li>
+<p>Returns <code>nil</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">user=&gt; (dotimes [i 3]
+         (println i))
+0
+1
+2
+nil</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_doseq"><a class="anchor" href="#_doseq"></a><code>doseq</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Iterates over a sequence</p>
+</li>
+<li>
+<p>If a lazy sequence, forces evaluation</p>
+</li>
+<li>
+<p>Returns <code>nil</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (doseq [n (range 3)]
+         (println n))
+0
+1
+2
+nil</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_doseq_with_multiple_bindings"><a class="anchor" href="#_doseq_with_multiple_bindings"></a><code>doseq</code> with multiple bindings</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Similar to nested <code>foreach</code> loops</p>
+</li>
+<li>
+<p>Processes all permutations of sequence content</p>
+</li>
+<li>
+<p>Returns <code>nil</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (doseq [letter [:a :b]
+               number (range 3)] ; list of 0, 1, 2
+         (prn [letter number]))
+[:a 0]
+[:a 1]
+[:a 2]
+[:b 0]
+[:b 1]
+[:b 2]
+nil</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clojures_for"><a class="anchor" href="#_clojures_for"></a>Clojure&#8217;s <code>for</code></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>List comprehension, <strong>not</strong> a for-loop</p>
+</li>
+<li>
+<p>Generator function for sequence permutation</p>
+</li>
+<li>
+<p>Bindings behave like <code>doseq</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure-repl">user=&gt; (for [letter [:a :b]
+             number (range 3)] ; list of 0, 1, 2
+         [letter number])
+([:a 0] [:a 1] [:a 2] [:b 0] [:b 1] [:b 2])</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_recursion"><a class="anchor" href="#_recursion"></a>Recursion</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_recursion_and_iteration"><a class="anchor" href="#_recursion_and_iteration"></a>Recursion and Iteration</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Clojure provides recur and the sequence abstraction</p>
+</li>
+<li>
+<p><code>recur</code> is "classic" recursion</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumers don&#8217;t control it, considered a lower-level facility</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Sequences represent iteration as values</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumers can partially iterate</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Reducers represent iteration as function composition</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added in Clojure 1.5, not covered here</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_loop_and_recur"><a class="anchor" href="#_loop_and_recur"></a><code>loop</code> and <code>recur</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Functional looping construct</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>loop</code> defines bindings</p>
+</li>
+<li>
+<p><code>recur</code> re-executes <code>loop</code> with new bindings</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Prefer higher-order library functions instead</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(loop [i 0]
+  (if (&lt; i 10)
+    (recur (inc i))
+    i))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_defn_and_recur"><a class="anchor" href="#_defn_and_recur"></a><code>defn</code> and <code>recur</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Function arguments are implicit <code>loop</code> bindings</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(defn increase [i]
+  (if (&lt; i 10)
+    (recur (inc i))
+    i))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recur_for_recursion"><a class="anchor" href="#_recur_for_recursion"></a><code>recur</code> for recursion</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>recur</code> must be in "tail position"</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The last expression in a branch</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>recur</code> must provide values for all bound symbols by position</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Loop bindings</p>
+</li>
+<li>
+<p>defn/fn arguments</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Recursion via <code>recur</code> does not consume stack</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exceptions"><a class="anchor" href="#_exceptions"></a>Exceptions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_exception_handling"><a class="anchor" href="#_exception_handling"></a>Exception handling</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>try</code>/<code>catch</code>/<code>finally</code> as in Java</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(try
+  (/ 2 1)
+  (catch ArithmeticException e
+    "divide by zero")
+  (finally
+    (println "cleanup")))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_throwing_exceptions"><a class="anchor" href="#_throwing_exceptions"></a>Throwing exceptions</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(try
+  (throw (Exception. "something went wrong"))
+  (catch Exception e (.getMessage e)))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exceptions_with_clojure_data"><a class="anchor" href="#_exceptions_with_clojure_data"></a>Exceptions with Clojure data</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ex-info</code> takes a message and a map</p>
+</li>
+<li>
+<p><code>ex-data</code> gets the map back out</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Or <code>nil</code> if not created with <code>ex-info</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(try
+  (throw (ex-info "There was a problem" {:detail 42}))
+  (catch Exception e
+    (prn (:detail (ex-data e)))))</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_with_open"><a class="anchor" href="#_with_open"></a><code>with-open</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="clojure">(let [f (clojure.java.io/writer "/tmp/new")]
+  (try
+    (.write f "some text")
+    (finally
+      (.close f))))
+
+;; Can be written:
+(with-open [f (clojure.java.io/writer "/tmp/new")]
+  (.write f "some text"))</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  <a href="hashed_colls" class="clj-prev-link"><span class="clj-prevnext-link-icon">&#xeab5;</span>&nbsp;Hashed Collections</a>
+  <a href="namespaces" class="clj-next-link">Namespaces&nbsp;<span class="clj-prevnext-link-icon">&#xeab8;</span></a>
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/guides/learn/flow.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

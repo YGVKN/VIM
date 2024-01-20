@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Scicloj LLM meetup 6</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+
+<div class="clj-section-nav-container">
+  <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+    <div class="w-container">
+      <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+        <a href="/community/events" class="w-nav-link clj-section-nav-item-link"><span class="clj-nav-nested-icon">&#xeab5;</span> Events</a>
+        <div class="w-nav-link clj-section-nav-heading">Upcoming</div>
+                    <a href="/events/2024/reifying-execution-the-interactive-788021056" class="w-nav-link clj-section-nav-item-link">Reifying execution, the interactive</a>
+            <a href="/events/2024/desktop-gui-made-easy-1910123125" class="w-nav-link clj-section-nav-item-link">Desktop GUI Made Easy</a>
+            <a href="/events/2024/brimm-graph-backend-with-a--1414961930" class="w-nav-link clj-section-nav-item-link">Brimm: graph backend with a</a>
+            <a href="/events/2024/in-clojure-2024--1062234288" class="w-nav-link clj-section-nav-item-link">IN/Clojure 2024</a>
+        <div class="w-nav-link clj-section-nav-heading">Recent</div>
+            <a href="/events/2023/los-angeles-clojure-meetup--385373859" class="w-nav-link clj-section-nav-item-link">Los Angeles Clojure Meetup</a>
+            <a href="/events/2023/cooking-up-a-workflow-for-data-1759184159" class="w-nav-link clj-section-nav-item-link">Cooking up a workflow for data</a>
+            <a href="/events/2023/visual-tools-meeting-20--115347812" class="w-nav-link clj-section-nav-item-link">Visual-tools meeting 20</a>
+            <a href="/events/2023/writing-maintainable-clojure-1739230272" class="w-nav-link clj-section-nav-item-link">Writing Maintainable Clojure</a>
+            <a href="/events/2023/scicloj-llm-meetup-6-1332603222" class="w-nav-link clj-section-nav-item-link">Scicloj LLM meetup 6</a>
+            <a href="/events/2023/los-angeles-clojure-meetup--36874662" class="w-nav-link clj-section-nav-item-link">Los Angeles Clojure Meetup</a>
+            <a href="/events/2023/a-functional-approach-to-massively-1688048806" class="w-nav-link clj-section-nav-item-link">A functional approach to massively</a>
+            <a href="/events/2023/portal-internals-by-chris-badahdah-1241472843" class="w-nav-link clj-section-nav-item-link">Portal Internals (by Chris Badahdah)</a>
+      </nav>
+      <div data-ix="toggle-section-nav-icon" class="w-nav-button w-clearfix clj-section-nav-toggle">
+        <div class="clj-section-nav-text">Scicloj LLM meetup 6</div>
+        <div class="clj-section-nav-icon-closed">&#xeab2;</div>
+        <div data-ix="init-hide-section-nav-icon-open" class="clj-section-nav-icon-open">&#xeab9;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="clj-content-container">
+			<p>
+			  <strong>Date:</strong> 2023-11-17<br/>
+                  <strong>Location:</strong> online</strong><br/>
+		  <strong>Link:</strong> <a href="https://clojureverse.org/t/scicloj-llm-meetup-6-implementing-research-papers-with-bosquet/10404">https://clojureverse.org/t/scicloj-llm-meetup-6-implementing-research-papers-with-bosquet/10404</a></p>
+      <div class="sect1">
+<h2 id="_scicloj_llm_meetup_6_implementing_research_pa"><a class="anchor" href="#_scicloj_llm_meetup_6_implementing_research_pa"></a>Scicloj LLM meetup 6: Implementing research pa&#8230;&#8203;</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Scicloj LLM meetup 6: Implementing research papers with Bosquet<br>
+<br>
+On the next meetup of the Scicloj LLM series, we will keep exploring the LLMOps platform Bosquet.<br>
+In this meeting, the author Žygimantas Medelis will demonstrate how Bosquet can be used to implement a couple of workflows presented in recent research. You may see examples of such implementations in Bosquet&rsquo;s documentation.<br>
+<br>
+Joining<br>
+Please Reply below and mention that you plan to attend. You can also inform me by a private message.<br>
+You can use the Add to Calendar button to add the event to your calendar.<br>
+<br>
+Assumed background<br>
+This session will not teach the basics of LLMs. For background, you are encouraged to watch the recordings of previous sessions on this series, especially Meetups 1,2, and the short part about Bosquet in Meetup 5. You may also enjoy Meetup 3, where an earlier version of Bosquet was presented.<br>
+We will also assume some knowledge of Clojure.<br>
+<br>
+Length<br>
+The official part will be 90 minutes long.<br>
+Sometimes, some of us like to stay longer and chat.<br>
+<br>
+Video Call<br>
+Zoom link: Launch Meeting - Zoom<br>
+<br>
+Recording<br>
+Some parts of this meeting will be recorded and shared publicly.<br>
+Some parts will not be recorded, to allow the conversation to flow freely.<br>
+<br>
+Zulip: <a href="https://clojurians.zulipchat.com/#narrow/stream/262224-events/near/400427049" class="bare">https://clojurians.zulipchat.com/#narrow/stream/262224-events/near/400427049</a><br></p>
+</div>
+</div>
+</div>
+
+      <hr/>
+      <h3>Clojure Calendar</h3>
+
+      <p>These events are sourced from the <a href="https://clojurians.zulipchat.com/#narrow/stream/262224-events/topic/README">Clojure events calendar</a>.</p>
+      <ul class="w-list-unstyled clj-home-updates-list">
+        <li><a href="https://gitlab.com/clojurians-zulip/feeds/-/tree/master#announce-an-event">Add an event</a></li>
+        <li><a href="https://invertisment.gitlab.io/cljcalendar/">Web calendar view</a></li>
+        <li><a href="https://www.clojurians-zulip.org/feeds/events.ics">Calendar link (.ics)</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/events/2023/scicloj-llm-meetup-6-1332603222.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!-- This site was created in Webflow. http://www.webflow.com-->
+<!-- Last Published: Fri Nov 13 2015 01:48:45 GMT+0000 (UTC) -->
+<html lang="en" data-wf-site="56414d6fc8c27cad0f4e12e7" data-wf-page="5643ac587b1f28dc58ed6b89">
+<head>
+  <meta charset="utf-8">
+  <title>Clojure - Development</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+  <meta name="google-site-verification" content="a30CDuC9UBifM7EL575LK9a4TEE6mNfWbKqXIoSZChg" />
+  <meta name="google-site-verification" content="iXqpntr4CN3JRM1sVm5D_YzZw8bFRizBaTVycwqii2E" />
+  <meta name="keywords" content="clojure,programming" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=PT+Serif:ital@0;1&&family=Source+Code+Pro:wght@500&display=swap">
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/clojureorg.webflow.css">
+  <link rel="stylesheet" type="text/css" href="/css/asciidoctor-mod.css">
+  <link type="text/css" href="/css/default-en.css" rel="stylesheet">
+  <link type="text/css" href="/css/default.css" rel="stylesheet">
+  <link type="text/css" href="/css/search-result.css" rel="stylesheet">
+  <link rel="alternate" type="application/atom+xml" title="News" href="/feed.xml" />
+  <script type="text/javascript" src="/js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="/images/clojure-logo-icon-32.png">
+  <link rel="apple-touch-icon" href="/images/clojure-logo-icon-256.png">
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://cognitect.matomo.cloud/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '9']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src='//cdn.matomo.cloud/cognitect.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+<!-- End Matomo Code -->
+  <script type="text/javascript">
+    function searchClj(obj) {
+      let e = document.getElementById("searchType");
+      document.getElementById("hiddenSearch").value=e.value;
+    }
+  </script>
+</head>
+<body>
+  <div data-collapse="none" data-animation="default" data-duration="400" data-contain="1" class="w-nav clj-navbar">
+    <div class="w-container">
+      <a href="/index" class="w-nav-brand w-clearfix clj-logo-container"><img width="60" src="/images/clojure-logo-120b.png" class="clj-logo" alt="Clojure logo">
+        <div class="clj-logo-text">Clojure</div>
+      </a>
+      <nav role="navigation" class="w-nav-menu clj-nav-menu"><a href="/about/rationale" class="w-nav-link clj-nav-link">Overview</a><a href="/reference/documentation" class="w-nav-link clj-nav-link">Reference‍</a><a href="/api/api" class="w-nav-link clj-nav-link">API</a><a href="/releases/downloads" class="w-nav-link clj-nav-link">Releases</a><a href="/guides/guides" class="w-nav-link clj-nav-link">Guides</a><a href="/community/success_stories" class="w-nav-link clj-nav-link">Community</a><a href="/dev/dev" class="w-nav-link clj-nav-link">Dev</a><a href="/news/news" class="w-nav-link clj-nav-link">News</a><a href="#" data-ix="search-click-trigger" class="w-nav-link clj-nav-link clj-nav-search">&#xed11;</a>
+      </nav>
+      <div class="w-nav-button clj-menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+  <div data-ix="hide-search" class="w-section clj-search-section">
+    <div class="w-container">
+      <div class="w-form clj-search-form-wrapper">
+        <form id="wf-form-Search-Form" name="wf-form-Search-Form" action="https://duckduckgo.com/" method="get" onSubmit="searchClj(this)">
+          <div class="w-row">
+            <div class="w-col w-col-6 w-col-small-6">
+              <input id="hiddenSearch" type="hidden" name="sites" value="www.clojure.org">
+              <input name="q" id="q" type="text" placeholder="Search clojure.org reference, guides, and API" title="Search text" autofocus="autofocus" class="w-input clj-search-input">
+            </div>
+            <div class="w-col w-col-3 w-col-small-3 clj-search-type">
+              <select name="searchType" id="searchType" class="w-select clj-search-type">
+                <option value="www.clojure.org">clojure.org</option>
+                <option value="ask.clojure.org">ask.clojure.org</option>
+              </select>
+            </div>
+            <div class="w-col w-col-3 w-col-small-3">
+              <input type="submit" value="Search" class="w-button clj-search-submit">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="w-section clj-content-section">
+  <div class="w-container">
+    <div class="clj-section-nav-container">
+      <div data-collapse="small" data-animation="default" data-duration="200" data-contain="1" class="w-nav clj-section-navbar">
+        <div class="w-container">
+          <nav role="navigation" class="w-nav-menu clj-section-nav-menu">
+            <div class="w-nav-link clj-section-nav-heading">Language Dev</div>
+            <a href="dev" class="w-nav-link clj-section-nav-item-link">Development</a>
+            <a href="contributor_agreement" class="w-nav-link clj-section-nav-item-link">Contributor Agreement</a>
+            <a href="workflow" class="w-nav-link clj-section-nav-item-link">Workflow</a>
+            <a href="creating_tickets" class="w-nav-link clj-section-nav-item-link">Creating Tickets</a>
+            <a href="developing_patches" class="w-nav-link clj-section-nav-item-link">Developing Patches</a>
+            <a href="screening_tickets" class="w-nav-link clj-section-nav-item-link">Screening Tickets</a>
+            <a href="contributors" class="w-nav-link clj-section-nav-item-link">Contributors</a>
+            <div class="w-nav-link clj-section-nav-heading">Contrib Libs</div>
+            <a href="contrib_libs" class="w-nav-link clj-section-nav-item-link">Contrib libs</a>
+            <a href="contrib_history" class="w-nav-link clj-section-nav-item-link">Contrib lib history</a>
+            <div class="w-nav-link clj-section-nav-heading">Resources</div>
+            <a href="https://github.com/clojure/clojure" class="w-nav-link clj-section-nav-item-link">Source</a>
+            <a href="https://clojure.atlassian.net/servicedesk/customer/portal/1" class="w-nav-link clj-section-nav-item-link">Support Portal</a>
+            <a href="https://clojure.atlassian.net/projects/CLJ" class="w-nav-link clj-section-nav-item-link">Issue Tracker</a>
+            <a href="https://build.clojure.org" class="w-nav-link clj-section-nav-item-link">Build box</a>
+            <a href="/releases/downloads" class="w-nav-link clj-section-nav-item-link">Downloads</a>
+            <a href="https://clojure.github.io/clojure" class="w-nav-link clj-section-nav-item-link">API Docs</a>
+            <a href="../community/license" class="w-nav-link clj-section-nav-item-link">License</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="clj-content-container">
+
+      <h1>Development</h1>
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure was created by Rich Hickey and is developed by a core team of developers at <a href="https://cognitect.com">Cognitect</a>, which supports this work. The Clojure development team values a measured and thoughtful approach to language evolution with a strong emphasis on maintaining backward compatibility.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_becoming_a_contributor"><a class="anchor" href="#_becoming_a_contributor"></a>Becoming a Contributor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First, please consider the <a href="xref/../../community/contributing">many ways to contribute</a> as a Clojure user. If you wish to discuss a problem or enhancement, <a href="xref/../../community/ask">you can do so on the forum</a> without becoming a contributor.</p>
+</div>
+<div class="paragraph">
+<p>The Clojure core team values those that engage with the current stream of ongoing work, doing the hard work of triage, <a href="developing_patches">patch development</a>, <a href="screening_tickets">screening</a>, etc. The <a href="workflow">workflow</a> page highlights places to tap into those queues of work as jira reports. The core team tends to focus on tickets primarily in the late alpha / early beta period for a release cycle. During other parts of the release cycle, activity may seem dormant, but that is the perfect time to improve tickets so they are ready to evaluate. Tickets that are well-written with good patches can move quickly through the cycle at the appropriate time.</p>
+</div>
+<div class="paragraph">
+<p>If you are interested in becoming involved as an active contributor:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign the <a href="contributor_agreement">Clojure Contributor Agreement</a>.</p>
+</li>
+<li>
+<p>File a <a href="https://clojure.atlassian.net/servicedesk/customer/portal/1">contributor support request</a> to get a contributor account - please include the email address you wish to use with your account.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_participating_as_a_contributor"><a class="anchor" href="#_participating_as_a_contributor"></a>Participating as a Contributor</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_issues"><a class="anchor" href="#_issues"></a>Issues</h3>
+<div class="paragraph">
+<p>Contributors can file tickets directly in the issue tracker. You might want to check what you are seeing with others on a Clojure discussion forum before filing. Please review the <a href="creating_tickets">guide to creating useful tickets</a>.</p>
+</div>
+<div class="paragraph">
+<p>Clojure accepts contributions as patches on issues. Please review <a href="developing_patches">these guidelines</a> on developing patches. Tickets may be assessed over a long period of time, following the <a href="workflow">workflow</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enhancements_and_features"><a class="anchor" href="#_enhancements_and_features"></a>Enhancements and Features</h3>
+<div class="paragraph">
+<p>Clojure&#8217;s direction is determined by Rich Hickey and the core team. This process is open to input and visible in issues and commits, but not explicitly driven by the community. The core team pays attention to the needs of the community by monitoring and participating in many Clojure discussion forums, and by reviewing issues and votes in the issue tracker. We are currently evaluating better systems for collecting and prioritizing enhancement requests.</p>
+</div>
+<div class="paragraph">
+<p>If you have an idea for an enhancement or new feature for Clojure, it may be helpful to search the issue tracker for prior issues and/or raise this idea for discussion in one of the Clojure forums. In particular, the mailing lists or #clojure-dev room on Clojurian slack are good places to discuss.</p>
+</div>
+<div class="paragraph">
+<p>Please follow the guidelines in <a href="creating_tickets">Creating Tickets</a> and <a href="developing_patches">Developing Patches</a> - enhancement/feature tickets should start with a compelling problem to solve and compare alternatives and their tradeoffs, rather than leap straight to a solution and a patch. Clojure is a small language and endeavors to remain so. In many cases, proposed features can instead be provided in functions or libraries outside the core.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_roadmap"><a class="anchor" href="#_roadmap"></a>Roadmap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clojure is an open-ended project with no fixed release schedule. Major releases typically occur about once per year. While there are usually a few focused areas of work in a major release, it is common for those to change during the development of the release in response to either feedback or changing external needs. Because of this, a roadmap is typically not declared at the beginning of a release. Ongoing development is visible during alpha releases, often phased over multiple dev releases. The <a href="xref/../../releases/devchangelog">Dev Changelog</a> chronicles these changes during the release cycle.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the core team may be doing work in dependent projects or tools, rather than the language itself, such as spec, core.specs, tools.deps, clj, etc. This is still considered part of the broader "release" train.</p>
+</div>
+</div>
+</div>
+
+
+<div class="clj-prev-next-container">
+  
+  
+</div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="w-section clj-footer">
+    <div class="w-container clj-footer-links-container">
+      <div class="w-row">
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Community</h6>
+            <a href="/community/resources" class="clj-footer-link">Resources</a>
+            <a href="/community/contributing" class="clj-footer-link">Contributing</a>
+            <a href="/community/companies" class="clj-footer-link">Companies</a>
+            <a href="/community/contributing_site" class="clj-footer-link">Site</a>
+          <h6 class="clj-footer-heading">Legal</h6>
+            <a href="/community/license" class="clj-footer-link">License</a>
+            <a href="/privacy" class="clj-footer-link">Privacy Policy</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Documentation</h6>
+            <a href="/about/rationale" class="clj-footer-link">Overview</a>
+            <a href="/reference/documentation" class="clj-footer-link">Reference</a>
+            <a href="/api/api" class="clj-footer-link">API</a>
+            <a href="/guides/guides" class="clj-footer-link">Guides</a>
+            <a href="/community/libraries" class="clj-footer-link">Libraries &amp; Tools</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Updates</h6>
+            <a href="/news/news" class="clj-footer-link">News</a>
+            <a href="/community/events" class="clj-footer-link">Events</a>
+          <h6 class="clj-footer-heading">ETC</h6>
+            <a href="https://www.youtube.com/user/ClojureTV" class="clj-footer-link">ClojureTV</a>
+            <a href="/community/books" class="clj-footer-link">Books</a>
+            <a href="/community/swag" class="clj-footer-link">Swag</a>
+        </div>
+        <div class="w-col w-col-3 w-col-small-6 w-col-tiny-6">
+          <h6 class="clj-footer-heading">Code</h6>
+            <a href="/releases/downloads" class="clj-footer-link">Releases</a>
+            <a href="https://github.com/clojure/clojure/" class="clj-footer-link">Source</a>
+            <a href="http://clojurescript.org" class="clj-footer-link">ClojureScript</a>
+            <a href="/about/clojureclr" class="clj-footer-link">ClojureCLR</a>
+        </div>
+      </div>
+    </div>
+    <div class="w-container clj-footer-legal-container">
+      <div class="w-clearfix clj-footer-legal">
+        <div class="clj-footer-logo">&nbsp;</div>
+        <div class="clj-footer-legal-links">
+          <div class="clj-footer-copyright">Copyright 2008-2022 Rich Hickey | <a class="clj-footer-sub-link" href="/privacy">Privacy Policy</a><br/>Logo &amp; site design by Tom Hickey
+          </div>
+          <div class="clj-footer-designed-by">Published 2023-12-18<br/>Update <a class="clj-footer-sub-link" href="https://github.com/clojure/clojure-site/blob/master/content/dev/dev.adoc">this page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/webflow.js"></script>
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script>
+  $(document).ready( (event) => {
+    $('pre code').each((index, obj) => {
+      $(obj).addClass($(obj).attr("data-lang"));
+      hljs.highlightBlock(obj);
+    });
+  });
+  </script>
+  <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
