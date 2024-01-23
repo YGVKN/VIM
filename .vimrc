@@ -26,7 +26,7 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
-Plug 'tpope/vim-salve',              {'for': 'clojure'}
+""Plug 'tpope/vim-salve',              {'for': 'clojure'}
 Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
 "ELIXIR"
@@ -160,17 +160,20 @@ set complete+=k
 set complete+=d
 set complete+=U
 ""set completeopt=longest,menu,preview
-set completeopt=menuone,noinsert,noselect,preview
+""set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menuone,noinsert,noselect
 
 "LSP"
 if executable('clojure-lsp')
   au User lsp_setup call lsp#register_server({
       \ 'name': 'clojure-lsp',
-      \ 'cmd': {server_info->['clojure-lsp', '--log-path=/tmp/clojure-lsp.out']},
-      \ 'allowlist': ['clojure']
+      \ 'cmd': {server_info->
+        \ [&shell,&shellcmdflag,'clojure-lsp --stdio']},
+      \ 'allowlist': ['clojure'],
+      \ 'languageId': {server_info->'clojure'},
       \ })
 endif
-"Please do :LspInstallServer to enable Language Server vim-language-server"
+
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -189,7 +192,9 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 3000
-  au! BufWritePre *.{clj,cljs,cljx,cljc} call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljx,cljc,edn} call execute('LspDocumentFormatSync')
+  au! CompleteDone * if pumvisible() == 0 | pclose | endif
+
     " refer to doc to add more commands
 endfunc
 
@@ -199,12 +204,15 @@ augroup lsp_install
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-let g:lsp_log_verbose = 1
+let g:lsp_log_verbose = 0
 let g:lsp_fold_enabled = 0
+let g:lsp_show_message_log_level = 'error'
+
 let g:lsp_log_file = expand('~/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_auto_completeopt = 1
+let g:mapleader = "\\"
 
 "OTHER"
 imap jj <Esc>
@@ -339,10 +347,10 @@ au Syntax   * RainbowParenthesesLoadChevrons
 "Send to REPL visual mode CTRL-C CTRL-C"
 
 let g:slime_target = "vimterminal"
-let g:slime_vimterminal_cmd = $SHELL
+let g:slime_vimterminal_cmd = &shell
 let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
-let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal-repl"}
+let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
 ""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 ""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
@@ -476,8 +484,8 @@ au VimLeavePre * if v:dying | echom "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echom "Exit value is " .. v:exiting
 
-"runtime autoload/public/stuff.vim"
-"call public#stuff#Out()"
+""runtime autoload/public/stuff.vim"
+""call public#stuff#Out()
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
