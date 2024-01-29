@@ -7,6 +7,7 @@ func TextEntered(text)
   " Send the text to a shell with Enter appended.
 
   call ch_sendraw(s:shell_job, a:text .. "\n")
+  echomsg job_info(s:shell_job)
 endfunc
 
 " Function handling output from the shell: Add it above the prompt.
@@ -16,7 +17,10 @@ endfunc
 
 " Function handling the shell exits: close the window.
 func JobExit(job, status)
+  echomsg job_info(job)
   quit!
+  sleep 3
+  echomsg job_status(s:shell_job)
 endfunc
 
 " Start a shell in the background.
@@ -25,7 +29,7 @@ let s:shell_job = job_start(["/bin/zsh"], #{
 	\ err_cb: function('GotOutput'),
 	\ exit_cb: function('JobExit'),
 	\ })
-
+echomsg job_status(s:shell_job)
 new
 set buftype=prompt
 set nonumber

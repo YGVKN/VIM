@@ -208,11 +208,12 @@ let g:lsp_log_verbose = 0
 let g:lsp_fold_enabled = 0
 let g:lsp_show_message_log_level = 'error'
 
-let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
 
-let g:asyncomplete_log_file = expand('~/asyncomplete.log')
+let g:asyncomplete_log_file = expand('$VIM_HOME/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
 let g:mapleader = "\\"
+
 
 "OTHER"
 imap jj <Esc>
@@ -481,7 +482,7 @@ endfunc
 com! -nargs=? Date exe ':call Date_data(<args>)'
 
 au VimLeavePre * if v:dying | echom "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
+""au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echom "Exit value is " .. v:exiting
 
 ""runtime autoload/public/stuff.vim"
