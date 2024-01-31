@@ -155,7 +155,8 @@ set wildmode=list:longest,full
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
-set omnifunc=syntaxcomplete#Smart_TabComplete
+""set omnifunc=syntaxcomplete#Smart_TabComplete
+set omnifunc=Smart_TabComplete
 set complete+=k
 set complete+=d
 set complete+=U
@@ -207,6 +208,7 @@ augroup END
 let g:lsp_log_verbose = 0
 let g:lsp_fold_enabled = 0
 let g:lsp_show_message_log_level = 'error'
+let g:clojure_maxlines = 33
 
 let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
 
@@ -301,7 +303,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Deleted"   : "✖",
     \ "Dirty"     : "✗",
     \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
+    \ "Ignored"   : '☒',
     \ "Unknown"   : "?"
     \ }
 
@@ -357,7 +359,7 @@ au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.b
 ""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
 
 "Parinfer"
-let g:vim_parinfer_filetypes = ['clojure','clojurescript']
+let g:vim_parinfer_filetypes = ["clojure","clojurescript"]
 
 
 "JSON"
@@ -475,18 +477,20 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
-func Date_data(param = "%c") abort
+func! DateData(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
-com! -nargs=? Date exe ':call Date_data(<args>)'
+com! -nargs=? Date exe 'call DateData(<args>)'
 
-au VimLeavePre * if v:dying | echom "\nAAAAaaaarrrggghhhh!!!\n" | endif
-""au VimLeave * exe ':call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
-au VimLeave * echom "Exit value is " .. v:exiting
+"Other public stuff ..."
+com! -nargs=? HandlerStuff exe 'call public#stuff#Out()'
+
+au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
+""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
+au VimLeave * echowindow "Exit value is " .. v:exiting
 
 ""runtime autoload/public/stuff.vim"
-""call public#stuff#Out()
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "Shift ? - <search something>"
@@ -494,3 +498,4 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "TMUX C-b z"
 ""let @+=42
 ""let @*=42
+

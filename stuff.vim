@@ -1,42 +1,36 @@
 func public#stuff#Out() abort
-	" Create a channel log so we can see what happens.
-call ch_logfile('logfile', 'w')
 
-" Function handling a line of text that has been typed.
-func TextEntered(text)
-  " Send the text to a shell with Enter appended.
+  call ch_logfile('vimlogfile', 'w')
 
-  call ch_sendraw(s:shell_job, a:text .. "\n")
-  echomsg job_info(s:shell_job)
-endfunc
+  func! TextEntered(text)
+    call ch_sendraw(s:shell_job, a:text .. "\n")
+  endfunc
 
-" Function handling output from the shell: Add it above the prompt.
-func GotOutput(channel, msg)
-  call append(line("$") - 1, "- " .. a:msg)
-endfunc
+  func! GotOutput(channel, msg)
+    call append(line("$") - 1, "  " .. a:msg)
+  endfunc
 
-" Function handling the shell exits: close the window.
-func JobExit(job, status)
-  echomsg job_info(job)
-  quit!
-  sleep 3
-  echomsg job_status(s:shell_job)
-endfunc
+  func! JobExit(job, status)
+    call job_stop(s:shell_job)
+    echowindow "Job Status [" .. job_status(s:shell_job) .. "]"
+    echomsg job_info(s:shell_job)
+    quit!
+  endfunc
 
-" Start a shell in the background.
-let s:shell_job = job_start(["/bin/zsh"], #{
-	\ out_cb: function('GotOutput'),
-	\ err_cb: function('GotOutput'),
-	\ exit_cb: function('JobExit'),
-	\ })
-echomsg job_status(s:shell_job)
-new
-set buftype=prompt
-set nonumber
-let buf = bufnr('')
-call prompt_setcallback(buf, function("TextEntered"))
-eval prompt_setprompt(buf, "$> ")
+  let s:shell_job = job_start([$SHELL], #{
+        \ out_cb:   "GotOutput",
+        \ err_cb:   "GotOutput",
+        \ exit_cb:  "JobExit",
+        \ noblock: 1,
+    \ })
 
-" start accepting shell commands
-startinsert
+  new
+  setlocal buftype=prompt
+  setlocal nonumber
+  let buf = bufnr('')
+  call prompt_setcallback(buf, "TextEntered")
+  eval prompt_setprompt(buf, "$>")
+  sleep 1
+  echowindow "Job Status [" .. job_status(s:shell_job) .. "]"
+  startinsert
 endfunc
