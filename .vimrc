@@ -167,13 +167,14 @@ set completeopt=menuone,noinsert,noselect
 "LSP"
 if executable('clojure-lsp')
   au User lsp_setup call lsp#register_server({
-      \ 'name': 'clojure-lsp',
-      \ 'cmd': {server_info->
-        \ [&shell,&shellcmdflag,'clojure-lsp --stdio']},
-      \ 'allowlist': ['clojure'],
-      \ 'languageId': {server_info->'clojure'},
+      \ 'name': "clojure-lsp",
+      \ 'cmd': {server_info-> ["clojure-lsp"]},
+      \ 'allowlist': ["clojure","edn"],
+      \ 'languageId': {server_info-> "clojure-lsp"},
       \ })
 endif
+""      \ 'cmd': {server_info-> [&shell,&shellcmdflag,"clojure-lsp"]},
+
 
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -194,6 +195,8 @@ func! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 3000
   au! BufWritePre *.{clj,cljs,cljx,cljc,edn} call execute('LspDocumentFormatSync')
+  ""au! BufWritePre *.{clj,cljs,cljx,cljc,edn} :Dispatch -compiler=clj-kondo
+  "" Show q:
   au! CompleteDone * if pumvisible() == 0 | pclose | endif
 
     " refer to doc to add more commands
@@ -205,16 +208,18 @@ augroup lsp_install
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-let g:lsp_log_verbose = 0
+let g:lsp_log_verbose = 1
 let g:lsp_fold_enabled = 0
-let g:lsp_show_message_log_level = 'error'
-let g:clojure_maxlines = 33
+""let g:lsp_show_message_log_level = 'error'
 
 let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('$VIM_HOME/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
 let g:mapleader = "\\"
+
+"Linters"
+autocmd QuickFixCmdPost [^l]* cwindow
 
 
 "OTHER"
