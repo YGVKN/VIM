@@ -16,7 +16,7 @@ Plug 'xolox/vim-colorscheme-switcher'
 
 "CLOJURE"
 Plug 'jpalardy/vim-slime'
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -26,8 +26,7 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 
-""Plug 'tpope/vim-salve',              {'for': 'clojure'}
-Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+Plug 'tpope/vim-dispatch'
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -49,9 +48,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'edn']}
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rhysd/vim-healthcheck'
+
 "Plug 'github/copilot.vim'"
 "Plug 'jiangmiao/auto-pairs'
 call plug#end()
@@ -66,6 +67,8 @@ scriptencoding utf-8
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
 set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
+"Usage :vimgrep "lsp"  ~/.vimrc | copen"
+
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -151,6 +154,9 @@ set colorcolumn=99,111
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
+set wildignore=*.swp,*.o
+set wildignore+=*/node_modules/*,*/.cache/*,
+
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
@@ -216,10 +222,11 @@ let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('$VIM_HOME/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
-let g:mapleader = "\\"
 
+"Dispatch"
+au FileType clojure,edn let b:dispatch = 'clj-kondo --lint % --parallel'
 "Linters"
-autocmd QuickFixCmdPost [^l]* cwindow
+""autocmd QuickFixCmdPost [^l]* cwindow
 
 
 "OTHER"
@@ -227,6 +234,8 @@ imap jj <Esc>
 
 "Lambda λ"
 imap <C-j> <C-k>l*
+
+let g:mapleader = "\\"
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -503,4 +512,3 @@ au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
 "TMUX C-b z"
 ""let @+=42
 ""let @*=42
-
