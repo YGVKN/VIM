@@ -48,7 +48,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'edn']}
+""Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'edn']}
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rhysd/vim-healthcheck'
@@ -66,8 +66,10 @@ colorscheme pop-punk
 scriptencoding utf-8
 "set spell spelllang=en_us,ru_ru"
 set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
-"Usage :vimgrep "lsp"  ~/.vimrc | copen"
+""set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
+set  grepprg=ag\ --vimgrep
+
+"Usage :vimgrep "zh"  ~/.vimrc | cw"
 
 set makeprg=make\ -j$(nproc)
 
@@ -155,7 +157,7 @@ set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
 set wildignore=*.swp,*.o
-set wildignore+=*/node_modules/*,*/.cache/*,
+set wildignore+=*/node_modules/*,
 
 
 set formatoptions=tcqrn2
@@ -201,7 +203,6 @@ func! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 3000
   au! BufWritePre *.{clj,cljs,cljx,cljc,edn} call execute('LspDocumentFormatSync')
-  ""au! BufWritePre *.{clj,cljs,cljx,cljc,edn} :Dispatch -compiler=clj-kondo
   "" Show q:
   au! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -224,7 +225,8 @@ let g:asyncomplete_log_file = expand('$VIM_HOME/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
 
 "Dispatch"
-au FileType clojure,edn let b:dispatch = 'clj-kondo --lint % --parallel'
+""au FileType clojure let b:dispatch = 'clj-kondo --lint % --parallel'
+
 "Linters"
 ""autocmd QuickFixCmdPost [^l]* cwindow
 
@@ -496,9 +498,6 @@ func! DateData(param = "%c") abort
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call DateData(<args>)'
-
-"Other public stuff ..."
-com! -nargs=? HandlerStuff exe 'call public#stuff#Out()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
