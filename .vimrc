@@ -48,7 +48,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-""Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'edn']}
+Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rhysd/vim-healthcheck'
@@ -94,6 +94,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 set shell=$SHELL
 set tags=./.tags;$HOME
 set title  titlelen=77 titleold='YGVKN/ZHUZHA'
+set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
 set number
 set magic
 set ruler
@@ -141,7 +142,7 @@ set t_Co=256
 set mps+=<:>
 set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
-set fillchars+=vert:\  
+set fillchars+=vert:\
 set laststatus=2
 
 set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
@@ -157,14 +158,14 @@ set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
 set wildignore=*.swp,*.o
-set wildignore+=*/node_modules/*,
+set wildignore+=*/node_modules/*,.git
 
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
-""set omnifunc=syntaxcomplete#Smart_TabComplete
-set omnifunc=Smart_TabComplete
+set omnifunc=syntaxcomplete#Smart_TabComplete
+""set omnifunc=Smart_TabComplete
 set complete+=k
 set complete+=d
 set complete+=U
@@ -173,16 +174,31 @@ set complete+=U
 set completeopt=menuone,noinsert,noselect
 
 "LSP"
-if executable('clojure-lsp')
-  au User lsp_setup call lsp#register_server({
-      \ 'name': "clojure-lsp",
-      \ 'cmd': {server_info-> ["clojure-lsp"]},
-      \ 'allowlist': ["clojure","edn"],
-      \ 'languageId': {server_info-> "clojure-lsp"},
+au User lsp_setup call lsp#register_server({
+      \ 'name': 'clojure-lsp',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'clojure-lsp']},
+      \ 'allowlist': ['clojure', 'clojurescript'],
       \ })
-endif
-""      \ 'cmd': {server_info-> [&shell,&shellcmdflag,"clojure-lsp"]},
 
+au User lsp_setup call lsp#register_server({
+  \ 'name': 'clj-kondo',
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/clj-kondo-lsp-server-2023.12.15-standalone.jar']},
+  \ 'allowlist': ['clojure', 'clojurescript']
+  \ })
+
+if executable('vim-language-server')
+  augroup LspVim
+    autocmd!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'vim-language-server',
+        \ 'cmd': {server_info->['vim-language-server', '--stdio']},
+        \ 'whitelist': ['vim'],
+        \ 'initialization_options': {
+        \   'vimruntime': $VIMRUNTIME,
+        \   'runtimepath': &rtp,
+        \ }})
+  augroup END
+endif
 
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -201,11 +217,8 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
-  let g:lsp_format_sync_timeout = 3000
-  au! BufWritePre *.{clj,cljs,cljx,cljc,edn} call execute('LspDocumentFormatSync')
-  "" Show q:
-  au! CompleteDone * if pumvisible() == 0 | pclose | endif
-
+  let g:lsp_format_sync_timeout = 1111
+  au! BufWritePre *.{clj,cljs,cljc,edn,vim} call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
@@ -215,8 +228,15 @@ augroup lsp_install
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+""au! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 let g:lsp_log_verbose = 1
 let g:lsp_fold_enabled = 0
+let g:lsp_use_event_queue = 1
+let g:lsp_max_buffer_size = 10000000
+let g:lsp_max_buffer_size = -1
+
+
 ""let g:lsp_show_message_log_level = 'error'
 
 let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
@@ -498,6 +518,8 @@ func! DateData(param = "%c") abort
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call DateData(<args>)'
+
+com! -nargs=? Off nohlsearch | redraw
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
