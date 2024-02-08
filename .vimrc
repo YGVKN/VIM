@@ -142,7 +142,7 @@ set t_Co=256
 set mps+=<:>
 set iskeyword+=-
 set listchars=tab:..,trail:.,nbsp:_
-set fillchars+=vert:\
+set fillchars+=vert:\  
 set laststatus=2
 
 set statusline=%F%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
@@ -518,8 +518,6 @@ func! DateData(param = "%c") abort
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call DateData(<args>)'
-
-com! -nargs=? Off nohlsearch | redraw
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
