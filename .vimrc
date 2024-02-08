@@ -210,6 +210,7 @@ if executable('bash-language-server')
           \ })
   augroup END
 endif
+
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -249,9 +250,9 @@ let g:lsp_max_buffer_size = -1
 
 ""let g:lsp_show_message_log_level = 'error'
 
-let g:lsp_log_file = expand('$VIM_HOME/vim-lsp.log')
+let g:lsp_log_file = expand('$HOME/vim-lsp.log')
 
-let g:asyncomplete_log_file = expand('$VIM_HOME/asyncomplete.log')
+let g:asyncomplete_log_file = expand('$HOME/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
 
 "Dispatch"
