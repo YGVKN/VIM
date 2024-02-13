@@ -5,10 +5,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-Plug 'xolox/vim-misc'
+
+""Plug 'xolox/vim-misc'
+""Plug 'flazz/vim-colorschemes'
+""Plug 'xolox/vim-colorscheme-switcher'
+
 Plug 'bignimbus/pop-punk.vim'
-Plug 'flazz/vim-colorschemes'
-Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'matsuuu/pinkmare'"
 "Plug 'sonph/onehalf'"
 "Plug 'rose-pine/vim'"
@@ -38,9 +40,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "OTHER"
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
+""Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'tpope/vim-surround'
+""Plug 'tpope/vim-surround'
 Plug 'roman/golden-ratio'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
 Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
@@ -92,9 +94,8 @@ set background=dark
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
-set tags=./.tags;$HOME
+set tags=./.tags,$HOME
 set title  titlelen=77 titleold='YGVKN/ZHUZHA'
-set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
 set number
 set magic
 set ruler
@@ -211,6 +212,27 @@ if executable('bash-language-server')
   augroup END
 endif
 
+if executable('yaml-language-server')
+  augroup LspYaml
+   autocmd!
+   autocmd User lsp_setup call lsp#register_server({
+       \ 'name': 'yaml-language-server',
+       \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
+       \ 'allowlist': ['yml', 'yaml', 'yaml.ansible'],
+       \ 'workspace_config': {
+       \   'yaml': {
+       \     'validate': v:true,
+       \     'hover': v:true,
+       \     'completion': v:true,
+       \     'customTags': [],
+       \     'schemas': {},
+       \     'schemaStore': { 'enable': v:true },
+       \   }
+       \ }
+       \})
+  augroup END
+endif
+
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -229,7 +251,7 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 1111
-  au! BufWritePre *.{clj,cljs,cljc,edn,vim} call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
@@ -250,16 +272,10 @@ let g:lsp_max_buffer_size = -1
 
 ""let g:lsp_show_message_log_level = 'error'
 
-let g:lsp_log_file = expand('$HOME/vim-lsp.log')
+let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
-let g:asyncomplete_log_file = expand('$HOME/asyncomplete.log')
+let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
-
-"Dispatch"
-""au FileType clojure let b:dispatch = 'clj-kondo --lint % --parallel'
-
-"Linters"
-""autocmd QuickFixCmdPost [^l]* cwindow
 
 
 "OTHER"
@@ -279,15 +295,15 @@ nnoremap <F6> :blast<CR>
 
 "Start VIM with NERDTree"
 func StartUpVIM() abort
-    if !argc() && !exists("s:std_in")
-        NERDTree | wincmd l | wincmd c
-    end
-    if argc() > 0 || exists("s:std_in")
-       exe 'NERDTree' argv()[0] | wincmd p
-    end
-    if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in')
-      exe 'NERDTree' argv()[0] | wincmd p | enew | exe 'cd '.argv()[0] | wincmd l | wincmd c
-    end
+  if !argc() && !exists("s:std_in")
+      NERDTree | wincmd l | wincmd c
+  end
+  if argc() > 0 || exists("s:std_in")
+     exe 'NERDTree' argv()[0] | wincmd p
+  end
+  if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in')
+    exe 'NERDTree' argv()[0] | wincmd p | enew | exe 'cd '.argv()[0] | wincmd l | wincmd c
+  end
 endfunc
 
 au StdinReadPre * let s:std_in=1
@@ -406,7 +422,7 @@ au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.b
 ""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
 
 "Parinfer"
-let g:vim_parinfer_filetypes = ["clojure","clojurescript"]
+let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 
 
 "JSON"
@@ -421,14 +437,6 @@ augroup json_autocmd
   au FileType json set foldmethod=syntax
 augroup END
 
-"YAML"
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-augroup yaml_fix
-   au!
-   au FileType yaml setl ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-augroup END
-au FileType yaml setl indentkeys-=<:>
-
 "Jenkinsfile syntax"
 au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
 augroup groovy_autocmd
@@ -439,18 +447,6 @@ augroup groovy_autocmd
   au FileType groovy set softtabstop=2 tabstop=2
   au FileType groovy set expandtab
   au FileType groovy set foldmethod=syntax
-augroup END
-
-".conf & other shell stuff"
-au! BufReadPost,BufNewFile *.{conf,config,shell} set filetype=sh
-augroup sh_autocmd
-  au!
-  au FileType sh set autoindent
-  au FileType sh set formatoptions=tcq2l
-  au FileType sh set textwidth=111 shiftwidth=2
-  au FileType sh set softtabstop=2 tabstop=2
-  au FileType sh set expandtab
-  au FileType sh set foldmethod=syntax
 augroup END
 
 "Native complete"
