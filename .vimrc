@@ -423,6 +423,9 @@ au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.b
 
 "Parinfer"
 let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
+"Translate"
+let g:trans_bin = "~/.vim"
+let g:trans_default_direction="en:ru"
 
 
 "JSON"
