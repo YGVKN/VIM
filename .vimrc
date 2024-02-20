@@ -5,12 +5,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "ColorScheme"
-
+Plug 'bignimbus/pop-punk.vim'
 ""Plug 'xolox/vim-misc'
 ""Plug 'flazz/vim-colorschemes'
 ""Plug 'xolox/vim-colorscheme-switcher'
-
-Plug 'bignimbus/pop-punk.vim'
 "Plug 'matsuuu/pinkmare'"
 "Plug 'sonph/onehalf'"
 "Plug 'rose-pine/vim'"
@@ -27,6 +25,7 @@ Plug 'guns/vim-sexp',                {'for': 'clojure'}
 Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
 Plug 'tpope/vim-dispatch'
 
@@ -40,9 +39,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 "OTHER"
 Plug 'kien/rainbow_parentheses.vim'
-""Plug 'stephpy/vim-yaml',             {'for': 'yaml'}
 Plug 'gorodinskiy/vim-coloresque'
-""Plug 'tpope/vim-surround'
+
 Plug 'roman/golden-ratio'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
 Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
@@ -54,9 +52,9 @@ Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'rhysd/vim-healthcheck'
-
 "Plug 'github/copilot.vim'"
 "Plug 'jiangmiao/auto-pairs'
+""Plug 'tpope/vim-surround'
 call plug#end()
 
 sy on
@@ -91,6 +89,7 @@ set fileencoding=utf-8
 
 set background=dark
 
+set updatetime=400
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
@@ -166,13 +165,13 @@ set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
 set termguicolors
 set omnifunc=syntaxcomplete#Smart_TabComplete
-""set omnifunc=Smart_TabComplete
 set complete+=k
 set complete+=d
 set complete+=U
+set completeopt=menuone,noinsert,noselect
 ""set completeopt=longest,menu,preview
 ""set completeopt=menuone,noinsert,noselect,preview
-set completeopt=menuone,noinsert,noselect
+
 
 "LSP"
 au User lsp_setup call lsp#register_server({
@@ -261,7 +260,7 @@ augroup lsp_install
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-""au! CompleteDone * if pumvisible() == 0 | pclose | endif
+au! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:lsp_log_verbose = 1
 let g:lsp_fold_enabled = 0
@@ -269,14 +268,10 @@ let g:lsp_use_event_queue = 1
 let g:lsp_max_buffer_size = 10000000
 let g:lsp_max_buffer_size = -1
 
-
-""let g:lsp_show_message_log_level = 'error'
-
 let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
-
 
 "OTHER"
 imap jj <Esc>
@@ -284,7 +279,7 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-let g:mapleader = "\\"
+let g:mapleader = ","
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -292,6 +287,13 @@ nnoremap <F4> :bprevious<CR>
 
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
+
+"NERDTree"
+if !empty($NERDTREE_BOOKMARKS)
+    if filereadable($NERDTREE_BOOKMARKS)
+        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
+    endif
+endif
 
 "Start VIM with NERDTree"
 func StartUpVIM() abort
@@ -323,6 +325,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline_section_c = 'λ  WΛWW | ZHUZHA CORP %F'
+""let g:airline_section_d = 'section D'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
@@ -331,15 +334,8 @@ let g:terminal_ansi_colors = pop_punk#AnsiColors()
 "FZF"
 let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden --depth 8 -i -f -l -g ""'
 
-"Tag list of Ctags"
+"Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
-
-"NERDTree"
-if !empty($NERDTREE_BOOKMARKS)
-    if filereadable($NERDTREE_BOOKMARKS)
-        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
-    endif
-endif
 
 let g:NERDTreeDirArrowExpandable   = "λ"
 let g:NERDTreeDirArrowCollapsible  = ">"
@@ -417,16 +413,20 @@ let g:slime_vimterminal_cmd = &shell
 let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
-au FileType clojure let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
+
+au FileType clojure,edn let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
+
 ""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
 ""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
 
 "Parinfer"
 let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
+
 "Translate"
 let g:trans_bin = "~/.vim"
 let g:trans_default_direction="en:ru"
 
+""au  FileType clojure,clojurescript,edn  setlocal ts=2 sts=2 sw=2 expandtab
 
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
@@ -536,8 +536,3 @@ au VimLeave * echowindow "Exit value is " .. v:exiting
 ""runtime autoload/public/stuff.vim"
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
-"Shift ? - <search something>"
-"Send out reg [r] data to named buffer [vim-repl] - call term_sendkeys('vim-repl', "echo ".@r)"
-"TMUX C-b z"
-""let @+=42
-""let @*=42
