@@ -1,5 +1,0 @@
-{:linters {:clj-kondo {:level :on
-                       :report-duplicates true}}
- :cache-path ".lsp/.cache"
- :log-path "/tmp/clojure-lsp.*.out"}
-

@@ -32,6 +32,9 @@ Plug 'tpope/vim-dispatch'
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
+"VLANG"
+Plug 'ollykel/v-vim',                {'for': 'vlang'}
+
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -288,13 +291,6 @@ nnoremap <F4> :bprevious<CR>
 nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
-"NERDTree"
-if !empty($NERDTREE_BOOKMARKS)
-    if filereadable($NERDTREE_BOOKMARKS)
-        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
-    endif
-endif
-
 "Start VIM with NERDTree"
 func StartUpVIM() abort
   if !argc() && !exists("s:std_in")
@@ -308,15 +304,24 @@ func StartUpVIM() abort
   end
 endfunc
 
-au StdinReadPre * let s:std_in=1
-au VimEnter     * call StartUpVIM()
-
-au BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+if !empty($NERDTREE_BOOKMARKS)
+    if filereadable($NERDTREE_BOOKMARKS)
+        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
+    endif
+endif
 
 augroup nerdtreehidecwd
  au!
  au FileType nerdtree setl conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
 augroup end
+
+au BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+au StdinReadPre * let s:std_in=1
+au VimEnter     * call StartUpVIM()
+
+
+
 
 "AirLine"
 let g:airline#extensions#tabline#enabled = 1
@@ -324,7 +329,7 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline_section_c = 'λ  WΛWW | ZHUZHA CORP %F'
+let g:airline_section_c = 'λ  WΛWW | ZHUZHA CORP %F '
 ""let g:airline_section_d = 'section D'
 let g:airline_theme='pop_punk'
 
