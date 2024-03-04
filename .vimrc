@@ -97,7 +97,9 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 set tags=./.tags,$HOME
-set title  titlelen=77 titleold='YGVKN/ZHUZHA'
+""set title
+""set titlelen=333
+"" titleold='YGVKN/ZHUZHA'
 set number
 set magic
 set ruler
@@ -162,7 +164,6 @@ set wildignorecase
 set wildmode=list:longest,full
 set wildignore=*.swp,*.o
 set wildignore+=*/node_modules/*,.git
-
 
 set formatoptions=tcqrn2
 set runtimepath^=~/.vim/plugged
@@ -275,6 +276,9 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
+
+"V Lang"
+let g:v_autofmt_bufwritepre = 1
 
 "OTHER"
 imap jj <Esc>
