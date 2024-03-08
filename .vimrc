@@ -14,6 +14,9 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
+"Janet"
+Plug 'bakpakin/janet.vim',           {'for': 'janet'}
+
 "CLOJURE"
 Plug 'jpalardy/vim-slime'
 Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn']}
