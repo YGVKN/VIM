@@ -100,9 +100,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 set tags=./.tags,$HOME
-""set title
-""set titlelen=333
-"" titleold='YGVKN/ZHUZHA'
+""set title titlelen=333
 set number
 set magic
 set ruler
@@ -179,7 +177,7 @@ set completeopt=menuone,noinsert,noselect
 ""set completeopt=longest,menu,preview
 ""set completeopt=menuone,noinsert,noselect,preview
 
-
+"Usage > https://github.com/prabirshrestha/vim-lsp/wiki/Servers-Clojure"
 "LSP"
 au User lsp_setup call lsp#register_server({
       \ 'name': 'clojure-lsp',
@@ -189,7 +187,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2023.12.15-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2024.03.05-standalone.jar ']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -327,9 +325,6 @@ au BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') 
 au StdinReadPre * let s:std_in=1
 au VimEnter     * call StartUpVIM()
 
-
-
-
 "AirLine"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -337,7 +332,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline_section_c = 'λ  WΛWW | ZHUZHA CORP %F '
-""let g:airline_section_d = 'section D'
 let g:airline_theme='pop_punk'
 
 let g:airline_highlighting_cache = 1
@@ -437,8 +431,6 @@ let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 "Translate"
 let g:trans_bin = "~/.vim"
 let g:trans_default_direction="en:ru"
-
-""au  FileType clojure,clojurescript,edn  setlocal ts=2 sts=2 sw=2 expandtab
 
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
@@ -545,6 +537,6 @@ au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-""runtime autoload/public/stuff.vim"
+"runtime autoload/public/script.vim"
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
