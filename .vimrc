@@ -279,7 +279,7 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 1111
-  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,zsh,yml,yaml,dockerfile},Dockerfile, Containerfile call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,zsh,yml,yaml,dockerfile} call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
