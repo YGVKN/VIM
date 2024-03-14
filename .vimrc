@@ -14,11 +14,7 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
-"Janet"
-Plug 'bakpakin/janet.vim',           {'for': 'janet'}
-
 "CLOJURE"
-
 Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
@@ -33,6 +29,9 @@ Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-dispatch'
+
+"Janet"
+Plug 'bakpakin/janet.vim',           {'for': 'janet'}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -63,6 +62,9 @@ Plug 'rhysd/vim-healthcheck'
 "Plug 'github/copilot.vim'"
 "Plug 'jiangmiao/auto-pairs'
 ""Plug 'tpope/vim-surround'
+
+"Kitty terminal"
+Plug 'fladson/vim-kitty'
 call plug#end()
 
 sy on
@@ -189,7 +191,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2024.03.05-standalone.jar ']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar YGVKN/LSP/clj-kondo-lsp-server-2024.03.05-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -251,6 +253,14 @@ if executable('yaml-language-server')
   augroup END
 endif
 
+if executable('docker-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'whitelist': ['dockerfile'],
+        \ })
+endif
+
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -269,7 +279,7 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 1111
-  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,zsh,yml,yaml,dockerfile},Dockerfile, Containerfile call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
@@ -291,9 +301,6 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
-
-"V Lang"
-let g:v_autofmt_bufwritepre = 1
 
 "OTHER"
 imap jj <Esc>
@@ -446,6 +453,9 @@ let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 let g:trans_bin = "~/.vim"
 let g:trans_default_direction="en:ru"
 
+"V Lang"
+let g:v_autofmt_bufwritepre = 1
+
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -542,7 +552,7 @@ let g:plug_shallow=1
 
 "Custom stuff"
 func! DateData(param = "%c") abort
-  echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
+  echon a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call DateData(<args>)'
@@ -553,4 +563,4 @@ au VimLeave * echowindow "Exit value is " .. v:exiting
 
 "runtime autoload/public/script.vim"
 
-au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echon "Reloaded ".$MYVIMRC
