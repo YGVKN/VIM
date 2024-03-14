@@ -18,8 +18,9 @@ Plug 'bignimbus/pop-punk.vim'
 Plug 'bakpakin/janet.vim',           {'for': 'janet'}
 
 "CLOJURE"
-Plug 'jpalardy/vim-slime'
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn']}
+
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
+
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -30,6 +31,7 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-dispatch'
 
 "ELIXIR"
@@ -211,10 +213,22 @@ if executable('bash-language-server')
     autocmd User lsp_setup call lsp#register_server({
           \ 'name': 'bash-language-server',
           \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
-          \ 'allowlist': ['sh'],
+          \ 'allowlist': ['sh','zsh'],
           \ })
   augroup END
 endif
+
+let g:lsp_settings = {
+\   "yaml-language-server": {
+\     "workspace_config": {
+\       "yaml": {
+\         "customTags": [
+\           "!reference sequence"
+\         ]
+\       }
+\     }
+\   }
+\ }
 
 if executable('yaml-language-server')
   augroup LspYaml
@@ -228,7 +242,7 @@ if executable('yaml-language-server')
        \     'validate': v:true,
        \     'hover': v:true,
        \     'completion': v:true,
-       \     'customTags': [],
+       \     'customTags': ["!reference sequence"],
        \     'schemas': {},
        \     'schemaStore': { 'enable': v:true },
        \   }
@@ -326,7 +340,7 @@ au StdinReadPre * let s:std_in=1
 au VimEnter     * call StartUpVIM()
 
 "AirLine"
-let g:airline#extensions#tabline#enabled = 1
+""let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
