@@ -14,11 +14,16 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'rose-pine/vim'"
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
+"Janet"
+Plug 'bakpakin/janet.vim',           {'for': 'janet'}
+
 "CLOJURE"
+
 Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
+Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
 Plug 'guns/vim-sexp',                {'for': 'clojure'}
 
@@ -27,11 +32,9 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
-Plug 'jpalardy/vim-slime'
-Plug 'tpope/vim-dispatch'
+Plug 'jpalardy/vim-slime',           {'for': 'clojure'}
+Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
-"Janet"
-Plug 'bakpakin/janet.vim',           {'for': 'janet'}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -47,24 +50,17 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "OTHER"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'gorodinskiy/vim-coloresque'
-
 Plug 'roman/golden-ratio'
+Plug 'fladson/vim-kitty'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
 Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
+Plug 'rhysd/vim-healthcheck'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'rhysd/vim-healthcheck'
-"Plug 'github/copilot.vim'"
-"Plug 'jiangmiao/auto-pairs'
-""Plug 'tpope/vim-surround'
-
-"Kitty terminal"
-Plug 'fladson/vim-kitty'
+Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 call plug#end()
 
 sy on
@@ -191,7 +187,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar YGVKN/LSP/clj-kondo-lsp-server-2024.03.05-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2024.03.05-standalone.jar ']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -253,14 +249,6 @@ if executable('yaml-language-server')
   augroup END
 endif
 
-if executable('docker-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'docker-langserver',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
-        \ 'whitelist': ['dockerfile'],
-        \ })
-endif
-
 func! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   setlocal signcolumn=yes
@@ -279,7 +267,7 @@ func! s:on_lsp_buffer_enabled() abort
   nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
   let g:lsp_format_sync_timeout = 1111
-  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,zsh,yml,yaml,dockerfile} call execute('LspDocumentFormatSync')
+  au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
     " refer to doc to add more commands
 endfunc
 
@@ -301,6 +289,9 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
+
+"V Lang"
+let g:v_autofmt_bufwritepre = 1
 
 "OTHER"
 imap jj <Esc>
@@ -335,7 +326,6 @@ if !empty($NERDTREE_BOOKMARKS)
         let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
     endif
 endif
-
 augroup nerdtreehidecwd
  au!
  au FileType nerdtree setl conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
@@ -347,7 +337,6 @@ au StdinReadPre * let s:std_in=1
 au VimEnter     * call StartUpVIM()
 
 "AirLine"
-""let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -453,9 +442,6 @@ let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 let g:trans_bin = "~/.vim"
 let g:trans_default_direction="en:ru"
 
-"V Lang"
-let g:v_autofmt_bufwritepre = 1
-
 "JSON"
 au! BufReadPost,BufNewFile *.json set filetype=json
 augroup json_autocmd
@@ -551,16 +537,16 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
-func! DateData(param = "%c") abort
-  echon a:param ==# "%c" ? strftime("%c") : strftime(a:param)
+func! s:now(param = "%c") abort
+  echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
-com! -nargs=? Date exe 'call DateData(<args>)'
+com! -nargs=? Date exe 'call s:now(<args>)'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-"runtime autoload/public/script.vim"
+"runtime autoload/scratch.vim
 
-au! bufwritepost $MYVIMRC so $MYVIMRC | echon "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
