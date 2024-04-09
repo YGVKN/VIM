@@ -18,8 +18,7 @@ Plug 'bignimbus/pop-punk.vim'
 Plug 'bakpakin/janet.vim',           {'for': 'janet'}
 
 "CLOJURE"
-
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet', 'lisp']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -33,8 +32,7 @@ Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
 Plug 'jpalardy/vim-slime',           {'for': 'clojure'}
-Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
-
+Plug 'tpope/vim-dispatch'
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -70,13 +68,8 @@ filetype plugin indent on
 colorscheme pop-punk
 
 scriptencoding utf-8
-"set spell spelllang=en_us,ru_ru"
-set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-""set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
+set clipboard^=unnamed,unnamedplus
 set  grepprg=ag\ --vimgrep
-
-"Usage :vimgrep "zh"  ~/.vimrc | cw"
-
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -163,7 +156,7 @@ set colorcolumn=99,111
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
-set wildignore=*.swp,*.o
+set wildignore=*.swp,*.o,*.jar
 set wildignore+=*/node_modules/*,.git
 
 set formatoptions=tcqrn2
@@ -268,12 +261,10 @@ func! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 1111
   au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
-    " refer to doc to add more commands
 endfunc
 
 augroup lsp_install
     au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
@@ -298,7 +289,6 @@ imap jj <Esc>
 
 "Lambda λ"
 imap <C-j> <C-k>l*
-
 let g:mapleader = ","
 
 "Buffers"
@@ -321,11 +311,8 @@ func StartUpVIM() abort
   end
 endfunc
 
-if !empty($NERDTREE_BOOKMARKS)
-    if filereadable($NERDTREE_BOOKMARKS)
-        let g:NERDTreeBookmarksFile = $NERDTREE_BOOKMARKS
-    endif
-endif
+let g:NERDTreeBookmarksFile = (filereadable($NERDTREE_BOOKMARKS) && !empty($NERDTREE_BOOKMARKS)) ? $NERDTREE_BOOKMARKS : g:NERDTreeBookmarksFile
+
 augroup nerdtreehidecwd
  au!
  au FileType nerdtree setl conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
@@ -538,7 +525,7 @@ let g:plug_shallow=1
 
 "Custom stuff"
 func! s:now(param = "%c") abort
-  echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
+  echom a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call s:now(<args>)'
@@ -547,6 +534,6 @@ au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-"runtime autoload/scratch.vim
+runtime autoload/scratch.vim
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
