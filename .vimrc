@@ -18,7 +18,7 @@ Plug 'bignimbus/pop-punk.vim'
 Plug 'bakpakin/janet.vim',           {'for': 'janet'}
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet', 'lisp']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -31,8 +31,9 @@ Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
 Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 
-Plug 'jpalardy/vim-slime',           {'for': 'clojure'}
-Plug 'tpope/vim-dispatch'
+Plug 'jpalardy/vim-slime'
+Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
@@ -64,12 +65,65 @@ call plug#end()
 sy on
 
 filetype plugin indent on
+"Kitty terminal"
+" Mouse support
+set mouse=a
+set ttymouse=sgr
+set balloonevalterm
+" Styled and colored underline support
+let &t_AU = "\e[58:5:%dm"
+let &t_8u = "\e[58:2:%lu:%lu:%lum"
+let &t_Us = "\e[4:2m"
+let &t_Cs = "\e[4:3m"
+let &t_ds = "\e[4:4m"
+let &t_Ds = "\e[4:5m"
+let &t_Ce = "\e[4:0m"
+" Strikethrough
+let &t_Ts = "\e[9m"
+let &t_Te = "\e[29m"
+" Truecolor support
+let &t_8f = "\e[38:2:%lu:%lu:%lum"
+let &t_8b = "\e[48:2:%lu:%lu:%lum"
+let &t_RF = "\e]10;?\e\\"
+let &t_RB = "\e]11;?\e\\"
+" Bracketed paste
+let &t_BE = "\e[?2004h"
+let &t_BD = "\e[?2004l"
+let &t_PS = "\e[200~"
+let &t_PE = "\e[201~"
+" Cursor control
+let &t_RC = "\e[?12$p"
+let &t_SH = "\e[%d q"
+let &t_RS = "\eP$q q\e\\"
+let &t_SI = "\e[5 q"
+let &t_SR = "\e[3 q"
+let &t_EI = "\e[1 q"
+let &t_VS = "\e[?12l"
+" Focus tracking
+let &t_fe = "\e[?1004h"
+let &t_fd = "\e[?1004l"
+execute "set <FocusGained>=\<Esc>[I"
+execute "set <FocusLost>=\<Esc>[O"
+" Window title
+let &t_ST = "\e[22;2t"
+let &t_RT = "\e[23;2t"
 
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce. This causes incorrect background rendering when
+" using a color theme with a background color in terminals such as
+" kitty that do not support background color erase.
+let &t_ut=''
+"Kitty terminl"
 colorscheme pop-punk
 
 scriptencoding utf-8
-set clipboard^=unnamed,unnamedplus
+"set spell spelllang=en_us,ru_ru"
+set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
+""set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
 set  grepprg=ag\ --vimgrep
+
+"Usage :vimgrep "zh"  ~/.vimrc | cw"
+
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -156,7 +210,7 @@ set colorcolumn=99,111
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
-set wildignore=*.swp,*.o,*.jar
+set wildignore=*.swp,*.o
 set wildignore+=*/node_modules/*,.git
 
 set formatoptions=tcqrn2
@@ -261,10 +315,12 @@ func! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 1111
   au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
+    " refer to doc to add more commands
 endfunc
 
 augroup lsp_install
     au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
@@ -289,6 +345,7 @@ imap jj <Esc>
 
 "Lambda λ"
 imap <C-j> <C-k>l*
+
 let g:mapleader = ","
 
 "Buffers"
@@ -299,7 +356,7 @@ nnoremap <F5> :bfirst<CR>
 nnoremap <F6> :blast<CR>
 
 "Start VIM with NERDTree"
-func StartUpVIM() abort
+func! StartUpVIM() abort
   if !argc() && !exists("s:std_in")
       NERDTree | wincmd l | wincmd c
   end
@@ -311,7 +368,7 @@ func StartUpVIM() abort
   end
 endfunc
 
-let g:NERDTreeBookmarksFile = (filereadable($NERDTREE_BOOKMARKS) && !empty($NERDTREE_BOOKMARKS)) ? $NERDTREE_BOOKMARKS : g:NERDTreeBookmarksFile
+let g:NERDTreeBookmarksFile = !empty($NERDTREE_BOOKMARKS) && filereadable($NERDTREE_BOOKMARKS) ? $NERDTREE_BOOKMARKS : ''
 
 augroup nerdtreehidecwd
  au!
@@ -523,17 +580,19 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
+runtime autoload/scratch.vim
+
 "Custom stuff"
 func! s:now(param = "%c") abort
-  echom a:param ==# "%c" ? strftime("%c") : strftime(a:param)
+  echon a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
 ":Date | :Date("%Y %b %d %X")"
 com! -nargs=? Date exe 'call s:now(<args>)'
+"Scratch buffer"
+com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 ""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-runtime autoload/scratch.vim
-
-au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echon "Reloaded ".$MYVIMRC
