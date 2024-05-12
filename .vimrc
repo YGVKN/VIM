@@ -49,6 +49,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "OTHER"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'gorodinskiy/vim-coloresque'
+Plug 'elzr/vim-json', {'for': ['json', 'jsonp']}
 Plug 'roman/golden-ratio'
 Plug 'fladson/vim-kitty'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
@@ -65,7 +66,8 @@ call plug#end()
 sy on
 
 filetype plugin indent on
-"Kitty terminal"
+
+"###Kitty terminal###"
 " Mouse support
 set mouse=a
 set ttymouse=sgr
@@ -113,7 +115,8 @@ let &t_RT = "\e[23;2t"
 " using a color theme with a background color in terminals such as
 " kitty that do not support background color erase.
 let &t_ut=''
-"Kitty terminl"
+"###Kitty terminal###"
+
 colorscheme pop-punk
 
 scriptencoding utf-8
@@ -486,17 +489,19 @@ let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 let g:trans_bin = "~/.vim"
 let g:trans_default_direction="en:ru"
 
-"JSON"
-au! BufReadPost,BufNewFile *.json set filetype=json
-augroup json_autocmd
-  au!
-  au FileType json set autoindent
-  au FileType json set formatoptions=tcq2l
-  au FileType json set textwidth=111 shiftwidth=2
-  au FileType json set softtabstop=2 tabstop=2
-  au FileType json set expandtab
-  au FileType json set foldmethod=syntax
-augroup END
+"JSON Plugin"
+let g:vim_json_syntax_conceal = 0
+"""JSON"
+""au! BufReadPost,BufNewFile *.json set filetype=json
+""augroup json_autocmd
+""  au!
+""  au FileType json set autoindent
+""  au FileType json set formatoptions=tcq2l
+""  au FileType json set textwidth=111 shiftwidth=2
+""  au FileType json set softtabstop=2 tabstop=2
+""  au FileType json set expandtab
+""  au FileType json set foldmethod=syntax
+""augroup END
 
 "Jenkinsfile syntax"
 au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
