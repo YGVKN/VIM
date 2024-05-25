@@ -34,7 +34,6 @@ Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
 
-
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
@@ -120,13 +119,9 @@ let &t_ut=''
 colorscheme pop-punk
 
 scriptencoding utf-8
-"set spell spelllang=en_us,ru_ru"
-set clipboard^=unnamed,unnamedplus "Copy to sys buffer"
-""set grepprg=rg\ --vimgrep\ --color=always\ --hidden\ --heading\ --max-depth=8\ -Lin\ -j$(nproc)
+
+set clipboard^=unnamed,unnamedplus
 set  grepprg=ag\ --vimgrep
-
-"Usage :vimgrep "zh"  ~/.vimrc | cw"
-
 set makeprg=make\ -j$(nproc)
 
 let &t_ZH="\e[3m"
@@ -150,7 +145,6 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 
 set shell=$SHELL
 set tags=./.tags,$HOME
-""set title titlelen=333
 set number
 set magic
 set ruler
@@ -491,17 +485,6 @@ let g:trans_default_direction="en:ru"
 
 "JSON Plugin"
 let g:vim_json_syntax_conceal = 0
-"""JSON"
-""au! BufReadPost,BufNewFile *.json set filetype=json
-""augroup json_autocmd
-""  au!
-""  au FileType json set autoindent
-""  au FileType json set formatoptions=tcq2l
-""  au FileType json set textwidth=111 shiftwidth=2
-""  au FileType json set softtabstop=2 tabstop=2
-""  au FileType json set expandtab
-""  au FileType json set foldmethod=syntax
-""augroup END
 
 "Jenkinsfile syntax"
 au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
@@ -516,12 +499,10 @@ augroup groovy_autocmd
 augroup END
 
 "Native complete"
-""if has("autocmd") && exists("+omnifunc")
-""  au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim
-""  au FileType * setl complete+=k~/.vim/autoload/dicts/history_words.vim
-""":set dictionary+=/usr/share/dict/words"
-"""add repl history"
-""endif
+if has("autocmd") && exists("+omnifunc")
+  "au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim"
+  au FileType * setl complete+=k~/.vim/autoload/fuzzy_hist.vim
+endif
 
 "Tab compl"
 func Smart_TabComplete()
@@ -597,7 +578,7 @@ com! -nargs=? Date exe 'call s:now(<args>)'
 com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
-""au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/dicts/history_words.vim")'
+au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/fuzzy_hist.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echon "Reloaded ".$MYVIMRC
