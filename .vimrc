@@ -15,7 +15,7 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['clojure', 'clojurescript', 'edn', 'janet']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript', 'edn', 'janet']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -44,7 +44,6 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'elzr/vim-json', {'for': ['json', 'jsonp']}
 Plug 'roman/golden-ratio'
-Plug 'fladson/vim-kitty'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
 Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
@@ -133,8 +132,6 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set autoindent
-set smartindent
-set cindent
 
 set t_Co=256
 set mps+=<:>
@@ -155,7 +152,7 @@ set colorcolumn=99,111
 set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
-set wildignore=*.swp,*.o
+set wildignore=*.swp,*.pdf,*.png,*.jpeg,*.gif
 set wildignore+=*/node_modules/*,.git
 
 set termguicolors
@@ -260,12 +257,10 @@ func! s:on_lsp_buffer_enabled() abort
 
   let g:lsp_format_sync_timeout = 1111
   au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
-    " refer to doc to add more commands
 endfunc
 
 augroup lsp_install
     au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
@@ -281,9 +276,6 @@ let g:lsp_log_file = expand('/tmp/vim-lsp.log')
 
 let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
 let g:asyncomplete_auto_completeopt = 1
-
-"V Lang"
-let g:v_autofmt_bufwritepre = 1
 
 "OTHER"
 imap jj <Esc>
@@ -514,7 +506,7 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
-runtime autoload/scratch.vim
+"runtime autoload/scratch.vim"
 
 "Custom stuff"
 func! s:now(param = "%c") abort
@@ -529,4 +521,4 @@ au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
 au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/fuzzy_hist.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-au! bufwritepost $MYVIMRC so $MYVIMRC | echon "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
