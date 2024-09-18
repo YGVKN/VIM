@@ -15,7 +15,7 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript', 'edn', 'janet']}
+Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript', 'edn']}
 
 Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
 
@@ -441,7 +441,7 @@ augroup END
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   "au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim"
-  au FileType * setl complete+=k~/.vim/autoload/fuzzy_hist.vim
+  au FileType * setl complete+=k~/.vim/stock.vim
 endif
 
 "Tab compl"
@@ -506,9 +506,10 @@ let g:plug_threads=32
 let g:plug_retries=3
 let g:plug_shallow=1
 
+"Custom stuff"
+
 "runtime autoload/scratch.vim"
 
-"Custom stuff"
 func! s:now(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
 endfunc
@@ -518,7 +519,7 @@ com! -nargs=? Date exe 'call s:now(<args>)'
 com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $HOME/.vim/autoload/fuzzy_hist.vim")'
+au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/stock.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
-au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "Reloaded ".$MYVIMRC
+au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "RELOADED ".$MYVIMRC
