@@ -176,7 +176,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-2024.05.24-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-2024.08.29-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -411,16 +411,13 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 
-au FileType clojure,edn let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
-
-""autocmd FileType clojure let b:slime_vimterminal_cmd = 'clj -J-Dclojure.server.vim-prepl="{:port '.$REPL_PORT.' :accept clojure.core.server/io-prepl}"'
-""clj -Sdeps '{:deps {cider/cider-nrepl {:mvn/version "0.44.0"} }}' -M -m nrepl.cmdline --color --interactive -h "localhost" -b "127.0.0.1" -p 8765
+""au FileType clojure,edn let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
 
 "Parinfer"
 let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
 
 "Translate"
-let g:trans_bin = "~/.vim"
+let g:trans_bin = $VIM_HOME
 let g:trans_default_direction="en:ru"
 
 "JSON Plugin"
@@ -440,8 +437,8 @@ augroup END
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
+  au FileType * setl complete+=k$VIM_HOME/stock.vim
   "au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim"
-  au FileType * setl complete+=k~/.vim/stock.vim
 endif
 
 "Tab compl"
