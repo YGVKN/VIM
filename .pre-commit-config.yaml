@@ -10,11 +10,9 @@ repos:
     rev: 24.10.0
     hooks:
       - id: black
-
-  - repo: local
-    hooks:
-      - id: custom-hook-script
-        name: Custom hook script
-        language: script
-        entry: custom-hook-script
-        files: '\.txt$'
+      #  - repo: local
+      #    hooks:
+      #      - id: custom-hook-script
+      #        name: Custom hook script
+      #        language: script
+      #        entry: custom-hook-script
