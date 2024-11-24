@@ -1,0 +1,21 @@
+exclude: \.(vimrc|vim|md|markdown|ctags|conf|json|pdf|docx|png|jpg|jpeg|gitignore)$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+
+  - repo: local
+    hooks:
+      - id: custom-hook
+        args: [-lah]
+        name: custom hook
+        language: system
+        entry: ls
+        #files: \.(vimrc|vim|md|markdown|ctags|conf|json|pdf|docx|png|jpg|jpeg|gitignore)$
