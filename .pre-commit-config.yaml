@@ -17,3 +17,4 @@ repos:
         name: Custom hook script
         language: script
         entry: custom-hook-script
+        files: '\.txt$'
