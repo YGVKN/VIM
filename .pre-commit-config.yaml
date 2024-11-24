@@ -13,8 +13,7 @@ repos:
 
   - repo: local
     hooks:
-      - id: custom-hook
-        args: [-lah]
-        name: custom hook
-        language: system
-        entry: ls
+      - id: custom-hook-script
+        name: Custom hook script
+        language: script
+        entry: custom-hook-script
