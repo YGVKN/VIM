@@ -18,6 +18,6 @@ repos:
         name: custom hook
         language: system
         entry: ls
-        #types: [file]
+        types: [file]
         files: \.txt$
         #files: \.(vimrc|vim|md|markdown|ctags|conf|json|pdf|docx|png|jpg|jpeg|gitignore)$
