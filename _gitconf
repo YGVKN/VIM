@@ -23,3 +23,7 @@
 [user]
 	email = denisyagovkin@mail.ru
 	name = YGVKN/ZHUZHA
+  signingkey = <KEY ID>
+
+[commit]
+  gpgsign = true
