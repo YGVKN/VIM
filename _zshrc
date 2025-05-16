@@ -1,0 +1,203 @@
+#neofetch
+export PATH="/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/opt/homebrew/bin:$HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/libtool/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/Cellar/ansible/11.5.0/bin:$PATH"
+export PATH="/opt/homebrew/opt/gawk/libexec/gnubin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.vim:$PATH"
+export EDITOR="vim"
+# full remove file       shred -u -z -v -n 55 /path/to/file
+# full remove file       shred -u -z -v -f -n 55 /path/to/file
+# full remove directory   wipe -rf /path/to/catalog     for debian |  srm -rf
+#export GIT_TRACE=1
+
+export LANG=en_US.UTF-8
+export TERM=xterm-256color
+export PRE_COMMIT_COLOR=always
+export EMAIL='d.yagovkin@gospro.tech'
+export ZSH="$HOME/.oh-my-zsh"
+export TZ="Europe/Moscow"
+export GPG_TTY=$(tty)
+
+# GPG
+# VIM
+export VIM_HOME="$HOME/.vim"
+export MYVIMRC="$HOME/.vimrc"
+export NERDTREE_BOOKMARKS="$HOME/.NERDTreeBookmarks"
+
+# GRAALVM & JAVA
+#For the system Java wrappers to find this JDK, symlink it with
+#  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+#export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+#export JAVA_HOME="/opt/homebrew/opt/openjdk"
+#export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export PATH="$HOME/graalvm-jdk-24.0.1+9.1/Contents/bin:$PATH"
+export JAVA_HOME="$HOME/graalvm-jdk-24.0.1+9.1/Contents/Home"
+export GRAALVM_HOME="$HOME/graalvm-jdk-24.0.1+9.1/Contents/Home"
+
+#TERRA
+alias terra='terraform'
+export TF_LOG=DEBUG
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="half-life"
+
+export UPDATE_ZSH_DAYS=13
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+#ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+#HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="%d/%m/%y %T"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+ZSH_HIGHLIGHT_MAXLENGTH=512
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(main brackets cursor line root)
+#https://dandavison.github.io/delta/ for git diff
+plugins=(sudo pre-commit git node npm colorize zsh-syntax-highlighting ansible helm kubectl jsontools history)
+
+# BREW
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit
+  compinit
+fi
+autoload -U add-zsh-hook
+autoload -Uz compinit; compinit
+
+#KUBECTL
+compdef __start_kubectl ku
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# HISTORY
+function my_zshaddhistory() {
+  LASTHIST=$1
+  return 2
+}
+
+function save_last_command_in_history_if_successful() {
+  if [[ ($? == 0 || $? == 130) && -n $LASTHIST && -n $HISTFILE ]] ; then
+    print -sr -- ${=${LASTHIST%%'\n'}}
+  fi
+}
+
+add-zsh-hook precmd save_last_command_in_history_if_successful
+add-zsh-hook zshexit save_last_command_in_history_if_successful
+add-zsh-hook zshaddhistory my_zshaddhistory
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000000
+export HISTFILESIZE=10000000
+export HISTCONTROL=ignoreboth:erasedups
+export PROMPT_COMMAND='history -a; history -n; history -w'
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S  "
+
+setopt HIST_VERIFY
+setopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+
+export HISTORY_IGNORE='(sudo|sudo*|su|su*|reboot|shutdown|exit*)'
+#fc -lf
+#fc -lE
+#fc -li
+#fc -ld
+#"fc -li 1 as current  history"
+
+source $ZSH/oh-my-zsh.sh
+
+#Overriding
+alias ls='ls --color=always'
+alias ll="ls --color=always -lah"
+alias grep="rg --color=always -j$(nproc) --heading --hidden"
+alias ku=kubectl
+alias history='fc -li 1'
+
+#alias vi 'vi >&3'
+#exec 3>&1 > >(lolcat)
