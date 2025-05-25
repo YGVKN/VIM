@@ -15,9 +15,12 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript', 'edn']}
+""Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'scheme', 'clojure', 'clojurescript']}
+Plug 'eraserhd/parinfer-rust',       {'do': 'cargo build --release', 'for': ['lisp', 'scheme', 'clojure',
+      \ 'clojurescript']}
 
-Plug 'guns/vim-clojure-highlight',   {'for': 'clojure'}
+
+Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript']}
 
 Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -58,10 +61,6 @@ call plug#end()
 sy on
 
 filetype plugin indent on
-
-if has('syntax') && has('eval')
-  packadd! matchit
-endif
 
 colorscheme pop-punk
 
@@ -153,7 +152,7 @@ set wildmenu
 set wildignorecase
 set wildmode=list:longest,full
 set wildignore=*.swp,*.pdf,*.png,*.jpeg,*.gif
-set wildignore+=*/node_modules/*,.git
+set wildignore+=*/node_modules/*,.git,.clj-kondo,.lsp,.cpcache
 
 set termguicolors
 set formatoptions=tcqrn2
@@ -176,14 +175,14 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-2024.08.29-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.04.07-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
 if executable('vim-language-server')
-  augroup LspVim
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
+  aug LspVim
+    au!
+    au User lsp_setup call lsp#register_server({
         \ 'name': 'vim-language-server',
         \ 'cmd': {server_info->['vim-language-server', '--stdio']},
         \ 'whitelist': ['vim'],
@@ -191,18 +190,18 @@ if executable('vim-language-server')
         \   'vimruntime': $VIMRUNTIME,
         \   'runtimepath': &rtp,
         \ }})
-  augroup END
+  aug END
 endif
 
 if executable('bash-language-server')
-  augroup LspBash
-    autocmd!
-    autocmd User lsp_setup call lsp#register_server({
+  aug LspBash
+    au!
+    au User lsp_setup call lsp#register_server({
           \ 'name': 'bash-language-server',
           \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
           \ 'allowlist': ['sh'],
           \ })
-  augroup END
+  aug END
 endif
 
 let g:lsp_settings = {
@@ -218,9 +217,9 @@ let g:lsp_settings = {
 \ }
 
 if executable('yaml-language-server')
-  augroup LspYaml
-   autocmd!
-   autocmd User lsp_setup call lsp#register_server({
+  aug LspYaml
+   au!
+   au User lsp_setup call lsp#register_server({
        \ 'name': 'yaml-language-server',
        \ 'cmd': {server_info->['yaml-language-server', '--stdio']},
        \ 'allowlist': ['yml', 'yaml', 'yaml.ansible'],
@@ -235,7 +234,7 @@ if executable('yaml-language-server')
        \   }
        \ }
        \})
-  augroup END
+  aug END
 endif
 
 func! s:on_lsp_buffer_enabled() abort
@@ -259,10 +258,10 @@ func! s:on_lsp_buffer_enabled() abort
   au! BufWritePre *.{clj,cljs,cljc,edn,vim,sh,yml,yaml} call execute('LspDocumentFormatSync')
 endfunc
 
-augroup lsp_install
+aug lsp_install
     au!
     au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+aug END
 
 au! CompleteDone * if pumvisible() == 0 | pclose | endif
 
@@ -283,7 +282,7 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-let g:mapleader = ","
+let mapleader="\<Space>"
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -307,10 +306,10 @@ endfunc
 
 let g:NERDTreeBookmarksFile = !empty($NERDTREE_BOOKMARKS) && filereadable($NERDTREE_BOOKMARKS) ? $NERDTREE_BOOKMARKS : ''
 
-augroup nerdtreehidecwd
+aug nerdtreehidecwd
  au!
  au FileType nerdtree setl conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
-augroup end
+aug end
 
 au BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
@@ -329,7 +328,7 @@ let g:airline_highlighting_cache = 1
 let g:terminal_ansi_colors = pop_punk#AnsiColors()
 
 "FZF"
-let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden --depth 8 -i -f -l -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --ignore .git --hidden --depth 5 -i -f -l -g ""'
 
 "Ctags"
 let tlist_clojure_settings = 'Clojure;n:namespace;d:definition;c:definition;f:function;m:macro;i:inline;a:multimethod;b:multimethod;s:struct;v:intern'
@@ -414,7 +413,7 @@ let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-term
 ""au FileType clojure,edn let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
 
 "Parinfer"
-let g:vim_parinfer_filetypes = ["clojure","clojurescript","edn"]
+let g:vim_parinfer_filetypes = ["clojure","clojurescript"]
 
 "Translate"
 let g:trans_bin = $VIM_HOME
@@ -425,7 +424,7 @@ let g:vim_json_syntax_conceal = 0
 
 "Jenkinsfile syntax"
 au! BufReadPost,BufNewFile *.{Jenkinsfile,jenkinsfile},Jenkinsfile,jenkinsfile set filetype=groovy
-augroup groovy_autocmd
+aug groovy_autocmd
   au!
   au FileType groovy set autoindent
   au FileType groovy set formatoptions=tcq2l
@@ -433,7 +432,7 @@ augroup groovy_autocmd
   au FileType groovy set softtabstop=2 tabstop=2
   au FileType groovy set expandtab
   au FileType groovy set foldmethod=syntax
-augroup END
+aug END
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
