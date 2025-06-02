@@ -1,0 +1,29 @@
+[core]
+  pager = delta
+  editor = vim
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  navigate = true
+  light=false
+  line-numbers=true
+  hyperlinks=true
+  side-by-side=true
+  line-numbers-left-format=""
+  line-numbers-right-format="|"
+
+[merge]
+  conflictStyle = diff3
+
+[user]
+  email =
+  name = YGVKN
+  signingkey =
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  program = gpg
