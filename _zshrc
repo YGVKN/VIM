@@ -20,6 +20,7 @@ export EMAIL='d.yagovkin@gospro.tech'
 export ZSH="$HOME/.oh-my-zsh"
 export TZ="Europe/Moscow"
 export GPG_TTY=$(tty)
+#chmod o+rw $(tty) ???
 
 # GPG
 # VIM
