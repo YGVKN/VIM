@@ -1,0 +1,3 @@
+sudo systemsetup -listtimezones | grep Moscow
+sudo systemsetup -settimezone "Europe/Moscow"
+sudo systemsetup -gettimezone
