@@ -15,11 +15,7 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-""Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'scheme', 'clojure', 'clojurescript']}
-Plug 'eraserhd/parinfer-rust',       {'do': 'cargo build --release', 'for': ['lisp', 'scheme', 'clojure',
-      \ 'clojurescript']}
-
-
+Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript']}
 Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript']}
 
 Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
@@ -55,7 +51,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
+Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/translate git.io/trans && chmod +x ~/.vim/translate' }
 call plug#end()
 
 sy on
@@ -175,7 +171,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.04.07-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.06.05-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -410,10 +406,8 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 
-""au FileType clojure,edn let b:slime_vimterminal_cmd = 'clojure -Sdeps "{:deps {com.bhauman/rebel-readline {:mvn/version \"0.1.4\"}}}" -M -m rebel-readline.main'
-
 "Parinfer"
-let g:vim_parinfer_filetypes = ["clojure","clojurescript"]
+let g:vim_parinfer_filetypes = ["lisp", "clojure", "clojurescript", "edn"]
 
 "Translate"
 let g:trans_bin = $VIM_HOME
@@ -515,7 +509,7 @@ com! -nargs=? Date exe 'call s:now(<args>)'
 com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/stock.vim")'
+au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/shared_hist.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "RELOADED ".$MYVIMRC
