@@ -16,19 +16,19 @@ Plug 'bignimbus/pop-punk.vim'
 
 "CLOJURE"
 Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript']}
-Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript']}
+Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript', 'edn']}
 
 Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
+Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
 Plug 'guns/vim-sexp',                {'for': 'clojure'}
 
 Plug 'tpope/vim-fireplace',          {'for': 'clojure'}
-
 Plug 'tpope/vim-classpath',          {'for': 'clojure'}
-Plug 'venantius/vim-cljfmt',         {'for': 'clojure'}
-
-Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-dispatch',           {'for': 'clojure'}
+Plug 'tpope/vim-salve',              {'for': 'clojure'}
+
+Plug 'jpalardy/vim-slime',           {'for': ['lisp', 'clojure']}
 
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
