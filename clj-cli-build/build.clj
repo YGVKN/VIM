@@ -5,9 +5,9 @@
 
 (defonce dist "target")
 (defonce jar-stuff (str dist "/classes"))
-(defonce lib-name 'com.github.YGVKN/clj-cli-build)
-(defonce app-name "clj-cli-build")
-(defonce version "0.0.3")
+(defonce lib-name 'com.github.YGVKN/client-repl)
+(defonce app-name "client-repl")
+(defonce version "0.0.1")
 (defonce basis (build/create-basis {:project "deps.edn"}))
 (defonce jar-file-name (format "%s/%s-%s.jar" dist (name lib-name) version))
 (defonce uber-file-name (format "%s/%s-%s-standalone.jar" dist app-name version))
@@ -18,7 +18,7 @@
 
 (defn junk
   [_]
-  (build/process {:command-args ["/bin/bash" "-c" "ls -lah | lolcat"]}))
+  (build/process {:command-args ["/bin/sh" "-c" "ls -la | lolcat"]}))
 
 (defn clean [_]
   (build/delete {:path dist})
@@ -47,10 +47,10 @@
   (build/compile-clj {:basis basis
                       :src-dirs ["src"]
                       :class-dir jar-stuff
-                      :javac-opts ["--release" "22.0.1"]})
+                      :javac-opts ["--release" "24.0.1"]})
 
   (build/uber {:class-dir jar-stuff
                :uber-file uber-file-name
                :basis basis
-               :main 'dev.core})
+               :main 'ygvkn.client-repl})
   (println (format "Uber file created: \"%s\"" uber-file-name)))

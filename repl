@@ -1,0 +1,1 @@
+clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name '"repl"' :accept clojure.core.server/repl :bind-err true :server-daemon false
