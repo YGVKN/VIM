@@ -1,1 +1,0 @@
-clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name '"soket-repl"' :accept clojure.core.server/io-prepl :bind-err true :server-daemon false

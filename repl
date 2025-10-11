@@ -1,1 +1,7 @@
 clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name '"repl"' :accept clojure.core.server/repl :bind-err true :server-daemon false
+
+ssh -L :5678:localhost:8765 zhuzha@vpn -p 22 -N -f
+
+java -jar target/client-repl-0.0.1-standalone.jar :port 5678
+
+echo "(doc ns)" | nc localhost 5678; echo
