@@ -5,3 +5,17 @@ ssh -L :5678:localhost:8765 zhuzha@vpn -p 22 -N -f
 java -jar target/client-repl-0.0.1-standalone.jar :port 5678
 
 echo "(doc ns)" | nc localhost 5678; echo
+
+
+  ;; Socket REPL
+  ;; Clojure Socket REPL on port 5678
+  ;; clojure -X:repl/socket
+  :repl/socket
+  {:exec-fn clojure.core.server/start-server
+   :exec-args {:name "server-socket-repl"
+               :address "localhost"
+               :port 5678
+               :accept clojure.core.server/repl
+               :bind-err true
+               :server-daemon false}}
+
