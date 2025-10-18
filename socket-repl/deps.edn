@@ -1,0 +1,14 @@
+;;clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name '"repl"' :accept clojure.core.server/repl :bind-err true :server-daemon false
+
+{:aliases
+ {:socket-repl-server
+  {:exec-fn clojure.core.server/start-server
+   :exec-args {:name "socket-repl-server"
+               :address "localhost"
+               :port 5678
+               :bind-err true
+               :accept clojure.core.server/repl
+               :server-daemon false}}}}
+
+;; clojure -X:socket-repl/socket
+

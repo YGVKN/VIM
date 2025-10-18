@@ -1,4 +1,4 @@
-func public#stuff#Out() abort
+func! ExeToShell() abort
 
   call ch_logfile('vimlogfile', 'w')
 
@@ -17,7 +17,7 @@ func public#stuff#Out() abort
     quit!
   endfunc
 
-  let s:shell_job = job_start([$SHELL], #{
+  let s:shell_job = job_start([&shell], #{
         \ out_cb:   "GotOutput",
         \ err_cb:   "GotOutput",
         \ exit_cb:  "JobExit",
@@ -26,8 +26,6 @@ func public#stuff#Out() abort
 
   new
   setlocal encoding=utf-8
-""				scriptencoding utf-8
-
   setlocal buftype=prompt
   setlocal nonumber
   let buf = bufnr('')
@@ -36,4 +34,5 @@ func public#stuff#Out() abort
   sleep 1
   echowindow "Job Status [" .. job_status(s:shell_job) .. "]"
   startinsert
+
 endfunc
