@@ -1,5 +1,12 @@
-func public#stuff#Out() abort
+func SendToBuf() abort
+  ""  "ry
+  ""  "rp
+  call term_sendkeys(&shell, @r."\<CR>")
 
+func SendToBuf() abort
+  ""  "ry
+  ""  "rp
+  call term_sendkeys(&shell, @r."\<CR>")
   call ch_logfile('vimlogfile', 'w')
 
   func! TextEntered(text)
@@ -26,7 +33,6 @@ func public#stuff#Out() abort
 
   new
   setlocal encoding=utf-8
-""				scriptencoding utf-8
 
   setlocal buftype=prompt
   setlocal nonumber
