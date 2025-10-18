@@ -1,4 +1,5 @@
-clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name '"repl"' :accept clojure.core.server/repl :bind-err true :server-daemon false
+clj -X clojure.core.server/start-server :address '"localhost"' :port 8765  :name
+'"client-socket-repl"' :accept clojure.core.server/repl :bind-err true :server-daemon false
 
 ssh -L :5678:localhost:8765 zhuzha@vpn -p 22 -N -f
 
@@ -9,7 +10,8 @@ echo "(doc ns)" | nc localhost 5678; echo
 
   ;; Socket REPL
   ;; Clojure Socket REPL on port 5678
-  ;; clojure -X:repl/socket
+  ;; clojure -X:client-socket-repl
+  ;; clj -X:client-socket-repl
   :repl/socket
   {:exec-fn clojure.core.server/start-server
    :exec-args {:name "server-socket-repl"

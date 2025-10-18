@@ -10,5 +10,5 @@
                :accept clojure.core.server/repl
                :server-daemon false}}}}
 
-;; clojure -X:socket-repl/socket
+;; clojure -X:socket-repl-server
 
