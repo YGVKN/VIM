@@ -171,7 +171,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.06.05-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.10.23-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -278,7 +278,10 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-let mapleader="\<Space>"
+let mapleader = ","
+let	g:mapleader = ","
+"capslock to ctrl"
+
 
 "Buffers"
 nnoremap <F3> :bnext<CR>
@@ -498,7 +501,8 @@ let g:plug_shallow=1
 
 "Custom stuff"
 
-"runtime autoload/scratch.vim"
+""runtime autoload/scratch.vim
+""runtime autoload/ExeToShell.vim
 
 func! s:now(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
@@ -509,7 +513,7 @@ com! -nargs=? Date exe 'call s:now(<args>)'
 com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/shared_hist.vim")'
+au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/shared_state.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "RELOADED ".$MYVIMRC
