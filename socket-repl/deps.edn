@@ -11,4 +11,5 @@
                :server-daemon false}}}}
 
 ;; clojure -X:socket-repl-server
+;; clj -X:socket-repl-server :port $REPL_PORT
 
