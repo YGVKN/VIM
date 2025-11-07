@@ -81,8 +81,8 @@
 
 (defn handler [req]
   {:status  200
-   :headers {"Content-Type:" "text/html"}
-   :body    "<p>clj-raw-http</p>"})
+   :headers {"Content-Type:" "text/plain"}
+   :body    (str req)})
 
 (defn start-server []
   (run-adapter
@@ -92,4 +92,5 @@
 (defn -main [& _]
   (start-server))
 ;;curl -v -kfsSLJZ 0.0.0.0:8888
+
 
