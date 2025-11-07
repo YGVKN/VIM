@@ -1,4 +1,5 @@
-(ns http.raw
+(ns ^{:author "YGVKN/ZHUZHA"}
+ http.raw
   (:require
    [clojure.java.io :as io]
    [clojure.string :as str])
@@ -91,3 +92,4 @@
 (defn -main [& _]
   (start-server))
 ;;curl -v -kfsSLJZ 0.0.0.0:8888
+
