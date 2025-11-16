@@ -6,9 +6,9 @@
 (defonce dist "target")
 (defonce jar-stuff (str dist "/classes"))
 (defonce lib-name 'com.github.YGVKN/clojure)
-(defonce app-name "clj-raw-http")
+(defonce app-name "clj-http-raw")
 (defonce version "0.0.1")
-(defonce basis (build/create-basis {:project "deps.edn"}))
+(defonce main  (build/create-basis {:project "deps.edn"}))
 (defonce jar-file-name (format "%s/%s-%s.jar" dist (name lib-name) version))
 (defonce uber-file-name (format "%s/%s-%s-standalone.jar" dist app-name version))
 
@@ -36,7 +36,7 @@
   (build/write-pom {:class-dir jar-stuff
                     :lib lib-name
                     :version version
-                    :basis basis
+                    :basis main
                     :src-dirs ["src"]})
   (build/jar {:class-dir jar-stuff
               :jar-file jar-file-name})
@@ -48,13 +48,13 @@
   (build/copy-dir {:src-dirs ["resources"]
                    :target-dir jar-stuff})
 
-  (build/compile-clj {:basis basis
+  (build/compile-clj {:basis main
                       :src-dirs ["src"]
                       :class-dir jar-stuff
                       :javac-opts ["--release" "24.0.1"]})
 
   (build/uber {:class-dir jar-stuff
                :uber-file uber-file-name
-               :basis basis
+               :basis main
                :main 'http.raw})
   (println (format "Uber file created: \"%s\"" uber-file-name)))

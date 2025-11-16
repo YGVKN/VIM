@@ -2,7 +2,8 @@
  http.raw
   (:require
    [clojure.java.io :as io]
-   [clojure.string :as str])
+   [clojure.string  :as str]
+   [clojure.pprint :as pprint])
   (:import (java.net ServerSocket SocketException Socket)
            (java.io InputStream OutputStream BufferedReader))
   (:gen-class))
@@ -82,12 +83,13 @@
 (defn handler [req]
   {:status  200
    :headers {"Content-Type:" "text/plain"}
-   :body    (str req)})
+   :body (with-out-str
+           (pprint/pprint req))})
 
 (defn start-server []
   (run-adapter
    handler
-   {:port 8888}))
+   {:port 8765}))
 
 (defn -main [& _]
   (start-server))
