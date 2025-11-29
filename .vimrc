@@ -15,7 +15,9 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript']}
+Plug 'https://github.com/kovisoft/paredit', {'for': ['lisp', 'clojure', 'clojurescript']}
+
+""Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript']}
 Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript', 'edn']}
 
 Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
@@ -51,7 +53,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/translate git.io/trans && chmod +x ~/.vim/translate' }
+Plug 'echuraev/translate-shell.vim', { 'do': 'wget -O ~/.vim/trans git.io/trans && chmod +x ~/.vim/trans' }
 call plug#end()
 
 sy on
@@ -278,8 +280,8 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-let mapleader = ","
-let	g:mapleader = ","
+""let mapleader = ","
+""let	g:mapleader = ","
 "capslock to ctrl"
 
 
@@ -409,8 +411,8 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 
-"Parinfer"
-let g:vim_parinfer_filetypes = ["lisp", "clojure", "clojurescript", "edn"]
+"""Parinfer"
+""let g:vim_parinfer_filetypes = ["lisp", "clojure", "clojurescript", "edn"]
 
 "Translate"
 let g:trans_bin = $VIM_HOME
@@ -433,7 +435,7 @@ aug END
 
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
-  au FileType * setl complete+=k$VIM_HOME/stock.vim
+  au FileType * setl complete+=k$VIM_HOME/shared.vim
   "au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim"
 endif
 
@@ -513,7 +515,7 @@ com! -nargs=? Date exe 'call s:now(<args>)'
 com! -nargs=? Scratch exe 'call Scratch()'
 
 au VimLeavePre * if v:dying | echowindow "\nAAAAaaaarrrggghhhh!!!\n" | endif
-au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/shared_state.vim")'
+au VimLeave * exe 'call system("cat $HOME/.zsh_history | cut -c16- > $VIM_HOME/shared.vim")'
 au VimLeave * echowindow "Exit value is " .. v:exiting
 
 au! bufwritepost $MYVIMRC so $MYVIMRC | echowindow "RELOADED ".$MYVIMRC
