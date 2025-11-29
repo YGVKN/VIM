@@ -15,10 +15,10 @@ Plug 'bignimbus/pop-punk.vim'
 "Plug 'kyoz/purify', { 'rtp': 'vim' }"
 
 "CLOJURE"
-Plug 'https://github.com/kovisoft/paredit', {'for': ['lisp', 'clojure', 'clojurescript']}
+""Plug 'eraserhd/parinfer-rust',  {'for': ['lisp', 'clojure', 'edn']}
+Plug 'bhurlow/vim-parinfer',       {'for': ['lisp', 'clojure', 'edn']}
 
-""Plug 'bhurlow/vim-parinfer',         {'for': ['lisp', 'clojure', 'clojurescript']}
-Plug 'guns/vim-clojure-highlight',   {'for': ['clojure', 'clojurescript', 'edn']}
+Plug 'guns/vim-clojure-highlight',   {'for': ['lisp', 'clojure', 'clojurescript', 'edn']}
 
 Plug 'fabiodomingues/clj-depend',    {'for': ['clojure', 'clojurescript', 'edn']}
 Plug 'guns/vim-clojure-static',      {'for': 'clojure'}
@@ -280,11 +280,6 @@ imap jj <Esc>
 "Lambda λ"
 imap <C-j> <C-k>l*
 
-""let mapleader = ","
-""let	g:mapleader = ","
-"capslock to ctrl"
-
-
 "Buffers"
 nnoremap <F3> :bnext<CR>
 nnoremap <F4> :bprevious<CR>
@@ -411,9 +406,6 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 
-"""Parinfer"
-""let g:vim_parinfer_filetypes = ["lisp", "clojure", "clojurescript", "edn"]
-
 "Translate"
 let g:trans_bin = $VIM_HOME
 let g:trans_default_direction="en:ru"
@@ -502,9 +494,6 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
-
-""runtime autoload/scratch.vim
-""runtime autoload/ExeToShell.vim
 
 func! s:now(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
