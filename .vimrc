@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree',          { 'on': 'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'https://github.com/dpelle/vim-LanguageTool'
 
 "ColorScheme"
 Plug 'bignimbus/pop-punk.vim'
@@ -60,7 +61,13 @@ sy on
 
 filetype plugin indent on
 
+"IsSet param ? -> Add to param - ? \"set dictionary<?>"
+
 colorscheme pop-punk
+
+""setlocal spell spelllang=ru
+set spell nospell
+set dictionary+=/usr/share/dict/words
 
 scriptencoding utf-8
 
@@ -406,6 +413,9 @@ let g:slime_paste_file = "$HOME/.slime_paste"
 let b:slime_bracketed_paste = 1
 let g:slime_vimterminal_config = {"term_finish": "close", "term_name": "vim-terminal"}
 
+"Parinfer"
+let g:vim_parinfer_mode = 'paren'
+
 "Translate"
 let g:trans_bin = $VIM_HOME
 let g:trans_default_direction="en:ru"
@@ -428,7 +438,7 @@ aug END
 "Native complete"
 if has("autocmd") && exists("+omnifunc")
   au FileType * setl complete+=k$VIM_HOME/shared.vim
-  "au FileType clojure setl complete+=k~/.vim/autoload/complete/clj_dict.vim"
+  "au FileType clojure setl complete+=k~/.vim/path/to/file.vim"
 endif
 
 "Tab compl"
@@ -494,6 +504,7 @@ let g:plug_retries=3
 let g:plug_shallow=1
 
 "Custom stuff"
+""source stuff.vim
 
 func! s:now(param = "%c") abort
   echowindow a:param ==# "%c" ? strftime("%c") : strftime(a:param)
