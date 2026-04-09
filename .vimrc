@@ -183,7 +183,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2025.10.23-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2026.01.19-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
