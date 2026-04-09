@@ -36,6 +36,9 @@ Plug 'jpalardy/vim-slime',           {'for': ['lisp', 'clojure']}
 "ELIXIR"
 Plug 'elixir-editors/vim-elixir',    {'for': 'elixir'}
 
+"Crystal Lang"
+Plug 'vim-crystal/vim-crystal',      {'for': 'crystal'}
+
 "GIT"
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
