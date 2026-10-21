@@ -47,7 +47,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 "OTHER"
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'elzr/vim-json', {'for': ['json', 'jsonp']}
+Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'roman/golden-ratio'
 Plug 'yegappan/taglist',             {'for': ['clojure', 'clojurescript']}
 Plug 'junegunn/fzf',                 { 'do': { -> fzf#install() }}
@@ -183,7 +183,7 @@ au User lsp_setup call lsp#register_server({
 
 au User lsp_setup call lsp#register_server({
   \ 'name': 'clj-kondo',
-  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2026.01.19-standalone.jar']},
+  \ 'cmd': {server_info->[&shell, &shellcmdflag, 'java -jar ~/YGVKN/LSP/clj-kondo-lsp-server-2026.10.20-standalone.jar']},
   \ 'allowlist': ['clojure', 'clojurescript']
   \ })
 
@@ -243,6 +243,14 @@ if executable('yaml-language-server')
        \ }
        \})
   aug END
+endif
+
+if executable('crystalline')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'crystalline',
+        \ 'cmd': {server_info->['crystalline', '--stdio']},
+        \ 'whitelist': ['crystal'],
+        \ })
 endif
 
 func! s:on_lsp_buffer_enabled() abort
