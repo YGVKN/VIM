@@ -1,0 +1,1 @@
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=XX/ST=XXX/L=XXX/O=some@thing.io/CN=0.0.0.0" -keyout cert.key -out cert.crt
